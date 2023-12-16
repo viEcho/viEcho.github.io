@@ -450,15 +450,16 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/springboot/8.springboot%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E2%80%9C%E5%BC%80%E5%85%B3%E2%80%9D/">
-                            springBoot 中的那些“开关”
+                        <a href="/2021/04/23/java%E7%9B%B8%E5%85%B3/6.%E6%B5%85%E8%B0%88%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7%E5%8F%8A%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98(TODO)/">
+                            浅谈事务的四大特性及多线程事务问题
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-在之前我们就Swagger使用篇，可以了解到根据不同环境更改为不同的配置，让不同的配置逻辑生效的处理办法。其实吧，有没有觉得这东西就像是一个开关，那么SpringBoot 我们可以怎么获取当前环境（获取其他配置相同）从而进行判断做一个开关呢？今天我...
+                            概念事务是指一段程序应用中，所有的操作都在一个执行单元内，一旦一个操作失败，那么其他的操作都会回滚，简单来说要么全部执行成功，要么全部执行失败；
+事务的四大特性（简称ACID）
+原子性：原子性是指事务包含的操作是一个极小的操作单元，是不可拆分的；其中...
                         
                     </div>
 
@@ -480,7 +481,7 @@
                     
                         
                         <li>
-                            <a href="/categories/springboot/">springboot</a>&nbsp;
+                            <a href="/categories/java%E7%9B%B8%E5%85%B3/">java相关</a>&nbsp;
                         </li>
                     
                     
@@ -495,7 +496,7 @@
                     
                         <li>
                             
-                            <a href="/tags/springBoot/">springBoot</a>&nbsp;
+                            <a href="/tags/%E4%BA%8B%E5%8A%A1/">事务</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -503,7 +504,7 @@
         
     </div>
 
-    <a href="/2021/04/23/springboot/8.springboot%E4%B8%AD%E7%9A%84%E9%82%A3%E4%BA%9B%E2%80%9C%E5%BC%80%E5%85%B3%E2%80%9D/">Read more<span class="seo-reader-text">springBoot 中的那些“开关”</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/04/23/java%E7%9B%B8%E5%85%B3/6.%E6%B5%85%E8%B0%88%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7%E5%8F%8A%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%BA%8B%E5%8A%A1%E9%97%AE%E9%A2%98(TODO)/">Read more<span class="seo-reader-text">浅谈事务的四大特性及多线程事务问题</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -518,15 +519,17 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/springboot/9.springboot-web-flyway/">
-                            springweb自动配置分析及flyway插件使用
+                        <a href="/2021/04/23/java%E7%9B%B8%E5%85%B3/8.%E8%AE%B0%E4%B8%80%E4%B8%AA%E9%80%92%E5%BD%92%E5%B0%81%E8%A3%85%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/">
+                            记一个递归封装树形结构
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-springboot 创建web项目只需要引入对应的web-starter，自己定义好moudel层，再采用相应的模版引擎技术（view层）就可以将数据渲染到模版中，从而生成一个单体的web应用！那这些视图是如何解析的呢？最常用的模版引擎语法有哪些...
+最近改了个小bug，原有的数据字典查询，封装成树的递归写的有问题，就自己写了一个，解决这种递归的思考是：分析树形结构–&gt;&gt;找到父子层之间的关联关系–&gt;&gt;根据关系编写递归嵌套条件。代码很简单也很实用，遂总结如下
+
+表结构截取表...
                         
                     </div>
 
@@ -548,7 +551,7 @@ springboot 创建web项目只需要引入对应的web-starter，自己定义好m
                     
                         
                         <li>
-                            <a href="/categories/springboot/">springboot</a>&nbsp;
+                            <a href="/categories/java%E7%9B%B8%E5%85%B3/">java相关</a>&nbsp;
                         </li>
                     
                     
@@ -563,7 +566,7 @@ springboot 创建web项目只需要引入对应的web-starter，自己定义好m
                     
                         <li>
                             
-                            <a href="/tags/flyway-thymeleaf/">flyway,thymeleaf</a>&nbsp;
+                            <a href="/tags/%E9%80%92%E5%BD%92/">递归</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -571,7 +574,7 @@ springboot 创建web项目只需要引入对应的web-starter，自己定义好m
         
     </div>
 
-    <a href="/2021/04/23/springboot/9.springboot-web-flyway/">Read more<span class="seo-reader-text">springweb自动配置分析及flyway插件使用</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/04/23/java%E7%9B%B8%E5%85%B3/8.%E8%AE%B0%E4%B8%80%E4%B8%AA%E9%80%92%E5%BD%92%E5%B0%81%E8%A3%85%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/">Read more<span class="seo-reader-text">记一个递归封装树形结构</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -722,78 +725,6 @@ springboot 创建web项目只需要引入对应的web-starter，自己定义好m
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/springboot/10.springboot%E6%95%B4%E5%90%88mybatis%E5%8F%8ADruid/">
-                            springboot集成mybatis和druid监控
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-springboot操作数据的库的方式有很多，jdbcTemplate,jpa,集成mybatis…现在的日常开发，几乎都是采用mybatis框架;它灵活而又层次分明的设计极大的简化了我们对数据库的操作！
-
-概念：
-
-MyBatis是一流的持久性框...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/springboot/">springboot</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/springboot-mybatis-druid/">springboot,mybatis,druid</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/springboot/10.springboot%E6%95%B4%E5%90%88mybatis%E5%8F%8ADruid/">Read more<span class="seo-reader-text">springboot集成mybatis和druid监控</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/2021/04/23/springboot/11.springBoot%E6%95%B4%E5%90%88%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/">
                             SpringBoot整合多数据源
                         </a>
@@ -856,6 +787,78 @@ MyBatis是一流的持久性框...
     </div>
 
     <a href="/2021/04/23/springboot/11.springBoot%E6%95%B4%E5%90%88%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90/">Read more<span class="seo-reader-text">SpringBoot整合多数据源</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2021/04/23/springboot/10.springboot%E6%95%B4%E5%90%88mybatis%E5%8F%8ADruid/">
+                            springboot集成mybatis和druid监控
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+springboot操作数据的库的方式有很多，jdbcTemplate,jpa,集成mybatis…现在的日常开发，几乎都是采用mybatis框架;它灵活而又层次分明的设计极大的简化了我们对数据库的操作！
+
+概念：
+
+MyBatis是一流的持久性框...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
+                
+                    2021-04-23
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/springboot/">springboot</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/springboot-mybatis-druid/">springboot,mybatis,druid</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/04/23/springboot/10.springboot%E6%95%B4%E5%90%88mybatis%E5%8F%8ADruid/">Read more<span class="seo-reader-text">springboot集成mybatis和druid监控</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1080,17 +1083,17 @@ spring 发展至今，已经可以变得很轻巧了。需要用什么配置只�
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/java%E7%9B%B8%E5%85%B3/12.poi-SXSSFWorkbook%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E5%AF%BC%E5%87%BA%E5%AE%9E%E8%B7%B5/">
-                            poi SXSSFWorkbook大数据量导出实践
+                        <a href="/2021/04/23/springboot/3.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%90%97/">
+                            你真的会打印日志吗？
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-最近公司做一个生成审批附件的功能，算是对老的功能的一个改造，之前使用的XSSF 和HSSF ；但是一旦数据量超过万级别了，导出的性能就差强人意了；要想快那就必须要要用到poi的SXSSFWorkbook了；
+作为一个猿，大家多多少少应该都改过线上的bug吧，这种本地复现不了，线上又有的bug你们都是怎么定位的呢？我想日志可能是首选办法了吧，那么你们的日志打印都有什么规范呢？你还是用的log4j吗？一起来了解下logback吧
 
-用到的依赖12345678910111...
+概念Logback是由l...
                         
                     </div>
 
@@ -1112,7 +1115,7 @@ spring 发展至今，已经可以变得很轻巧了。需要用什么配置只�
                     
                         
                         <li>
-                            <a href="/categories/java%E7%9B%B8%E5%85%B3/">java相关</a>&nbsp;
+                            <a href="/categories/springboot/">springboot</a>&nbsp;
                         </li>
                     
                     
@@ -1127,7 +1130,7 @@ spring 发展至今，已经可以变得很轻巧了。需要用什么配置只�
                     
                         <li>
                             
-                            <a href="/tags/SXSSFWorkbook/">SXSSFWorkbook</a>&nbsp;
+                            <a href="/tags/logback/">logback</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1135,7 +1138,7 @@ spring 发展至今，已经可以变得很轻巧了。需要用什么配置只�
         
     </div>
 
-    <a href="/2021/04/23/java%E7%9B%B8%E5%85%B3/12.poi-SXSSFWorkbook%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E5%AF%BC%E5%87%BA%E5%AE%9E%E8%B7%B5/">Read more<span class="seo-reader-text">poi SXSSFWorkbook大数据量导出实践</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/04/23/springboot/3.%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BC%9A%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%90%97/">Read more<span class="seo-reader-text">你真的会打印日志吗？</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
