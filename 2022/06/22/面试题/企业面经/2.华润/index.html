@@ -18,15 +18,15 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="1、说说ArrayList的实现，linkdeList实现  2、说说线程池的配置  3、谈谈悲观锁乐观锁  4、看你做过一段时间前端，vue的生命周期还记得不？自定义组件会吗？  5、分布式锁的实现?  6、分布式事务的实现？  7、你们的异常怎么统一处理的？  8、现在有一个user表，里面有name字段，我想查出哪些name重复的，并且把重复的次数返回给我，sql怎么写？  9、领域驱动有">
+        <meta name="description" content="有东西被加密了, 请输入密码查看.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="华润面试(22.6)">
 <meta property="og:url" content="http://example.com/2022/06/22/%E9%9D%A2%E8%AF%95%E9%A2%98/%E4%BC%81%E4%B8%9A%E9%9D%A2%E7%BB%8F/2.%E5%8D%8E%E6%B6%A6/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1、说说ArrayList的实现，linkdeList实现  2、说说线程池的配置  3、谈谈悲观锁乐观锁  4、看你做过一段时间前端，vue的生命周期还记得不？自定义组件会吗？  5、分布式锁的实现?  6、分布式事务的实现？  7、你们的异常怎么统一处理的？  8、现在有一个user表，里面有name字段，我想查出哪些name重复的，并且把重复的次数返回给我，sql怎么写？  9、领域驱动有">
+<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-22T08:23:39.379Z">
-<meta property="article:modified_time" content="2023-12-16T12:43:27.132Z">
+<meta property="article:modified_time" content="2023-12-16T15:15:39.114Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
     
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"面试题":{"path":"/categories/面试题/","icon":"calendar"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"SAN YOU SAN FEN ZHI YI","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Java":{"path":"/categories/java","icon":null},"springboot":{"path":"/categories/springboot","icon":null},"算法":{"path":"/categories/算法","icon":null},"设计模式":{"path":"/categories/设计模式","icon":null},"面试题":{"path":"/categories/面试题","icon":null},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"},"db":{"path":"/categories/db","icon":null},"docker":{"path":"/categories/docker","icon":null},"linux":{"path":"/categories/linux","icon":null},"middle":{"path":"/categories/middleware","icon":null},"other":{"path":"/categories/other","icon":null},"tools":{"path":"/categories/toolsSetting","icon":null},"web":{"path":"/categories/web篇","icon":null},"源码":{"path":"/categories/源码","icon":null}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -313,9 +313,77 @@
                             <li class="navbar-item">
                                 <!-- Menu -->
                                 <a class=""
-                                   href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"
+                                   href="/categories/java"
                                         >
-                                    <i class="calendar fa-fw"></i>
+                                    
+                                    JAVA
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/springboot"
+                                        >
+                                    
+                                    SPRINGBOOT
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E7%AE%97%E6%B3%95"
+                                        >
+                                    
+                                    算法
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                                        >
+                                    
+                                    设计模式
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98"
+                                        >
+                                    
                                     面试题
                                     
                                 </a>
@@ -401,13 +469,83 @@
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
                         <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"
+                           href="/categories/java"
+                        >
+                            <span>
+                                JAVA
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/springboot"
+                        >
+                            <span>
+                                SPRINGBOOT
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E7%AE%97%E6%B3%95"
+                        >
+                            <span>
+                                算法
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                        >
+                            <span>
+                                设计模式
+                            </span>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98"
                         >
                             <span>
                                 面试题
                             </span>
-                            
-                                <i class="calendar fa-sm fa-fw"></i>
                             
                         </a>
                         
@@ -510,8 +648,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-12-16 20:43:27</span>
-            <span class="mobile">2023-12-16 20:43:27</span>
+            <span class="desktop">2023-12-16 23:15:39</span>
+            <span class="mobile">2023-12-16 23:15:39</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -559,7 +697,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>142 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>9 Words</span>
         </span>
     
     
@@ -583,27 +721,19 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <ul>
-<li><p>1、说说ArrayList的实现，linkdeList实现</p>
-</li>
-<li><p>2、说说线程池的配置</p>
-</li>
-<li><p>3、谈谈悲观锁乐观锁</p>
-</li>
-<li><p>4、看你做过一段时间前端，vue的生命周期还记得不？自定义组件会吗？</p>
-</li>
-<li><p>5、分布式锁的实现?</p>
-</li>
-<li><p>6、分布式事务的实现？</p>
-</li>
-<li><p>7、你们的异常怎么统一处理的？</p>
-</li>
-<li><p>8、现在有一个user表，里面有name字段，我想查出哪些name重复的，并且把重复的次数返回给我，sql怎么写？</p>
-</li>
-<li><p>9、领域驱动有了解过吗？说说你的看法</p>
-</li>
-</ul>
-
+            
+<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试" data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="baa774f1b71486510d655f9634c8de7b314187d9ab3c4347aeb6bf9a3d66f971">165d50f05814027fb7fe5e4ae8a088d8c576742cf766a1d028f3544d487f1c4e78cfe831c5a2d6797eb18546968a44fc7a0210cf42119726abadf5d4f59a68cd1732826fe783fe3ecb4cc3c1847cdc38c94c2ce74bf153f2fe8cf66714cb40f7d8037c829d4d2e22e1979a22c352a12f2be1030195dcaae03925f06a20420a0f72e1f45b87d75fa6f1cd42824a4b7da56d3acd7a57b29fd8794e2729131c213f5370e13ffd832219a13a01e4bd0d7f1941beb29544865ec67767295981873bb7d546e2100d79c8c8280c430406f004741138a52674bf935006e83907e612c4b80ad1039ec4a0ffa5cd21d9fd9b996a6ac651fb6ba6bf00c948707c8d18af24f07cd62b9b0f96080da1bb8e3325b776a73e76a121e7410264a6769052d31ee3e3cae85f7a949d63173455bd3ff11d4bbf0066060f9a96bc4ad8a21bb73be28bb05d5b0792fce967663648cea1227a126bbad2a45cbb11a8753538190e7b3daa33401590c6964a7c9b4b7a2f4da1d5e6d354c418cef708cded29cc7025e8e95979d77cf5c09a0d14c52751f55e9c6b91468bba24606483043c5cbd6fc9bedb3be473f2a8b58e1b2aab369833389b3887ad0333b539cd270a8d7c75ac04e702793d3c491b388866d35c66e04e3e8ca91f5a1232b3de9d4ea0d398baf2e1ec38c163d04d4c485bf840864a66527d0bec18307ee88366f4a7239f7cd7d74109c6dec87cf8c410f553e9ed75e9dc28bf4975b0a68f784312e63bd1f6a28644fdf523f54dce3ecd80e3f287fc7e5d57ec343c984846d64a8f55caf581c96bf7cc9676cd8fc7b71ad4911d344965bf53b70b5ba9c05fb5fdfd0d1016e9ccb387b99e180fa23ba0a9fd6aa2e05c311ae2bb47a169d16cef4a675c4b23e2d22376c4008b4e534cbac4f85c6713679f37f7ec533716298501b2c2df1b48cf370834a19f71c481ffb11529b9e7e5fe4c85f5e9fde1c79507934148aa18b28bdf3a0db8116fdadf5e3c7c20baae20765ab027c05b4bff6f9bc1faa8628be2ab92f20b89d7617ec9edaae72bf44e01bc21dbcb6f917b48b8c91ea2084046bbb46a32aab1cd842720b5f96b85f361767b679baa7d0e4e347233ed453ee61720c52da0ece7da7b1509a50ea60eb5968771e8675ab4ef40c898c2c56e8a2532e120748f9be5e874f7634bb042656a65a7497846f6ecb85538893fdf61cc935d6931c243a31784506e31dce2f5e6a9285207aeb4a3d7ce0b896e20108c69ae3bc614904f398b106c9852322876f61955d7d954ad01a629bbbd7395f95395c7a298681cf5c95c82c692ae663b863d5f691bb1ff61b6cdf0b4301b0f16d610e1e0b776287802bd582576e32dfb17badc6c8d4430080669926d014ad8a4374d258f96b208cedb6da79ed6923afb9223643e87b0192c057081c5e2a69133f02ea748ff4e33e71d015bf25a5e0aa69c80a5c659980e3364364eaf2c84cd1b1958afbdfde9b9a8ac1ae8828641b8d7e9623d2634c9b9f76803b3f65c451bb6c59490a76dec9f8f4d94dce5bac3cbe2efd5b58a121b82514d124e77b756d6885b68e4b9983096c4a107e83c92e8524b9fc10b13bba6d21a82354482ba829057db4933b483109ea906d4709e9d71b81b3a0bed5b15c000fc39e88999d646a7ba16869e99b212e756572f4bce806fc23eee6aef63617642cece4f8949e7fd832a1a1a01e2a7b68e2062c92ea17af955d122899060d24f94ade8f2d19b2afcd82cf46ec36524888e5a0d6ee497ef8231bfe690a1452d05417dee4f439125e8c31f5ea78a9ee1636cf07aa6b6f0c352abb9b040b0f3eaf59d17b268a4801778dd07a00367d657bec1ef5360579d20fae4034e42e8aa15fd6992f0bb6e3c0961cb49bcf60b4b5f8e3c275cdc29537bb7c2f8b6766395a13173f0400add4b243c3cb85de14014ba32d4522a2d410bbeffcb0e0200f77621f44978a235c61505e98bf19ebb3f429e77d330b66cb3ca4a1561bcfcd5c43a8b81544a72d42b2d2be3a570f3dac20c813dfb9705fd043e795c440a948a441bfb4ed420dc560d7876089953d4120cd0798e9abde91199b24976c055f1c5045eeeb03cbb95bb89421ef1635c305a56cc1a716a7e386a92f1c8ca27d631f454a7f3dc8c69187c6ef4a83805b1cf0739e6e58abff43e4a05ced80f34f06c4b7fefb5a8c96425785e5399ef511dad9fb94f1ebfc02840ff90d5771217e03e56bcbddcb663ce9b4a9009c92b9237b4053f9203f19acd7d4adcd216d4c4368945e8ed868a71921d076e87d7d9e3cf60986a561f385f526164698c2d30fafe825abf29b7cbb1fa636d6e409961bb167eb67bcd6f28a7dbdfc0c9d413374647e5e018beb2bfb587c7c2e7702eddae95fbb33ddef4b1156ea2425d476cf4a80f6af09fccc131f43820384dff695df6abd609b173d02f9422ec12448cd00524d6feadda3db51de635a20e7afa87427208f37d0c068f7f12e8c3150446ab8a48cfd76f6844c53c91fd546e080e3eb39485eed35e7743dd5a826f5606d46103ec86657fb4d1934ab60bec0299e8553a26592ebc701087df2d80538b665e8bb9119bfbfdd109e36a4ae4bef4fb88e7d59520da5affe567fb232f6677fecbb31e1941c4af86b685b41e8ccd58705e6cc9544f1837cf6876cef94c58d25bd5fbc79c3f1af5939dc476f66f570ec782c02239165866f46aec9089d5a5ab7ee923bffce21fa10c57eabf8a4a5a4a1daf1d3d61a6933da2b5a964f4498f8b63f982fd18f4fec93fdd9e93398d32d9e00db325fbf80e60bff47589880c5ed5cfbeb65e3f9b6a5cbd9004e189ecde5d93dbbb8b1e818475ba358ace4e33099a447ef7f22e59f9435caaa4fe731c1e6fa9990f6bceeb61b8a105386227ee885430150e0ea16ecf71f6c82dc0043896710d86164ea53cf37bb94c9976163c563c6e37c3c611fe46dd4250d70d59cf2a6402696b20d4129040364ca51ad256c371b7a223943c8ba74836022c29bf2c68ca42871ede92ab457f57747ce8643600c0470b71661fb31c4557d2bbc8e916bbc4a102a247c393b8a40aaecfd6c57759b78b08a527fb234883ce1960b88755c2bf02c9085d49a8bd6f3052b523d52010c53870eb6be06188f8fd742a8c76a2805e4bb1d236e2545c499b7ce9aaa76de16ead8d42a03a77041a7c5aa5a8285cb65fa9c218d192c484aea174e5eafb261b7f9bbbdc</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好, 这里需要密码.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-swup-reload-script src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
         </div>
 
         
@@ -617,7 +747,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-12-16 20:43:27
+                    :</strong> 2023-12-16 23:15:39
             </li>
         
         <li>
