@@ -3914,17 +3914,13 @@ html.is-animating .scroll-progress-bar {
 .navbar-container .navbar-content {
   position: relative;
   height: 100%;
-  width: 80%;
-  max-width: 1000px;
+  width: 88%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   z-index: 1005;
   transition: max-width 0.3s ease;
-}
-.navbar-container .navbar-content.has-home-banner {
-  max-width: 1200px;
 }
 @media (max-width: 768px) {
   .navbar-container .navbar-content {
