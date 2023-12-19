@@ -289,8 +289,13 @@
     }
 </style>
 
-<div class="home-banner-background">
+<!-- <div class="home-banner-background">
+</div> -->
+<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
+    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
+    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
 </div>
+
 
 
     
@@ -974,24 +979,93 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/toolsSetting/1.mac%20%E5%8A%A8%E6%80%81%E6%8C%87%E5%AE%9Ajdk8%E5%92%8Cjdk11/">
-                            mac安装jdk11动态指定运行版本
+                        <a href="/2022/04/17/kafka/1.%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8A%E5%AE%89%E8%A3%85%E5%8D%95%E6%9C%BAkafka/">
+                            虚拟机上安装单机kafka
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-之前自己用halo搭建了个人博客，想着自己把源码拉下来学习研究下的，包下到本地后发现在终端中执行 java -jar halo.jar --spring.profiles.active=dev时,报Application has been comp...
+                            [toc]
+
+虚拟机安装过程省略，只需要下载对应的虚拟机和镜像即可；过程比较简单，去B站看看即可；本次安装环境说明，CentOS6.10(64bit),kafka2.11-2.2.0,zookeeper-3.4.6;
+
+对应下载地址ali镜像 kaf...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
+            <span class="home-article-date" data-date="Sun Apr 17 2022 09:25:27 GMT+0800">
                 
-                    2021-04-23
+                    2022-04-17
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/kafka/">kafka</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2022/04/17/kafka/1.%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8A%E5%AE%89%E8%A3%85%E5%8D%95%E6%9C%BAkafka/">Read more<span class="seo-reader-text">虚拟机上安装单机kafka</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2022/03/17/toolsSetting/2.mac%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+                            mac终端常用命令及环境配置
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            常用命令
+查看文件下列表 sl
+
+查看端口占用 lsof -i:8080
+
+杀掉某pid对应的进程 kill pid
+
+启动redisredis-server
+
+启动redis客户端redis-cli
+
+查看redis相关的后台进程ps -ef | ...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 17 2022 23:57:12 GMT+0800">
+                
+                    2022-03-17
                 
             </span>
         </span>
@@ -1027,7 +1101,7 @@
         
     </div>
 
-    <a href="/2021/04/23/toolsSetting/1.mac%20%E5%8A%A8%E6%80%81%E6%8C%87%E5%AE%9Ajdk8%E5%92%8Cjdk11/">Read more<span class="seo-reader-text">mac安装jdk11动态指定运行版本</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2022/03/17/toolsSetting/2.mac%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Read more<span class="seo-reader-text">mac终端常用命令及环境配置</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1042,234 +1116,24 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/toolsSetting/3.idea%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">
-                            idea 常用快捷键
+                        <a href="/2022/02/19/other/%E6%9D%82%E8%B4%A7%E9%93%BA/7.hexo%E6%B7%BB%E5%8A%A03d%E4%BA%BA%E7%89%A9/">
+                            hexo添加3d人物
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            Ctrl + xxx 操作———————————————————&gt;&gt;&gt;
-Ctrl + J 插入代码模板
-　　通过代码模板可以快速创建main函数，for循环等。
-　　直接输入缩写 按tab 也可以插入代码模板：
-　　　　① psvm...
+                            关于hexohexo 是一个静态页面模板博客，功能完善简单，md的书写风格类似于写博客，开启hexo 博客之后要不要尝试一下live2d 人物插件呢？so,do it！
+安装插件npm install -save hexo-helper-live2d...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
+            <span class="home-article-date" data-date="Sat Feb 19 2022 10:17:06 GMT+0800">
                 
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/toolsSetting/">toolsSetting</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/idea/">idea</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/toolsSetting/3.idea%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/">Read more<span class="seo-reader-text">idea 常用快捷键</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2021/04/23/toolsSetting/5.idea%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%AF%86%E5%88%AB%E6%9C%AC%E5%9C%B0%E7%B1%BB/">
-                            idea 无法加载识别本地类
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-idea 的影响力在java开发中的地位自不用说，但是它也经常“作妖”。今天我就遇到了它居然无法识别本地的一个实体和工具类的情况；本来不想写篇博客，但是觉得算是个坑点，遂记录在此！
-
-报错
-从截图我们可以看出，idea无法识别我本地自己定义的一个错...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/toolsSetting/">toolsSetting</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/idea/">idea</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/toolsSetting/5.idea%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E8%AF%86%E5%88%AB%E6%9C%AC%E5%9C%B0%E7%B1%BB/">Read more<span class="seo-reader-text">idea 无法加载识别本地类</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2021/04/23/toolsSetting/6.jemeter%E5%AE%89%E8%A3%85%E5%8F%8A%E5%8E%8B%E6%B5%8B%E5%AE%9E%E8%B7%B5/">
-                            jemeter 压测入门篇
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-最近改了些接口压测的bug, 无非就是逻辑和sql 层面的优化；改完后进行压测，接口性能基本满足了需要；发现jemeter 这个工具还是蛮强大的，我们平时都是用postman测试接口，所以很多小伙伴也没用过，网上很多教程看的都模棱两可的；还是动手自...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/toolsSetting/">toolsSetting</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/jemeter/">jemeter</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/toolsSetting/6.jemeter%E5%AE%89%E8%A3%85%E5%8F%8A%E5%8E%8B%E6%B5%8B%E5%AE%9E%E8%B7%B5/">Read more<span class="seo-reader-text">jemeter 压测入门篇</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2021/04/23/other/%E4%B8%AA%E4%BA%BA/4.macPro%E5%88%9D%E4%BD%93%E9%AA%8C/">
-                            mac pro初体验
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-年前一直想买台mb的，想着过年再说，不巧过年因疫情没回去成！媳妇儿是医院的，她们医院的所有假期都取消然后回去上班了！因为过年快递又停业了，所以就想着年后再买，就这样时间来到了二月中旬在家办公的我，实在忍受不了我的旧电脑的运行速度，去苹果官网上订购了...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
+                    2022-02-19
                 
             </span>
         </span>
@@ -1292,7 +1156,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                             <li>></li>
                         
                         <li>
-                            <a href="/categories/other/%E4%B8%AA%E4%BA%BA/">个人</a>&nbsp;
+                            <a href="/categories/other/%E6%9D%82%E8%B4%A7%E9%93%BA/">杂货铺</a>&nbsp;
                         </li>
                     
                     
@@ -1307,7 +1171,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                     
                         <li>
                             
-                            <a href="/tags/mbp/">mbp</a>&nbsp;
+                            <a href="/tags/hexo/">hexo</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1315,7 +1179,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
         
     </div>
 
-    <a href="/2021/04/23/other/%E4%B8%AA%E4%BA%BA/4.macPro%E5%88%9D%E4%BD%93%E9%AA%8C/">Read more<span class="seo-reader-text">mac pro初体验</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2022/02/19/other/%E6%9D%82%E8%B4%A7%E9%93%BA/7.hexo%E6%B7%BB%E5%8A%A03d%E4%BA%BA%E7%89%A9/">Read more<span class="seo-reader-text">hexo添加3d人物</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1330,24 +1194,24 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/linux/1.linux%E4%B8%8A%E5%AE%89%E8%A3%85java/">
-                            linux上安装java
+                        <a href="/2021/06/27/java/10.'ibatis.binding.BindingException'/">
+                            org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            [toc]
-安装步骤前提说明搞这么久开发，是不是得自己搞台服务器呢？so,just do it！那么，服务器的选择很多！自己的本子开个虚拟机玩一下也不是不可以，但是这玩意儿吃内存啊。后面整个mbp32g 的玩一下，我这13年上大学时买的thinkpa...
+                            
+最近自己写了个小项目：vBills 一个单体的账单可视化系统；因为用了mybatis-plus，所以开发起来很便捷；但是一些稍微复杂一点的查询还是得自己手写sql,然后就自己写了个查询，自测时发现dao层和xml文件映射不上，就这个点上卡了一个多小...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
+            <span class="home-article-date" data-date="Sun Jun 27 2021 12:23:52 GMT+0800">
                 
-                    2021-04-23
+                    2021-06-27
                 
             </span>
         </span>
@@ -1360,7 +1224,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                     
                         
                         <li>
-                            <a href="/categories/linux/">linux</a>&nbsp;
+                            <a href="/categories/java/">java</a>&nbsp;
                         </li>
                     
                     
@@ -1375,7 +1239,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                     
                         <li>
                             
-                            <a href="/tags/jdk/">jdk</a>&nbsp;
+                            <a href="/tags/mybatis/">mybatis</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1383,7 +1247,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
         
     </div>
 
-    <a href="/2021/04/23/linux/1.linux%E4%B8%8A%E5%AE%89%E8%A3%85java/">Read more<span class="seo-reader-text">linux上安装java</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/06/27/java/10.'ibatis.binding.BindingException'/">Read more<span class="seo-reader-text">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1398,24 +1262,26 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2021/04/23/linux/2.linux%E4%B8%8A%E5%AE%89%E8%A3%85mysql/">
-                            linux上安装mysql
+                        <a href="/2021/05/22/toolsSetting/4.idea%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95%E9%85%8D%E7%BD%AE%E6%B3%A8%E9%87%8A%E6%A8%A1%E6%9D%BF/">
+                            idea类和方法配置注释模板
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            [toc]
-安装步骤mysql下载先验证是否安装了mysql 若无输出则证明未安装过！执行命令:rpm -qa | grep mysql先下载mysql的repo源，这玩意儿又叫mysql源，字面上理解就是mysql的源码,执行命令：wget htt...
+                            
+很多开源的代码，人家注释写的那叫个工整啊，一直知道idea可以配置各种模板，但是觉得简单一直没去弄；今天看了些博客配置，发现自己按照上面来配还是没有达到自己想要的要求，改动调整后才达到；
+
+配置我们要自己定义方法注释的模板，在Live Templa...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
+            <span class="home-article-date" data-date="Sat May 22 2021 13:37:47 GMT+0800">
                 
-                    2021-04-23
+                    2021-05-22
                 
             </span>
         </span>
@@ -1428,7 +1294,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                     
                         
                         <li>
-                            <a href="/categories/linux/">linux</a>&nbsp;
+                            <a href="/categories/toolsSetting/">toolsSetting</a>&nbsp;
                         </li>
                     
                     
@@ -1443,7 +1309,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
                     
                         <li>
                             
-                            <a href="/tags/mysql/">mysql</a>&nbsp;
+                            <a href="/tags/idea/">idea</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1451,213 +1317,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
         
     </div>
 
-    <a href="/2021/04/23/linux/2.linux%E4%B8%8A%E5%AE%89%E8%A3%85mysql/">Read more<span class="seo-reader-text">linux上安装mysql</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2021/04/23/linux/3.Linux%E4%B8%8A%E5%AE%89%E8%A3%85nginx/">
-                            linux上安装nginx
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            [toc]
-安装步骤解压安装：nginx按装一定要使用命令安装，因为需要解压后编译 已经配置成全局的下载常用的包，高版本的安装出了一次问题，就切换成低版本的了，如图：
-接下来执行以下命令：
-1234567cd /usr  进入压缩文件存放目录tar ...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/linux/">linux</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/nginx/">nginx</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/linux/3.Linux%E4%B8%8A%E5%AE%89%E8%A3%85nginx/">Read more<span class="seo-reader-text">linux上安装nginx</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2021/04/23/linux/5.Linux%E4%B8%8A%E5%AE%89%E8%A3%85tomcat/">
-                            linux上安装tomcat
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            [toc]
-安装步骤安装tomcat接下来装个最简单的web服务器tomcat吧，人家idea就是内置tomcat的，不要看不起他官网下载，这次我下载的tomcat9 按道理版本越高兼容性越好，就他了！将本地的tomcat 解压到服务器上，一般的xs...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/linux/">linux</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/tomcat/">tomcat</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/linux/5.Linux%E4%B8%8A%E5%AE%89%E8%A3%85tomcat/">Read more<span class="seo-reader-text">linux上安装tomcat</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2021/04/23/db/5.mysql%E6%9C%AC%E5%9C%B0%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8/">
-                            mysql本地连接报错
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-最近阿里云过期了，续费太贵就重新买了一个，买完想着老是自己手动装环境啥的太麻烦了，要不也搞个宝塔面板吧，这样后面安装啥的不都很方便了吗？说搞就搞，尼玛才装好试试数据库能不能连接上，沃日并不能；在宝塔中修改了配置文件中的密码，重启后还是不能连上；一直...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/db/">db</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/mysql/">mysql</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/23/db/5.mysql%E6%9C%AC%E5%9C%B0%E8%BF%9E%E6%8E%A5%E5%BC%82%E5%B8%B8/">Read more<span class="seo-reader-text">mysql本地连接报错</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/05/22/toolsSetting/4.idea%E7%B1%BB%E5%92%8C%E6%96%B9%E6%B3%95%E9%85%8D%E7%BD%AE%E6%B3%A8%E9%87%8A%E6%A8%A1%E6%9D%BF/">Read more<span class="seo-reader-text">idea类和方法配置注释模板</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1667,7 +1327,7 @@ idea 的影响力在java开发中的地位自不用说，但是它也经常“�
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/"><i class="fa-regular fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/7/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
 
     </div>

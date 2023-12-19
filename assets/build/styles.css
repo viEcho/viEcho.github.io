@@ -788,6 +788,7 @@ video {
 
 .block {
   display: block;
+  width: fit-content;
 }
 
 .inline-block {
@@ -1315,7 +1316,7 @@ video {
 }
 
 .text-2xl {
-  font-size: 1.5rem;
+  font-size: 1.05rem;
   line-height: 2rem;
 }
 
