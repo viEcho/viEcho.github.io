@@ -860,7 +860,8 @@ video {
 }
 
 .h-\[150px\] {
-  height: 150px;
+  /**height: 150px;-->*/
+  height: 265px;
 }
 
 .h-\[46px\] {
