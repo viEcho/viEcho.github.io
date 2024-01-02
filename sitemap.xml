@@ -826,14 +826,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/mybatis/</loc>
+    <loc>http://example.com/tags/java8-functionInterface/</loc>
     <lastmod>2024-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/java8-functionInterface/</loc>
+    <loc>http://example.com/tags/mybatis/</loc>
     <lastmod>2024-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -854,14 +854,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/activity/</loc>
+    <loc>http://example.com/tags/clone/</loc>
     <lastmod>2024-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/clone/</loc>
+    <loc>http://example.com/tags/activity/</loc>
     <lastmod>2024-01-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

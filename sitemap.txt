@@ -90,12 +90,12 @@ http://example.com/2021/04/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/1.%E5%85%AD%E
 http://example.com/
 http://example.com/tags/mysql/
 http://example.com/tags/docker/
-http://example.com/tags/mybatis/
 http://example.com/tags/java8-functionInterface/
+http://example.com/tags/mybatis/
 http://example.com/tags/thread/
 http://example.com/tags/SXSSFWorkbook/
-http://example.com/tags/activity/
 http://example.com/tags/clone/
+http://example.com/tags/activity/
 http://example.com/tags/mvn/
 http://example.com/tags/jmm/
 http://example.com/tags/ioc-aop/
