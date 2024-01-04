@@ -26,7 +26,7 @@
 <meta property="og:description" content="1.说说jvm内存模型jvm由类装载器、运行时数据区、执行引擎、本地方法接口还有垃圾回收器构成;其中垃圾回收器作用在整个jvm内存中（主要作用在堆和方法区）其中运行时数据区分我线程共享区和线程独占区，线程共享区包含方法区和堆，线程独占区分为虚拟机，本地方法栈，程序计数器（也叫PC寄存器） 2.堆和栈的区别1.堆是不连续的，所以分配的内存是在运行期确认的，因此大小不固定；堆对于整个应用程序都是共享、">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-02T08:57:46.303Z">
+<meta property="article:modified_time" content="2024-01-02T12:42:52.274Z">
 <meta property="article:author" content="Echo">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -856,7 +856,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">59</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -918,8 +918,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-02 16:57:46</span>
-            <span class="mobile">2024-01-02 16:57:46</span>
+            <span class="desktop">2024-01-02 20:42:52</span>
+            <span class="mobile">2024-01-02 20:42:52</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -991,24 +991,24 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="1-说说jvm内存模型"><a href="#1-说说jvm内存模型" class="headerlink" title="1.说说jvm内存模型"></a>1.说说jvm内存模型</h3><p>jvm由类装载器、运行时数据区、执行引擎、本地方法接口还有垃圾回收器构成;其中垃圾回收器作用在整个jvm内存中（主要作用在堆和方法区）<br>其中运行时数据区分我线程共享区和线程独占区，线程共享区包含方法区和堆，线程独占区分为虚拟机，本地方法栈，程序计数器（也叫PC寄存器）</p>
-<h3 id="2-堆和栈的区别"><a href="#2-堆和栈的区别" class="headerlink" title="2.堆和栈的区别"></a>2.堆和栈的区别</h3><p>1.堆是不连续的，所以分配的内存是在运行期确认的，因此大小不固定；堆对于整个应用程序都是共享、可见的；堆内存存储的是实体；堆内存存放的实体会被垃圾回收机制不定时的回收</p>
+            <h4 id="1-说说jvm内存模型"><a href="#1-说说jvm内存模型" class="headerlink" title="1.说说jvm内存模型"></a>1.说说jvm内存模型</h4><p>jvm由类装载器、运行时数据区、执行引擎、本地方法接口还有垃圾回收器构成;其中垃圾回收器作用在整个jvm内存中（主要作用在堆和方法区）<br>其中运行时数据区分我线程共享区和线程独占区，线程共享区包含方法区和堆，线程独占区分为虚拟机，本地方法栈，程序计数器（也叫PC寄存器）</p>
+<h4 id="2-堆和栈的区别"><a href="#2-堆和栈的区别" class="headerlink" title="2.堆和栈的区别"></a>2.堆和栈的区别</h4><p>1.堆是不连续的，所以分配的内存是在运行期确认的，因此大小不固定；堆对于整个应用程序都是共享、可见的；堆内存存储的是实体；堆内存存放的实体会被垃圾回收机制不定时的回收</p>
 <p>2.栈是连续的，所以分配的内存大小要在编译期就确认，大小是固定的；栈对于线程是可见的，所以也是线程私有，他的生命周期和线程相同（所以说，栈里面是一定不会存在垃圾回收的问题）；栈内存存储一些基本类型的值，对象的引用，方法等；栈内存的更新速度要快于堆内存（仅次于寄存器），因为局部变量的生命周期很短；栈内存放的变量生命周期一旦结束就会被释放</p>
-<h3 id="3-java中的基本数据类型都是存储在栈中的吗？"><a href="#3-java中的基本数据类型都是存储在栈中的吗？" class="headerlink" title="3.java中的基本数据类型都是存储在栈中的吗？"></a>3.java中的基本数据类型都是存储在栈中的吗？</h3><p>面试基本上问到这里都是三连，说说八大基本数据类型？说说堆和栈？接下来就是这个有坑的问题<br>答：不是<br>一：在方法中声明的变量，即该变量是局部变量，每当程序调用方法时，系统都会为该方法建立一个方法栈，其所在方法中声明的变量就放在方法栈中，当方法结束系统会释放方法栈，其对应在该方法中声明的变量随着栈的销毁而结束，这就局部变量只能在方法中有效的原因</p>
+<h4 id="3-java中的基本数据类型都是存储在栈中的吗？"><a href="#3-java中的基本数据类型都是存储在栈中的吗？" class="headerlink" title="3.java中的基本数据类型都是存储在栈中的吗？"></a>3.java中的基本数据类型都是存储在栈中的吗？</h4><p>面试基本上问到这里都是三连，说说八大基本数据类型？说说堆和栈？接下来就是这个有坑的问题<br>答：不是<br>一：在方法中声明的变量，即该变量是局部变量，每当程序调用方法时，系统都会为该方法建立一个方法栈，其所在方法中声明的变量就放在方法栈中，当方法结束系统会释放方法栈，其对应在该方法中声明的变量随着栈的销毁而结束，这就局部变量只能在方法中有效的原因</p>
 <p>在方法中声明的变量可以是基本类型的变量，也可以是引用类型的变量。<br>（1）当声明是基本类型的对象时，其变量及变量的引用都在栈中。<br>（2）当声明的是引用类型(new出来的)时，所声明的变量（该变量实际上是在方法中存储的是内存地址值）是放在方法的栈中，该变量所指向的对象是放在堆内存中的。<br>二：在类中声明的变量是成员变量，也叫全局变量，放在堆中的（因为全局变量不会随着某个方法执行结束而销毁）。</p>
 <p>同样在类中声明的变量即可是基本类型的变量 也可是引用类型的变量<br>（1）当为基本类型时，其变量名及其值放在堆内存中的<br>（2）当为引用类型时，其声明的变量仍然会存储一个内存地址值，该内存地址值指向所引用的对象。引用变量名和对应的对象仍然存储在相应的堆中</p>
-<h3 id="4-对象在jvm中的创建过程"><a href="#4-对象在jvm中的创建过程" class="headerlink" title="4.对象在jvm中的创建过程"></a>4.对象在jvm中的创建过程</h3><p>jvm会先去方法区找有没有创建的对象存在，有直接就可以创建对象，没有就把该类加载到方法区<br>在创建类的对象时，首先会先去堆内存中分配空间<br>然后加载对象中的非静态成员变量到该空间中，所有的非静态成员变量加载完成后，对所有的非静态成员进行默认初始化<br>所有的非静态成员默认初始化完成后，调用相应的构造方法到栈中<br>在栈中执行构造函数时，先执行隐式，再执行构造方法中书写的代码<br>执行顺序：静态代码块，构造代码块，构造方法<br>当整个构造方法全部执行完后，会把堆内存中分配的空间地址赋给对象名，此对象创建完成</p>
-<h3 id="5-谈谈jvm常量池？"><a href="#5-谈谈jvm常量池？" class="headerlink" title="5.谈谈jvm常量池？"></a>5.谈谈jvm常量池？</h3><p>jdk1.8开始<br>字符串常量池：存放在堆中<br>运行时常量池：存放在方法区，属于元空间</p>
-<h3 id="6-谈谈你知道的垃圾回收算法？"><a href="#6-谈谈你知道的垃圾回收算法？" class="headerlink" title="6.谈谈你知道的垃圾回收算法？"></a>6.谈谈你知道的垃圾回收算法？</h3><p>引用计数法：记录了一个变量的引用次数，效率低<br>可达性分析算法：判断一个变量是否根据当前引用地址是否可达，效率高<br>标记清除算法：标记需清除的对象，统一回收；但是容易产生内存碎片，导致无法分配大对象；大量对象需要标记时效率低<br>标记复制算法：将内存分成了两块，一块用来标记需要复制的内存的，一块需要复制的内存；不适合大量对象不可回收的情况，因为这样大量对象复制效率低，只能使用内存的一半，理论上浪费了一半的计算空间<br>标记整理算法：标记存活的对象，统一移到内存区域的另一遍，清空占用内存边界以外的内存；移动大量存活对象时，需更新对应的引用，暂停程序的运行</p>
-<h3 id="7-你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？"><a href="#7-你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？" class="headerlink" title="7.你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？"></a>7.你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？</h3><p>排查过oom的问题，主要是压测环境，可以dump内存日志结合代码日志判断，当时主要是一个同事直接用List来装客户地址信息，而模拟的客户压测并发情况下是正常的100来倍，大致这个对象巨大无比，触发了oom;还有就是数据的问题，比如一个值用的是Integer却给了它一个long类型长度的值，导致直接就报oom;</p>
-<h3 id="8-生产环境CPU占用过高，如何解决？"><a href="#8-生产环境CPU占用过高，如何解决？" class="headerlink" title="8.生产环境CPU占用过高，如何解决？"></a>8.生产环境CPU占用过高，如何解决？</h3><ol>
+<h4 id="4-对象在jvm中的创建过程"><a href="#4-对象在jvm中的创建过程" class="headerlink" title="4.对象在jvm中的创建过程"></a>4.对象在jvm中的创建过程</h4><p>jvm会先去方法区找有没有创建的对象存在，有直接就可以创建对象，没有就把该类加载到方法区<br>在创建类的对象时，首先会先去堆内存中分配空间<br>然后加载对象中的非静态成员变量到该空间中，所有的非静态成员变量加载完成后，对所有的非静态成员进行默认初始化<br>所有的非静态成员默认初始化完成后，调用相应的构造方法到栈中<br>在栈中执行构造函数时，先执行隐式，再执行构造方法中书写的代码<br>执行顺序：静态代码块，构造代码块，构造方法<br>当整个构造方法全部执行完后，会把堆内存中分配的空间地址赋给对象名，此对象创建完成</p>
+<h4 id="5-谈谈jvm常量池？"><a href="#5-谈谈jvm常量池？" class="headerlink" title="5.谈谈jvm常量池？"></a>5.谈谈jvm常量池？</h4><p>jdk1.8开始<br>字符串常量池：存放在堆中<br>运行时常量池：存放在方法区，属于元空间</p>
+<h4 id="6-谈谈你知道的垃圾回收算法？"><a href="#6-谈谈你知道的垃圾回收算法？" class="headerlink" title="6.谈谈你知道的垃圾回收算法？"></a>6.谈谈你知道的垃圾回收算法？</h4><p>引用计数法：记录了一个变量的引用次数，效率低<br>可达性分析算法：判断一个变量是否根据当前引用地址是否可达，效率高<br>标记清除算法：标记需清除的对象，统一回收；但是容易产生内存碎片，导致无法分配大对象；大量对象需要标记时效率低<br>标记复制算法：将内存分成了两块，一块用来标记需要复制的内存的，一块需要复制的内存；不适合大量对象不可回收的情况，因为这样大量对象复制效率低，只能使用内存的一半，理论上浪费了一半的计算空间<br>标记整理算法：标记存活的对象，统一移到内存区域的另一遍，清空占用内存边界以外的内存；移动大量存活对象时，需更新对应的引用，暂停程序的运行</p>
+<h4 id="7-你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？"><a href="#7-你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？" class="headerlink" title="7.你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？"></a>7.你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？</h4><p>排查过oom的问题，主要是压测环境，可以dump内存日志结合代码日志判断，当时主要是一个同事直接用List来装客户地址信息，而模拟的客户压测并发情况下是正常的100来倍，大致这个对象巨大无比，触发了oom;还有就是数据的问题，比如一个值用的是Integer却给了它一个long类型长度的值，导致直接就报oom;</p>
+<h4 id="8-生产环境CPU占用过高，如何解决？"><a href="#8-生产环境CPU占用过高，如何解决？" class="headerlink" title="8.生产环境CPU占用过高，如何解决？"></a>8.生产环境CPU占用过高，如何解决？</h4><ol>
 <li>top + H 指令找出占用 CPU 最高的进程的 pid</li>
 <li>top - H - p 否该进程中找到，哪些线程占用的 CPU 最高的线程,记录下 tid</li>
 <li>jstack- l &gt; threads . txt ，导出进程的线程栈信息到文牵，导出出现异常的话,加上一 F 参教</li>
 <li>将 tid 转换为十六进制,否 threads . txt 中搜索，查到对应的线程代码执行构,在代码中查找占 CPU 比较高的原因。其中 tid 转十六进制,可以借助 Linux 的 printf “% x ‘ tid 指令<br>我用上述方法查到过,jvm多线程疯狂 fullgc导致的CPU100%的问题和JDK1.6HashMap并发 put 导致线程CPU100%的问题</li>
 </ol>
-<h3 id="9-生产环境服务嚣变慢-如何诊断处理"><a href="#9-生产环境服务嚣变慢-如何诊断处理" class="headerlink" title="9.生产环境服务嚣变慢,如何诊断处理?"></a>9.生产环境服务嚣变慢,如何诊断处理?</h3><p>使用 top 指令,服务器中 CPU 和内存的使用情况，-H 可以按 CPU 使用率降序，-M 内存使用率降序。排除其他进程占用过高的硬件资源,对 JQva 服务造成影响。<br>如果发现 CPU 使用过高，可以使用 top 指令查出 JVM 中占用 CPU 过高的线程,通过 jstack 找到对应的线程代码调用,排查出问题代码。<br>如果发现内存使用率比较高，可以 dump 出 JVM 维内存,然后借助 MAT 进行分析,查出大对象或者占用最多的对象来自哪里,为什么会长时间占用这么多;如果 dump 出的堆内存文件正常，她时可以考虑推外内存被大量使用导致出现问题，需要借助操作系统指令 pmap 查出进程的内存分配情况、 gobdump 出具体内存信息、 perf 查看牵地函教调用等。<br>如果 CPU 和内存使用率都很正常,那就需要进一步开启 GC 日志,分析用户线程督停的时间,各部分内存庄域 GC 次教和时间等指标,可以借助 jstat 或可视化工具 GCeasy 等,如果问题出店 GC 上面的话,考虑是否是内存不够、根据垃圾对象的特点进行参教调优、使用更适合的垃圾收集器;分析 jstack 出来的各个线程状态。如果问题实在比较隐蔽,考虑是否可以开启 jmx ,使用 visualmu 等可视化工具远程监控与分析</p>
-<h3 id="10-工作中常用的-JVM-配置参教有哪些"><a href="#10-工作中常用的-JVM-配置参教有哪些" class="headerlink" title="10.工作中常用的 JVM 配置参教有哪些?"></a>10.工作中常用的 JVM 配置参教有哪些?</h3><p>Java8为例</p>
+<h4 id="9-生产环境服务嚣变慢-如何诊断处理"><a href="#9-生产环境服务嚣变慢-如何诊断处理" class="headerlink" title="9.生产环境服务嚣变慢,如何诊断处理?"></a>9.生产环境服务嚣变慢,如何诊断处理?</h4><p>使用 top 指令,服务器中 CPU 和内存的使用情况，-H 可以按 CPU 使用率降序，-M 内存使用率降序。排除其他进程占用过高的硬件资源,对 JQva 服务造成影响。<br>如果发现 CPU 使用过高，可以使用 top 指令查出 JVM 中占用 CPU 过高的线程,通过 jstack 找到对应的线程代码调用,排查出问题代码。<br>如果发现内存使用率比较高，可以 dump 出 JVM 维内存,然后借助 MAT 进行分析,查出大对象或者占用最多的对象来自哪里,为什么会长时间占用这么多;如果 dump 出的堆内存文件正常，她时可以考虑推外内存被大量使用导致出现问题，需要借助操作系统指令 pmap 查出进程的内存分配情况、 gobdump 出具体内存信息、 perf 查看牵地函教调用等。<br>如果 CPU 和内存使用率都很正常,那就需要进一步开启 GC 日志,分析用户线程督停的时间,各部分内存庄域 GC 次教和时间等指标,可以借助 jstat 或可视化工具 GCeasy 等,如果问题出店 GC 上面的话,考虑是否是内存不够、根据垃圾对象的特点进行参教调优、使用更适合的垃圾收集器;分析 jstack 出来的各个线程状态。如果问题实在比较隐蔽,考虑是否可以开启 jmx ,使用 visualmu 等可视化工具远程监控与分析</p>
+<h4 id="10-工作中常用的-JVM-配置参教有哪些"><a href="#10-工作中常用的-JVM-配置参教有哪些" class="headerlink" title="10.工作中常用的 JVM 配置参教有哪些?"></a>10.工作中常用的 JVM 配置参教有哪些?</h4><p>Java8为例</p>
 <blockquote>
 <p>日志<br>-XX :+ PrintFlagsFinal ,打印 JVM 所有参教的值<br>-XX :+ PrintGC ，打印 GC 信息<br>-XX :+ PrintGcDetails ,打印 GC 详细信息<br>-XX :+ PrintGCTimestamps ,打印 GC 的时间戳<br>-Xloggc : filename ,设置 GClog 文件的位置<br>-XX :+ PrintTenuringDistribution ，查看熬过收集后剩余对象的年龄分布倍息</p>
 </blockquote>
@@ -1027,9 +1027,9 @@
 <blockquote>
 <p>参教查询官网地址:<br><a class="link"   target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/un" >https://docs.oracle.com/javase/8/docs/technotes/tools/un <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/#scripting" >https://docs.oracle.com/javase/8/docs/technotes/tools/#scripting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>建议面试时最好能记住 CMS 和G1的参教，特点突出使用较多，被问的概率大</p>
 </blockquote>
-<h3 id="11-简述一个类的创建过程？"><a href="#11-简述一个类的创建过程？" class="headerlink" title="11.简述一个类的创建过程？"></a>11.简述一个类的创建过程？</h3><p>1.首先jvm虚拟机在方法区加载检查这个类是否被加载了？如果已经被加载了，直接就创建对象<br>2.没被加载过，就开始用类加载器加载类信息，加载的过程中用到的是双亲委派机制<br>3.然后，加载了类信息后，虚拟机开始为对象分配内存<br>4.内存分配完后，虚拟机需要将分配好的内存的空间初始化为零，不包括对象头<br>5.初始化类，自上而下的运行类中的静态语句，那些非静态的方法或对象在实例化对象的时候才会运行；</p>
-<h3 id="12-谈谈对双亲委派机制的理解？"><a href="#12-谈谈对双亲委派机制的理解？" class="headerlink" title="12.谈谈对双亲委派机制的理解？"></a>12.谈谈对双亲委派机制的理解？</h3><p>首先判断该类是否已经被加载，当一个类加载器收到了类加载的请求的时候，他不会直接去加载指定的类，而是把这个请求委托给自己的父加载器去加载。只有父加载器无法加载这个类的时候，才会由当前这个加载器来负责类的加载。<br>Java中提供如下四种类型的加载器，每一种加载器都有指定的加载对象，具体如下<br>Bootstrap ClassLoader（启动类加载器） ：主要负责加载Java核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。<br>Extention ClassLoader（扩展类加载器）：主要负责加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。<br>Application ClassLoader（应用程序类加载器） ：主要负责加载当前应用的classpath下的所有类<br>User ClassLoader（用户自定义类加载器） ： 用户自定义的类加载器,可加载指定路径的class文件<br>这四种类加载器存在如下关系，当进行类加载的时候，虽然用户自定义类不会由bootstrap classloader或是extension classloader加载（由类加载器的加载范围决定），但是代码实现还是会一直委托到bootstrap classloader, 上层无法加载，再由下层是否可以加载，如果都无法加载，就会触发findclass,抛出classNotFoundException</p>
-<h3 id="13-谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？"><a href="#13-谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？" class="headerlink" title="13.谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？"></a>13.谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？</h3><!-- flag of hidden posts -->
+<h4 id="11-简述一个类的创建过程？"><a href="#11-简述一个类的创建过程？" class="headerlink" title="11.简述一个类的创建过程？"></a>11.简述一个类的创建过程？</h4><p>1.首先jvm虚拟机在方法区加载检查这个类是否被加载了？如果已经被加载了，直接就创建对象<br>2.没被加载过，就开始用类加载器加载类信息，加载的过程中用到的是双亲委派机制<br>3.然后，加载了类信息后，虚拟机开始为对象分配内存<br>4.内存分配完后，虚拟机需要将分配好的内存的空间初始化为零，不包括对象头<br>5.初始化类，自上而下的运行类中的静态语句，那些非静态的方法或对象在实例化对象的时候才会运行；</p>
+<h4 id="12-谈谈对双亲委派机制的理解？"><a href="#12-谈谈对双亲委派机制的理解？" class="headerlink" title="12.谈谈对双亲委派机制的理解？"></a>12.谈谈对双亲委派机制的理解？</h4><p>首先判断该类是否已经被加载，当一个类加载器收到了类加载的请求的时候，他不会直接去加载指定的类，而是把这个请求委托给自己的父加载器去加载。只有父加载器无法加载这个类的时候，才会由当前这个加载器来负责类的加载。<br>Java中提供如下四种类型的加载器，每一种加载器都有指定的加载对象，具体如下<br>Bootstrap ClassLoader（启动类加载器） ：主要负责加载Java核心类库，%JRE_HOME%\lib下的rt.jar、resources.jar、charsets.jar和class等。<br>Extention ClassLoader（扩展类加载器）：主要负责加载目录%JRE_HOME%\lib\ext目录下的jar包和class文件。<br>Application ClassLoader（应用程序类加载器） ：主要负责加载当前应用的classpath下的所有类<br>User ClassLoader（用户自定义类加载器） ： 用户自定义的类加载器,可加载指定路径的class文件<br>这四种类加载器存在如下关系，当进行类加载的时候，虽然用户自定义类不会由bootstrap classloader或是extension classloader加载（由类加载器的加载范围决定），但是代码实现还是会一直委托到bootstrap classloader, 上层无法加载，再由下层是否可以加载，如果都无法加载，就会触发findclass,抛出classNotFoundException</p>
+<h4 id="13-谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？"><a href="#13-谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？" class="headerlink" title="13.谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？"></a>13.谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？</h4><!-- flag of hidden posts -->
         </div>
 
         
@@ -1043,7 +1043,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-02 16:57:46
+                    :</strong> 2024-01-02 20:42:52
             </li>
         
         <li>
@@ -1147,7 +1147,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">3.jvm面试题</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AF%B4%E8%AF%B4jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">1.说说jvm内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">2.堆和栈的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-java%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E9%83%BD%E6%98%AF%E5%AD%98%E5%82%A8%E5%9C%A8%E6%A0%88%E4%B8%AD%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-text">3.java中的基本数据类型都是存储在栈中的吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AF%B9%E8%B1%A1%E5%9C%A8jvm%E4%B8%AD%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="nav-text">4.对象在jvm中的创建过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%B0%88%E8%B0%88jvm%E5%B8%B8%E9%87%8F%E6%B1%A0%EF%BC%9F"><span class="nav-text">5.谈谈jvm常量池？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E8%B0%88%E8%B0%88%E4%BD%A0%E7%9F%A5%E9%81%93%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="nav-text">6.谈谈你知道的垃圾回收算法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BD%A0%E5%9C%A8%E5%AE%9E%E9%99%85%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%9C%89%E6%8E%92%E6%9F%A5%E8%BF%87JVM%E6%96%B9%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%E5%90%97%EF%BC%9F%E6%98%AF%E6%80%8E%E4%B9%88%E6%8E%92%E6%9F%A5%E7%9A%84%EF%BC%9F"><span class="nav-text">7.你在实际项目中有排查过JVM方面的问题吗？是怎么排查的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83CPU%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98%EF%BC%8C%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-text">8.生产环境CPU占用过高，如何解决？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%9C%8D%E5%8A%A1%E5%9A%A3%E5%8F%98%E6%85%A2-%E5%A6%82%E4%BD%95%E8%AF%8A%E6%96%AD%E5%A4%84%E7%90%86"><span class="nav-text">9.生产环境服务嚣变慢,如何诊断处理?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%B7%A5%E4%BD%9C%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84-JVM-%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%99%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-text">10.工作中常用的 JVM 配置参教有哪些?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%AE%80%E8%BF%B0%E4%B8%80%E4%B8%AA%E7%B1%BB%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-text">11.简述一个类的创建过程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E8%B0%88%E8%B0%88%E5%AF%B9%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-text">12.谈谈对双亲委派机制的理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E8%B0%88%E8%B0%88%E6%96%B0%E7%94%9F%E4%BB%A3%EF%BC%8C%E5%B9%B8%E5%AD%98%E5%8C%BA%EF%BC%8C%E8%80%81%E5%B9%B4%E4%BB%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-text">13.谈谈新生代，幸存区，老年代对应的垃圾回收是怎样的？</span></a></li></ol>
+        
 
     </div>
 </div>

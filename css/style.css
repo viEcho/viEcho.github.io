@@ -927,7 +927,7 @@ button {
 .markdown-body p {
   line-height: 1.5;
   color: var(--default-text-color);
-  font-weight: 400;
+  font-weight: 333;
   margin-bottom: 1rem;
   margin-top: 0;
 }
@@ -976,6 +976,7 @@ button {
 }
 .markdown-body ul li {
   list-style: disc;
+  font-weight: 400;
 }
 .markdown-body ul li ul li {
   list-style: circle;
@@ -1609,6 +1610,7 @@ pre code {
 .highlight td {
   border: none;
   padding: 0;
+  font-size: smaller;
 }
 .highlight figcaption {
   font-size: 1rem;

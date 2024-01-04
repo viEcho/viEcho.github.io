@@ -26,7 +26,7 @@
 <meta property="og:description" content="1.synchronized 和volatial关键字理解？synchronized 关键字可以用来修饰的方法，类，代码块会被加锁，他能保证线程的互斥就内存的可见性；所谓互斥性就是线程1加了锁后，线程2就会被阻塞直到线程1释放锁；synchronized 能够及时的刷新内存，保证了内存的可见性。 具体工作过程如下：  ①获得互斥锁 ②从主内存拷贝变量的最新副本到工作内存 ③执行代码 ④将更改后的共">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-02T08:57:43.459Z">
+<meta property="article:modified_time" content="2024-01-02T12:44:07.116Z">
 <meta property="article:author" content="Echo">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -856,7 +856,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">59</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -918,8 +918,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-02 16:57:43</span>
-            <span class="mobile">2024-01-02 16:57:43</span>
+            <span class="desktop">2024-01-02 20:44:07</span>
+            <span class="mobile">2024-01-02 20:44:07</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -991,7 +991,7 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="1-synchronized-和volatial关键字理解？"><a href="#1-synchronized-和volatial关键字理解？" class="headerlink" title="1.synchronized 和volatial关键字理解？"></a>1.synchronized 和volatial关键字理解？</h3><p>synchronized 关键字可以用来修饰的方法，类，代码块会被加锁，他能保证线程的互斥就内存的可见性；所谓互斥性就是线程1加了锁后，线程2就会被阻塞直到线程1释放锁；<br>synchronized 能够及时的刷新内存，保证了内存的可见性。 具体工作过程如下：</p>
+            <h4 id="1-synchronized-和volatial关键字理解？"><a href="#1-synchronized-和volatial关键字理解？" class="headerlink" title="1.synchronized 和volatial关键字理解？"></a>1.synchronized 和volatial关键字理解？</h4><p>synchronized 关键字可以用来修饰的方法，类，代码块会被加锁，他能保证线程的互斥就内存的可见性；所谓互斥性就是线程1加了锁后，线程2就会被阻塞直到线程1释放锁；<br>synchronized 能够及时的刷新内存，保证了内存的可见性。 具体工作过程如下：</p>
 <ul>
 <li>①获得互斥锁</li>
 <li>②从主内存拷贝变量的最新副本到工作内存</li>
@@ -1006,26 +1006,26 @@
 <li>③ volatile不会造成线程的阻塞；synchronized可能会造成线程的阻塞。</li>
 <li>④ volatile标记的变量不会被编译器优化；synchronized标记的变量可以被编译器优化。</li>
 </ul>
-<h3 id="2-锁升级的过程？"><a href="#2-锁升级的过程？" class="headerlink" title="2.锁升级的过程？"></a>2.锁升级的过程？</h3><ul>
+<h4 id="2-锁升级的过程？"><a href="#2-锁升级的过程？" class="headerlink" title="2.锁升级的过程？"></a>2.锁升级的过程？</h4><ul>
 <li>无锁<br>​当一个对象被创建之后，还没有线程进入，这个时候对象处于无锁状态</li>
 <li>偏向锁<br>​当锁处于无锁状态时，有一个线程A访问同步块并获取锁时，会在对象头和栈帧中的锁记录记录线程ID，这个时候对象头上的无锁就变更为偏向锁；<br>以后该线程在进入和退出同步块时不需要进行CAS操作来进行加锁和解锁，只需要简单的测试一下啊对象头中的线程ID和当前线程是否一致。</li>
 <li>轻量级锁<br>​在偏向锁的基础上，又有另外一个线程B进来，这时判断对象头中存储的线程A的ID和线程B不一致，就会使用CAS竞争锁并且升级为轻量级锁，会在线程栈中创建一个锁记录(lock Record)，将Mark Word复制到锁记录中，然后线程尝试使用CAS将对象头的Mark Word替换成指向锁记录的指针，如果成功，则当前线程获得锁；失败，表示其他线程竞争到锁，当前线程便尝试CAS来获取锁。</li>
 <li>重量级锁<br>​当线程没有获得轻量级锁时，线程会CAS自旋来获取锁，当一个线程自旋10次之后，仍然未获得锁，那么就会升级成为重量级锁。</li>
 </ul>
-<h3 id="3-CAS原理？"><a href="#3-CAS原理？" class="headerlink" title="3.CAS原理？"></a>3.CAS原理？</h3><p>CAS为比较并交换，它的实现是用一个旧的预期的值和内存值进行比较，如果两个值相等，就用新的值替换内存值，并返回 true。否则，返回 false;<br>CAS 利用 CPU 指令保证了操作的原子性，以达到锁的效果，至于自旋呢，看字面意思也很明白，自己旋转，翻译成人话就是循环，一般是用一个无限循环实现。这样一来，一个无限循环中，执行一个 CAS 操作，当操作成功，返回 true 时，循环结束；当返回 false 时，接着执行循环，继续尝试 CAS 操作，直到返回 true</p>
-<h3 id="4-wait-和sleep区别-yield和join的区别？"><a href="#4-wait-和sleep区别-yield和join的区别？" class="headerlink" title="4.wait 和sleep区别,yield和join的区别？"></a>4.wait 和sleep区别,yield和join的区别？</h3><ul>
+<h4 id="3-CAS原理？"><a href="#3-CAS原理？" class="headerlink" title="3.CAS原理？"></a>3.CAS原理？</h4><p>CAS为比较并交换，它的实现是用一个旧的预期的值和内存值进行比较，如果两个值相等，就用新的值替换内存值，并返回 true。否则，返回 false;<br>CAS 利用 CPU 指令保证了操作的原子性，以达到锁的效果，至于自旋呢，看字面意思也很明白，自己旋转，翻译成人话就是循环，一般是用一个无限循环实现。这样一来，一个无限循环中，执行一个 CAS 操作，当操作成功，返回 true 时，循环结束；当返回 false 时，接着执行循环，继续尝试 CAS 操作，直到返回 true</p>
+<h4 id="4-wait-和sleep区别-yield和join的区别？"><a href="#4-wait-和sleep区别-yield和join的区别？" class="headerlink" title="4.wait 和sleep区别,yield和join的区别？"></a>4.wait 和sleep区别,yield和join的区别？</h4><ul>
 <li>1.wait：Object类的方法(notify()、notifyAll()  也是Object对象)，必须放在循环体和同步代码块中，执行该方法的线程会释放锁，进入线程等待池中等待被再次唤醒(notify随机唤醒，notifyAll全部唤醒，线程结束自动唤醒)即放入锁池中竞争同步锁</li>
 <li>2.sleep：Thread类的方法，必须带一个时间参数。会让当前线程休眠进入阻塞状态并释放CPU（阿里面试题 Sleep释放CPU，wait 也会释放cpu，因为cpu资源太宝贵了，只有在线程running的时候，才会获取cpu片段），提供其他线程运行的机会且不考虑优先级，但如果有同步锁则sleep不会释放锁即其他线程无法获得同步锁,可通过调用interrupt()方法来唤醒休眠线程。</li>
 <li>3.yield：让出CPU调度，Thread类的方法，类似sleep只是不能由用户指定暂停多长时间 ，并且yield()方法只能让同优先级的线程有执行的机会。 yield()只是使当前线程重新回到可执行状态，所以执行yield()的线程有可能在进入到可执行状态后马上又被执行。调用yield方法只是一个建议，告诉线程调度器我的工作已经做的差不多了，可以让别的相同优先级的线程使用CPU了，没有任何机制保证采纳。</li>
 <li>4.join：一种特殊的wait，当前运行线程调用另一个线程的join方法，当前线程进入阻塞状态直到另一个线程运行结束等待该线程终止。 注意该方法也需要捕捉异常</li>
 </ul>
-<h3 id="5-怎么开启一个线程？"><a href="#5-怎么开启一个线程？" class="headerlink" title="5.怎么开启一个线程？"></a>5.怎么开启一个线程？</h3><p>直接new一个Thread<br>集成Thread，重写run方法<br>实现Runnable,重写run方法<br>实现Callable，重写call方法</p>
-<h3 id="6-线程池怎么用，7大参数理解？如何配置？"><a href="#6-线程池怎么用，7大参数理解？如何配置？" class="headerlink" title="6.线程池怎么用，7大参数理解？如何配置？"></a>6.线程池怎么用，7大参数理解？如何配置？</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor(</span><br><span class="line">    <span class="type">int</span> corePoolSize, <span class="comment">// 核心池线程数大小 (常用)</span></span><br><span class="line">    <span class="type">int</span> maximumPoolSize,  <span class="comment">// 最大的线程数大小 (常用)</span></span><br><span class="line">    <span class="type">long</span> keepAliveTime, <span class="comment">// 超时等待时间 (常用)</span></span><br><span class="line">    TimeUnit unit, <span class="comment">// 时间单位 (常用)</span></span><br><span class="line">    BlockingQueue&lt;Runnable&gt; workQueue, <span class="comment">// 阻塞队列(常用)</span></span><br><span class="line">    ThreadFactory threadFactory, <span class="comment">// 线程工厂</span></span><br><span class="line">    RejectedExecutionHandler handler <span class="comment">// 拒绝策略(常用)</span></span><br><span class="line">) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h4 id="5-怎么开启一个线程？"><a href="#5-怎么开启一个线程？" class="headerlink" title="5.怎么开启一个线程？"></a>5.怎么开启一个线程？</h4><p>直接new一个Thread<br>集成Thread，重写run方法<br>实现Runnable,重写run方法<br>实现Callable，重写call方法</p>
+<h4 id="6-线程池怎么用，7大参数理解？如何配置？"><a href="#6-线程池怎么用，7大参数理解？如何配置？" class="headerlink" title="6.线程池怎么用，7大参数理解？如何配置？"></a>6.线程池怎么用，7大参数理解？如何配置？</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor(</span><br><span class="line">    <span class="type">int</span> corePoolSize, <span class="comment">// 核心池线程数大小 (常用)</span></span><br><span class="line">    <span class="type">int</span> maximumPoolSize,  <span class="comment">// 最大的线程数大小 (常用)</span></span><br><span class="line">    <span class="type">long</span> keepAliveTime, <span class="comment">// 超时等待时间 (常用)</span></span><br><span class="line">    TimeUnit unit, <span class="comment">// 时间单位 (常用)</span></span><br><span class="line">    BlockingQueue&lt;Runnable&gt; workQueue, <span class="comment">// 阻塞队列(常用)</span></span><br><span class="line">    ThreadFactory threadFactory, <span class="comment">// 线程工厂</span></span><br><span class="line">    RejectedExecutionHandler handler <span class="comment">// 拒绝策略(常用)</span></span><br><span class="line">) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>IO密集型：指的是大量的读写操作。例如mysql数据库的读写，数据的清洗，文件的读写，附件服务器的读写，网络通信等任务。这类任务不会特别消耗cpu,但是单个任务由于执行io操作会特别耗时。<br>CPU密集型：指的是依赖于cpu的计算的操作。例如人工智能算法，加解密算法，压缩等需要消耗大量CPU资源的任务，这些大部分场景下都纯CPU计算。<br>在确定任务类型后：<br>CPU密集型：核心线程数&#x3D;CPU核数+1<br>IO密集型：核心线程数&#x3D;CPU核心数*（1+IO耗时&#x2F;CPU耗时） 或者核心线程数&#x3D;CPU核心数&#x2F;(1-阻塞系数)<br>其中CPU密集型阻塞系数为0，IO密集型阻塞系数接近于1，一般认为在0.8~0.9之间。例如:8核CPU,按照公式就是8(1-0.9)&#x3D;80</p>
-<h3 id="7-信号量Semaphore"><a href="#7-信号量Semaphore" class="headerlink" title="7.信号量Semaphore?"></a>7.信号量Semaphore?</h3><p>信号量，用于控制资源能够被并发访问的线程数量，以保证多个线程能够合理的使用特定资源<br>在信号量Semaphore中提供了三个方法，init(),down(),up()方法；down 和up方法对应的操作也叫做p v操作，所以Semaphore模型又被称为pv原语；在java sdk包中down up方法对应着底层的acquire()和release()<br>当线程要访问共享资源时，需要先通过acquire()方法获取许可。获取到之后许可就被当前线程占用了，在归还许可之前其他线程不能获取这个许可。<br>调用acquire()方法时，如果没有许可可用了，就将线程阻塞，等待有许可被归还了再执行。<br>当执行完业务功能后，需要通过release()方法将许可证归还，以便其他线程能够获得许可证继续执行</p>
+<h4 id="7-信号量Semaphore"><a href="#7-信号量Semaphore" class="headerlink" title="7.信号量Semaphore?"></a>7.信号量Semaphore?</h4><p>信号量，用于控制资源能够被并发访问的线程数量，以保证多个线程能够合理的使用特定资源<br>在信号量Semaphore中提供了三个方法，init(),down(),up()方法；down 和up方法对应的操作也叫做p v操作，所以Semaphore模型又被称为pv原语；在java sdk包中down up方法对应着底层的acquire()和release()<br>当线程要访问共享资源时，需要先通过acquire()方法获取许可。获取到之后许可就被当前线程占用了，在归还许可之前其他线程不能获取这个许可。<br>调用acquire()方法时，如果没有许可可用了，就将线程阻塞，等待有许可被归还了再执行。<br>当执行完业务功能后，需要通过release()方法将许可证归还，以便其他线程能够获得许可证继续执行</p>
 <p>应用场景：信号量 Semaphore 用于控制资源能够被并发访问的线程数量，以保证多个线程能够合理的使用特定资源，比如数据库连接</p>
-<h3 id="8-悲观锁和乐观锁？"><a href="#8-悲观锁和乐观锁？" class="headerlink" title="8.悲观锁和乐观锁？"></a>8.悲观锁和乐观锁？</h3><p>悲观锁，按字面意思就是很悲观，每次获得去修改数据时总算悲观的认为数据已经被修改了，因此每次在获取到数据时都先给数据加锁，在操作数据的整个过程中一直上锁，等操作结束才会释放锁<br>乐观锁，按字面意思就是很乐观，每次获得数据后总算乐观的认为数据没有被修改，只有在执行更新操作时才会判断数据是否被修改，如果数据被修改则放弃本次更新操作<br>综上原因，悲观锁适合写入较多的场景即冲突较多的场景，乐观锁适合读多写少的场景即冲突较少的场景；</p>
-<h3 id="9-死锁出现的原因以及怎么解决？"><a href="#9-死锁出现的原因以及怎么解决？" class="headerlink" title="9.死锁出现的原因以及怎么解决？"></a>9.死锁出现的原因以及怎么解决？</h3><p>出现死锁的原因是因为两个线程出现持有对方想要的资源，导致这两个线程一直处在等待对方释放锁的状态；<br>破坏竞态条件既可以解除死锁，例如：当一个线程持有锁时，没有释放锁时不能再去尝试获取另一个锁；</p>
+<h4 id="8-悲观锁和乐观锁？"><a href="#8-悲观锁和乐观锁？" class="headerlink" title="8.悲观锁和乐观锁？"></a>8.悲观锁和乐观锁？</h4><p>悲观锁，按字面意思就是很悲观，每次获得去修改数据时总算悲观的认为数据已经被修改了，因此每次在获取到数据时都先给数据加锁，在操作数据的整个过程中一直上锁，等操作结束才会释放锁<br>乐观锁，按字面意思就是很乐观，每次获得数据后总算乐观的认为数据没有被修改，只有在执行更新操作时才会判断数据是否被修改，如果数据被修改则放弃本次更新操作<br>综上原因，悲观锁适合写入较多的场景即冲突较多的场景，乐观锁适合读多写少的场景即冲突较少的场景；</p>
+<h4 id="9-死锁出现的原因以及怎么解决？"><a href="#9-死锁出现的原因以及怎么解决？" class="headerlink" title="9.死锁出现的原因以及怎么解决？"></a>9.死锁出现的原因以及怎么解决？</h4><p>出现死锁的原因是因为两个线程出现持有对方想要的资源，导致这两个线程一直处在等待对方释放锁的状态；<br>破坏竞态条件既可以解除死锁，例如：当一个线程持有锁时，没有释放锁时不能再去尝试获取另一个锁；</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1040,7 +1040,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-02 16:57:43
+                    :</strong> 2024-01-02 20:44:07
             </li>
         
         <li>
@@ -1144,7 +1144,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">4.java并发面试题</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-synchronized-%E5%92%8Cvolatial%E5%85%B3%E9%94%AE%E5%AD%97%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="nav-text">1.synchronized 和volatial关键字理解？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%94%81%E5%8D%87%E7%BA%A7%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="nav-text">2.锁升级的过程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-CAS%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-text">3.CAS原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-wait-%E5%92%8Csleep%E5%8C%BA%E5%88%AB-yield%E5%92%8Cjoin%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">4.wait 和sleep区别,yield和join的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%80%8E%E4%B9%88%E5%BC%80%E5%90%AF%E4%B8%80%E4%B8%AA%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="nav-text">5.怎么开启一个线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%80%8E%E4%B9%88%E7%94%A8%EF%BC%8C7%E5%A4%A7%E5%8F%82%E6%95%B0%E7%90%86%E8%A7%A3%EF%BC%9F%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%EF%BC%9F"><span class="nav-text">6.线程池怎么用，7大参数理解？如何配置？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E4%BF%A1%E5%8F%B7%E9%87%8FSemaphore"><span class="nav-text">7.信号量Semaphore?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%82%B2%E8%A7%82%E9%94%81%E5%92%8C%E4%B9%90%E8%A7%82%E9%94%81%EF%BC%9F"><span class="nav-text">8.悲观锁和乐观锁？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%AD%BB%E9%94%81%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0%E4%BB%A5%E5%8F%8A%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-text">9.死锁出现的原因以及怎么解决？</span></a></li></ol>
+        
 
     </div>
 </div>

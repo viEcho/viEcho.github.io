@@ -20,7 +20,7 @@
 .markdown-body p {
   line-height: $default-line-height;
   color: var(--default-text-color);
-  font-weight: 400;
+  font-weight: 333;
   margin-bottom: 1rem;
   margin-top: 0;
 }
@@ -69,6 +69,7 @@
 }
 .markdown-body ul li {
   list-style: disc;
+  font-weight: 400;
 }
 .markdown-body ul li ul li {
   list-style: circle;

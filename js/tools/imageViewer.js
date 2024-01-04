@@ -3,7 +3,7 @@ export default function imageViewer() {
   let scale = 1;
   let isMouseDown = false;
   let dragged = false;
-  let currentImgIndex = 0;  
+  let currentImgIndex = 0;
   let lastMouseX = 0;
   let lastMouseY = 0;
   let translateX = 0;
@@ -48,7 +48,7 @@ export default function imageViewer() {
     isMouseDown = true;
     lastMouseX = event.clientX;
     lastMouseY = event.clientY;
-    targetImg.style.cursor = 'grabbing'; 
+    targetImg.style.cursor = 'grabbing';
   };
 
   let lastTime = 0;
@@ -68,7 +68,7 @@ export default function imageViewer() {
       lastMouseX = event.clientX;
       lastMouseY = event.clientY;
       targetImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-      dragged = true; 
+      dragged = true;
     }
   };
 
@@ -77,7 +77,7 @@ export default function imageViewer() {
       event.stopPropagation();
     }
     isMouseDown = false;
-    targetImg.style.cursor = 'grab'; 
+    targetImg.style.cursor = 'grab';
   };
 
   targetImg.addEventListener("wheel", zoomHandle, { passive: false });
@@ -87,7 +87,7 @@ export default function imageViewer() {
   targetImg.addEventListener("mouseleave", dragEndHandle, { passive: false });
 
   maskDom.addEventListener("click", (event) => {
-    if (!dragged) { 
+    if (!dragged) {
       isBigImage = false;
       showHandle(isBigImage);
       scale = 1;
@@ -95,11 +95,11 @@ export default function imageViewer() {
       translateY = 0;
       targetImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
     }
-    dragged = false;  
+    dragged = false;
   });
-  
+
   const imgDoms = document.querySelectorAll(
-    ".markdown-body img, .masonry-item img, #shuoshuo-content img",
+    " img, .masonry-item img, #shuoshuo-content img",
   );
 
   const escapeKeyListener = (event) => {
@@ -115,9 +115,9 @@ export default function imageViewer() {
     }
   };
 
-  imgDoms.forEach((img, index) => { 
+  imgDoms.forEach((img, index) => {
     img.addEventListener("click", () => {
-      currentImgIndex = index;  
+      currentImgIndex = index;
       isBigImage = true;
       showHandle(isBigImage);
       targetImg.src = img.src;
@@ -126,8 +126,8 @@ export default function imageViewer() {
   });
 
   const handleArrowKeys = (event) => {
-    if (!isBigImage) return;  
-  
+    if (!isBigImage) return;
+
     if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
       currentImgIndex = (currentImgIndex - 1 + imgDoms.length) % imgDoms.length;
     } else if (event.key === "ArrowDown" || event.key === "ArrowRight") {
@@ -135,20 +135,20 @@ export default function imageViewer() {
     } else {
       return;
     }
-  
+
     const currentImg = imgDoms[currentImgIndex];
     let newSrc = currentImg.src;
 
     if (currentImg.hasAttribute("lazyload")) {
     newSrc = currentImg.getAttribute("data-src");
-    currentImg.src = newSrc;  
-    currentImg.removeAttribute("lazyload");  
+    currentImg.src = newSrc;
+    currentImg.removeAttribute("lazyload");
   }
 
   targetImg.src = newSrc;
 };
 
-  document.addEventListener("keydown", handleArrowKeys); 
+  document.addEventListener("keydown", handleArrowKeys);
 
   if (!imgDoms.length && maskDom) {
     maskDom.parentNode.removeChild(maskDom);

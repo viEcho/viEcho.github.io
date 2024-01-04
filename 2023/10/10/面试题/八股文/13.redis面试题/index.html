@@ -26,7 +26,7 @@
 <meta property="og:description" content="1.redis 中可以存哪些数据结构redis是一种基于键值对的来存储数据的nosql数据库，其中对应的value支持string,list,set,zset,bitmaps,hyperloglog,GEO地理信息数据 2.redis性能好的原因？ 基于内存的读写 单线程，避免了线程的切换及竞争产生的消耗 基于非阻塞的IO多路复用 C实现的，更利于和底层进行交互  3.说说IO多路复用回答这个问题">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-02T08:48:47.362Z">
+<meta property="article:modified_time" content="2024-01-03T09:24:11.156Z">
 <meta property="article:author" content="Echo">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -856,7 +856,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">59</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -918,8 +918,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-02 16:48:47</span>
-            <span class="mobile">2024-01-02 16:48:47</span>
+            <span class="desktop">2024-01-03 17:24:11</span>
+            <span class="mobile">2024-01-03 17:24:11</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -991,23 +991,23 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="1-redis-中可以存哪些数据结构"><a href="#1-redis-中可以存哪些数据结构" class="headerlink" title="1.redis 中可以存哪些数据结构"></a>1.redis 中可以存哪些数据结构</h3><p>redis是一种基于键值对的来存储数据的nosql数据库，其中对应的value支持string,list,set,zset,bitmaps,hyperloglog,GEO地理信息数据</p>
-<h3 id="2-redis性能好的原因？"><a href="#2-redis性能好的原因？" class="headerlink" title="2.redis性能好的原因？"></a>2.redis性能好的原因？</h3><ul>
+            <h4 id="1-redis-中可以存哪些数据结构"><a href="#1-redis-中可以存哪些数据结构" class="headerlink" title="1.redis 中可以存哪些数据结构"></a>1.redis 中可以存哪些数据结构</h4><p>redis是一种基于键值对的来存储数据的nosql数据库，其中对应的value支持string,list,set,zset,bitmaps,hyperloglog,GEO地理信息数据</p>
+<h4 id="2-redis性能好的原因？"><a href="#2-redis性能好的原因？" class="headerlink" title="2.redis性能好的原因？"></a>2.redis性能好的原因？</h4><ul>
 <li>基于内存的读写</li>
 <li>单线程，避免了线程的切换及竞争产生的消耗</li>
 <li>基于非阻塞的IO多路复用</li>
 <li>C实现的，更利于和底层进行交互</li>
 </ul>
-<h3 id="3-说说IO多路复用"><a href="#3-说说IO多路复用" class="headerlink" title="3.说说IO多路复用"></a>3.说说IO多路复用</h3><p>回答这个问题我们可以拆分来看，IO实际就是指数据或文件的读写流，多路实际指的是redis的底层的多路复用程序监听了每个读写请求的socket套接字，复用就是指监听哪些socket上有消息达到，从而避免用户线程等待；</p>
-<h3 id="4-rdb和aof"><a href="#4-rdb和aof" class="headerlink" title="4.rdb和aof"></a>4.rdb和aof</h3><p>rdb和aof是redis持久化的两种方式，默认是rdb的持久化方式；<br>rdb是一种二进制快照文件的方式某个时刻redis中的数据到硬盘中的，aof是以日志的的方式存储redis的写命令;rdb的好处是适合数据全量备份，容灾好，恢复数据速度快,确点是数据可能丢失；aof的好处是实时性好，因为记录日志是秒级的，所以数据丢失最多也是这一秒的数据，同样因为秒级记录导致数据量的量级增长很快，从而导致文件很大，那么数据恢复时耗时会很久</p>
-<h3 id="5-缓存击穿，缓存穿透，缓存雪崩"><a href="#5-缓存击穿，缓存穿透，缓存雪崩" class="headerlink" title="5.缓存击穿，缓存穿透，缓存雪崩"></a>5.缓存击穿，缓存穿透，缓存雪崩</h3><ul>
+<h4 id="3-说说IO多路复用"><a href="#3-说说IO多路复用" class="headerlink" title="3.说说IO多路复用"></a>3.说说IO多路复用</h4><p>回答这个问题我们可以拆分来看，IO实际就是指数据或文件的读写流，多路实际指的是redis的底层的多路复用程序监听了每个读写请求的socket套接字，复用就是指监听哪些socket上有消息达到，从而避免用户线程等待；</p>
+<h4 id="4-rdb和aof"><a href="#4-rdb和aof" class="headerlink" title="4.rdb和aof"></a>4.rdb和aof</h4><p>rdb和aof是redis持久化的两种方式，默认是rdb的持久化方式；<br>rdb是一种二进制快照文件的方式某个时刻redis中的数据到硬盘中的，aof是以日志的的方式存储redis的写命令;rdb的好处是适合数据全量备份，容灾好，恢复数据速度快,确点是数据可能丢失；aof的好处是实时性好，因为记录日志是秒级的，所以数据丢失最多也是这一秒的数据，同样因为秒级记录导致数据量的量级增长很快，从而导致文件很大，那么数据恢复时耗时会很久</p>
+<h4 id="5-缓存击穿，缓存穿透，缓存雪崩"><a href="#5-缓存击穿，缓存穿透，缓存雪崩" class="headerlink" title="5.缓存击穿，缓存穿透，缓存雪崩"></a>5.缓存击穿，缓存穿透，缓存雪崩</h4><ul>
 <li>缓存击穿-redis中一个热点key过期（大量用户访问该热点key，但是热点key过期);监控哪些数据是热门数据，实时的调整key的过期时长；</li>
 <li>缓存穿透-大量请求根本不存在的key；设置空值,设置白名单,使用布隆过滤器，对请求做校验(比如请求一个查询一个id为-1000的数据，这种直接可以判定为不合法)</li>
 <li>缓存雪崩-redis中大量key集体过期；监控热key,调整key的过期时间</li>
 </ul>
-<h3 id="6-怎么监控热key"><a href="#6-怎么监控热key" class="headerlink" title="6.怎么监控热key?"></a>6.怎么监控热key?</h3><p>redis 4.0以上的版本支持了每个节点上的基于LFU的热点key发现机制，使用redis-cli –hotkeys即可，执行redis-cli时加上–hotkeys选项。可以定时在节点中使用该命令来发现对应热点key<br>或者业务模块可以自己增加key值访问的统计，对于访问数量超过设定值的key就认为这些key事热点key,可以将热点key对应的数据放入到内存中，下次再访问是直接从内存取数，当然数据量不能太大，否则占用很多内存得不偿失；<br>其实在很多业务场景，可以预估出热点key,例如秒杀场景中，秒杀的商品sku就是一个热点key，这种我们只要提前放到内存中就可以了；</p>
-<h3 id="7-说说布隆过滤器的原理？"><a href="#7-说说布隆过滤器的原理？" class="headerlink" title="7.说说布隆过滤器的原理？"></a>7.说说布隆过滤器的原理？</h3><p>布隆过滤器的原理是，当一个元素被加入集合时，通过散列函数将这个元素映射成一个位数组中的多个点（offset)并把它们置为 1。检索时，我们只要看看这些点是不是都是1就知道集合中有没有它了：如果这些点有任何一个为0，则被检元素一定不存在；如果都是1，则被检元素很可能存在；</p>
-<h3 id="8-redis常用的数据结构有哪些？"><a href="#8-redis常用的数据结构有哪些？" class="headerlink" title="8.redis常用的数据结构有哪些？"></a>8.redis常用的数据结构有哪些？</h3><p>String，list,set,zset,hash</p>
+<h4 id="6-怎么监控热key"><a href="#6-怎么监控热key" class="headerlink" title="6.怎么监控热key?"></a>6.怎么监控热key?</h4><p>redis 4.0以上的版本支持了每个节点上的基于LFU的热点key发现机制，使用redis-cli –hotkeys即可，执行redis-cli时加上–hotkeys选项。可以定时在节点中使用该命令来发现对应热点key<br>或者业务模块可以自己增加key值访问的统计，对于访问数量超过设定值的key就认为这些key事热点key,可以将热点key对应的数据放入到内存中，下次再访问是直接从内存取数，当然数据量不能太大，否则占用很多内存得不偿失；<br>其实在很多业务场景，可以预估出热点key,例如秒杀场景中，秒杀的商品sku就是一个热点key，这种我们只要提前放到内存中就可以了；</p>
+<h4 id="7-说说布隆过滤器的原理？"><a href="#7-说说布隆过滤器的原理？" class="headerlink" title="7.说说布隆过滤器的原理？"></a>7.说说布隆过滤器的原理？</h4><p>布隆过滤器的原理是，当一个元素被加入集合时，通过散列函数将这个元素映射成一个位数组中的多个点（offset)并把它们置为 1。检索时，我们只要看看这些点是不是都是1就知道集合中有没有它了：如果这些点有任何一个为0，则被检元素一定不存在；如果都是1，则被检元素很可能存在；</p>
+<h4 id="8-redis常用的数据结构有哪些？"><a href="#8-redis常用的数据结构有哪些？" class="headerlink" title="8.redis常用的数据结构有哪些？"></a>8.redis常用的数据结构有哪些？</h4><p>String，list,set,zset,hash</p>
 <ul>
 <li>String类型是redis最基本类型之一，其存储数据方式为key和value的方式，其中value即为String类型，常用方式get set获取对应的key</li>
 <li>list是一种数据结构(链表)，可以将list当成栈，也可以当成队列,常用指令lpush ,rpush</li>
@@ -1015,10 +1015,10 @@
 <li>Hash表类型可以理解成一个Map集合，即Value是一个Map集合；常用指令hset map1 name zhangsan（添加一个元素）,批量添加（hmset map1 age 15 gender male）</li>
 <li>zset类型在set的基础上增加了一个值（这个值可以用来排序），可以把Zset看成是有序set；常用指令zadd zset1 1 zhangsan（增加一个排序score）</li>
 </ul>
-<h3 id="9-redis分布式锁有用过吗？"><a href="#9-redis分布式锁有用过吗？" class="headerlink" title="9.redis分布式锁有用过吗？"></a>9.redis分布式锁有用过吗？</h3><p>redis分布式锁我们用的是Redisson，它的实现原理是：<br>我们要对某个key加锁，redisson在集群环境下会分配一个节点，先判断这个key是否会存在，如果不存在则新增key并设置过期时间默认30s，然后内置的看门狗机制会每隔10秒查看这个锁是否存在，如果存在就续期；直到不存在后证明锁已被释放；如果锁被释放则删除key;底层是lua脚本执行的，所以能保证执行过程的原子性；</p>
-<h3 id="10-分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？"><a href="#10-分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？" class="headerlink" title="10.分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？"></a>10.分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？</h3><p>我们知道，对于单机的多线程情况下的线程安全问题我们可以用使用JDK自带的锁来保证线程安全，但是集群环境下的线程安全怎么保证呢？客户A调用一个接口修改数据，客户B同时调用这一个接口修改数据，负载到不同的机器上，怎么保证同一时间这笔数据只能一个人操作呢？那就需要用到分布式锁，我说个我们项目中用到的分布式锁的场景，在智慧薪酬项目中，线下报盘时由于同一时间只允许一个用户进行除权日的报盘操作，那么就需要用到分布式锁；</p>
-<h3 id="11-redis-lua表达式为什么能保证原子性？"><a href="#11-redis-lua表达式为什么能保证原子性？" class="headerlink" title="11.redis lua表达式为什么能保证原子性？"></a>11.redis lua表达式为什么能保证原子性？</h3><p>redis 的官方文档中有描述lua脚本在执行的时候具有排他性，不允许其他命令或者脚本执行，类似于事务。但是存在的另一个问题是，它在执行的过程中如果一个命令报错不会回滚已执行的命令，所以要保证lua脚本的正确性；</p>
-<h3 id="12-redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解"><a href="#12-redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解" class="headerlink" title="12.redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解"></a>12.redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解</h3><p>redis我用的是主从架构的这种集群，哨兵的话自己有研究过，但是项目中目前还没有用到；<br>Redis的哨兵模式的特点是：</p>
+<h4 id="9-redis分布式锁有用过吗？"><a href="#9-redis分布式锁有用过吗？" class="headerlink" title="9.redis分布式锁有用过吗？"></a>9.redis分布式锁有用过吗？</h4><p>redis分布式锁我们用的是Redisson，它的实现原理是：<br>我们要对某个key加锁，redisson在集群环境下会分配一个节点，先判断这个key是否会存在，如果不存在则新增key并设置过期时间默认30s，然后内置的看门狗机制会每隔10秒查看这个锁是否存在，如果存在就续期；直到不存在后证明锁已被释放；如果锁被释放则删除key;底层是lua脚本执行的，所以能保证执行过程的原子性；</p>
+<h4 id="10-分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？"><a href="#10-分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？" class="headerlink" title="10.分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？"></a>10.分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？</h4><p>我们知道，对于单机的多线程情况下的线程安全问题我们可以用使用JDK自带的锁来保证线程安全，但是集群环境下的线程安全怎么保证呢？客户A调用一个接口修改数据，客户B同时调用这一个接口修改数据，负载到不同的机器上，怎么保证同一时间这笔数据只能一个人操作呢？那就需要用到分布式锁，我说个我们项目中用到的分布式锁的场景，在智慧薪酬项目中，线下报盘时由于同一时间只允许一个用户进行除权日的报盘操作，那么就需要用到分布式锁；</p>
+<h4 id="11-redis-lua表达式为什么能保证原子性？"><a href="#11-redis-lua表达式为什么能保证原子性？" class="headerlink" title="11.redis lua表达式为什么能保证原子性？"></a>11.redis lua表达式为什么能保证原子性？</h4><p>redis 的官方文档中有描述lua脚本在执行的时候具有排他性，不允许其他命令或者脚本执行，类似于事务。但是存在的另一个问题是，它在执行的过程中如果一个命令报错不会回滚已执行的命令，所以要保证lua脚本的正确性；</p>
+<h4 id="12-redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解"><a href="#12-redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解" class="headerlink" title="12.redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解"></a>12.redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解</h4><p>redis我用的是主从架构的这种集群，哨兵的话自己有研究过，但是项目中目前还没有用到；<br>Redis的哨兵模式的特点是：</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1033,7 +1033,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-02 16:48:47
+                    :</strong> 2024-01-03 17:24:11
             </li>
         
         <li>
@@ -1137,7 +1137,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">13.redis面试题</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-redis-%E4%B8%AD%E5%8F%AF%E4%BB%A5%E5%AD%98%E5%93%AA%E4%BA%9B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">1.redis 中可以存哪些数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-redis%E6%80%A7%E8%83%BD%E5%A5%BD%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%9F"><span class="nav-text">2.redis性能好的原因？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AF%B4%E8%AF%B4IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-text">3.说说IO多路复用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-rdb%E5%92%8Caof"><span class="nav-text">4.rdb和aof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF%EF%BC%8C%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%EF%BC%8C%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="nav-text">5.缓存击穿，缓存穿透，缓存雪崩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%80%8E%E4%B9%88%E7%9B%91%E6%8E%A7%E7%83%ADkey"><span class="nav-text">6.怎么监控热key?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E8%AF%B4%E8%AF%B4%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="nav-text">7.说说布隆过滤器的原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-redis%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-text">8.redis常用的数据结构有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%9C%89%E7%94%A8%E8%BF%87%E5%90%97%EF%BC%9F"><span class="nav-text">9.redis分布式锁有用过吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E5%95%A5%EF%BC%9F%E8%83%BD%E7%BB%93%E5%90%88%E4%BD%A0%E6%89%80%E5%81%9A%E7%9A%84%E9%A1%B9%E7%9B%AE%E6%9D%A5%E8%AF%B4%E8%AF%B4%E5%98%9B%EF%BC%9F"><span class="nav-text">10.分布式锁的应用场景是啥？能结合你所做的项目来说说嘛？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-redis-lua%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%EF%BC%9F"><span class="nav-text">11.redis lua表达式为什么能保证原子性？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-redis%E4%BD%A0%E4%BB%AC%E7%94%A8%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%E9%9B%86%E7%BE%A4%EF%BC%9F%E6%9C%89%E7%94%A8%E8%BF%87%E5%93%A8%E5%85%B5%E5%90%97%EF%BC%9F%E8%B0%88%E8%B0%88%E4%BD%A0%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-text">12.redis你们用的是什么集群？有用过哨兵吗？谈谈你的理解</span></a></li></ol>
+        
 
     </div>
 </div>

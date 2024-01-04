@@ -26,7 +26,7 @@
 <meta property="og:description" content="1.springCloud中组件常用的有哪些？eureka-注册中心config-配置中心Zuul、Gateway-网关Ribbon-负载均衡Feign-服务调用Hystrix或Resilience4j-熔断器 2.注册中心Eureka了解吗？客户端注册，Eureka客户端在启动时，首先会创建一个心跳的定时任务，定时向服务端发送心跳信息，服务端会对客户端心跳做出响应，如果响应状态码为404时，表示">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-02T08:48:35.581Z">
+<meta property="article:modified_time" content="2024-01-03T09:16:48.515Z">
 <meta property="article:author" content="Echo">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -856,7 +856,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">59</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -918,8 +918,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-02 16:48:35</span>
-            <span class="mobile">2024-01-02 16:48:35</span>
+            <span class="desktop">2024-01-03 17:16:48</span>
+            <span class="mobile">2024-01-03 17:16:48</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -991,8 +991,8 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="1-springCloud中组件常用的有哪些？"><a href="#1-springCloud中组件常用的有哪些？" class="headerlink" title="1.springCloud中组件常用的有哪些？"></a>1.springCloud中组件常用的有哪些？</h3><p>eureka-注册中心<br>config-配置中心<br>Zuul、Gateway-网关<br>Ribbon-负载均衡<br>Feign-服务调用<br>Hystrix或Resilience4j-熔断器</p>
-<h3 id="2-注册中心Eureka了解吗？"><a href="#2-注册中心Eureka了解吗？" class="headerlink" title="2.注册中心Eureka了解吗？"></a>2.注册中心Eureka了解吗？</h3><p>客户端注册，Eureka客户端在启动时，首先会创建一个心跳的定时任务，定时向服务端发送心跳信息，服务端会对客户端心跳做出响应，如果响应状态码为404时，表示服务端没有该客户端的服务信息，那么客户端则会向服务端发送注册请求。</p>
+            <h4 id="1-springCloud中组件常用的有哪些？"><a href="#1-springCloud中组件常用的有哪些？" class="headerlink" title="1.springCloud中组件常用的有哪些？"></a>1.springCloud中组件常用的有哪些？</h4><p>eureka-注册中心<br>config-配置中心<br>Zuul、Gateway-网关<br>Ribbon-负载均衡<br>Feign-服务调用<br>Hystrix或Resilience4j-熔断器</p>
+<h4 id="2-注册中心Eureka了解吗？"><a href="#2-注册中心Eureka了解吗？" class="headerlink" title="2.注册中心Eureka了解吗？"></a>2.注册中心Eureka了解吗？</h4><p>客户端注册，Eureka客户端在启动时，首先会创建一个心跳的定时任务，定时向服务端发送心跳信息，服务端会对客户端心跳做出响应，如果响应状态码为404时，表示服务端没有该客户端的服务信息，那么客户端则会向服务端发送注册请求。</p>
 <blockquote>
 <p>服务端如何保存客户端注册信息?<br>客户端通过Jersey框架，将自己的注册信息发送给服务端，服务端保存在一个ConcurrentHashMap对象中。<br>客户端如何拉取服务端已保存的服务信息?<br>客户端通过一个定时任务定时向服务端拉取信息，每次拉取后刷新本地已保存的信息，需要使用时直接从本地获取。</p>
 </blockquote>
@@ -1002,8 +1002,8 @@
 <blockquote>
 <p>Eureka为什么要采用自我保护机制？<br>在分布式系统的CAP理论中，Eureka采用的AP，也就是Eureak保证了服务的可用性（A），而舍弃了数据的一致性（C）。当网络发生分区时，客户端和服务端的通讯将会终止，那么服务端在一定的时间内将收不到大部分的客户端的一个心跳，如果这个时候将这些收不到心跳的服务剔除，那可能会将可用的客户端剔除了，这就不符合AP理论</p>
 </blockquote>
-<h3 id="3-服务熔断和降级怎么做的？"><a href="#3-服务熔断和降级怎么做的？" class="headerlink" title="3.服务熔断和降级怎么做的？"></a>3.服务熔断和降级怎么做的？</h3><p>我们使用Hystrix来实现服务的熔断和限流，在对应的接口上添加对应的 @HystrixCommand注解，注解内置了超时时间及断路器开关，以及降级后对应的回调handle方法，可以自定义返回信息；</p>
-<h3 id="4-OpenFigne是怎么实现微服务间通信的？"><a href="#4-OpenFigne是怎么实现微服务间通信的？" class="headerlink" title="4.OpenFigne是怎么实现微服务间通信的？"></a>4.OpenFigne是怎么实现微服务间通信的？</h3><p>Openfeign是Spring Cloud 对Feign 也进行了增强，直接支持Hystrix 和 Ribbon，也支持SpringMVC 的注解。这样使得Feign 的使用非常方便。<br>1、在使用Openfeign时首先会在springboot的启动类上添加@EnableFeignClients注解，该注解会导入FeignClientsRegistrar类，会去扫描所有的带有@FeignClient<br>2、解析到 @FeignClient 修饰类后， Feign 框架通过扩展 Spring Bean Deifinition 的注册逻辑， 最终注册一个 FeignClientFacotoryBean 进入 Spring 容器<br>3、Spring 容器在初始化其他用到 @FeignClient 接口的类时， 获得的是 FeignClientFacotryBean 产生的一个代理对象 Proxy.<br>4、基于 java 原生的动态代理机制， 针对 Proxy 的调用， 都会被统一转发给 Feign 框架所定义的一个InvocationHandler ， 由该 Handler 完成后续的 HTTP 转换， 发送， 接收， 翻译HTTP响应的工作</p>
+<h4 id="3-服务熔断和降级怎么做的？"><a href="#3-服务熔断和降级怎么做的？" class="headerlink" title="3.服务熔断和降级怎么做的？"></a>3.服务熔断和降级怎么做的？</h4><p>我们使用Hystrix来实现服务的熔断和限流，在对应的接口上添加对应的 @HystrixCommand注解，注解内置了超时时间及断路器开关，以及降级后对应的回调handle方法，可以自定义返回信息；</p>
+<h4 id="4-OpenFigne是怎么实现微服务间通信的？"><a href="#4-OpenFigne是怎么实现微服务间通信的？" class="headerlink" title="4.OpenFigne是怎么实现微服务间通信的？"></a>4.OpenFigne是怎么实现微服务间通信的？</h4><p>Openfeign是Spring Cloud 对Feign 也进行了增强，直接支持Hystrix 和 Ribbon，也支持SpringMVC 的注解。这样使得Feign 的使用非常方便。<br>1、在使用Openfeign时首先会在springboot的启动类上添加@EnableFeignClients注解，该注解会导入FeignClientsRegistrar类，会去扫描所有的带有@FeignClient<br>2、解析到 @FeignClient 修饰类后， Feign 框架通过扩展 Spring Bean Deifinition 的注册逻辑， 最终注册一个 FeignClientFacotoryBean 进入 Spring 容器<br>3、Spring 容器在初始化其他用到 @FeignClient 接口的类时， 获得的是 FeignClientFacotryBean 产生的一个代理对象 Proxy.<br>4、基于 java 原生的动态代理机制， 针对 Proxy 的调用， 都会被统一转发给 Feign 框架所定义的一个InvocationHandler ， 由该 Handler 完成后续的 HTTP 转换， 发送， 接收， 翻译HTTP响应的工作</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1018,7 +1018,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-02 16:48:35
+                    :</strong> 2024-01-03 17:16:48
             </li>
         
         <li>
@@ -1122,7 +1122,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">7.springCloud面试题</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-springCloud%E4%B8%AD%E7%BB%84%E4%BB%B6%E5%B8%B8%E7%94%A8%E7%9A%84%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-text">1.springCloud中组件常用的有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Eureka%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="nav-text">2.注册中心Eureka了解吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%E5%92%8C%E9%99%8D%E7%BA%A7%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="nav-text">3.服务熔断和降级怎么做的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-OpenFigne%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%EF%BC%9F"><span class="nav-text">4.OpenFigne是怎么实现微服务间通信的？</span></a></li></ol>
+        
 
     </div>
 </div>
