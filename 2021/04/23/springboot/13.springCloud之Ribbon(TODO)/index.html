@@ -20,28 +20,28 @@
     
         <meta name="description" content="紧接上篇，我们来总结下ribbon负载均衡相关知识点  回顾回顾上篇文章，我们了解了Eureka注册中心集群的搭建及和ZK的类比，我们知道eureka的核心价值在于保证服务集群的高可用，那除了它内部的心跳检测及自我保护机制之外呢，ribbon提供来负载均衡的算法，将我们的请求均摊到集群的各个节点上，从而作为我们服务器降压及扩容的一个手段！ 概念">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringCloud之Ribbon负载均衡实践篇">
+<meta property="og:title" content="SpringCloud之Ribbon(待填坑)">
 <meta property="og:url" content="http://example.com/2021/04/23/springBoot/13.springCloud%E4%B9%8BRibbon(TODO)/index.html">
 <meta property="og:site_name" content="叁有三分之一">
 <meta property="og:description" content="紧接上篇，我们来总结下ribbon负载均衡相关知识点  回顾回顾上篇文章，我们了解了Eureka注册中心集群的搭建及和ZK的类比，我们知道eureka的核心价值在于保证服务集群的高可用，那除了它内部的心跳检测及自我保护机制之外呢，ribbon提供来负载均衡的算法，将我们的请求均摊到集群的各个节点上，从而作为我们服务器降压及扩容的一个手段！ 概念">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-23T11:55:09.323Z">
-<meta property="article:modified_time" content="2023-12-18T16:29:50.668Z">
+<meta property="article:modified_time" content="2024-01-08T09:50:09.004Z">
 <meta property="article:author" content="Echo">
 <meta property="article:tag" content="ribbon,feign">
 <meta name="twitter:card" content="summary">
     
     
     <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
     <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <link rel="shortcut icon" href="/images/favicon.ico">
     <!--- Page Info-->
     
     <title>
         
-            SpringCloud之Ribbon负载均衡实践篇 -
+            SpringCloud之Ribbon(待填坑) -
         
         叁有三分之一
     </title>
@@ -856,7 +856,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">60</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -889,8 +889,12 @@
 
         <div class="article-title relative w-full">
             
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">SpringCloud之Ribbon负载均衡实践篇</h1>
+                
+                
+                <img src="/../images/springboot/21/4/23/ribbon.jpeg" alt="SpringCloud之Ribbon(待填坑)" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">SpringCloud之Ribbon(待填坑)</h1>
                 </div>
             
             </div>
@@ -898,7 +902,7 @@
         
             <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
                 <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-                    <img src="/images/redefine-avatar.svg">
+                    <img src="/images/favicon.ico">
                 </div>
                 <div class="info flex flex-col justify-between">
                     <div class="author flex items-center">
@@ -918,8 +922,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-12-19 00:29:50</span>
-            <span class="mobile">2023-12-19 00:29:50</span>
+            <span class="desktop">2024-01-08 17:50:09</span>
+            <span class="mobile">2024-01-08 17:50:09</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -992,14 +996,14 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> SpringCloud之Ribbon负载均衡实践篇</li>
+        <li><strong>Title:</strong> SpringCloud之Ribbon(待填坑)</li>
         <li><strong>Author:</strong> viEcho</li>
         <li><strong>Created at
                 :</strong> 2021-04-23 19:55:09</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2023-12-19 00:29:50
+                    :</strong> 2024-01-08 17:50:09
             </li>
         
         <li>
@@ -1137,7 +1141,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">SpringCloud之Ribbon负载均衡实践篇</div>
+        <div class="page-title">SpringCloud之Ribbon(待填坑)</div>
         <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE"><span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li></ol>
 
     </div>
