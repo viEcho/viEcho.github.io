@@ -26,9 +26,9 @@
 <meta property="og:description" content="1.数据库事务的隔离级别？ 读未提交：一个事务还没有提交变更的时候，就被其他的事务读到了（这就产生了脏读，同时也产生了不可重复读，幻读的问题） 读提交：一个事务提交后，才能被别的事务读到。（它解决了脏读，但依旧避免不了不可重复读和幻读，为什么呢？比如A事务先读到数据，接着B事务提交了变更，这个时候A再去做变更时就，原先的数据已经被改变了，那么就产生了不可重复读和幻读的的问题） 可重复读：一个事务内">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-03T09:24:21.942Z">
+<meta property="article:modified_time" content="2024-01-14T03:45:46.026Z">
 <meta property="article:author" content="Echo">
-<meta property="article:tag" content="面试">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary">
     
     
@@ -227,7 +227,7 @@
     
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"说说":{"path":"/essays","icon":"fa-regular fa-comments"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","说说":"/essays"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -549,6 +549,12 @@
                                                 </a>
                                             </li>
                                         
+                                            <li>
+                                                <a href="/essays">
+                                                    说说
+                                                </a>
+                                            </li>
+                                        
                                     </ul>
                                 
                             </li>
@@ -848,6 +854,11 @@
                                            href="/about">ME</a>
                                     </div>
                                 
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">说说</a>
+                                    </div>
+                                
                             </div>
                         
                     </li>
@@ -856,7 +867,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -864,7 +875,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">85</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">86</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -918,8 +929,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-03 17:24:21</span>
-            <span class="mobile">2024-01-03 17:24:21</span>
+            <span class="desktop">2024-01-14 11:45:46</span>
+            <span class="mobile">2024-01-14 11:45:46</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -957,7 +968,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                        <a href="/tags/mysql/">mysql</a>&nbsp;
                     </li>
                 
             </ul>
@@ -991,26 +1002,26 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h4 id="1-数据库事务的隔离级别？"><a href="#1-数据库事务的隔离级别？" class="headerlink" title="1.数据库事务的隔离级别？"></a>1.数据库事务的隔离级别？</h4><ul>
+            <h3 id="1-数据库事务的隔离级别？"><a href="#1-数据库事务的隔离级别？" class="headerlink" title="1.数据库事务的隔离级别？"></a>1.数据库事务的隔离级别？</h3><ul>
 <li>读未提交：一个事务还没有提交变更的时候，就被其他的事务读到了（这就产生了脏读，同时也产生了不可重复读，幻读的问题）</li>
 <li>读提交：一个事务提交后，才能被别的事务读到。（它解决了脏读，但依旧避免不了不可重复读和幻读，为什么呢？比如A事务先读到数据，接着B事务提交了变更，这个时候A再去做变更时就，原先的数据已经被改变了，那么就产生了不可重复读和幻读的的问题）</li>
 <li>可重复读：一个事务内多次读同一个数据，在这个事务还没有提交的时候（对这条数据读写加了锁），其他的事务是不能访问这条数据的，这样就保证了一个事务内这条数据看到的数据总是一致的；（它解决了脏读和不可重复读的问题，但是也没有解决幻读；为啥呢？举个例子，比如说事务A先读了某条数据，事务B往数据库中插入了一条数据，这个时候事务A又做了一个更新操作，按我们的理解上来说事务A只会对预先读到的数据做更新，但实际上也会对事务B新插入的数据也做了更新；可见可重复读，并没有完全解决幻读的问题，而是解决了读数据情况下幻读问题，而对于修改的操作依旧存在幻读问题）</li>
 <li>串行化：即事务的执行是串行执行的，必须一个事务提交后，其他事务才能执行；实际上就是读和写都加锁，事务的执行必须获得锁后才能执行</li>
 </ul>
-<h4 id="2-以上的隔离级别解决了幻读吗？怎么解决幻读？"><a href="#2-以上的隔离级别解决了幻读吗？怎么解决幻读？" class="headerlink" title="2.以上的隔离级别解决了幻读吗？怎么解决幻读？"></a>2.以上的隔离级别解决了幻读吗？怎么解决幻读？</h4><p>只有序列化级别解决了幻读，其他的都没有解决了幻读；因为序列化是串行化执行的，第一个事务执行完后才能执行第二个事务<br>幻读出现的根本原因是，如果所有的读都是快照读就不会有幻读的问题，如果有快照读也有当前读才会产生幻读的问题</p>
+<h3 id="2-以上的隔离级别解决了幻读吗？怎么解决幻读？"><a href="#2-以上的隔离级别解决了幻读吗？怎么解决幻读？" class="headerlink" title="2.以上的隔离级别解决了幻读吗？怎么解决幻读？"></a>2.以上的隔离级别解决了幻读吗？怎么解决幻读？</h3><p>只有序列化级别解决了幻读，其他的都没有解决了幻读；因为序列化是串行化执行的，第一个事务执行完后才能执行第二个事务<br>幻读出现的根本原因是，如果所有的读都是快照读就不会有幻读的问题，如果有快照读也有当前读才会产生幻读的问题</p>
 <ul>
 <li>快照读：mysql 中针对不加锁的读操作，称为快照读；</li>
 <li>当前读：对于加锁的读，插入，删除，更新等操作称为当前读</li>
 </ul>
-<h4 id="3-mvcc机制？"><a href="#3-mvcc机制？" class="headerlink" title="3.mvcc机制？"></a>3.mvcc机制？</h4><p>MVCC协议主要的两点是：读不加锁，读写不冲突；每个连接到数据库的读事务，开始时读到的都是数据库的一个快照，在写操作造成的变化提交之前，对于其他的读事务来说都是不可见的；<br>当我们每次开启一个事务去读数据时，MVCC协议提供了开启事务时间点（时点（point in time））一致性视图，MVCC 并发控制下的读事务一般使用时间戳或者事务 ID去标记当前读的数据库的状态（版本），通过读取这个版本的数据实现读、写事务的相互隔离，不需要加锁。读写并存的时候，写操作会根据目前数据库的状态，创建一个新版本，并发的读则依旧访问旧版本的数据</p>
+<h3 id="3-mvcc机制？"><a href="#3-mvcc机制？" class="headerlink" title="3.mvcc机制？"></a>3.mvcc机制？</h3><p>MVCC协议主要的两点是：读不加锁，读写不冲突；每个连接到数据库的读事务，开始时读到的都是数据库的一个快照，在写操作造成的变化提交之前，对于其他的读事务来说都是不可见的；<br>当我们每次开启一个事务去读数据时，MVCC协议提供了开启事务时间点（时点（point in time））一致性视图，MVCC 并发控制下的读事务一般使用时间戳或者事务 ID去标记当前读的数据库的状态（版本），通过读取这个版本的数据实现读、写事务的相互隔离，不需要加锁。读写并存的时候，写操作会根据目前数据库的状态，创建一个新版本，并发的读则依旧访问旧版本的数据</p>
 <p>只有快照读的情况下,因为读到的是同一个版本的快照数据，是不会出现幻读的；<br>一旦我们的操作加了锁，那么就会产生新版本的快照，那么就有可能出现读不一致的现象,即幻读</p>
-<h4 id="4-redolog-和binlog，undolog的区别？"><a href="#4-redolog-和binlog，undolog的区别？" class="headerlink" title="4.redolog 和binlog，undolog的区别？"></a>4.redolog 和binlog，undolog的区别？</h4><p>binlog是mysql架构server层都有的，而redolog和undolog是存储引擎InnoDB特有的；</p>
+<h3 id="4-redolog-和binlog，undolog的区别？"><a href="#4-redolog-和binlog，undolog的区别？" class="headerlink" title="4.redolog 和binlog，undolog的区别？"></a>4.redolog 和binlog，undolog的区别？</h3><p>binlog是mysql架构server层都有的，而redolog和undolog是存储引擎InnoDB特有的；</p>
 <ul>
 <li>binlog被称为归档日志；binlog-归档日志的作用主要在于误删数据后的恢复操作，mysql集群主从复制时用的就是binlog；</li>
 <li>redolog-重做日志的作用，在于提高mysql写的性能，因为你想如果每次写实时操作数据库那么带来的IO开销一定是很大的，redolog你可以把它当做一个缓冲区，一般而言mysql的刷盘近乎是实时的，只有在大量写拥堵时，redolog被写满时才会触发强制刷盘，将redolog中的数据更新到数据库；</li>
 <li>undolog-不重做日志，它和redolog一样都是存储引擎层面特有的，它和redolog一起是InnoDB特有的事务日志；顾名思意是为了保证事务安全的；其中undolog可以简单理解为回到上一个版本，redolog可以理解为当前版本再复制一份；</li>
 </ul>
-<h4 id="5-现在用mysql一般都用的是InnoDB-搜索引擎，因为其支持事务且用的是B-树索引，你了解B-树索引吗？"><a href="#5-现在用mysql一般都用的是InnoDB-搜索引擎，因为其支持事务且用的是B-树索引，你了解B-树索引吗？" class="headerlink" title="5.现在用mysql一般都用的是InnoDB 搜索引擎，因为其支持事务且用的是B+树索引，你了解B+树索引吗？"></a>5.现在用mysql一般都用的是InnoDB 搜索引擎，因为其支持事务且用的是B+树索引，你了解B+树索引吗？</h4><h4 id="6-mysql怎么优化数据库查询？"><a href="#6-mysql怎么优化数据库查询？" class="headerlink" title="6.mysql怎么优化数据库查询？"></a>6.mysql怎么优化数据库查询？</h4><h4 id="7-分库分表怎么做的？"><a href="#7-分库分表怎么做的？" class="headerlink" title="7.分库分表怎么做的？"></a>7.分库分表怎么做的？</h4><h4 id="8-分库分表后怎么做范围查找？"><a href="#8-分库分表后怎么做范围查找？" class="headerlink" title="8.分库分表后怎么做范围查找？"></a>8.分库分表后怎么做范围查找？</h4><h4 id="9-有一个bug数量统计表，bug-t-其中有字段bug-id-user-name-bug-time-请写出bug解决时间大于20小时，按人员bug数降序排列的sql"><a href="#9-有一个bug数量统计表，bug-t-其中有字段bug-id-user-name-bug-time-请写出bug解决时间大于20小时，按人员bug数降序排列的sql" class="headerlink" title="9.有一个bug数量统计表，bug_t;其中有字段bug_id,user_name,bug_time;请写出bug解决时间大于20小时，按人员bug数降序排列的sql;"></a>9.有一个bug数量统计表，bug_t;其中有字段bug_id,user_name,bug_time;请写出bug解决时间大于20小时，按人员bug数降序排列的sql;</h4><p>select user_name ,bug_count from (<br>select count(bug_id) as bug_count,user_name from bug_t<br>where bug_time &gt; 20 group by user_name<br>) t order by t.bug_count desc;</p>
+<h3 id="5-现在用mysql一般都用的是InnoDB-搜索引擎，因为其支持事务且用的是B-树索引，你了解B-树索引吗？"><a href="#5-现在用mysql一般都用的是InnoDB-搜索引擎，因为其支持事务且用的是B-树索引，你了解B-树索引吗？" class="headerlink" title="5.现在用mysql一般都用的是InnoDB 搜索引擎，因为其支持事务且用的是B+树索引，你了解B+树索引吗？"></a>5.现在用mysql一般都用的是InnoDB 搜索引擎，因为其支持事务且用的是B+树索引，你了解B+树索引吗？</h3><h3 id="6-mysql怎么优化数据库查询？"><a href="#6-mysql怎么优化数据库查询？" class="headerlink" title="6.mysql怎么优化数据库查询？"></a>6.mysql怎么优化数据库查询？</h3><h3 id="7-分库分表怎么做的？"><a href="#7-分库分表怎么做的？" class="headerlink" title="7.分库分表怎么做的？"></a>7.分库分表怎么做的？</h3><h3 id="8-分库分表后怎么做范围查找？"><a href="#8-分库分表后怎么做范围查找？" class="headerlink" title="8.分库分表后怎么做范围查找？"></a>8.分库分表后怎么做范围查找？</h3><h3 id="9-有一个bug数量统计表，bug-t-其中有字段bug-id-user-name-bug-time-请写出bug解决时间大于20小时，按人员bug数降序排列的sql"><a href="#9-有一个bug数量统计表，bug-t-其中有字段bug-id-user-name-bug-time-请写出bug解决时间大于20小时，按人员bug数降序排列的sql" class="headerlink" title="9.有一个bug数量统计表，bug_t;其中有字段bug_id,user_name,bug_time;请写出bug解决时间大于20小时，按人员bug数降序排列的sql;"></a>9.有一个bug数量统计表，bug_t;其中有字段bug_id,user_name,bug_time;请写出bug解决时间大于20小时，按人员bug数降序排列的sql;</h3><p>select user_name ,bug_count from (<br>select count(bug_id) as bug_count,user_name from bug_t<br>where bug_time &gt; 20 group by user_name<br>) t order by t.bug_count desc;</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1025,7 +1036,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-03 17:24:21
+                    :</strong> 2024-01-14 11:45:46
             </li>
         
         <li>
@@ -1051,7 +1062,7 @@
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                        <a href="/tags/mysql/">#mysql</a>&nbsp;
                     </li>
                 
             </ul>
@@ -1129,7 +1140,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">14.mysql面试题</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BA%8B%E5%8A%A1%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%EF%BC%9F"><span class="nav-text">1.数据库事务的隔离级别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%A5%E4%B8%8A%E7%9A%84%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E8%A7%A3%E5%86%B3%E4%BA%86%E5%B9%BB%E8%AF%BB%E5%90%97%EF%BC%9F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E5%B9%BB%E8%AF%BB%EF%BC%9F"><span class="nav-text">2.以上的隔离级别解决了幻读吗？怎么解决幻读？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-mvcc%E6%9C%BA%E5%88%B6%EF%BC%9F"><span class="nav-text">3.mvcc机制？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-redolog-%E5%92%8Cbinlog%EF%BC%8Cundolog%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">4.redolog 和binlog，undolog的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%8E%B0%E5%9C%A8%E7%94%A8mysql%E4%B8%80%E8%88%AC%E9%83%BD%E7%94%A8%E7%9A%84%E6%98%AFInnoDB-%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%85%B6%E6%94%AF%E6%8C%81%E4%BA%8B%E5%8A%A1%E4%B8%94%E7%94%A8%E7%9A%84%E6%98%AFB-%E6%A0%91%E7%B4%A2%E5%BC%95%EF%BC%8C%E4%BD%A0%E4%BA%86%E8%A7%A3B-%E6%A0%91%E7%B4%A2%E5%BC%95%E5%90%97%EF%BC%9F"><span class="nav-text">5.现在用mysql一般都用的是InnoDB 搜索引擎，因为其支持事务且用的是B+树索引，你了解B+树索引吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-mysql%E6%80%8E%E4%B9%88%E4%BC%98%E5%8C%96%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%EF%BC%9F"><span class="nav-text">6.mysql怎么优化数据库查询？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="nav-text">7.分库分表怎么做的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E5%90%8E%E6%80%8E%E4%B9%88%E5%81%9A%E8%8C%83%E5%9B%B4%E6%9F%A5%E6%89%BE%EF%BC%9F"><span class="nav-text">8.分库分表后怎么做范围查找？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%9C%89%E4%B8%80%E4%B8%AAbug%E6%95%B0%E9%87%8F%E7%BB%9F%E8%AE%A1%E8%A1%A8%EF%BC%8Cbug-t-%E5%85%B6%E4%B8%AD%E6%9C%89%E5%AD%97%E6%AE%B5bug-id-user-name-bug-time-%E8%AF%B7%E5%86%99%E5%87%BAbug%E8%A7%A3%E5%86%B3%E6%97%B6%E9%97%B4%E5%A4%A7%E4%BA%8E20%E5%B0%8F%E6%97%B6%EF%BC%8C%E6%8C%89%E4%BA%BA%E5%91%98bug%E6%95%B0%E9%99%8D%E5%BA%8F%E6%8E%92%E5%88%97%E7%9A%84sql"><span class="nav-text">9.有一个bug数量统计表，bug_t;其中有字段bug_id,user_name,bug_time;请写出bug解决时间大于20小时，按人员bug数降序排列的sql;</span></a></li></ol>
 
     </div>
 </div>

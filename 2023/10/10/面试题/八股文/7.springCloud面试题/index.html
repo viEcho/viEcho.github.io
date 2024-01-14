@@ -26,9 +26,9 @@
 <meta property="og:description" content="1.springCloud中组件常用的有哪些？eureka-注册中心config-配置中心Zuul、Gateway-网关Ribbon-负载均衡Feign-服务调用Hystrix或Resilience4j-熔断器 2.注册中心Eureka了解吗？客户端注册，Eureka客户端在启动时，首先会创建一个心跳的定时任务，定时向服务端发送心跳信息，服务端会对客户端心跳做出响应，如果响应状态码为404时，表示">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-03T09:16:48.515Z">
+<meta property="article:modified_time" content="2024-01-14T03:45:46.026Z">
 <meta property="article:author" content="Echo">
-<meta property="article:tag" content="面试">
+<meta property="article:tag" content="springCloud">
 <meta name="twitter:card" content="summary">
     
     
@@ -227,7 +227,7 @@
     
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"说说":{"path":"/essays","icon":"fa-regular fa-comments"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","说说":"/essays"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -549,6 +549,12 @@
                                                 </a>
                                             </li>
                                         
+                                            <li>
+                                                <a href="/essays">
+                                                    说说
+                                                </a>
+                                            </li>
+                                        
                                     </ul>
                                 
                             </li>
@@ -848,6 +854,11 @@
                                            href="/about">ME</a>
                                     </div>
                                 
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">说说</a>
+                                    </div>
+                                
                             </div>
                         
                     </li>
@@ -856,7 +867,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -864,7 +875,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">85</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">86</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -918,8 +929,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-03 17:16:48</span>
-            <span class="mobile">2024-01-03 17:16:48</span>
+            <span class="desktop">2024-01-14 11:45:46</span>
+            <span class="mobile">2024-01-14 11:45:46</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -957,7 +968,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                        <a href="/tags/springCloud/">springCloud</a>&nbsp;
                     </li>
                 
             </ul>
@@ -991,8 +1002,8 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h4 id="1-springCloud中组件常用的有哪些？"><a href="#1-springCloud中组件常用的有哪些？" class="headerlink" title="1.springCloud中组件常用的有哪些？"></a>1.springCloud中组件常用的有哪些？</h4><p>eureka-注册中心<br>config-配置中心<br>Zuul、Gateway-网关<br>Ribbon-负载均衡<br>Feign-服务调用<br>Hystrix或Resilience4j-熔断器</p>
-<h4 id="2-注册中心Eureka了解吗？"><a href="#2-注册中心Eureka了解吗？" class="headerlink" title="2.注册中心Eureka了解吗？"></a>2.注册中心Eureka了解吗？</h4><p>客户端注册，Eureka客户端在启动时，首先会创建一个心跳的定时任务，定时向服务端发送心跳信息，服务端会对客户端心跳做出响应，如果响应状态码为404时，表示服务端没有该客户端的服务信息，那么客户端则会向服务端发送注册请求。</p>
+            <h3 id="1-springCloud中组件常用的有哪些？"><a href="#1-springCloud中组件常用的有哪些？" class="headerlink" title="1.springCloud中组件常用的有哪些？"></a>1.springCloud中组件常用的有哪些？</h3><p>eureka-注册中心<br>config-配置中心<br>Zuul、Gateway-网关<br>Ribbon-负载均衡<br>Feign-服务调用<br>Hystrix或Resilience4j-熔断器</p>
+<h3 id="2-注册中心Eureka了解吗？"><a href="#2-注册中心Eureka了解吗？" class="headerlink" title="2.注册中心Eureka了解吗？"></a>2.注册中心Eureka了解吗？</h3><p>客户端注册，Eureka客户端在启动时，首先会创建一个心跳的定时任务，定时向服务端发送心跳信息，服务端会对客户端心跳做出响应，如果响应状态码为404时，表示服务端没有该客户端的服务信息，那么客户端则会向服务端发送注册请求。</p>
 <blockquote>
 <p>服务端如何保存客户端注册信息?<br>客户端通过Jersey框架，将自己的注册信息发送给服务端，服务端保存在一个ConcurrentHashMap对象中。<br>客户端如何拉取服务端已保存的服务信息?<br>客户端通过一个定时任务定时向服务端拉取信息，每次拉取后刷新本地已保存的信息，需要使用时直接从本地获取。</p>
 </blockquote>
@@ -1002,8 +1013,8 @@
 <blockquote>
 <p>Eureka为什么要采用自我保护机制？<br>在分布式系统的CAP理论中，Eureka采用的AP，也就是Eureak保证了服务的可用性（A），而舍弃了数据的一致性（C）。当网络发生分区时，客户端和服务端的通讯将会终止，那么服务端在一定的时间内将收不到大部分的客户端的一个心跳，如果这个时候将这些收不到心跳的服务剔除，那可能会将可用的客户端剔除了，这就不符合AP理论</p>
 </blockquote>
-<h4 id="3-服务熔断和降级怎么做的？"><a href="#3-服务熔断和降级怎么做的？" class="headerlink" title="3.服务熔断和降级怎么做的？"></a>3.服务熔断和降级怎么做的？</h4><p>我们使用Hystrix来实现服务的熔断和限流，在对应的接口上添加对应的 @HystrixCommand注解，注解内置了超时时间及断路器开关，以及降级后对应的回调handle方法，可以自定义返回信息；</p>
-<h4 id="4-OpenFigne是怎么实现微服务间通信的？"><a href="#4-OpenFigne是怎么实现微服务间通信的？" class="headerlink" title="4.OpenFigne是怎么实现微服务间通信的？"></a>4.OpenFigne是怎么实现微服务间通信的？</h4><p>Openfeign是Spring Cloud 对Feign 也进行了增强，直接支持Hystrix 和 Ribbon，也支持SpringMVC 的注解。这样使得Feign 的使用非常方便。<br>1、在使用Openfeign时首先会在springboot的启动类上添加@EnableFeignClients注解，该注解会导入FeignClientsRegistrar类，会去扫描所有的带有@FeignClient<br>2、解析到 @FeignClient 修饰类后， Feign 框架通过扩展 Spring Bean Deifinition 的注册逻辑， 最终注册一个 FeignClientFacotoryBean 进入 Spring 容器<br>3、Spring 容器在初始化其他用到 @FeignClient 接口的类时， 获得的是 FeignClientFacotryBean 产生的一个代理对象 Proxy.<br>4、基于 java 原生的动态代理机制， 针对 Proxy 的调用， 都会被统一转发给 Feign 框架所定义的一个InvocationHandler ， 由该 Handler 完成后续的 HTTP 转换， 发送， 接收， 翻译HTTP响应的工作</p>
+<h3 id="3-服务熔断和降级怎么做的？"><a href="#3-服务熔断和降级怎么做的？" class="headerlink" title="3.服务熔断和降级怎么做的？"></a>3.服务熔断和降级怎么做的？</h3><p>我们使用Hystrix来实现服务的熔断和限流，在对应的接口上添加对应的 @HystrixCommand注解，注解内置了超时时间及断路器开关，以及降级后对应的回调handle方法，可以自定义返回信息；</p>
+<h3 id="4-OpenFigne是怎么实现微服务间通信的？"><a href="#4-OpenFigne是怎么实现微服务间通信的？" class="headerlink" title="4.OpenFigne是怎么实现微服务间通信的？"></a>4.OpenFigne是怎么实现微服务间通信的？</h3><p>Openfeign是Spring Cloud 对Feign 也进行了增强，直接支持Hystrix 和 Ribbon，也支持SpringMVC的注解。这样使得Feign的使用非常方便。<br>1、在使用Openfeign时首先会在springboot的启动类上添加@EnableFeignClients注解，该注解会导入FeignClientsRegistrar类，会去扫描所有的带有@FeignClient<br>2、解析到 @FeignClient 修饰类后， Feign 框架通过扩展 Spring Bean Deifinition 的注册逻辑， 最终注册一个 FeignClientFacotoryBean 进入 Spring 容器<br>3、Spring 容器在初始化其他用到 @FeignClient 接口的类时， 获得的是 FeignClientFacotryBean 产生的一个代理对象 Proxy.<br>4、基于 java 原生的动态代理机制， 针对 Proxy 的调用， 都会被统一转发给 Feign 框架所定义的一个InvocationHandler ， 由该 Handler 完成后续的 HTTP 转换， 发送， 接收， 翻译HTTP响应的工作</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1018,7 +1029,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-03 17:16:48
+                    :</strong> 2024-01-14 11:45:46
             </li>
         
         <li>
@@ -1044,7 +1055,7 @@
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                        <a href="/tags/springCloud/">#springCloud</a>&nbsp;
                     </li>
                 
             </ul>
@@ -1122,7 +1133,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">7.springCloud面试题</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-springCloud%E4%B8%AD%E7%BB%84%E4%BB%B6%E5%B8%B8%E7%94%A8%E7%9A%84%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-text">1.springCloud中组件常用的有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83Eureka%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="nav-text">2.注册中心Eureka了解吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD%E5%92%8C%E9%99%8D%E7%BA%A7%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="nav-text">3.服务熔断和降级怎么做的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-OpenFigne%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%97%B4%E9%80%9A%E4%BF%A1%E7%9A%84%EF%BC%9F"><span class="nav-text">4.OpenFigne是怎么实现微服务间通信的？</span></a></li></ol>
 
     </div>
 </div>

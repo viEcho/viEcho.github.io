@@ -26,9 +26,9 @@
 <meta property="og:description" content="1.RocketMq的架构是怎样的，以及心跳机制是怎样的？RocketMq的架构包含一个发送消息的生产者Producer,消息存储接收的broker,消息消费的一个Consumer,还有一个消息状态管理的NameServer无状态服务器，然后其它三个角色都会主动向NameServer上报自己的状态，其中nameServer还会定时去检查broker发送心跳的时间戳，当nameServer发现时间戳">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-03T09:17:09.911Z">
+<meta property="article:modified_time" content="2024-01-14T03:45:46.026Z">
 <meta property="article:author" content="Echo">
-<meta property="article:tag" content="面试">
+<meta property="article:tag" content="rocketMq">
 <meta name="twitter:card" content="summary">
     
     
@@ -227,7 +227,7 @@
     
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"说说":{"path":"/essays","icon":"fa-regular fa-comments"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","说说":"/essays"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -549,6 +549,12 @@
                                                 </a>
                                             </li>
                                         
+                                            <li>
+                                                <a href="/essays">
+                                                    说说
+                                                </a>
+                                            </li>
+                                        
                                     </ul>
                                 
                             </li>
@@ -848,6 +854,11 @@
                                            href="/about">ME</a>
                                     </div>
                                 
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">说说</a>
+                                    </div>
+                                
                             </div>
                         
                     </li>
@@ -856,7 +867,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -864,7 +875,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">85</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">86</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -918,8 +929,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-03 17:17:09</span>
-            <span class="mobile">2024-01-03 17:17:09</span>
+            <span class="desktop">2024-01-14 11:45:46</span>
+            <span class="mobile">2024-01-14 11:45:46</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -957,7 +968,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                        <a href="/tags/rocketMq/">rocketMq</a>&nbsp;
                     </li>
                 
             </ul>
@@ -991,18 +1002,18 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h4 id="1-RocketMq的架构是怎样的，以及心跳机制是怎样的？"><a href="#1-RocketMq的架构是怎样的，以及心跳机制是怎样的？" class="headerlink" title="1.RocketMq的架构是怎样的，以及心跳机制是怎样的？"></a>1.RocketMq的架构是怎样的，以及心跳机制是怎样的？</h4><p>RocketMq的架构包含一个发送消息的生产者Producer,消息存储接收的broker,消息消费的一个Consumer,还有一个消息状态管理的NameServer无状态服务器，然后其它三个角色都会主动向NameServer上报自己的状态，其中nameServer还会定时去检查broker发送心跳的时间戳，当nameServer发现时间戳没有更新时，就会认为对应的broker已经下线了（默认10秒检查一次，超过2分钟没有更新时间戳就会把broker从队列中移除）</p>
-<h4 id="2-rocketMq怎么查找到对应的消息的？"><a href="#2-rocketMq怎么查找到对应的消息的？" class="headerlink" title="2.rocketMq怎么查找到对应的消息的？"></a>2.rocketMq怎么查找到对应的消息的？</h4><p>我们知道，RocketMQ 核心的数据文件有 3 个：<code>CommitLog</code>、<code>ConsumeQueue</code> 和 <code>Index</code>。其中Index 文件就是一个索引文件，查找消息时，首先根据消息 key 的 hashcode 计算出 Hash 槽的位置，然后读取 Hash 槽的值计算 Index 条目的位置，从<code>Index</code> 条目位置读取到消息在 <code>CommitLog</code> 文件中的 offset，从而查找到消息;</p>
-<h4 id="3-rocketMq怎么避免消息不丢失？"><a href="#3-rocketMq怎么避免消息不丢失？" class="headerlink" title="3.rocketMq怎么避免消息不丢失？"></a>3.rocketMq怎么避免消息不丢失？</h4><p>那问这个问题，我们需要知道rocketMq哪些场景会导致消息丢失；</p>
+            <h3 id="1-RocketMq的架构是怎样的，以及心跳机制是怎样的？"><a href="#1-RocketMq的架构是怎样的，以及心跳机制是怎样的？" class="headerlink" title="1.RocketMq的架构是怎样的，以及心跳机制是怎样的？"></a>1.RocketMq的架构是怎样的，以及心跳机制是怎样的？</h3><p>RocketMq的架构包含一个发送消息的生产者Producer,消息存储接收的broker,消息消费的一个Consumer,还有一个消息状态管理的NameServer无状态服务器，然后其它三个角色都会主动向NameServer上报自己的状态，其中nameServer还会定时去检查broker发送心跳的时间戳，当nameServer发现时间戳没有更新时，就会认为对应的broker已经下线了（默认10秒检查一次，超过2分钟没有更新时间戳就会把broker从队列中移除）</p>
+<h3 id="2-rocketMq怎么查找到对应的消息的？"><a href="#2-rocketMq怎么查找到对应的消息的？" class="headerlink" title="2.rocketMq怎么查找到对应的消息的？"></a>2.rocketMq怎么查找到对应的消息的？</h3><p>我们知道，RocketMQ 核心的数据文件有 3 个：<code>CommitLog</code>、<code>ConsumeQueue</code> 和 <code>Index</code>。其中Index 文件就是一个索引文件，查找消息时，首先根据消息 key 的 hashcode 计算出 Hash 槽的位置，然后读取 Hash 槽的值计算 Index 条目的位置，从<code>Index</code> 条目位置读取到消息在 <code>CommitLog</code> 文件中的 offset，从而查找到消息;</p>
+<h3 id="3-rocketMq怎么避免消息不丢失？"><a href="#3-rocketMq怎么避免消息不丢失？" class="headerlink" title="3.rocketMq怎么避免消息不丢失？"></a>3.rocketMq怎么避免消息不丢失？</h3><p>首先这个问题，我们需要知道rocketMq哪些场景会导致消息丢失；</p>
 <blockquote>
 <p>生产者在发送消息的时候，如果断网了就会导致消息发送失败<br>这种极端情况下，我们可以采用rocketMq的事务机制来解决；<br>首先生产者在发送数据前会发送一个half消息给rocketMq，看是否能和rocketMq建立连接，如果发送失败了则执行回滚逻辑<br>如果发送成功，且RocketMQ返回成功响应，则执行生产者的核心链路<br>如果生产者自己的核心链路执行失败，则回滚，并通知RocketMQ删除half消息<br>如果生产者的核心链路执行成功，则通知RocketMQ commit half消息，让消费者可以消费这条数据<br>rocketMq 消息写入内存队列，还未来的及持久化，集群崩了<br>rocketMq默认是异步刷盘的机制，若要保证消息不丢失则要采用同步的方式，需要修改Broker的配置文件，将flushDiskType改为SYNC_FLUSH同步刷盘策略；<br>消费方异步消费，导致消息还没消费完，就通知生产者消费成功<br>可以在消费者中注册一个监听器，当消费者获取到了消息时，当消费者收到了消息，就会触发这个回调函数处理这个消息，消息处理完毕后才会返回rocketMq 消费成功的标识</p>
 </blockquote>
-<h4 id="4-rocketMq怎么避免消息不重复消费"><a href="#4-rocketMq怎么避免消息不重复消费" class="headerlink" title="4.rocketMq怎么避免消息不重复消费"></a>4.rocketMq怎么避免消息不重复消费</h4><p>我们知道mq发送消息消费失败后，默认会重试16次，那么因为这种重试机制导致消息很有可能被重复消费；对于重复消费的情况，rocketMq是允许的，主要由业务放自己去避免，我们的业务系统需要自己做幂等性的操作，若消费过则不再重复消费；可采用的方式有很多，主要由业务系统自己去实现，主要方式可以做消息去重，和业务层面的幂等；</p>
-<h4 id="5-rocketMq如何保证消息顺序消费？"><a href="#5-rocketMq如何保证消息顺序消费？" class="headerlink" title="5.rocketMq如何保证消息顺序消费？"></a>5.rocketMq如何保证消息顺序消费？</h4><p>这个问题其实可以分为三点，第一点生产者要保证消息的顺序生产，第二点broker要保证消息的顺序保存，第三点消费者要保证消息的顺序消费；首先第一点rocketMq创建一个topic默认会有8个写队列，8个读队列，为了保证消息消费是按写入的先后顺序来消费的，需要把topic的队列数改为1；消费者收到消息后也可以先将这些消息放入一个队列然后依次进行消费。为了保证数据的先后，生产者要依次发送消息到broker,等接收到broker的ACK 确认消息时再发送下一个消息，同样消费时消费者是不间断的去broker上拉取消息，要保证拉取消息的顺序性，可以对应的broker设定一把锁，每次消费者去拉取消息时都要先申请锁，申请到锁就拉取消息，否则就等待获取锁，直到获取到锁再拉取消息；等消息拉到消费端时，我们也需要给消费队列维护一把可重入锁，保证同一时间只有一个线程在消费；</p>
-<h4 id="6-rocketMq-是pull模式还是push模式？"><a href="#6-rocketMq-是pull模式还是push模式？" class="headerlink" title="6.rocketMq 是pull模式还是push模式？"></a>6.rocketMq 是pull模式还是push模式？</h4><p>RocketMQ提供了两种消费模式，Push和Pull，大多数场景使用的是Push模式，在源码中这两种模式分别对应的是DefaultMQPushConsumer类和DefaultMQPullConsumer类。Push模式实际上在内部还是使用的Pull方式实现的，通过Pull不断地轮询Broker获取消息，当不存在新消息时，Broker端会挂起Pull请求，直到有新消息产生才取消挂起，返回新消息</p>
-<h4 id="7-rocketMq消息堆积怎么解决？"><a href="#7-rocketMq消息堆积怎么解决？" class="headerlink" title="7.rocketMq消息堆积怎么解决？"></a>7.rocketMq消息堆积怎么解决？</h4><p>首先要知道这个问题的产生的原因，一般来说就是因为消费的速度跟上生产才导致了消息的积压，那么可以适当的增加消费者的数量，让其尽快把消息消费完；<br>还有一种做法稍微复杂点，我们可以对MessageQuean进行迁移，可以创建一个临时的topic,对于临时的topic 可以多配置一点MessageQuean,然后把原有的消费者的数据丢给临时topic,接下来再用扩容后的消费中去消费临时topic里面的数据，等消息消费完后再去掉临时的topic</p>
-<h4 id="8-说说死信队列"><a href="#8-说说死信队列" class="headerlink" title="8.说说死信队列"></a>8.说说死信队列</h4><p>rocketMq中如果消费者没有成功消费broker过来的消息，一般会重试16次，如果16次都失败则会把这些消息发送到消费者特殊的队列里，这种队列就叫死信队列。rocketMq 会保存三天死信队列的消息等待被处理，我们可以登录RocketMq的控制台对死信队列进行重发</p>
-<h4 id="9-rocketMq实现分布式事务了解吗？"><a href="#9-rocketMq实现分布式事务了解吗？" class="headerlink" title="9.rocketMq实现分布式事务了解吗？"></a>9.rocketMq实现分布式事务了解吗？</h4><p>rocketMq实现分布式事务是通过rocketMq的消息最终一致性来保证的<br>流程如下：生产者发送一个半消息到MQServer,因为是半消息所以消费者还不能消费，broker收到半消息后返回ack给生产者，表明半消息发送成功；这时候生产者开始执行本地事务，业务层面我们可以增加一张流水表，以便Broker回查确认事务消息状态；假设中途生产者在执行本地事务时出现异常，导致broker没有收到confirm消息，这个时候就可以回查流水表，查看事务执行的状态，然后消费者根据状态确定是否要回滚消息；</p>
+<h3 id="4-rocketMq怎么避免消息不重复消费"><a href="#4-rocketMq怎么避免消息不重复消费" class="headerlink" title="4.rocketMq怎么避免消息不重复消费"></a>4.rocketMq怎么避免消息不重复消费</h3><p>我们知道mq发送消息消费失败后，默认会重试16次，那么因为这种重试机制导致消息很有可能被重复消费；对于重复消费的情况，rocketMq是允许的，主要由业务放自己去避免，我们的业务系统需要自己做幂等性的操作，若消费过则不再重复消费；可采用的方式有很多，主要由业务系统自己去实现，主要方式可以做消息去重，和业务层面的幂等；</p>
+<h3 id="5-rocketMq如何保证消息顺序消费？"><a href="#5-rocketMq如何保证消息顺序消费？" class="headerlink" title="5.rocketMq如何保证消息顺序消费？"></a>5.rocketMq如何保证消息顺序消费？</h3><p>这个问题其实可以分为三点，第一点生产者要保证消息的顺序生产，第二点broker要保证消息的顺序保存，第三点消费者要保证消息的顺序消费；首先第一点rocketMq创建一个topic默认会有8个写队列，8个读队列，为了保证消息消费是按写入的先后顺序来消费的，需要把topic的队列数改为1；消费者收到消息后也可以先将这些消息放入一个队列然后依次进行消费。为了保证数据的先后，生产者要依次发送消息到broker,等接收到broker的ACK 确认消息时再发送下一个消息，同样消费时消费者是不间断的去broker上拉取消息，要保证拉取消息的顺序性，可以对应的broker设定一把锁，每次消费者去拉取消息时都要先申请锁，申请到锁就拉取消息，否则就等待获取锁，直到获取到锁再拉取消息；等消息拉到消费端时，我们也需要给消费队列维护一把可重入锁，保证同一时间只有一个线程在消费；</p>
+<h3 id="6-rocketMq-是pull模式还是push模式？"><a href="#6-rocketMq-是pull模式还是push模式？" class="headerlink" title="6.rocketMq 是pull模式还是push模式？"></a>6.rocketMq 是pull模式还是push模式？</h3><p>RocketMQ提供了两种消费模式，Push和Pull，大多数场景使用的是Push模式，在源码中这两种模式分别对应的是DefaultMQPushConsumer类和DefaultMQPullConsumer类。Push模式实际上在内部还是使用的Pull方式实现的，通过Pull不断地轮询Broker获取消息，当不存在新消息时，Broker端会挂起Pull请求，直到有新消息产生才取消挂起，返回新消息</p>
+<h3 id="7-rocketMq消息堆积怎么解决？"><a href="#7-rocketMq消息堆积怎么解决？" class="headerlink" title="7.rocketMq消息堆积怎么解决？"></a>7.rocketMq消息堆积怎么解决？</h3><p>首先要知道这个问题的产生的原因，一般来说就是因为消费的速度跟上生产才导致了消息的积压，那么可以适当的增加消费者的数量，让其尽快把消息消费完；<br>还有一种做法稍微复杂点，我们可以对MessageQuean进行迁移，可以创建一个临时的topic,对于临时的topic 可以多配置一点MessageQuean,然后把原有的消费者的数据丢给临时topic,接下来再用扩容后的消费中去消费临时topic里面的数据，等消息消费完后再去掉临时的topic</p>
+<h3 id="8-说说死信队列"><a href="#8-说说死信队列" class="headerlink" title="8.说说死信队列"></a>8.说说死信队列</h3><p>rocketMq中如果消费者没有成功消费broker过来的消息，一般会重试16次，如果16次都失败则会把这些消息发送到消费者特殊的队列里，这种队列就叫死信队列。rocketMq 会保存三天死信队列的消息等待被处理，我们可以登录RocketMq的控制台对死信队列进行重发</p>
+<h3 id="9-rocketMq实现分布式事务了解吗？"><a href="#9-rocketMq实现分布式事务了解吗？" class="headerlink" title="9.rocketMq实现分布式事务了解吗？"></a>9.rocketMq实现分布式事务了解吗？</h3><p>rocketMq实现分布式事务是通过rocketMq的消息最终一致性来保证的<br>流程如下：生产者发送一个半消息到MQServer,因为是半消息所以消费者还不能消费，broker收到半消息后返回ack给生产者，表明半消息发送成功；这时候生产者开始执行本地事务，业务层面我们可以增加一张流水表，以便Broker回查确认事务消息状态；假设中途生产者在执行本地事务时出现异常，导致broker没有收到confirm消息，这个时候就可以回查流水表，查看事务执行的状态，然后消费者根据状态确定是否要回滚消息；</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1017,7 +1028,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-03 17:17:09
+                    :</strong> 2024-01-14 11:45:46
             </li>
         
         <li>
@@ -1043,7 +1054,7 @@
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                        <a href="/tags/rocketMq/">#rocketMq</a>&nbsp;
                     </li>
                 
             </ul>
@@ -1121,7 +1132,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">11.rocketMq面试题</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-RocketMq%E7%9A%84%E6%9E%B6%E6%9E%84%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%BF%83%E8%B7%B3%E6%9C%BA%E5%88%B6%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84%EF%BC%9F"><span class="nav-text">1.RocketMq的架构是怎样的，以及心跳机制是怎样的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-rocketMq%E6%80%8E%E4%B9%88%E6%9F%A5%E6%89%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E6%B6%88%E6%81%AF%E7%9A%84%EF%BC%9F"><span class="nav-text">2.rocketMq怎么查找到对应的消息的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-rocketMq%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1%EF%BC%9F"><span class="nav-text">3.rocketMq怎么避免消息不丢失？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-rocketMq%E6%80%8E%E4%B9%88%E9%81%BF%E5%85%8D%E6%B6%88%E6%81%AF%E4%B8%8D%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9"><span class="nav-text">4.rocketMq怎么避免消息不重复消费</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-rocketMq%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9%EF%BC%9F"><span class="nav-text">5.rocketMq如何保证消息顺序消费？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-rocketMq-%E6%98%AFpull%E6%A8%A1%E5%BC%8F%E8%BF%98%E6%98%AFpush%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-text">6.rocketMq 是pull模式还是push模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-rocketMq%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="nav-text">7.rocketMq消息堆积怎么解决？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E8%AF%B4%E8%AF%B4%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97"><span class="nav-text">8.说说死信队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-rocketMq%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F"><span class="nav-text">9.rocketMq实现分布式事务了解吗？</span></a></li></ol>
 
     </div>
 </div>

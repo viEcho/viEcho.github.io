@@ -26,9 +26,9 @@
 <meta property="og:description" content="1.kafkar如何保证消息不丢失？回答这个问题可以分三个方面，首先第一点要保证producer消息能达到broker,其次broker收到对应的消息要确保持久化磁盘，最后需要确保consumer能成功消费这条消息；  针对producer:我们知道producer发送消息可以异步也可以同步，我们需要将其改成同步发送，这样就能知道消息发送的结果，且我们可以添加一个监听器，监听消息发送的结果，如果发">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-03T09:17:21.960Z">
+<meta property="article:modified_time" content="2024-01-14T03:45:46.026Z">
 <meta property="article:author" content="Echo">
-<meta property="article:tag" content="面试">
+<meta property="article:tag" content="kafka">
 <meta name="twitter:card" content="summary">
     
     
@@ -227,7 +227,7 @@
     
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"说说":{"path":"/essays","icon":"fa-regular fa-comments"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.0","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"icon":"fa-regular fa-file-text","submenus":{"企业面试":"/categories/面试题/企业面经","八股文":"/categories/面试题/八股文"},"path":"/categories/面试题"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","说说":"/essays"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Other":{"path":"/categories/other","icon":"fa-regular fa-magnet"},"Github":{"path":"https://github.com/viEcho","icon":"fa-brands fa-github"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":false};
   </script>
@@ -549,6 +549,12 @@
                                                 </a>
                                             </li>
                                         
+                                            <li>
+                                                <a href="/essays">
+                                                    说说
+                                                </a>
+                                            </li>
+                                        
                                     </ul>
                                 
                             </li>
@@ -848,6 +854,11 @@
                                            href="/about">ME</a>
                                     </div>
                                 
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays">说说</a>
+                                    </div>
+                                
                             </div>
                         
                     </li>
@@ -856,7 +867,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">61</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">81</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -864,7 +875,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">85</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">86</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -918,8 +929,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-01-03 17:17:21</span>
-            <span class="mobile">2024-01-03 17:17:21</span>
+            <span class="desktop">2024-01-14 11:45:46</span>
+            <span class="mobile">2024-01-14 11:45:46</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -957,7 +968,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                        <a href="/tags/kafka/">kafka</a>&nbsp;
                     </li>
                 
             </ul>
@@ -991,7 +1002,7 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h4 id="1-kafkar如何保证消息不丢失？"><a href="#1-kafkar如何保证消息不丢失？" class="headerlink" title="1.kafkar如何保证消息不丢失？"></a>1.kafkar如何保证消息不丢失？</h4><p>回答这个问题可以分三个方面，首先第一点要保证producer消息能达到broker,其次broker收到对应的消息要确保持久化磁盘，最后需要确保consumer能成功消费这条消息；</p>
+            <h3 id="1-kafkar如何保证消息不丢失？"><a href="#1-kafkar如何保证消息不丢失？" class="headerlink" title="1.kafkar如何保证消息不丢失？"></a>1.kafkar如何保证消息不丢失？</h3><p>回答这个问题可以分三个方面，首先第一点要保证producer消息能达到broker,其次broker收到对应的消息要确保持久化磁盘，最后需要确保consumer能成功消费这条消息；</p>
 <blockquote>
 <p>针对producer:<br>我们知道producer发送消息可以异步也可以同步，我们需要将其改成同步发送，这样就能知道消息发送的结果，且我们可以添加一个监听器，监听消息发送的结果，如果发送失败可以在回调方法中进行消息重试；另外如果因为网络问题或者broker发生了故障，producer提供了retries机制，可以自动重试</p>
 </blockquote>
@@ -1007,9 +1018,9 @@
 <blockquote>
 <p>针对consumer:<br>其实只要Producer和Broker的消息能得到保证，消费端不太可能出现不能消费的问题<br>除非Consumer没有消费完这个消息就提交了offset，这个我们可以重新调整offset的值，来实现重新消费</p>
 </blockquote>
-<h4 id="2-kafka如何避免消息的重复消费？"><a href="#2-kafka如何避免消息的重复消费？" class="headerlink" title="2.kafka如何避免消息的重复消费？"></a>2.kafka如何避免消息的重复消费？</h4><p>其实所有的重复消费问题都是consumer出现了问题，需要我们业务方自己去做去重或者幂等处理；<br>例如我们本地可以增加一张表，记录收到的消息；每次去消费前就去看下表中是否有这个消息，有则代表已消费过则不再重复消费；</p>
-<h4 id="3-kafka如何保证消息的顺序消费？"><a href="#3-kafka如何保证消息的顺序消费？" class="headerlink" title="3.kafka如何保证消息的顺序消费？"></a>3.kafka如何保证消息的顺序消费？</h4><p>首先，我们知道kafka的整个架构中，用到了partaion的分区机制，即一个topic会有多个分区，从而来实现消息的物理存储；而生产者在发送消息的时候会跟据消息的key来进行取模来决定把当前的消息存储到那个分区中，而且消息是按照先后顺序存储到对应的partion中的，因为是多个分区，消费的时候通过一个balance机制去消费对应的分区中的消息，那么消息的消费顺序就不一定是按照消息的发送顺序来消费的；<br>对应的解决办法就是我们可以自定义消息生产的路由算法，让指定的key都路由到同一个分区，并且我们在我们消息消费的时候也可以指定消费者去消费某一个分区里的数据，这样就可以保证消息的顺序消费；</p>
-<h4 id="4-kafka怎么做分布式事务？"><a href="#4-kafka怎么做分布式事务？" class="headerlink" title="4.kafka怎么做分布式事务？"></a>4.kafka怎么做分布式事务？</h4><p>kafka的优势其实在于副本机制以及在消息的吞吐量上，它本身的机制并不能用来做分布式事务；<br>如果非得要用它来做事务管理的话，我们需要自己业务层面自己来确保消息的幂等性；</p>
+<h3 id="2-kafka如何避免消息的重复消费？"><a href="#2-kafka如何避免消息的重复消费？" class="headerlink" title="2.kafka如何避免消息的重复消费？"></a>2.kafka如何避免消息的重复消费？</h3><p>其实所有的重复消费问题都是consumer出现了问题，需要我们业务方自己去做去重或者幂等处理；<br>例如我们本地可以增加一张表，记录收到的消息；每次去消费前就去看下表中是否有这个消息，有则代表已消费过则不再重复消费；</p>
+<h3 id="3-kafka如何保证消息的顺序消费？"><a href="#3-kafka如何保证消息的顺序消费？" class="headerlink" title="3.kafka如何保证消息的顺序消费？"></a>3.kafka如何保证消息的顺序消费？</h3><p>首先，我们知道kafka的整个架构中，用到了partaion的分区机制，即一个topic会有多个分区，从而来实现消息的物理存储；而生产者在发送消息的时候会跟据消息的key来进行取模来决定把当前的消息存储到那个分区中，而且消息是按照先后顺序存储到对应的partion中的，因为是多个分区，消费的时候通过一个balance机制去消费对应的分区中的消息，那么消息的消费顺序就不一定是按照消息的发送顺序来消费的；<br>对应的解决办法就是我们可以自定义消息生产的路由算法，让指定的key都路由到同一个分区，并且我们在我们消息消费的时候也可以指定消费者去消费某一个分区里的数据，这样就可以保证消息的顺序消费；</p>
+<h3 id="4-kafka怎么做分布式事务？"><a href="#4-kafka怎么做分布式事务？" class="headerlink" title="4.kafka怎么做分布式事务？"></a>4.kafka怎么做分布式事务？</h3><p>kafka的优势其实在于副本机制以及在消息的吞吐量上，它本身的机制并不能用来做分布式事务；<br>如果非得要用它来做事务管理的话，我们需要自己业务层面自己来确保消息的幂等性；</p>
 <!-- flag of hidden posts -->
         </div>
 
@@ -1024,7 +1035,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-01-03 17:17:21
+                    :</strong> 2024-01-14 11:45:46
             </li>
         
         <li>
@@ -1050,7 +1061,7 @@
             <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
                 
                     <li class="tag-item mx-0.5">
-                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                        <a href="/tags/kafka/">#kafka</a>&nbsp;
                     </li>
                 
             </ul>
@@ -1128,7 +1139,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title">12.kafka面试题</div>
-        
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-kafkar%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1%EF%BC%9F"><span class="nav-text">1.kafkar如何保证消息不丢失？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-kafka%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E6%B6%88%E6%81%AF%E7%9A%84%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9%EF%BC%9F"><span class="nav-text">2.kafka如何避免消息的重复消费？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-kafka%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9%EF%BC%9F"><span class="nav-text">3.kafka如何保证消息的顺序消费？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-kafka%E6%80%8E%E4%B9%88%E5%81%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%EF%BC%9F"><span class="nav-text">4.kafka怎么做分布式事务？</span></a></li></ol>
 
     </div>
 </div>
