@@ -846,13 +846,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/docker/</loc>
-    <lastmod>2024-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/functionInterface/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -966,6 +959,13 @@
   
   <url>
     <loc>http://example.com/tags/aspect/</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/docker/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1098,20 +1098,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2024-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/vue/</loc>
-    <lastmod>2024-01-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/mbp/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -1141,6 +1127,20 @@
   
   <url>
     <loc>http://example.com/tags/vue-eslint/</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2024-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/vue/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1392,14 +1392,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/dubbo/</loc>
+    <loc>http://example.com/tags/springCloud/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/springCloud/</loc>
+    <loc>http://example.com/tags/dubbo/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1415,14 +1415,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/docker/</loc>
+    <loc>http://example.com/categories/java/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/java/</loc>
+    <loc>http://example.com/categories/docker/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1450,14 +1450,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/web%E7%AF%87/</loc>
+    <loc>http://example.com/categories/toolsSetting/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/toolsSetting/</loc>
+    <loc>http://example.com/categories/web%E7%AF%87/</loc>
     <lastmod>2024-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
