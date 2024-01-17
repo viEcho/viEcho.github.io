@@ -1108,19 +1108,19 @@
             const __gitalk__pathnameLength = __gitalk__pathname.length;
             const __gitalk__pathnameMaxLength = 50;
             if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 7) + '...';
             }
 
             try {
                 Gitalk && new Gitalk({
-                    clientID: 'f549903ccba45f7ed0ba',
-                    clientSecret: '6934306dccc15ebef0d68cdc7823efaabcbc7be6',
-                    repo: 'echoGitalk',
+                    clientID: '7fbe9135a951697fd81c',
+                    clientSecret: '5610294eaecc701943655832ea8830d14cabfa70',
+                    repo: 'issue',
                     owner: 'viEcho',
                     admin: ['viEcho'],
                     id: __gitalk__pathname,
                     language: 'en',
-                    proxy: 'https://github.com/login/oauth/access_token'
+                    proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
                 }).render('gitalk-container');
 
             } catch (e) {

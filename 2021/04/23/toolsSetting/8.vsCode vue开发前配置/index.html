@@ -1160,10 +1160,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2021/04/23/web%E7%AF%87/1.%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E5%8F%8A%E4%B8%BB%E6%B5%81UI/"
+                        href="/2021/04/23/linux/4.Linux%E4%B8%8A%E5%AE%89%E8%A3%85redis/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">前端架构演进及主流UI</span>
+                                <span class="post-nav-title-item">linux上安装redis</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -1197,19 +1197,19 @@
             const __gitalk__pathnameLength = __gitalk__pathname.length;
             const __gitalk__pathnameMaxLength = 50;
             if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 7) + '...';
             }
 
             try {
                 Gitalk && new Gitalk({
-                    clientID: 'f549903ccba45f7ed0ba',
-                    clientSecret: '6934306dccc15ebef0d68cdc7823efaabcbc7be6',
-                    repo: 'echoGitalk',
+                    clientID: '7fbe9135a951697fd81c',
+                    clientSecret: '5610294eaecc701943655832ea8830d14cabfa70',
+                    repo: 'issue',
                     owner: 'viEcho',
                     admin: ['viEcho'],
                     id: __gitalk__pathname,
                     language: 'en',
-                    proxy: 'https://github.com/login/oauth/access_token'
+                    proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
                 }).render('gitalk-container');
 
             } catch (e) {
