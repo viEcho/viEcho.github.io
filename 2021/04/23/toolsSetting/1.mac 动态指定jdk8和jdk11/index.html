@@ -1045,7 +1045,7 @@
 <p>之前自己用halo搭建了个人博客，想着自己把源码拉下来学习研究下的，包下到本地后发现在终端中执行 <code>java -jar halo.jar --spring.profiles.active=dev</code>时,报<code>Application has been compiled by a more recent version of the Java Runtime (class file version 55.0), this versions up to 52.0</code>;what? 应用被最新的java版本执行过了，当前版本是52.0；一番搜索说jdk版本太低了，那就装个jdk11吧；</p>
 </blockquote>
 <h3 id="安装前的疑问"><a href="#安装前的疑问" class="headerlink" title="安装前的疑问"></a>安装前的疑问</h3><p>安装jdk11?那我之前安装的jdk8要删了吗？肯定不用吧，然后带着疑问去找了下解决办法，果然可以动态指定运行版本</p>
-<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#50;&#x36;&#57;&#54;&#54;&#x37;&#x31;&#50;&#56;&#53;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109;" >&#50;&#x36;&#57;&#54;&#54;&#x37;&#x31;&#50;&#56;&#53;&#x40;&#x71;&#113;&#x2e;&#x63;&#x6f;&#109; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#x32;&#54;&#57;&#x36;&#54;&#x37;&#49;&#x32;&#x38;&#x35;&#x40;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#x6d;" >&#x32;&#54;&#57;&#x36;&#54;&#x37;&#49;&#x32;&#x38;&#x35;&#x40;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>下载如下所示macos对应的jdk11:<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/6ahdXt"><img  
                      lazyload
                      src="/images/loading.svg"
@@ -1177,44 +1177,28 @@
 
         
             
-    <div id="gitalk-container"></div>
-    <script data-swup-reload-script
-            src="//cdn.staticfile.org/gitalk/1.8.0/gitalk.min.js"></script>
-    <script data-swup-reload-script>
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
 
-        function loadGitalk() {
-            let __gitalk__pathname = decodeURI(location.pathname);
-            const __gitalk__pathnameLength = __gitalk__pathname.length;
-            const __gitalk__pathnameMaxLength = 50;
-            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
-                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 7) + '...';
-            }
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://echo-talk.vercel.app/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
 
-            try {
-                Gitalk && new Gitalk({
-                    clientID: '7fbe9135a951697fd81c',
-                    clientSecret: '5610294eaecc701943655832ea8830d14cabfa70',
-                    repo: 'issue',
-                    owner: 'viEcho',
-                    admin: ['viEcho'],
-                    id: __gitalk__pathname,
-                    language: 'en',
-                    proxy: 'https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token'
-                }).render('gitalk-container');
-
-            } catch (e) {
-                window.Gitalk = null;
-            }
-        }
-
-        if ('true') {
-            const loadGitalkTimeout = setTimeout(() => {
-                loadGitalk();
-                clearTimeout(loadGitalkTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadGitalk);
-        }
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
     </script>
 
 
