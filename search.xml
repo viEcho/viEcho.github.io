@@ -427,6 +427,17 @@
       </tags>
   </entry>
   <entry>
+    <title>docker之网络通信(待填坑)</title>
+    <url>/2021/0515/docker-net.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>docker之dockerFile</title>
     <url>/2021/0507/docker-file.html</url>
     <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，这个脚本就是Dockerfile；<br>Dockerfile是一个文本文件，其内包含了一条条的指令，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建；</p>
@@ -519,17 +530,6 @@
 <p>小结：本篇博客我们自己写了一个dockerFile文件，看到了镜像的加载过程，对与镜像的分层概念有了更深层次的理解；也通过dokcerFile的VOLUME 命令了解了dockerFile挂载卷的方法，以及了解了具名挂载和匿名挂载的区别；</p>
 </blockquote>
 ]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>docker之网络通信(待填坑)</title>
-    <url>/2021/0515/docker-net.html</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>docker</category>
       </categories>
@@ -3688,7 +3688,7 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
 <p>之前自己用halo搭建了个人博客，想着自己把源码拉下来学习研究下的，包下到本地后发现在终端中执行 <code>java -jar halo.jar --spring.profiles.active=dev</code>时,报<code>Application has been compiled by a more recent version of the Java Runtime (class file version 55.0), this versions up to 52.0</code>;what? 应用被最新的java版本执行过了，当前版本是52.0；一番搜索说jdk版本太低了，那就装个jdk11吧；</p>
 </blockquote>
 <h3 id="安装前的疑问"><a href="#安装前的疑问" class="headerlink" title="安装前的疑问"></a>安装前的疑问</h3><p>安装jdk11?那我之前安装的jdk8要删了吗？肯定不用吧，然后带着疑问去找了下解决办法，果然可以动态指定运行版本</p>
-<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#50;&#x36;&#x39;&#x36;&#x36;&#x37;&#49;&#x32;&#56;&#x35;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;" >&#50;&#x36;&#x39;&#x36;&#x36;&#x37;&#49;&#x32;&#56;&#x35;&#64;&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#x32;&#54;&#x39;&#x36;&#54;&#x37;&#49;&#50;&#x38;&#x35;&#64;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d;" >&#x32;&#54;&#x39;&#x36;&#54;&#x37;&#49;&#50;&#x38;&#x35;&#64;&#x71;&#x71;&#46;&#99;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>下载如下所示macos对应的jdk11:<br><a href="https://imgtu.com/i/6ahdXt"><img  
                      lazyload
                      src="/images/loading.svg"
@@ -5112,43 +5112,6 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </tags>
   </entry>
   <entry>
-    <title>六大设计原则及使用场景</title>
-    <url>/2021/0423/6-sheji-yuan-ze.html</url>
-    <content><![CDATA[<blockquote>
-<p>构成我们学习最大障碍的是已知的东西，而不是未知的东西</p>
-</blockquote>
-<h4 id="1-单一职责原则"><a href="#1-单一职责原则" class="headerlink" title="1.单一职责原则"></a>1.单一职责原则</h4><p>即一个类只负责一个职责，例如现在比较流行的微服务，就是将一个复杂的耦合性很高的业务，拆分成多个独立的功能单一的接口，然后通过服务编排的方式实现不同的业务需求；</p>
-<p>单一职责的好处：</p>
-<ol>
-<li>类的复杂性降低，功能明确，可读性提高，可维护性和可扩展性提高；</li>
-<li>变更引起的风险降低</li>
-</ol>
-<h4 id="2-开闭原则"><a href="#2-开闭原则" class="headerlink" title="2.开闭原则"></a>2.开闭原则</h4><p>开闭原则指的是对扩展开发，对修改关闭。它的意思是说我们在实现一个新的功能时，我们要想着在原有的基础上扩展，而不是去修改原有的功能！</p>
-<p>例如，我们移动端的应用，随着版本迭代，我们不能强制要求我们的用户每次都去升级或者协助用户去升级，那么就要求新增的功能不允许在原有的接口上修改，而是要在原有的接口上进行扩展。</p>
-<h4 id="3-里氏替换原则"><a href="#3-里氏替换原则" class="headerlink" title="3.里氏替换原则"></a>3.里氏替换原则</h4><p>里氏替换原则是面向对象编程的实现基础，它的意思是所有引用了父类的地方都能被子类所替换，且不会引起任何的异常或错误；</p>
-<p>例如如果我们将鸵鸟归为鸟类，那么鸵鸟也是鸟的子类，但是鸟类会飞，而鸵鸟不会飞，那么鸵鸟这个子类就违背了里氏替换原则。</p>
-<h4 id="4-依赖倒置原则"><a href="#4-依赖倒置原则" class="headerlink" title="4.依赖倒置原则"></a>4.依赖倒置原则</h4><p>依赖倒置原则指的是针对接口编程，而不是面向具体的实现编程；它的意思是我们在做一个功能时，应该依赖于高层面的实现，而不是依赖于底层的实现；即高层模块不应该依赖于底层的模块，因为底层的模块的职责单一，不足以应对高层模块的变动；</p>
-<p>例如，我们我们打车从A地点出发前往B地点，我们只需要预约一个车就可以了，而这个车就是一个顶层的接口，它的实现类可以是各种各样的车，不同厂商的车，不同颜色的车。我们只需要依赖于这个顶层的车就可以了，而不是依赖于具体的某一个车，或者车牌号为“xxx”的车，一旦我们依赖于具体的车，那么这辆车被占用或者发生故障，那么就会对我们从A到B的行程产生影响。</p>
-<h4 id="5-接口隔离原则"><a href="#5-接口隔离原则" class="headerlink" title="5.接口隔离原则"></a>5.接口隔离原则</h4><p>接口隔离原则是对接口进行规范约束，它指的是使用多个专门的接口比使用单一的总结口要好，即接口应该是互相隔离的小接口，而不是复杂的大接口；</p>
-<p>接口隔离原则包含四个定义：</p>
-<ol>
-<li>接口要尽量小，这个小指的是不能违反单一职责原则。</li>
-<li>接口要高内聚； 高内聚就是提高接口、类、模块的处理能力，减少对外的交互。在接口中尽量少公布public方法，接口是对外的承诺，承诺越少对系统的开发越有利，变更的风险也就越少，同时也越有利于降低成本。</li>
-<li>定制服务；一个系统或系统内的模块之间必然会有耦合，有耦合就要有相互访问的接口（并不一定就是Java中定义的Interface，也可能是一个类或单纯的数据交换），我们设计时就需要为各个访问者（即客户端）定制服务。定制服务就是单独为一个个体提供优良的服务。我们在做系统设计时也需要考虑对系统之间或模块之间的接口采用定制服务。采用定制服务就必然有一个要求：只提供访问者需要的方法。</li>
-<li>接口设计是有限度的。 接口的设计粒度越小，系统越灵活，这是不争的事实。但是，灵活的同时也带来了结构的复杂化，开发难度增加，可维护性低，这不是一个项目或产品所期望看到的，所以接口设计一定要注意适度，这个“度”如何来判断？根据经验和常识判断，没有一个固话或可测量的标准</li>
-</ol>
-<p>例如现在的微服务开发，各种服务间的调用，我们应该只暴露出对方需要的接口；</p>
-<h4 id="6-迪米特法则"><a href="#6-迪米特法则" class="headerlink" title="6.迪米特法则"></a>6.迪米特法则</h4><p>迪米特法则又称最少知识原则，它是指一个类对于另一个类知道的越少越好。它设计的初衷是降低类之前的耦合度，每个类之前的联系少了，那么每个类都单独的处理自己的事，这样就能降低类之前的耦合性；只有弱耦合了以后，类的复用率才可以提高。其要求的结果就是产生了大量的中转或跳转类，导致系统的复杂性提高，同时也为维护带来了难度。</p>
-<p>例如，电影中看到的，有些人在遇到强盗时会选择闭着眼睛不看强盗，因为这样知道的越少对自己来说越安全！</p>
-]]></content>
-      <categories>
-        <category>设计模式</category>
-      </categories>
-      <tags>
-        <tag>设计原则</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>设计模式之单例模式</title>
     <url>/2021/0423/singleton-pattern.html</url>
     <content><![CDATA[<blockquote>
@@ -5206,6 +5169,43 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </categories>
       <tags>
         <tag>单例模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>六大设计原则及使用场景</title>
+    <url>/2021/0423/6-sheji-yuan-ze.html</url>
+    <content><![CDATA[<blockquote>
+<p>构成我们学习最大障碍的是已知的东西，而不是未知的东西</p>
+</blockquote>
+<h4 id="1-单一职责原则"><a href="#1-单一职责原则" class="headerlink" title="1.单一职责原则"></a>1.单一职责原则</h4><p>即一个类只负责一个职责，例如现在比较流行的微服务，就是将一个复杂的耦合性很高的业务，拆分成多个独立的功能单一的接口，然后通过服务编排的方式实现不同的业务需求；</p>
+<p>单一职责的好处：</p>
+<ol>
+<li>类的复杂性降低，功能明确，可读性提高，可维护性和可扩展性提高；</li>
+<li>变更引起的风险降低</li>
+</ol>
+<h4 id="2-开闭原则"><a href="#2-开闭原则" class="headerlink" title="2.开闭原则"></a>2.开闭原则</h4><p>开闭原则指的是对扩展开发，对修改关闭。它的意思是说我们在实现一个新的功能时，我们要想着在原有的基础上扩展，而不是去修改原有的功能！</p>
+<p>例如，我们移动端的应用，随着版本迭代，我们不能强制要求我们的用户每次都去升级或者协助用户去升级，那么就要求新增的功能不允许在原有的接口上修改，而是要在原有的接口上进行扩展。</p>
+<h4 id="3-里氏替换原则"><a href="#3-里氏替换原则" class="headerlink" title="3.里氏替换原则"></a>3.里氏替换原则</h4><p>里氏替换原则是面向对象编程的实现基础，它的意思是所有引用了父类的地方都能被子类所替换，且不会引起任何的异常或错误；</p>
+<p>例如如果我们将鸵鸟归为鸟类，那么鸵鸟也是鸟的子类，但是鸟类会飞，而鸵鸟不会飞，那么鸵鸟这个子类就违背了里氏替换原则。</p>
+<h4 id="4-依赖倒置原则"><a href="#4-依赖倒置原则" class="headerlink" title="4.依赖倒置原则"></a>4.依赖倒置原则</h4><p>依赖倒置原则指的是针对接口编程，而不是面向具体的实现编程；它的意思是我们在做一个功能时，应该依赖于高层面的实现，而不是依赖于底层的实现；即高层模块不应该依赖于底层的模块，因为底层的模块的职责单一，不足以应对高层模块的变动；</p>
+<p>例如，我们我们打车从A地点出发前往B地点，我们只需要预约一个车就可以了，而这个车就是一个顶层的接口，它的实现类可以是各种各样的车，不同厂商的车，不同颜色的车。我们只需要依赖于这个顶层的车就可以了，而不是依赖于具体的某一个车，或者车牌号为“xxx”的车，一旦我们依赖于具体的车，那么这辆车被占用或者发生故障，那么就会对我们从A到B的行程产生影响。</p>
+<h4 id="5-接口隔离原则"><a href="#5-接口隔离原则" class="headerlink" title="5.接口隔离原则"></a>5.接口隔离原则</h4><p>接口隔离原则是对接口进行规范约束，它指的是使用多个专门的接口比使用单一的总结口要好，即接口应该是互相隔离的小接口，而不是复杂的大接口；</p>
+<p>接口隔离原则包含四个定义：</p>
+<ol>
+<li>接口要尽量小，这个小指的是不能违反单一职责原则。</li>
+<li>接口要高内聚； 高内聚就是提高接口、类、模块的处理能力，减少对外的交互。在接口中尽量少公布public方法，接口是对外的承诺，承诺越少对系统的开发越有利，变更的风险也就越少，同时也越有利于降低成本。</li>
+<li>定制服务；一个系统或系统内的模块之间必然会有耦合，有耦合就要有相互访问的接口（并不一定就是Java中定义的Interface，也可能是一个类或单纯的数据交换），我们设计时就需要为各个访问者（即客户端）定制服务。定制服务就是单独为一个个体提供优良的服务。我们在做系统设计时也需要考虑对系统之间或模块之间的接口采用定制服务。采用定制服务就必然有一个要求：只提供访问者需要的方法。</li>
+<li>接口设计是有限度的。 接口的设计粒度越小，系统越灵活，这是不争的事实。但是，灵活的同时也带来了结构的复杂化，开发难度增加，可维护性低，这不是一个项目或产品所期望看到的，所以接口设计一定要注意适度，这个“度”如何来判断？根据经验和常识判断，没有一个固话或可测量的标准</li>
+</ol>
+<p>例如现在的微服务开发，各种服务间的调用，我们应该只暴露出对方需要的接口；</p>
+<h4 id="6-迪米特法则"><a href="#6-迪米特法则" class="headerlink" title="6.迪米特法则"></a>6.迪米特法则</h4><p>迪米特法则又称最少知识原则，它是指一个类对于另一个类知道的越少越好。它设计的初衷是降低类之前的耦合度，每个类之前的联系少了，那么每个类都单独的处理自己的事，这样就能降低类之前的耦合性；只有弱耦合了以后，类的复用率才可以提高。其要求的结果就是产生了大量的中转或跳转类，导致系统的复杂性提高，同时也为维护带来了难度。</p>
+<p>例如，电影中看到的，有些人在遇到强盗时会选择闭着眼睛不看强盗，因为这样知道的越少对自己来说越安全！</p>
+]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>设计原则</tag>
       </tags>
   </entry>
   <entry>
@@ -5730,6 +5730,44 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </tags>
   </entry>
   <entry>
+    <title>wordpress建站笔记</title>
+    <url>/2021/0424/wordpress-site-note.html</url>
+    <content><![CDATA[<blockquote>
+<p>之前用halo搭的博客，因为阿里云到期而我却忘记了过期时间，没有及时备份，所以就悲催了，所有博客都没了；想着还好本地还有，那重新搭一个吧；听大佬说wordpress配合宝塔面板搭贼快，然后wordpressSEO和主题好看，就想着重新折腾一下吧；时至今日，5.1前总算弄好了；因为网上一堆搭建教程，就不想重复写了；这里就列明一下搭建的注意点：</p>
+</blockquote>
+<h3 id="配合宝塔面板搭建，事半工倍"><a href="#配合宝塔面板搭建，事半工倍" class="headerlink" title="配合宝塔面板搭建，事半工倍"></a>配合宝塔面板搭建，事半工倍</h3><p><a class="link"   href="https://www.bt.cn/bbs/thread-19376-1-1.html" >宝塔Linux面板安装教程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="进入宝塔面板"><a href="#进入宝塔面板" class="headerlink" title="进入宝塔面板"></a>进入宝塔面板</h3><p><a href="https://imgtu.com/i/cvHx0I"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/04/25/cvHx0I.png"
+                     
+                ></a><br>一键部署即可，一定要选择这里的一键部署，一定要选择这里的一键部署，一定要选择这里的一键部署。<br>因为网上很多教程，说自己上传的包建一个文件夹解压进去，后面nginx配置不好，无法域名访问只能域名加端口访问（踩过坑）；搭建过程推荐博客<br><a class="link"   href="https://blog.csdn.net/arisono/article/details/108351131" >超详细宝塔面板搭建和安装wordpress网站图文教程(附案例) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,除了一键部署外后面的都可以参考此篇博客；</p>
+<h3 id="博客搭好了，推荐插件"><a href="#博客搭好了，推荐插件" class="headerlink" title="博客搭好了，推荐插件"></a>博客搭好了，推荐插件</h3><ul>
+<li>WP Github Md：一个为 WordPress 网站提供全功能 Markdown 语法的插件。</li>
+<li>超级缓存：WordPress的快速缓存插件</li>
+</ul>
+<p>还有其他的插件，自己根据情况而定，并不是插件越多越好，用的上的适合的才是好的；</p>
+<h3 id="html页面-怎么嵌入到自定义页面呢？"><a href="#html页面-怎么嵌入到自定义页面呢？" class="headerlink" title="html页面 怎么嵌入到自定义页面呢？"></a>html页面 怎么嵌入到自定义页面呢？</h3><p>一通折腾，我想你的博客菜单及主题设置基本弄好了，如果你和我一样想自定义一个友情链接页面，而又不了解php语法,那该怎么办呢？哈哈，办法还是有的；</p>
+<p><code>宝塔文件中-&gt;www-&gt;wwwroot-&gt;xxx.xx.xx(你的域名)-&gt;wp content-&gt;themes-&gt;你的主题-&gt;pages-&gt;找到默认的模板页</code><br>例如默认友情链接的模板页：template-links.php(可能每个主题的命名不一样，自己推断下就能知道什么意思)</p>
+<p>你可以不懂php,但是我想你和我一样，自己搞定一个html页面，问题应该不大吧；<br>再改这个模板页面之前，我们先在宝塔面板中新建一个template-links-back.php文件备份这个模板，以免误操作改坏了及时可以回退哈；</p>
+<p>都备份了，那还不是想怎么折腾就怎么折腾；</p>
+<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Template Name: 友情链接</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $cats = get_post_meta($post-&gt;ID,&#x27;page_links_id&#x27;,true);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $links = pk_get_wp_links($cats);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $groups = array();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// if(!empty($cats) &amp;&amp; $links &amp;&amp; count($links)&gt;0)&#123;</span></span><br><span class="line"><span class="comment">//     foreach ($links as $link)&#123;</span></span><br><span class="line"><span class="comment">//         if(!array_key_exists($link-&gt;term_id,$groups))&#123;</span></span><br><span class="line"><span class="comment">//             $groups[$link-&gt;term_id] = array(</span></span><br><span class="line"><span class="comment">//                     &#x27;id&#x27;=&gt;$link-&gt;term_id,</span></span><br><span class="line"><span class="comment">//                     &#x27;name&#x27;=&gt;$link-&gt;name,</span></span><br><span class="line"><span class="comment">//                     &#x27;links&#x27;=&gt;array()</span></span><br><span class="line"><span class="comment">//             );</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//         $groups[$link-&gt;term_id][&#x27;links&#x27;][] = $link;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">get_header</span>();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// -----</span></span><br><span class="line"><span class="comment">// - 加入你的html代码即可，注意去掉最外层的html标签，你看上面head头都给你引入进来了，说明肯定有最外层的html标签了</span></span><br><span class="line"><span class="comment">// -----</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">get_template_part</span>(<span class="string">&#x27;templates/module&#x27;</span>, <span class="string">&#x27;smiley&#x27;</span>) <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">get_footer</span>() <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="图片403？"><a href="#图片403？" class="headerlink" title="图片403？"></a>图片403？</h3><p>友链添加好了，怎么标签中的图片加载不出来，403？而我们刷新页面就可以了<br>这是因为很多博客都开启了防盗链，图片一般默认不加载；我们要解决这个单页面问题，只需要在我们的引入的html中加入<code>&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;</code>即可</p>
+<h3 id="移动端样式兼容"><a href="#移动端样式兼容" class="headerlink" title="移动端样式兼容"></a>移动端样式兼容</h3><div class="highlight-container" data-rel="Css"><figure class="iseeu highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*iponex 适配*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">1024px</span>) &#123;</span><br><span class="line">   <span class="comment">/*再写一套屏幕尺寸小于1024的样式即可，简单粗暴，单页面用即可*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>小结：目前个人站基本搭建完毕，遇到的坑还不少，基本都是自己对wordpress的认知不足导致的，通过查阅文档都已解决；</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>杂货铺</category>
+      </categories>
+      <tags>
+        <tag>wordpress</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>halo 配置域名</title>
     <url>/2021/0423/halo-domain.html</url>
     <content><![CDATA[<blockquote>
@@ -5779,44 +5817,6 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </categories>
       <tags>
         <tag>halo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>wordpress建站笔记</title>
-    <url>/2021/0424/wordpress-site-note.html</url>
-    <content><![CDATA[<blockquote>
-<p>之前用halo搭的博客，因为阿里云到期而我却忘记了过期时间，没有及时备份，所以就悲催了，所有博客都没了；想着还好本地还有，那重新搭一个吧；听大佬说wordpress配合宝塔面板搭贼快，然后wordpressSEO和主题好看，就想着重新折腾一下吧；时至今日，5.1前总算弄好了；因为网上一堆搭建教程，就不想重复写了；这里就列明一下搭建的注意点：</p>
-</blockquote>
-<h3 id="配合宝塔面板搭建，事半工倍"><a href="#配合宝塔面板搭建，事半工倍" class="headerlink" title="配合宝塔面板搭建，事半工倍"></a>配合宝塔面板搭建，事半工倍</h3><p><a class="link"   href="https://www.bt.cn/bbs/thread-19376-1-1.html" >宝塔Linux面板安装教程 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="进入宝塔面板"><a href="#进入宝塔面板" class="headerlink" title="进入宝塔面板"></a>进入宝塔面板</h3><p><a href="https://imgtu.com/i/cvHx0I"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://z3.ax1x.com/2021/04/25/cvHx0I.png"
-                     
-                ></a><br>一键部署即可，一定要选择这里的一键部署，一定要选择这里的一键部署，一定要选择这里的一键部署。<br>因为网上很多教程，说自己上传的包建一个文件夹解压进去，后面nginx配置不好，无法域名访问只能域名加端口访问（踩过坑）；搭建过程推荐博客<br><a class="link"   href="https://blog.csdn.net/arisono/article/details/108351131" >超详细宝塔面板搭建和安装wordpress网站图文教程(附案例) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,除了一键部署外后面的都可以参考此篇博客；</p>
-<h3 id="博客搭好了，推荐插件"><a href="#博客搭好了，推荐插件" class="headerlink" title="博客搭好了，推荐插件"></a>博客搭好了，推荐插件</h3><ul>
-<li>WP Github Md：一个为 WordPress 网站提供全功能 Markdown 语法的插件。</li>
-<li>超级缓存：WordPress的快速缓存插件</li>
-</ul>
-<p>还有其他的插件，自己根据情况而定，并不是插件越多越好，用的上的适合的才是好的；</p>
-<h3 id="html页面-怎么嵌入到自定义页面呢？"><a href="#html页面-怎么嵌入到自定义页面呢？" class="headerlink" title="html页面 怎么嵌入到自定义页面呢？"></a>html页面 怎么嵌入到自定义页面呢？</h3><p>一通折腾，我想你的博客菜单及主题设置基本弄好了，如果你和我一样想自定义一个友情链接页面，而又不了解php语法,那该怎么办呢？哈哈，办法还是有的；</p>
-<p><code>宝塔文件中-&gt;www-&gt;wwwroot-&gt;xxx.xx.xx(你的域名)-&gt;wp content-&gt;themes-&gt;你的主题-&gt;pages-&gt;找到默认的模板页</code><br>例如默认友情链接的模板页：template-links.php(可能每个主题的命名不一样，自己推断下就能知道什么意思)</p>
-<p>你可以不懂php,但是我想你和我一样，自己搞定一个html页面，问题应该不大吧；<br>再改这个模板页面之前，我们先在宝塔面板中新建一个template-links-back.php文件备份这个模板，以免误操作改坏了及时可以回退哈；</p>
-<p>都备份了，那还不是想怎么折腾就怎么折腾；</p>
-<div class="highlight-container" data-rel="Php"><figure class="iseeu highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Template Name: 友情链接</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $cats = get_post_meta($post-&gt;ID,&#x27;page_links_id&#x27;,true);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $links = pk_get_wp_links($cats);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// $groups = array();</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// if(!empty($cats) &amp;&amp; $links &amp;&amp; count($links)&gt;0)&#123;</span></span><br><span class="line"><span class="comment">//     foreach ($links as $link)&#123;</span></span><br><span class="line"><span class="comment">//         if(!array_key_exists($link-&gt;term_id,$groups))&#123;</span></span><br><span class="line"><span class="comment">//             $groups[$link-&gt;term_id] = array(</span></span><br><span class="line"><span class="comment">//                     &#x27;id&#x27;=&gt;$link-&gt;term_id,</span></span><br><span class="line"><span class="comment">//                     &#x27;name&#x27;=&gt;$link-&gt;name,</span></span><br><span class="line"><span class="comment">//                     &#x27;links&#x27;=&gt;array()</span></span><br><span class="line"><span class="comment">//             );</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//         $groups[$link-&gt;term_id][&#x27;links&#x27;][] = $link;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">get_header</span>();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">// -----</span></span><br><span class="line"><span class="comment">// - 加入你的html代码即可，注意去掉最外层的html标签，你看上面head头都给你引入进来了，说明肯定有最外层的html标签了</span></span><br><span class="line"><span class="comment">// -----</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">get_template_part</span>(<span class="string">&#x27;templates/module&#x27;</span>, <span class="string">&#x27;smiley&#x27;</span>) <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="title function_ invoke__">get_footer</span>() <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></div>
-<h3 id="图片403？"><a href="#图片403？" class="headerlink" title="图片403？"></a>图片403？</h3><p>友链添加好了，怎么标签中的图片加载不出来，403？而我们刷新页面就可以了<br>这是因为很多博客都开启了防盗链，图片一般默认不加载；我们要解决这个单页面问题，只需要在我们的引入的html中加入<code>&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;</code>即可</p>
-<h3 id="移动端样式兼容"><a href="#移动端样式兼容" class="headerlink" title="移动端样式兼容"></a>移动端样式兼容</h3><div class="highlight-container" data-rel="Css"><figure class="iseeu highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*iponex 适配*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">1024px</span>) &#123;</span><br><span class="line">   <span class="comment">/*再写一套屏幕尺寸小于1024的样式即可，简单粗暴，单页面用即可*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>小结：目前个人站基本搭建完毕，遇到的坑还不少，基本都是自己对wordpress的认知不足导致的，通过查阅文档都已解决；</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>杂货铺</category>
-      </categories>
-      <tags>
-        <tag>wordpress</tag>
       </tags>
   </entry>
   <entry>
