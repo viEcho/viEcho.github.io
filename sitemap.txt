@@ -1,3 +1,4 @@
+https://viecho.github.io/2022/0317/mac-command-shell.html
 https://viecho.github.io/about/index.html
 https://viecho.github.io/essays/index.html
 https://viecho.github.io/categories/index.html
@@ -14,7 +15,6 @@ https://viecho.github.io/2021/0423/jemeter-introduction.html
 https://viecho.github.io/2021/0423/idea-can-not-find-class.html
 https://viecho.github.io/2021/0522/idea-template-comment.html
 https://viecho.github.io/2021/0423/idea-shortcut-key.html
-https://viecho.github.io/2022/0317/mac-command-shell.html
 https://viecho.github.io/2021/0423/mac-jdk8-jdk11.html
 https://viecho.github.io/2021/0423/swagger-ui.html
 https://viecho.github.io/2021/0423/springcloud-ribbon.html
@@ -92,7 +92,6 @@ https://viecho.github.io/masonry/index.html
 https://viecho.github.io/tags/index.html
 https://viecho.github.io/
 https://viecho.github.io/tags/mysql/
-https://viecho.github.io/tags/docker/
 https://viecho.github.io/tags/functionInterface/
 https://viecho.github.io/tags/mybatis/
 https://viecho.github.io/tags/thread/
@@ -110,6 +109,7 @@ https://viecho.github.io/tags/%E4%BA%8B%E5%8A%A1/
 https://viecho.github.io/tags/jvm/
 https://viecho.github.io/tags/%E9%80%92%E5%BD%92/
 https://viecho.github.io/tags/aspect/
+https://viecho.github.io/tags/docker/
 https://viecho.github.io/tags/jdk/
 https://viecho.github.io/tags/nginx/
 https://viecho.github.io/tags/redis/
@@ -154,9 +154,9 @@ https://viecho.github.io/tags/halo/
 https://viecho.github.io/tags/wordpress/
 https://viecho.github.io/tags/hexo/
 https://viecho.github.io/categories/db/
-https://viecho.github.io/categories/docker/
-https://viecho.github.io/categories/kafka/
 https://viecho.github.io/categories/java/
+https://viecho.github.io/categories/kafka/
+https://viecho.github.io/categories/docker/
 https://viecho.github.io/categories/linux/
 https://viecho.github.io/categories/springBoot/
 https://viecho.github.io/categories/toolsSetting/

@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://viecho.github.io/2022/0317/mac-command-shell.html</loc>
+    
+    <lastmod>2024-01-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://viecho.github.io/about/index.html</loc>
     
     <lastmod>2024-01-19</lastmod>
@@ -138,15 +147,6 @@
   
   <url>
     <loc>https://viecho.github.io/2021/0423/idea-shortcut-key.html</loc>
-    
-    <lastmod>2024-01-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://viecho.github.io/2022/0317/mac-command-shell.html</loc>
     
     <lastmod>2024-01-18</lastmod>
     
@@ -846,13 +846,6 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/docker/</loc>
-    <lastmod>2024-01-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://viecho.github.io/tags/functionInterface/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
@@ -966,6 +959,13 @@
   
   <url>
     <loc>https://viecho.github.io/tags/aspect/</loc>
+    <lastmod>2024-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://viecho.github.io/tags/docker/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1282,7 +1282,7 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/docker/</loc>
+    <loc>https://viecho.github.io/categories/java/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1296,7 +1296,7 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/java/</loc>
+    <loc>https://viecho.github.io/categories/docker/</loc>
     <lastmod>2024-01-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
