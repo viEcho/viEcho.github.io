@@ -862,41 +862,6 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/jdk/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://viecho.github.io/tags/nginx/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://viecho.github.io/tags/redis/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://viecho.github.io/tags/tomcat/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://viecho.github.io/tags/sdk/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://viecho.github.io/tags/functionInterface/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -988,14 +953,14 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/%E4%BA%8B%E5%8A%A1/</loc>
+    <loc>https://viecho.github.io/tags/jvm/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/jvm/</loc>
+    <loc>https://viecho.github.io/tags/%E4%BA%8B%E5%8A%A1/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1010,6 +975,41 @@
   
   <url>
     <loc>https://viecho.github.io/tags/aspect/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://viecho.github.io/tags/jdk/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://viecho.github.io/tags/nginx/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://viecho.github.io/tags/redis/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://viecho.github.io/tags/tomcat/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://viecho.github.io/tags/sdk/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1305,14 +1305,14 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/linux/</loc>
+    <loc>https://viecho.github.io/categories/java/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/java/</loc>
+    <loc>https://viecho.github.io/categories/linux/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

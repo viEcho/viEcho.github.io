@@ -300,38 +300,6 @@
       </tags>
   </entry>
   <entry>
-    <title>docker安装可视化Portainer界面</title>
-    <url>/2021/0502/portainer-install.html</url>
-    <content><![CDATA[<blockquote>
-<p>接上篇，我们安装好docker以后，很多时候我们为了直观的看到docker的运行情况，我们一般会安装一个可视化界面Portainer。</p>
-</blockquote>
-<h3 id="什么是Portainer"><a href="#什么是Portainer" class="headerlink" title="什么是Portainer"></a>什么是Portainer</h3><p>Portainer是Docker的图形化管理工具，提供状态显示面板、应用模板快速部署、容器镜像网络数据卷的基本操作（包括上传下载镜像，创建容器等操作）、事件日志显示、容器控制台操作、Swarm集群和服务等集中管理和操作、登录用户管理和控制等功能。</p>
-<h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查询当前有哪些Portainer镜像</span></span><br><span class="line">docker search portainer</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载镜像</span></span><br><span class="line">docker pull portainer/portainer</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行portainerUI图形界面</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d后台运行 --name 命名 -p 小写p暴露指定端口，大写P随机暴露端口(需要确认端口号是开放的) -v挂载(后面详说)</span></span><br><span class="line">docker run -d --name portainerUI -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer</span><br></pre></td></tr></table></figure></div>
-<p>启动完后，我们ip+端口9000访问即可，看到如下界面证明访问成功！<br><a href="https://imgtu.com/i/gZxnOO"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://z3.ax1x.com/2021/05/02/gZxnOO.png"
-                     
-                ></a><br>如果访问失败，则去看下端口安全组配置还有端口是否被占用!<br>注：如果登录页面看到了，创建用户却失败了；那就把容器删了，重新运行一下就好</p>
-<p>接下来，因为我们是当前的环境，所以我们选择LOCAL连接；<br><a href="https://imgtu.com/i/gep3tJ"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://z3.ax1x.com/2021/05/02/gep3tJ.png"
-                     
-                ></a><br>可以从图中看到我们目前服务器的一些信息：其中包括服务器是2核4G的，数据卷相关配置信息保存在路径&#x2F;var&#x2F;run&#x2F;docker.sock下；运行部署的水为0,容器有1个，镜像有两个，数据卷共有3个，支持的是网络通信方式有3种；</p>
-<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>不建议过于依赖这个图形化界面，docker的命令很多；我们还是要都去练习，才能熟系；就像宝塔一样，一定是你各种环境配置你会配置后，你再用图形化界面操作才能事半功倍；</p>
-<blockquote>
-<p>小结：protainer docker的图形化界面基本已经搭建完成；后面我们搭建docker swarm集群，k8s集群它都能提供一定的帮助；</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>docker</category>
-      </categories>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>docker镜像，容器，挂载卷</title>
     <url>/2021/0502/docker-base-info.html</url>
     <content><![CDATA[<blockquote>
@@ -417,6 +385,38 @@
 
 <blockquote>
 <p>小结：至此我们关于docker的镜像容器挂载卷都有认识，通过挂载通信，可以很清晰的感受到docker的便捷;</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>docker</category>
+      </categories>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker安装可视化Portainer界面</title>
+    <url>/2021/0502/portainer-install.html</url>
+    <content><![CDATA[<blockquote>
+<p>接上篇，我们安装好docker以后，很多时候我们为了直观的看到docker的运行情况，我们一般会安装一个可视化界面Portainer。</p>
+</blockquote>
+<h3 id="什么是Portainer"><a href="#什么是Portainer" class="headerlink" title="什么是Portainer"></a>什么是Portainer</h3><p>Portainer是Docker的图形化管理工具，提供状态显示面板、应用模板快速部署、容器镜像网络数据卷的基本操作（包括上传下载镜像，创建容器等操作）、事件日志显示、容器控制台操作、Swarm集群和服务等集中管理和操作、登录用户管理和控制等功能。</p>
+<h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查询当前有哪些Portainer镜像</span></span><br><span class="line">docker search portainer</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载镜像</span></span><br><span class="line">docker pull portainer/portainer</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行portainerUI图形界面</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-d后台运行 --name 命名 -p 小写p暴露指定端口，大写P随机暴露端口(需要确认端口号是开放的) -v挂载(后面详说)</span></span><br><span class="line">docker run -d --name portainerUI -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer</span><br></pre></td></tr></table></figure></div>
+<p>启动完后，我们ip+端口9000访问即可，看到如下界面证明访问成功！<br><a href="https://imgtu.com/i/gZxnOO"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/02/gZxnOO.png"
+                     
+                ></a><br>如果访问失败，则去看下端口安全组配置还有端口是否被占用!<br>注：如果登录页面看到了，创建用户却失败了；那就把容器删了，重新运行一下就好</p>
+<p>接下来，因为我们是当前的环境，所以我们选择LOCAL连接；<br><a href="https://imgtu.com/i/gep3tJ"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/02/gep3tJ.png"
+                     
+                ></a><br>可以从图中看到我们目前服务器的一些信息：其中包括服务器是2核4G的，数据卷相关配置信息保存在路径&#x2F;var&#x2F;run&#x2F;docker.sock下；运行部署的水为0,容器有1个，镜像有两个，数据卷共有3个，支持的是网络通信方式有3种；</p>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>不建议过于依赖这个图形化界面，docker的命令很多；我们还是要都去练习，才能熟系；就像宝塔一样，一定是你各种环境配置你会配置后，你再用图形化界面操作才能事半功倍；</p>
+<blockquote>
+<p>小结：protainer docker的图形化界面基本已经搭建完成；后面我们搭建docker swarm集群，k8s集群它都能提供一定的帮助；</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -612,451 +612,6 @@
 <h3 id="9-kafak测试消息分发机制"><a href="#9-kafak测试消息分发机制" class="headerlink" title="9.kafak测试消息分发机制"></a>9.kafak测试消息分发机制</h3><div class="highlight-container" data-rel="Sh"><figure class="iseeu highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">#集群中创建topic</span></span><br><span class="line">./bin/kafka-topics.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CnetOS103:9092 --create --topic topic01 --partitions 2 --replication-factor 2</span><br><span class="line"><span class="comment">#查看集群中创建了哪些topic</span></span><br><span class="line">./bin/kafka-topics.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CnetOS103:9092 --list</span><br><span class="line"><span class="comment">#查看集群中创建的topic的详细信息</span></span><br><span class="line">./bin/kafka-topics.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CnetOS103:9092 --describe --topic topic01</span><br><span class="line"><span class="comment">#修改topic的分区数，注意分区数只能由低改为高</span></span><br><span class="line">./bin/kafka-topics.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CnetOS103:9092 --alter --topic topic01 --partitions 3</span><br><span class="line"><span class="comment">#删除topic</span></span><br><span class="line">./bin/kafka-topics.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CnetOS103:9092 --delete --topic topic01</span><br><span class="line"><span class="comment">#查看kafka log日志发现实际上kafka是将日志文件打了个delete 标记</span></span><br><span class="line"><span class="built_in">ls</span> /usr/kafka-logs/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 消费者等待消费</span></span><br><span class="line">./bin/kafka-topics.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CnetOS103:9092 --create --topic topic01 --partitions 3 --replication-factor 3</span><br><span class="line">./bin/kafka-console-consumer.sh --bootstrap-server Cent101:9092,CentOS102:9092,CentOS103:9092 --topic topic01 --group g1 --property print.key=<span class="literal">true</span> --property print.value=<span class="literal">true</span> --property key.separator=,</span><br><span class="line"><span class="comment"># 上面意思为创建消费组g1 去消费topic01 并打印key 和 value 已逗号分割</span></span><br><span class="line"><span class="comment"># 生产者创建</span></span><br><span class="line">./bin/kafka-console-producer.sh --broker-list Cent101:9092,CentOS102:9092,CentOS103:9092 --topic topic01</span><br><span class="line"><span class="comment"># 查看消费组有哪些</span></span><br><span class="line">./bin/kafka-consumer-groups.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CentOS103:9092 --list</span><br><span class="line"><span class="comment"># 查看对应某个消费组的详细信息</span></span><br><span class="line">./bin/kafka-consumer-groups.sh --bootstrap-server CentOS101:9092,CentOS102:9092,CentOS103:9092 --describe --group g1</span><br></pre></td></tr></table></figure></div>]]></content>
       <categories>
         <category>kafka</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>linux上安装java</title>
-    <url>/2021/0423/install-java-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="前提说明"><a href="#前提说明" class="headerlink" title="前提说明"></a>前提说明</h4><p>搞这么久开发，是不是得自己搞台服务器呢？so,just do it！<br>那么，服务器的选择很多！自己的本子开个虚拟机玩一下也不是不可以，但是这玩意儿吃内存啊。后面整个mbp32g 的玩一下，我这13年上大学时买的thinkpad 加了内存换了移动硬盘只能满足平常办公用，开个idea,webstorm 跑个jemter压测啥的还是卡的不行，说到底还是系统的问题！废话不多说，其实各大厂商的云服务器大同小异，考虑稳定、性价比、易用性，本次我选择腾讯云！</p>
-<p>注册账号，申请啥的我就不说了，按照官网的指引来就好！</p>
-<p>新建一个实例，将会为你分配一个公网ip,密码啥的自己记得修改下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1StpIe.png"
-                     
-                ></p>
-<p>点击登录，这里我绑定的是微信扫码登录即可。可以发现要求密码或秘钥登录，懒得配秘钥，这里采用密码登录。<br>不在此处选择登录，这里登录时会打开一个网页版终端，操作不惯！<br>用xshell工具链接公网ip,我用的是Xshell+Xftp 整合版 这个方便好使，没有的私我可以发你<br>废话不多说，连它<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1StCPH.png"
-                     
-                ></p>
-<p>腾讯云centos 镜像你申请时已经安装好了，基础的环境已经有了，接下来就是像你平时和本地一样装java mysql tomcat 等类似了</p>
-<h4 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h4><p>查看yum库中的Java安装包：<br><code>yum -y list java*</code><br>将java-1.8.0的所有相关Java程序都安装上：<br><code>yum -y install java-1.8.0-openjdk*</code></p>
-<p>查看刚安装的Java版本信息。<br>输入：java -version 可查看Java版本<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SYzVO.png"
-                     
-                ></p>
-<p>输入：javac 可查看Java的编译器命令用法<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1StSaD.png"
-                     
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>jdk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装mysql</title>
-    <url>/2021/0423/install-mysql-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="mysql下载"><a href="#mysql下载" class="headerlink" title="mysql下载"></a>mysql下载</h4><p>先验证是否安装了mysql 若无输出则证明未安装过！执行命令:<br><code>rpm -qa | grep mysql</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skpTJ.png"
-                     
-                ><br>先下载mysql的repo源，这玩意儿又叫mysql源，字面上理解就是mysql的源码,执行命令：<br><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sFvOU.png"
-                     
-                ></p>
-<p>安装mysql-community-release-el7-5.noarch.rpm包,执行命令：<br><code>sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sFzmF.png"
-                     
-                ></p>
-<p>安装mysql，执行命令：<br><code>sudo yum install mysql-server</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skPYR.png"
-                     
-                ></p>
-<p>可以看到130多M还是挺大的<br>输入y确认，开始下载！好不容易到100%，还得下载依赖，继续y确认下载<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skif1.png"
-                     
-                ><br>可算ojbk了，继续！</p>
-<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>登录然后重置密码,执行：<br><code>mysql -u root</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skAl6.png"
-                     
-                ></p>
-<p>原因是&#x2F;var&#x2F;lib&#x2F;mysql的访问权限问题。下面的命令把&#x2F;var&#x2F;lib&#x2F;mysql的拥有者改为当前用户<br>执行命令赋权，重启mysql：<br><code>sudo chown -R openscanner:openscanner /var/lib/mysql</code><br><code>service mysqld restart</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skCk9.png"
-                     
-                ></p>
-<p>再次重置密码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=password(&#x27;123456&#x27;) where user=&#x27;root&#x27;;</span><br><span class="line">exit;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skm0e.png"
-                     
-                ></p>
-<p>测试链接一下:<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sknTH.png"
-                     
-                ></p>
-<p>原因：mysql服务器 root 默认只允许 localhost 也就是 127.0.0.1 连接<br>登录mysql: <code>mysql -u root -p</code><br>输入密码:直接回车即可  输入了会报错如下所示<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skemD.png"
-                     
-                ></p>
-<h4 id="解决连接报错"><a href="#解决连接报错" class="headerlink" title="解决连接报错"></a>解决连接报错</h4><p>继续<code>mysql -u root -p</code>  回车  然后执行以下命令：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">use mysql; 选择mysql库</span><br><span class="line">select host from user where user=&#x27;root&#x27;;查看mysql库中的user表的host值（即可进行连接访问的主机/IP名称）</span><br><span class="line">update user set host = &#x27;%&#x27; where user =&#x27;root&#x27;; 修改host值（以通配符%的内容增加主机/IP地址），当然也可以直接增加IP地址 %通配符表示所有ip都允许通过root账号链接</span><br><span class="line">flush privileges; 刷新MySQL的系统权限相关表</span><br><span class="line">select host from user where user=&#x27;root&#x27;; 再重新查看user表时，有修改。。</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<h4 id="重连测试"><a href="#重连测试" class="headerlink" title="重连测试"></a>重连测试</h4><p>然后这时候用客户端重连一下试试：ok啦<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skKkd.png"
-                     
-                ></p>
-<p>创建个数据库测试，对了 新建的数据打开自带了三个库  别手贱删哈，你表的创建执行都和这里面的表相关，不然你commit rollback 它怎么知道的，我之前本地安装mysql学习时手贱删过，后来发现数据再执行sql操作时就报错，找了各种办法最后重装才解决，所以不懂要么去研究要么不要动。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skVOO.png"
-                     
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skMtA.png"
-                     
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装nginx</title>
-    <url>/2021/0423/install-ngnix-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="解压安装："><a href="#解压安装：" class="headerlink" title="解压安装："></a>解压安装：</h4><p>nginx按装一定要使用命令安装，因为需要解压后编译 已经配置成全局的<br>下载常用的包，高版本的安装出了一次问题，就切换成低版本的了，如图：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sS2RO.png"
-                     
-                ></p>
-<p>接下来执行以下命令：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr  进入压缩文件存放目录</span><br><span class="line">tar -xzvf nginx-1.13.9.tar.gz   解压</span><br><span class="line">cd  nginx-1.13.9 进入解压后文件</span><br><span class="line">mkdir /usr/local/nginx   在local目录下新建nginx目录</span><br><span class="line">./configure --prefix=/usr/local/nginx   配置成全局</span><br><span class="line">make &amp;&amp; make install  安装</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>but….执行到第5步报错了，报错信息如下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSci6.png"
-                     
-                ></p>
-<p>the HTTP rewrite module requires the PCRE library HTTP重写模块需要PCRE库<br>什么鬼？pcre 是啥？一脸懵逼吧，本地装ngnix解压就好了  没这么坑啊！ 所以，装环境还是和本地有一点区别的，但是大同小异不要慌！你遇到了别人一定也遇到了，让我们来了解下什么叫pcre:<br>详见此篇博客：安装 Nginx 前 必须安装 PCRE—<a class="link"   href="https://www.jianshu.com/p/14c81fbcb401" >https://www.jianshu.com/p/14c81fbcb401 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>不懂就学嘛(百度)！</p>
-<p>使用以下命令安装：yum -y install zlib zlib-devel openssl openssl–devel pcre pcre-devel</p>
-<p>再次执行5.6命令  发现：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSyIx.png"
-                     
-                ></p>
-<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><p>wtf? 没有配置环境变量！！！<br>执行vim &#x2F;etc&#x2F;profile<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSsd1.png"
-                     
-                ></p>
-<p>记住以上框出来的命令，o 只读  e编辑  r覆盖  q退出  a取消<br>编辑后一直向下键看到for循环后加上以下代码：<br>PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin<br>export PATH<br>:wq!</p>
-<p>:wq表示保存并退出vi编辑模式   ———题外话：linux下命令真的要学一下<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSrZR.png"
-                     
-                ></p>
-<p>退出来后执行：source &#x2F;etc&#x2F;profile 使配置生效  还是在&#x2F;usr&#x2F;local&#x2F;sbin 目录下执行</p>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>然后因为nginx 是全局的了，可以直接在根目录下执行nginx 浏览器输入公网ip，不带端口哈出现如下界面表示nginx启动成功！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSRzD.png"
-                     
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装redis</title>
-    <url>/2021/0423/install-redis-linux.html</url>
-    <content><![CDATA[<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h4 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h4><p>作为一名开发，面试最常问的恐怕就有你们开发过程中用过什么缓存？能否简单谈谈redis等等<br>so,作为一个可基于内存持久化的、日志级别的、非关型数据库，学习和掌握好它还是很有必要的。<br>上面mysql 安装到了usr下面  所有我也会将redis安装到其下<br>进入到usr目录下：<code>cd /usr</code><br>下载安装包：<br><code>wget http://download.redis.io/releases/redis-5.0.5.tar.gz</code><br>打开服务器目录刷新就会看到对应的包在usr下生成了:<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sVoj0.png"
-                     
-                ></p>
-<p>解压:<code>tar xzf redis-5.0.5.tar.gz</code><br>查看解压后的文件：<code>ls -al</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sVbHU.png"
-                     
-                ></p>
-<h4 id="安装，配置后台运行"><a href="#安装，配置后台运行" class="headerlink" title="安装，配置后台运行"></a>安装，配置后台运行</h4><p>进入安装目录：<code>cd redis-5.0.5</code><br>安装：<code>make</code><br>–接下来一定要执行: <code>make install</code>  此命令意思是拷贝redis的相关文件到&#x2F;usr&#x2F;local&#x2F;bin这个目录下 不执行这个命令将不执行<code>redis-server redis.conf</code>这个命令是不会执行的<br>进入当前src 目录下，会有redis服务端程序redis-server和用于测试的客户端程序redis-cli<br>进入src目录：<code>cd src</code><br>查看对应的文件：<code>ls -al</code><br>配置redis.conf文件，将redis设为后台运行<br>redis默认不是守护进程，也就是说只要在linux上做了其他操作、或者exit强制退出、或者关闭连接工具（putty&#x2F;xshell）等，都会导致redis进程退出，这样非常的麻烦，所以需要让redis服务端在后台运行，即守护进程模式。当redis.conf配置文件中，daemonize属性值设为yes时，代表开启守护进程。<br>编辑redis.conf文件：<code>vi redis.conf</code><br>搜索对应的配置：<code>/daemonize</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sVX4J.png"
-                     
-                ></p>
-<p>将no改为yes: 按i进入编辑模式  改完esc退出编辑模式   回车 输入:wq!保存并退出<br>—-redis数据库默认不设密码，但这样会自动开启保护模式，只能本地访问，不能远程访问。所以为了能远程访问，就必须设置密码<br>配置密码：<code>vi redis.conf </code><br>搜索redis密码：<code>/requirepass foobared </code> 改为123456 同上保存并退出<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZ9u6.png"
-                     
-                ></p>
-<h4 id="启动配置："><a href="#启动配置：" class="headerlink" title="启动配置："></a>启动配置：</h4><p>进入到bin目录下安装启动配置：<br><code>cd /usr/redis-5.0.5</code><br><code>./utils/install_server.sh</code><br>默认的配置文件是6379.conf<br>默认的日志文件是redis_6379.log<br>默认的运行实例是6379<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZegI.png"
-                     
-                ></p>
-<p>直接启动：<code>service redis_6379 start</code><br>停止：<code>service redis_6379 stop</code><br>查看进程：<code>ps -aux | grep redis</code><br>启动和停止可以看到 进程的变化<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZUK0.png"
-                     
-                ></p>
-<p>配置公网链接：为了是其他机器能够链接这台服务器<br>需要更改配置将redis.conf中bind 127.0.0.1注释掉！<br>执行：<code>cd /usr/redis-5.0.5</code><br><code>vi redis.conf</code> 修改 完成后 需要重复执行 上面的“启动配置” 步骤 让修改的配置生效<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZD54.png"
-                     
-                ></p>
-<p>查看进程：<code>ps -aux | grep redis</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZsPJ.png"
-                     
-                ></p>
-<p>杀掉进程：<code>kill -9 进程号</code><br>重启redis: <code>service redis_6379 start</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZRr6.png"
-                     
-                ></p>
-<p>后面的server * 代表允许所有的ip访问<br>此时再用redis 客户端链接测试  链接成功！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZ5Ie.png"
-                     
-                ></p>
-<h4 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h4><p>那链接上了，我们来测试一下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZ7RA.png"
-                     
-                ></p>
-<p>刷新客户端看下有没有写进来：ok 写进来了<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1seCzn.png"
-                     
-                ></p>
-<p>好了，那么这个地方16个 db又是代表什么意思呢？学东西还是要有不断追问的能力，当你一步一步的自我解答寻找答案的时候就是慢慢掌握的时候！<br>Redis支持多个数据库，并且每个数据库的数据是隔离的不能共享，并且基于单机才有，如果是集群就没有数据库的概念。<br>Redis是一个字典结构的存储服务器，而实际上一个Redis实例提供了多个用来存储数据的字典，客户端可以指定将数据存储在哪个字典中，这1-16其实就是代表16个字典！<br>那么怎么用呢？  像sql语句一样  但是又不是  redis一个实例下默认有16个字典库，select 1代表选用1号字典库，同一个库中插入相同的key 后面的value值将会覆盖前面的值！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1seVdU.png"
-                     
-                ></p>
-<p>看看字典1库中值：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1senJJ.png"
-                     
-                ></p>
-<p>自此，我们已经完成了redis 单台服务器的搭建测试和客户端工具的测试！</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装tomcat</title>
-    <url>/2021/0423/install-tomcat-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h4><p>接下来装个最简单的web服务器tomcat吧，人家idea就是内置tomcat的，不要看不起他<br>官网下载，这次我下载的tomcat9 按道理版本越高兼容性越好，就他了！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUmCQ.md.png"
-                      border="0" 
-                ><br>将本地的tomcat 解压到服务器上，一般的xshell xftp 是分离的 所以你要用两个工具（这个时候就体现出Xshell+Xftp 整合版的便携性了），输两次密码连接，这时候就体现这工具的便携性了，直接点这个打开服务器目录<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUZ4g.png"
-                      border="0" 
-                ><br>我没有使用命令上传然后解压，其实文件不大，上传速度很快！<br>然后，进到bin目录下 启动tomcat 如果遇到没有权限 输入最后两个命令即可</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /data/apache-tomcat-9.0.30/bin</span><br><span class="line">chmod u+x *.sh</span><br><span class="line">./startup.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUkHf.png"
-                      border="0" 
-                >
-
-<h4 id="测试8080端口"><a href="#测试8080端口" class="headerlink" title="测试8080端口"></a>测试8080端口</h4><p>然后浏览器输入 公网ip+默认端口8080 即可看到tomcat启动页：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUFDP.png"
-                      border="0" 
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云OSS SDk实践篇</title>
-    <url>/2021/0423/aliyun-oss-sdk.html</url>
-    <content><![CDATA[<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><blockquote>
-<p>我们知道一般的热点数据我们直接存到数据库，但是类似一些表格模板，附件等静态资源放在哪里呢？</p>
-</blockquote>
-<ul>
-<li>数据库</li>
-<li>数据库 + 本地文件（IO流）</li>
-<li>数据库 + 缓存 + 文件服务器（Hdfs 、fastDFS、服务器集群）</li>
-<li>数据库 + 缓存 + 文件存储（对象存储服务OSS）</li>
-</ul>
-<p>因为阿里云提供了各种常用语言的SDK,所以进行文件的存储就变得十分简单，那本文就来介绍下阿里云的对象存储OSS使用。</p>
-<h4 id="开通OSS服务"><a href="#开通OSS服务" class="headerlink" title="开通OSS服务"></a>开通OSS服务</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9YFoj.png"
-                     
-                ></p>
-<p>搜索后，购买直接就可以使用，它是按流量计算费用的，话说我们买个10块钱的足够我们基本的学习使用了，不够了再充值嘛！我这里因为用的就是阿里云服务器，所以好像是赠送了40G的存储，具体也懒的去了解，反正没要我再交钱就是。</p>
-<h4 id="了解阿里云OSS"><a href="#了解阿里云OSS" class="headerlink" title="了解阿里云OSS"></a>了解阿里云OSS</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9NvWR.png"
-                     
-                ></p>
-<p>通过了解它的官方文档，我们基本可以知道阿里云OSS提供了面向各种常用语言的SDk，通过这些SDK我们基本可以知道如何使用了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9a7aF.png"
-                     
-                ></p>
-<p>点击<code>JAVA SDK快速入门</code>我们可以看到对应的maven 工程示例；这里自己点进去了解即可！</p>
-<p>题外话: 后面对于其他东西的学习，个人建议都是先找官方文档了解，至于本篇博客个人也只是做个笔记，记录下简单的使用，肯定不如官网的全面。</p>
-<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><h4 id="1-创建Bucket"><a href="#1-创建Bucket" class="headerlink" title="1.创建Bucket"></a>1.创建Bucket</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9WhHH.png"
-                     
-                ></p>
-<p>如果你听了我的建议，了解过JAVA SDk 中的工程例子，我想你应该知道要使用OSS 需要4个参数：</p>
-<ul>
-<li>endpoint</li>
-<li>AccessKeyID</li>
-<li>AccessKeySecret</li>
-<li>bucketName</li>
-</ul>
-<p>这里我们先记录下 <code>bucketName: oss-study01</code>;<code>endpoint:oss-cn-beijing.aliyuncs.com</code></p>
-<h4 id="2-创建文件夹"><a href="#2-创建文件夹" class="headerlink" title="2.创建文件夹"></a>2.创建文件夹</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9fILF.png"
-                     
-                ></p>
-<p>创建一个存放图片的文件夹images</p>
-<h4 id="3-上传一张图片测试"><a href="#3-上传一张图片测试" class="headerlink" title="3.上传一张图片测试"></a>3.上传一张图片测试</h4><p>注意：是点击进此文件后再上传</p>
-<p>这里我们选择单个文件的权限是公共读，当然你也可以通过修改整个文件的权限，目前此文件夹我们没修改就是默认的私有的！</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J94nc6.png"
-                     
-                ></p>
-<h4 id="4-访问控制"><a href="#4-访问控制" class="headerlink" title="4.访问控制"></a>4.访问控制</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J95Ar8.png"
-                     
-                ></p>
-<p>添加用户组–&gt;创建用户–&gt;添加用户到用户组–&gt;分配用户组权限–&gt;保存账号信息</p>
-<p>其实就像我们的系统的权限，角色和用户的关系，某些用户是某些角色，某些角色就具有某些分配好的权限！</p>
-<p>具体步骤截图如下：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9Irpn.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9oDED.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9oXrV.png"
-                     
-                ></p>
-<p>记录下</p>
-<ul>
-<li><p>AccessKeyID: LTAI4FoYHgbk2y3woYH191Ys</p>
-</li>
-<li><p>AccessKeySecret：FVZzvz4G9e39ako5vVMASYryrbpnJu</p>
-</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9TQxI.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9TyZT.png"
-                     
-                ></p>
-<h3 id="测试SDK"><a href="#测试SDK" class="headerlink" title="测试SDK"></a>测试SDK</h3><h4 id="1-创建微服务，引入阿里OSS依赖"><a href="#1-创建微服务，引入阿里OSS依赖" class="headerlink" title="1.创建微服务，引入阿里OSS依赖"></a>1.创建微服务，引入阿里OSS依赖</h4><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<h4 id="2-测试"><a href="#2-测试" class="headerlink" title="2. 测试"></a>2. 测试</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.coding.aliyunoss;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.CannedAccessControlList;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.GetObjectRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.OSSObjectSummary;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.ObjectListing;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OSSTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">endpoint</span> <span class="operator">=</span> <span class="string">&quot;oss-cn-beijing.aliyuncs.com&quot;</span>;</span><br><span class="line">    <span class="comment">// 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。</span></span><br><span class="line">    <span class="comment">// 强烈建议您创建并使用RAM账号进行API访问或日常运维，</span></span><br><span class="line">    <span class="comment">// 请登录 https://ram.console.aliyun.com 创建RAM账号。</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeyId</span> <span class="operator">=</span> <span class="string">&quot;LTAI4GKkPcWRY6zDgxBwgjaS&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeySecret</span> <span class="operator">=</span> <span class="string">&quot;fvQ0rtW2ezAS4jiMCjIp7JrzKSCmPJ&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">bucketName</span> <span class="operator">=</span> <span class="string">&quot;oss-study01&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否 bucketName，如果不存在就创建，修改权限</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建oss 实例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCreate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        ossClient.createBucket(bucketName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断当前实例是否存在</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testExist</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">exist</span> <span class="operator">=</span> ossClient.doesBucketExist(bucketName);</span><br><span class="line">        System.out.println(exist);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 修改权限 公共读</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        ossClient.setBucketAcl(bucketName,CannedAccessControlList.PublicRead);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件流。</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFileUpload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// 上传到 oss 后需要一个文件名(保证唯一 /2020/4/1/xxxxxxxx.jpg)！</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.putObject(bucketName, objectName, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;C:\\Users\\Administrator\\Desktop\\dafault.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下载文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDownload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.getObject(<span class="keyword">new</span> <span class="title class_">GetObjectRequest</span>(bucketName,objectName),<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;a.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看文件列表</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testShowList</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// ossClient.listObjects返回ObjectListing实例，包含此次listObject请求的返回结果。</span></span><br><span class="line">        <span class="type">ObjectListing</span> <span class="variable">objectListing</span> <span class="operator">=</span> ossClient.listObjects(bucketName);</span><br><span class="line">        <span class="comment">// objectListing.getObjectSummaries获取所有文件的描述信息。</span></span><br><span class="line">        <span class="keyword">for</span> (OSSObjectSummary objectSummary : objectListing.getObjectSummaries()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot; - &quot;</span> + objectSummary.getKey() + <span class="string">&quot;  &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;(size = &quot;</span> + objectSummary.getSize() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDeleted</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.deleteObject(bucketName,objectName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>好了，后面我们就可以用接口调用，完成我们文件的上传和下载了。是不是很简单？赶快试试吧；加油，奥利给！</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>sdk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装jenkins(待填坑)</title>
-    <url>/2021/0423/install-jenkins-linux.html</url>
-    <content><![CDATA[<h4 id="项目部署步骤："><a href="#项目部署步骤：" class="headerlink" title="项目部署步骤："></a>项目部署步骤：</h4>]]></content>
-      <categories>
-        <category>linux</category>
       </categories>
   </entry>
   <entry>
@@ -1390,6 +945,55 @@
       </tags>
   </entry>
   <entry>
+    <title>包总是太大？maven一个配置教你瘦身</title>
+    <url>/2021/0423/maven-package-to-small.html</url>
+    <content><![CDATA[<blockquote>
+<p>微服务项目越来越多，特别是一个父工程下有多个子工程这种，每次打包都发现一个包都有40～50M；但是实际上有的项目代码是没有多少的，那为什么打完包后还是有这么大呢？</p>
+</blockquote>
+<p>其实是因为打成的包是一个可执行的jar,对应的依赖jar也被打包进去了。但是对于我们来说，若是其实项目的依赖的jar就那么多，我们能不能打包单个微服务时，不将这些依赖的jar打包进去，而是在项目运行启动的时候指定依赖jar的地址让其运行就可以了呢？</p>
+<p>答案是肯定的，maven改写下配置文件即可实现。话不多说，我们开始：</p>
+<h3 id="直接执行打包"><a href="#直接执行打包" class="headerlink" title="直接执行打包"></a>直接执行打包</h3><p>这里以一个开源的项目bootdo为例，直接执行打包<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/16/UrIDO0.jpg"
+                      alt="88M"
+                ></p>
+<p>我们可以解压看下，其实就是因为依赖的jar包被打包进去了，才会有88M之多！<br>我们将打包后的这个文件夹改名增加后缀“_old”，并且文件夹类型改为zip后，再使用命令</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">unzip -d bootdo-2.0.0_old bootdo-2.0.0_old.zip</span><br></pre></td></tr></table></figure></div>
+<p>如下图所示：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/17/UrbkV0.png"
+                     
+                ></p>
+<p>我们点开解压后的文件，可以看到项目依赖的jar包都在BOOT-INF&#x2F;lib下；</p>
+<h3 id="更改mvn打包配置"><a href="#更改mvn打包配置" class="headerlink" title="更改mvn打包配置"></a>更改mvn打包配置</h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>true<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- spring-boot:run 中文乱码解决 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">jvmArguments</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.bootdo.BootdoApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">layout</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--注：若是有子工程这样添加进来，我这里bootdo就是一个单独的工程所以这里我只添加一个 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.bootdo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bootdo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>添加这些配置后，我们再次打包看下大小（注：直接package，不要clean，不然你解压的jar后面指定不了！）：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/17/Ur7YTK.png"
+                      alt="22M"
+                ><br>可以看到，我们打完包后只有22M的一个大小了，因为本项目包含了很多静态文件，例如图片图标啥的（其实这些都可以无损压缩下的）所以还是有20M多，但是基本已经是以前的1&#x2F;4大小了；</p>
+<h3 id="如何启动"><a href="#如何启动" class="headerlink" title="如何启动"></a>如何启动</h3><p>很明显，我们直接运行现在的jar包是无法运行的，我们必须告诉编译器项目运行jar的位置</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">java -Dloader.path=./bootdo-2.0.0_old/BOOT-INF/lib/ -jar bootdo-2.0.0.jar</span><br></pre></td></tr></table></figure></div>
+<p>如下图所示，我们指定了mvn其他依赖的位置后，就可以启动此项目了；<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/17/UrqYT0.png"
+                     
+                ></p>
+<blockquote>
+<p>小结：这是我本地的演示，那么实际到项目上时，我们可以第一次打包将需要的jar包放到指定的位置，后面jenkin打包或手动启动时，指定路径即可。是不是很简单，那就赶快尝试下吧！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>mvn</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>工作流二次开发之新增表单实践2</title>
     <url>/2021/0423/activity-practice-2.html</url>
     <content><![CDATA[<blockquote>
@@ -1477,55 +1081,6 @@
       </categories>
       <tags>
         <tag>activity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>包总是太大？maven一个配置教你瘦身</title>
-    <url>/2021/0423/maven-package-to-small.html</url>
-    <content><![CDATA[<blockquote>
-<p>微服务项目越来越多，特别是一个父工程下有多个子工程这种，每次打包都发现一个包都有40～50M；但是实际上有的项目代码是没有多少的，那为什么打完包后还是有这么大呢？</p>
-</blockquote>
-<p>其实是因为打成的包是一个可执行的jar,对应的依赖jar也被打包进去了。但是对于我们来说，若是其实项目的依赖的jar就那么多，我们能不能打包单个微服务时，不将这些依赖的jar打包进去，而是在项目运行启动的时候指定依赖jar的地址让其运行就可以了呢？</p>
-<p>答案是肯定的，maven改写下配置文件即可实现。话不多说，我们开始：</p>
-<h3 id="直接执行打包"><a href="#直接执行打包" class="headerlink" title="直接执行打包"></a>直接执行打包</h3><p>这里以一个开源的项目bootdo为例，直接执行打包<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/16/UrIDO0.jpg"
-                      alt="88M"
-                ></p>
-<p>我们可以解压看下，其实就是因为依赖的jar包被打包进去了，才会有88M之多！<br>我们将打包后的这个文件夹改名增加后缀“_old”，并且文件夹类型改为zip后，再使用命令</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">unzip -d bootdo-2.0.0_old bootdo-2.0.0_old.zip</span><br></pre></td></tr></table></figure></div>
-<p>如下图所示：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/17/UrbkV0.png"
-                     
-                ></p>
-<p>我们点开解压后的文件，可以看到项目依赖的jar包都在BOOT-INF&#x2F;lib下；</p>
-<h3 id="更改mvn打包配置"><a href="#更改mvn打包配置" class="headerlink" title="更改mvn打包配置"></a>更改mvn打包配置</h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>true<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- spring-boot:run 中文乱码解决 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">jvmArguments</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.bootdo.BootdoApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">layout</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--注：若是有子工程这样添加进来，我这里bootdo就是一个单独的工程所以这里我只添加一个 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.bootdo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bootdo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-<p>添加这些配置后，我们再次打包看下大小（注：直接package，不要clean，不然你解压的jar后面指定不了！）：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/17/Ur7YTK.png"
-                      alt="22M"
-                ><br>可以看到，我们打完包后只有22M的一个大小了，因为本项目包含了很多静态文件，例如图片图标啥的（其实这些都可以无损压缩下的）所以还是有20M多，但是基本已经是以前的1&#x2F;4大小了；</p>
-<h3 id="如何启动"><a href="#如何启动" class="headerlink" title="如何启动"></a>如何启动</h3><p>很明显，我们直接运行现在的jar包是无法运行的，我们必须告诉编译器项目运行jar的位置</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">java -Dloader.path=./bootdo-2.0.0_old/BOOT-INF/lib/ -jar bootdo-2.0.0.jar</span><br></pre></td></tr></table></figure></div>
-<p>如下图所示，我们指定了mvn其他依赖的位置后，就可以启动此项目了；<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/17/UrqYT0.png"
-                     
-                ></p>
-<blockquote>
-<p>小结：这是我本地的演示，那么实际到项目上时，我们可以第一次打包将需要的jar包放到指定的位置，后面jenkin打包或手动启动时，指定路径即可。是不是很简单，那就赶快尝试下吧！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>mvn</tag>
       </tags>
   </entry>
   <entry>
@@ -2008,37 +1563,6 @@
       </tags>
   </entry>
   <entry>
-    <title>浅谈事务的四大特性及多线程事务问题</title>
-    <url>/2021/0423/4-characteristics-of-transaction.html</url>
-    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>事务是指一段程序应用中，所有的操作都在一个执行单元内，一旦一个操作失败，那么其他的操作都会回滚，简单来说要么全部执行成功，要么全部执行失败；</p>
-<h3 id="事务的四大特性（简称ACID）"><a href="#事务的四大特性（简称ACID）" class="headerlink" title="事务的四大特性（简称ACID）"></a>事务的四大特性（简称ACID）</h3><ul>
-<li><p>原子性：原子性是指事务包含的操作是一个极小的操作单元，是不可拆分的；其中的操作要么全部完成，要么全部不完成；在事务执行的过程中，如果出现运行时异常事务会回滚，那么事务会回滚到之前没有执行的状态；</p>
-</li>
-<li><p>一致性：一致性是指事务必须使数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态。拿转账来说，假设用户A和用户B两者的钱加起来一共是5000，那么不管A和B之间如何转账，转几次账，事务结束后两个用户的钱相加起来应该还得是5000，这就是事务的一致性。</p>
-</li>
-<li><p>隔离性：隔离性是对于多线程并发来说的，比如线程A和线程B,他们之间的事务的执行是隔离的，不会互相干扰，对于彼此来说是不可见得；对于事务的隔离机制，主要是数据提供的几种隔离级别；例如mysql提供了4种隔离级别：① Serializable (串行化)：可避免脏读、不可重复读、幻读的发生。② Repeatable read (可重复读)：可避免脏读、不可重复读的发生。③ Read committed (读已提交)：可避免脏读的发生。④ Read uncommitted (读未提交)：最低级别，任何情况都无法保证。其中mysql默认的是第二种可重复读；</p>
-</li>
-<li><p>持久性：持久性是指一个事务一旦提交后，那么数据库的状态就是永久的，不可更改了；</p>
-</li>
-</ul>
-<h3 id="spring中如何管理事务的？"><a href="#spring中如何管理事务的？" class="headerlink" title="spring中如何管理事务的？"></a>spring中如何管理事务的？</h3><p>这是面试中常问的了，我们都知道spring的IOC和AOP两大特点，其中AOP的典型应用就是事务的管理；spring容器通过AOP，在需要控制的事务的方法前加上开启事务的控制器，在其后加上事务的提交和回滚方法，这样就使事务在我们的方法中生效了；当然AOP的事务控制肯定不是我说的这么简单，但是原理大致是这样；具体可以看<code>PlatformTransactionManager</code>事务管理器中的源码了解，这里不再发散哈；</p>
-<p>其实我们Spring中在方法上加上<code>@Transactional</code>注解，就是声明式的事务控制方式，但是使用此注解，需要注意Spring中事务控制中只捕获了运行时异常，对于非运行时的异常，没有捕获，通常我们需要指定<code>rollbackFor=Exception.class</code>,对于有可能执行很长时间的事务，我们还需要声明超时时间<code>timeOut=60*3</code>;</p>
-<h3 id="多线程中事务是互相隔离的吗？"><a href="#多线程中事务是互相隔离的吗？" class="headerlink" title="多线程中事务是互相隔离的吗？"></a>多线程中事务是互相隔离的吗？</h3><p>我们写个例子测试一下,首先我们建一张表User表，其次我们多线程插入一些数据看下，当循环到某一次手动抛出一个异常看下；</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-
-
-
-
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>事务</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅谈jvm虚拟机</title>
     <url>/2021/0423/jvm-talk.html</url>
     <content><![CDATA[<blockquote>
@@ -2302,6 +1826,37 @@
       </tags>
   </entry>
   <entry>
+    <title>浅谈事务的四大特性及多线程事务问题</title>
+    <url>/2021/0423/4-characteristics-of-transaction.html</url>
+    <content><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>事务是指一段程序应用中，所有的操作都在一个执行单元内，一旦一个操作失败，那么其他的操作都会回滚，简单来说要么全部执行成功，要么全部执行失败；</p>
+<h3 id="事务的四大特性（简称ACID）"><a href="#事务的四大特性（简称ACID）" class="headerlink" title="事务的四大特性（简称ACID）"></a>事务的四大特性（简称ACID）</h3><ul>
+<li><p>原子性：原子性是指事务包含的操作是一个极小的操作单元，是不可拆分的；其中的操作要么全部完成，要么全部不完成；在事务执行的过程中，如果出现运行时异常事务会回滚，那么事务会回滚到之前没有执行的状态；</p>
+</li>
+<li><p>一致性：一致性是指事务必须使数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态。拿转账来说，假设用户A和用户B两者的钱加起来一共是5000，那么不管A和B之间如何转账，转几次账，事务结束后两个用户的钱相加起来应该还得是5000，这就是事务的一致性。</p>
+</li>
+<li><p>隔离性：隔离性是对于多线程并发来说的，比如线程A和线程B,他们之间的事务的执行是隔离的，不会互相干扰，对于彼此来说是不可见得；对于事务的隔离机制，主要是数据提供的几种隔离级别；例如mysql提供了4种隔离级别：① Serializable (串行化)：可避免脏读、不可重复读、幻读的发生。② Repeatable read (可重复读)：可避免脏读、不可重复读的发生。③ Read committed (读已提交)：可避免脏读的发生。④ Read uncommitted (读未提交)：最低级别，任何情况都无法保证。其中mysql默认的是第二种可重复读；</p>
+</li>
+<li><p>持久性：持久性是指一个事务一旦提交后，那么数据库的状态就是永久的，不可更改了；</p>
+</li>
+</ul>
+<h3 id="spring中如何管理事务的？"><a href="#spring中如何管理事务的？" class="headerlink" title="spring中如何管理事务的？"></a>spring中如何管理事务的？</h3><p>这是面试中常问的了，我们都知道spring的IOC和AOP两大特点，其中AOP的典型应用就是事务的管理；spring容器通过AOP，在需要控制的事务的方法前加上开启事务的控制器，在其后加上事务的提交和回滚方法，这样就使事务在我们的方法中生效了；当然AOP的事务控制肯定不是我说的这么简单，但是原理大致是这样；具体可以看<code>PlatformTransactionManager</code>事务管理器中的源码了解，这里不再发散哈；</p>
+<p>其实我们Spring中在方法上加上<code>@Transactional</code>注解，就是声明式的事务控制方式，但是使用此注解，需要注意Spring中事务控制中只捕获了运行时异常，对于非运行时的异常，没有捕获，通常我们需要指定<code>rollbackFor=Exception.class</code>,对于有可能执行很长时间的事务，我们还需要声明超时时间<code>timeOut=60*3</code>;</p>
+<h3 id="多线程中事务是互相隔离的吗？"><a href="#多线程中事务是互相隔离的吗？" class="headerlink" title="多线程中事务是互相隔离的吗？"></a>多线程中事务是互相隔离的吗？</h3><p>我们写个例子测试一下,首先我们建一张表User表，其次我们多线程插入一些数据看下，当循环到某一次手动抛出一个异常看下；</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>事务</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>记一个递归封装树形结构</title>
     <url>/2021/0423/recursion-for-tree.html</url>
     <content><![CDATA[<blockquote>
@@ -2355,6 +1910,451 @@
       <tags>
         <tag>aspect</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>linux上安装java</title>
+    <url>/2021/0423/install-java-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="前提说明"><a href="#前提说明" class="headerlink" title="前提说明"></a>前提说明</h4><p>搞这么久开发，是不是得自己搞台服务器呢？so,just do it！<br>那么，服务器的选择很多！自己的本子开个虚拟机玩一下也不是不可以，但是这玩意儿吃内存啊。后面整个mbp32g 的玩一下，我这13年上大学时买的thinkpad 加了内存换了移动硬盘只能满足平常办公用，开个idea,webstorm 跑个jemter压测啥的还是卡的不行，说到底还是系统的问题！废话不多说，其实各大厂商的云服务器大同小异，考虑稳定、性价比、易用性，本次我选择腾讯云！</p>
+<p>注册账号，申请啥的我就不说了，按照官网的指引来就好！</p>
+<p>新建一个实例，将会为你分配一个公网ip,密码啥的自己记得修改下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1StpIe.png"
+                     
+                ></p>
+<p>点击登录，这里我绑定的是微信扫码登录即可。可以发现要求密码或秘钥登录，懒得配秘钥，这里采用密码登录。<br>不在此处选择登录，这里登录时会打开一个网页版终端，操作不惯！<br>用xshell工具链接公网ip,我用的是Xshell+Xftp 整合版 这个方便好使，没有的私我可以发你<br>废话不多说，连它<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1StCPH.png"
+                     
+                ></p>
+<p>腾讯云centos 镜像你申请时已经安装好了，基础的环境已经有了，接下来就是像你平时和本地一样装java mysql tomcat 等类似了</p>
+<h4 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h4><p>查看yum库中的Java安装包：<br><code>yum -y list java*</code><br>将java-1.8.0的所有相关Java程序都安装上：<br><code>yum -y install java-1.8.0-openjdk*</code></p>
+<p>查看刚安装的Java版本信息。<br>输入：java -version 可查看Java版本<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SYzVO.png"
+                     
+                ></p>
+<p>输入：javac 可查看Java的编译器命令用法<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1StSaD.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>jdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装mysql</title>
+    <url>/2021/0423/install-mysql-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="mysql下载"><a href="#mysql下载" class="headerlink" title="mysql下载"></a>mysql下载</h4><p>先验证是否安装了mysql 若无输出则证明未安装过！执行命令:<br><code>rpm -qa | grep mysql</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skpTJ.png"
+                     
+                ><br>先下载mysql的repo源，这玩意儿又叫mysql源，字面上理解就是mysql的源码,执行命令：<br><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sFvOU.png"
+                     
+                ></p>
+<p>安装mysql-community-release-el7-5.noarch.rpm包,执行命令：<br><code>sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sFzmF.png"
+                     
+                ></p>
+<p>安装mysql，执行命令：<br><code>sudo yum install mysql-server</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skPYR.png"
+                     
+                ></p>
+<p>可以看到130多M还是挺大的<br>输入y确认，开始下载！好不容易到100%，还得下载依赖，继续y确认下载<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skif1.png"
+                     
+                ><br>可算ojbk了，继续！</p>
+<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>登录然后重置密码,执行：<br><code>mysql -u root</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skAl6.png"
+                     
+                ></p>
+<p>原因是&#x2F;var&#x2F;lib&#x2F;mysql的访问权限问题。下面的命令把&#x2F;var&#x2F;lib&#x2F;mysql的拥有者改为当前用户<br>执行命令赋权，重启mysql：<br><code>sudo chown -R openscanner:openscanner /var/lib/mysql</code><br><code>service mysqld restart</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skCk9.png"
+                     
+                ></p>
+<p>再次重置密码：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=password(&#x27;123456&#x27;) where user=&#x27;root&#x27;;</span><br><span class="line">exit;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skm0e.png"
+                     
+                ></p>
+<p>测试链接一下:<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sknTH.png"
+                     
+                ></p>
+<p>原因：mysql服务器 root 默认只允许 localhost 也就是 127.0.0.1 连接<br>登录mysql: <code>mysql -u root -p</code><br>输入密码:直接回车即可  输入了会报错如下所示<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skemD.png"
+                     
+                ></p>
+<h4 id="解决连接报错"><a href="#解决连接报错" class="headerlink" title="解决连接报错"></a>解决连接报错</h4><p>继续<code>mysql -u root -p</code>  回车  然后执行以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">use mysql; 选择mysql库</span><br><span class="line">select host from user where user=&#x27;root&#x27;;查看mysql库中的user表的host值（即可进行连接访问的主机/IP名称）</span><br><span class="line">update user set host = &#x27;%&#x27; where user =&#x27;root&#x27;; 修改host值（以通配符%的内容增加主机/IP地址），当然也可以直接增加IP地址 %通配符表示所有ip都允许通过root账号链接</span><br><span class="line">flush privileges; 刷新MySQL的系统权限相关表</span><br><span class="line">select host from user where user=&#x27;root&#x27;; 再重新查看user表时，有修改。。</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h4 id="重连测试"><a href="#重连测试" class="headerlink" title="重连测试"></a>重连测试</h4><p>然后这时候用客户端重连一下试试：ok啦<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skKkd.png"
+                     
+                ></p>
+<p>创建个数据库测试，对了 新建的数据打开自带了三个库  别手贱删哈，你表的创建执行都和这里面的表相关，不然你commit rollback 它怎么知道的，我之前本地安装mysql学习时手贱删过，后来发现数据再执行sql操作时就报错，找了各种办法最后重装才解决，所以不懂要么去研究要么不要动。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skVOO.png"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skMtA.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装nginx</title>
+    <url>/2021/0423/install-ngnix-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="解压安装："><a href="#解压安装：" class="headerlink" title="解压安装："></a>解压安装：</h4><p>nginx按装一定要使用命令安装，因为需要解压后编译 已经配置成全局的<br>下载常用的包，高版本的安装出了一次问题，就切换成低版本的了，如图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sS2RO.png"
+                     
+                ></p>
+<p>接下来执行以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr  进入压缩文件存放目录</span><br><span class="line">tar -xzvf nginx-1.13.9.tar.gz   解压</span><br><span class="line">cd  nginx-1.13.9 进入解压后文件</span><br><span class="line">mkdir /usr/local/nginx   在local目录下新建nginx目录</span><br><span class="line">./configure --prefix=/usr/local/nginx   配置成全局</span><br><span class="line">make &amp;&amp; make install  安装</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>but….执行到第5步报错了，报错信息如下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSci6.png"
+                     
+                ></p>
+<p>the HTTP rewrite module requires the PCRE library HTTP重写模块需要PCRE库<br>什么鬼？pcre 是啥？一脸懵逼吧，本地装ngnix解压就好了  没这么坑啊！ 所以，装环境还是和本地有一点区别的，但是大同小异不要慌！你遇到了别人一定也遇到了，让我们来了解下什么叫pcre:<br>详见此篇博客：安装 Nginx 前 必须安装 PCRE—<a class="link"   href="https://www.jianshu.com/p/14c81fbcb401" >https://www.jianshu.com/p/14c81fbcb401 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>不懂就学嘛(百度)！</p>
+<p>使用以下命令安装：yum -y install zlib zlib-devel openssl openssl–devel pcre pcre-devel</p>
+<p>再次执行5.6命令  发现：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSyIx.png"
+                     
+                ></p>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><p>wtf? 没有配置环境变量！！！<br>执行vim &#x2F;etc&#x2F;profile<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSsd1.png"
+                     
+                ></p>
+<p>记住以上框出来的命令，o 只读  e编辑  r覆盖  q退出  a取消<br>编辑后一直向下键看到for循环后加上以下代码：<br>PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin<br>export PATH<br>:wq!</p>
+<p>:wq表示保存并退出vi编辑模式   ———题外话：linux下命令真的要学一下<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSrZR.png"
+                     
+                ></p>
+<p>退出来后执行：source &#x2F;etc&#x2F;profile 使配置生效  还是在&#x2F;usr&#x2F;local&#x2F;sbin 目录下执行</p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>然后因为nginx 是全局的了，可以直接在根目录下执行nginx 浏览器输入公网ip，不带端口哈出现如下界面表示nginx启动成功！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSRzD.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装redis</title>
+    <url>/2021/0423/install-redis-linux.html</url>
+    <content><![CDATA[<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h4 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h4><p>作为一名开发，面试最常问的恐怕就有你们开发过程中用过什么缓存？能否简单谈谈redis等等<br>so,作为一个可基于内存持久化的、日志级别的、非关型数据库，学习和掌握好它还是很有必要的。<br>上面mysql 安装到了usr下面  所有我也会将redis安装到其下<br>进入到usr目录下：<code>cd /usr</code><br>下载安装包：<br><code>wget http://download.redis.io/releases/redis-5.0.5.tar.gz</code><br>打开服务器目录刷新就会看到对应的包在usr下生成了:<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sVoj0.png"
+                     
+                ></p>
+<p>解压:<code>tar xzf redis-5.0.5.tar.gz</code><br>查看解压后的文件：<code>ls -al</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sVbHU.png"
+                     
+                ></p>
+<h4 id="安装，配置后台运行"><a href="#安装，配置后台运行" class="headerlink" title="安装，配置后台运行"></a>安装，配置后台运行</h4><p>进入安装目录：<code>cd redis-5.0.5</code><br>安装：<code>make</code><br>–接下来一定要执行: <code>make install</code>  此命令意思是拷贝redis的相关文件到&#x2F;usr&#x2F;local&#x2F;bin这个目录下 不执行这个命令将不执行<code>redis-server redis.conf</code>这个命令是不会执行的<br>进入当前src 目录下，会有redis服务端程序redis-server和用于测试的客户端程序redis-cli<br>进入src目录：<code>cd src</code><br>查看对应的文件：<code>ls -al</code><br>配置redis.conf文件，将redis设为后台运行<br>redis默认不是守护进程，也就是说只要在linux上做了其他操作、或者exit强制退出、或者关闭连接工具（putty&#x2F;xshell）等，都会导致redis进程退出，这样非常的麻烦，所以需要让redis服务端在后台运行，即守护进程模式。当redis.conf配置文件中，daemonize属性值设为yes时，代表开启守护进程。<br>编辑redis.conf文件：<code>vi redis.conf</code><br>搜索对应的配置：<code>/daemonize</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sVX4J.png"
+                     
+                ></p>
+<p>将no改为yes: 按i进入编辑模式  改完esc退出编辑模式   回车 输入:wq!保存并退出<br>—-redis数据库默认不设密码，但这样会自动开启保护模式，只能本地访问，不能远程访问。所以为了能远程访问，就必须设置密码<br>配置密码：<code>vi redis.conf </code><br>搜索redis密码：<code>/requirepass foobared </code> 改为123456 同上保存并退出<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZ9u6.png"
+                     
+                ></p>
+<h4 id="启动配置："><a href="#启动配置：" class="headerlink" title="启动配置："></a>启动配置：</h4><p>进入到bin目录下安装启动配置：<br><code>cd /usr/redis-5.0.5</code><br><code>./utils/install_server.sh</code><br>默认的配置文件是6379.conf<br>默认的日志文件是redis_6379.log<br>默认的运行实例是6379<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZegI.png"
+                     
+                ></p>
+<p>直接启动：<code>service redis_6379 start</code><br>停止：<code>service redis_6379 stop</code><br>查看进程：<code>ps -aux | grep redis</code><br>启动和停止可以看到 进程的变化<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZUK0.png"
+                     
+                ></p>
+<p>配置公网链接：为了是其他机器能够链接这台服务器<br>需要更改配置将redis.conf中bind 127.0.0.1注释掉！<br>执行：<code>cd /usr/redis-5.0.5</code><br><code>vi redis.conf</code> 修改 完成后 需要重复执行 上面的“启动配置” 步骤 让修改的配置生效<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZD54.png"
+                     
+                ></p>
+<p>查看进程：<code>ps -aux | grep redis</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZsPJ.png"
+                     
+                ></p>
+<p>杀掉进程：<code>kill -9 进程号</code><br>重启redis: <code>service redis_6379 start</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZRr6.png"
+                     
+                ></p>
+<p>后面的server * 代表允许所有的ip访问<br>此时再用redis 客户端链接测试  链接成功！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZ5Ie.png"
+                     
+                ></p>
+<h4 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h4><p>那链接上了，我们来测试一下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZ7RA.png"
+                     
+                ></p>
+<p>刷新客户端看下有没有写进来：ok 写进来了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1seCzn.png"
+                     
+                ></p>
+<p>好了，那么这个地方16个 db又是代表什么意思呢？学东西还是要有不断追问的能力，当你一步一步的自我解答寻找答案的时候就是慢慢掌握的时候！<br>Redis支持多个数据库，并且每个数据库的数据是隔离的不能共享，并且基于单机才有，如果是集群就没有数据库的概念。<br>Redis是一个字典结构的存储服务器，而实际上一个Redis实例提供了多个用来存储数据的字典，客户端可以指定将数据存储在哪个字典中，这1-16其实就是代表16个字典！<br>那么怎么用呢？  像sql语句一样  但是又不是  redis一个实例下默认有16个字典库，select 1代表选用1号字典库，同一个库中插入相同的key 后面的value值将会覆盖前面的值！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1seVdU.png"
+                     
+                ></p>
+<p>看看字典1库中值：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1senJJ.png"
+                     
+                ></p>
+<p>自此，我们已经完成了redis 单台服务器的搭建测试和客户端工具的测试！</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装tomcat</title>
+    <url>/2021/0423/install-tomcat-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h4><p>接下来装个最简单的web服务器tomcat吧，人家idea就是内置tomcat的，不要看不起他<br>官网下载，这次我下载的tomcat9 按道理版本越高兼容性越好，就他了！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUmCQ.md.png"
+                      border="0" 
+                ><br>将本地的tomcat 解压到服务器上，一般的xshell xftp 是分离的 所以你要用两个工具（这个时候就体现出Xshell+Xftp 整合版的便携性了），输两次密码连接，这时候就体现这工具的便携性了，直接点这个打开服务器目录<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUZ4g.png"
+                      border="0" 
+                ><br>我没有使用命令上传然后解压，其实文件不大，上传速度很快！<br>然后，进到bin目录下 启动tomcat 如果遇到没有权限 输入最后两个命令即可</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /data/apache-tomcat-9.0.30/bin</span><br><span class="line">chmod u+x *.sh</span><br><span class="line">./startup.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUkHf.png"
+                      border="0" 
+                >
+
+<h4 id="测试8080端口"><a href="#测试8080端口" class="headerlink" title="测试8080端口"></a>测试8080端口</h4><p>然后浏览器输入 公网ip+默认端口8080 即可看到tomcat启动页：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUFDP.png"
+                      border="0" 
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里云OSS SDk实践篇</title>
+    <url>/2021/0423/aliyun-oss-sdk.html</url>
+    <content><![CDATA[<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><blockquote>
+<p>我们知道一般的热点数据我们直接存到数据库，但是类似一些表格模板，附件等静态资源放在哪里呢？</p>
+</blockquote>
+<ul>
+<li>数据库</li>
+<li>数据库 + 本地文件（IO流）</li>
+<li>数据库 + 缓存 + 文件服务器（Hdfs 、fastDFS、服务器集群）</li>
+<li>数据库 + 缓存 + 文件存储（对象存储服务OSS）</li>
+</ul>
+<p>因为阿里云提供了各种常用语言的SDK,所以进行文件的存储就变得十分简单，那本文就来介绍下阿里云的对象存储OSS使用。</p>
+<h4 id="开通OSS服务"><a href="#开通OSS服务" class="headerlink" title="开通OSS服务"></a>开通OSS服务</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9YFoj.png"
+                     
+                ></p>
+<p>搜索后，购买直接就可以使用，它是按流量计算费用的，话说我们买个10块钱的足够我们基本的学习使用了，不够了再充值嘛！我这里因为用的就是阿里云服务器，所以好像是赠送了40G的存储，具体也懒的去了解，反正没要我再交钱就是。</p>
+<h4 id="了解阿里云OSS"><a href="#了解阿里云OSS" class="headerlink" title="了解阿里云OSS"></a>了解阿里云OSS</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9NvWR.png"
+                     
+                ></p>
+<p>通过了解它的官方文档，我们基本可以知道阿里云OSS提供了面向各种常用语言的SDk，通过这些SDK我们基本可以知道如何使用了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9a7aF.png"
+                     
+                ></p>
+<p>点击<code>JAVA SDK快速入门</code>我们可以看到对应的maven 工程示例；这里自己点进去了解即可！</p>
+<p>题外话: 后面对于其他东西的学习，个人建议都是先找官方文档了解，至于本篇博客个人也只是做个笔记，记录下简单的使用，肯定不如官网的全面。</p>
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><h4 id="1-创建Bucket"><a href="#1-创建Bucket" class="headerlink" title="1.创建Bucket"></a>1.创建Bucket</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9WhHH.png"
+                     
+                ></p>
+<p>如果你听了我的建议，了解过JAVA SDk 中的工程例子，我想你应该知道要使用OSS 需要4个参数：</p>
+<ul>
+<li>endpoint</li>
+<li>AccessKeyID</li>
+<li>AccessKeySecret</li>
+<li>bucketName</li>
+</ul>
+<p>这里我们先记录下 <code>bucketName: oss-study01</code>;<code>endpoint:oss-cn-beijing.aliyuncs.com</code></p>
+<h4 id="2-创建文件夹"><a href="#2-创建文件夹" class="headerlink" title="2.创建文件夹"></a>2.创建文件夹</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9fILF.png"
+                     
+                ></p>
+<p>创建一个存放图片的文件夹images</p>
+<h4 id="3-上传一张图片测试"><a href="#3-上传一张图片测试" class="headerlink" title="3.上传一张图片测试"></a>3.上传一张图片测试</h4><p>注意：是点击进此文件后再上传</p>
+<p>这里我们选择单个文件的权限是公共读，当然你也可以通过修改整个文件的权限，目前此文件夹我们没修改就是默认的私有的！</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J94nc6.png"
+                     
+                ></p>
+<h4 id="4-访问控制"><a href="#4-访问控制" class="headerlink" title="4.访问控制"></a>4.访问控制</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J95Ar8.png"
+                     
+                ></p>
+<p>添加用户组–&gt;创建用户–&gt;添加用户到用户组–&gt;分配用户组权限–&gt;保存账号信息</p>
+<p>其实就像我们的系统的权限，角色和用户的关系，某些用户是某些角色，某些角色就具有某些分配好的权限！</p>
+<p>具体步骤截图如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9Irpn.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9oDED.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9oXrV.png"
+                     
+                ></p>
+<p>记录下</p>
+<ul>
+<li><p>AccessKeyID: LTAI4FoYHgbk2y3woYH191Ys</p>
+</li>
+<li><p>AccessKeySecret：FVZzvz4G9e39ako5vVMASYryrbpnJu</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9TQxI.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9TyZT.png"
+                     
+                ></p>
+<h3 id="测试SDK"><a href="#测试SDK" class="headerlink" title="测试SDK"></a>测试SDK</h3><h4 id="1-创建微服务，引入阿里OSS依赖"><a href="#1-创建微服务，引入阿里OSS依赖" class="headerlink" title="1.创建微服务，引入阿里OSS依赖"></a>1.创建微服务，引入阿里OSS依赖</h4><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-测试"><a href="#2-测试" class="headerlink" title="2. 测试"></a>2. 测试</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.coding.aliyunoss;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.CannedAccessControlList;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.GetObjectRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.OSSObjectSummary;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.ObjectListing;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OSSTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">endpoint</span> <span class="operator">=</span> <span class="string">&quot;oss-cn-beijing.aliyuncs.com&quot;</span>;</span><br><span class="line">    <span class="comment">// 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。</span></span><br><span class="line">    <span class="comment">// 强烈建议您创建并使用RAM账号进行API访问或日常运维，</span></span><br><span class="line">    <span class="comment">// 请登录 https://ram.console.aliyun.com 创建RAM账号。</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeyId</span> <span class="operator">=</span> <span class="string">&quot;LTAI4GKkPcWRY6zDgxBwgjaS&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeySecret</span> <span class="operator">=</span> <span class="string">&quot;fvQ0rtW2ezAS4jiMCjIp7JrzKSCmPJ&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">bucketName</span> <span class="operator">=</span> <span class="string">&quot;oss-study01&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否 bucketName，如果不存在就创建，修改权限</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建oss 实例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCreate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        ossClient.createBucket(bucketName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断当前实例是否存在</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testExist</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">exist</span> <span class="operator">=</span> ossClient.doesBucketExist(bucketName);</span><br><span class="line">        System.out.println(exist);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 修改权限 公共读</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        ossClient.setBucketAcl(bucketName,CannedAccessControlList.PublicRead);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件流。</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFileUpload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// 上传到 oss 后需要一个文件名(保证唯一 /2020/4/1/xxxxxxxx.jpg)！</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.putObject(bucketName, objectName, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;C:\\Users\\Administrator\\Desktop\\dafault.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下载文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDownload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.getObject(<span class="keyword">new</span> <span class="title class_">GetObjectRequest</span>(bucketName,objectName),<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;a.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看文件列表</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testShowList</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// ossClient.listObjects返回ObjectListing实例，包含此次listObject请求的返回结果。</span></span><br><span class="line">        <span class="type">ObjectListing</span> <span class="variable">objectListing</span> <span class="operator">=</span> ossClient.listObjects(bucketName);</span><br><span class="line">        <span class="comment">// objectListing.getObjectSummaries获取所有文件的描述信息。</span></span><br><span class="line">        <span class="keyword">for</span> (OSSObjectSummary objectSummary : objectListing.getObjectSummaries()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot; - &quot;</span> + objectSummary.getKey() + <span class="string">&quot;  &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;(size = &quot;</span> + objectSummary.getSize() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDeleted</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.deleteObject(bucketName,objectName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>好了，后面我们就可以用接口调用，完成我们文件的上传和下载了。是不是很简单？赶快试试吧；加油，奥利给！</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>sdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装jenkins(待填坑)</title>
+    <url>/2021/0423/install-jenkins-linux.html</url>
+    <content><![CDATA[<h4 id="项目部署步骤："><a href="#项目部署步骤：" class="headerlink" title="项目部署步骤："></a>项目部署步骤：</h4>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
   </entry>
   <entry>
     <title>宏观的认识SpringCloud</title>
@@ -3688,7 +3688,7 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
 <p>之前自己用halo搭建了个人博客，想着自己把源码拉下来学习研究下的，包下到本地后发现在终端中执行 <code>java -jar halo.jar --spring.profiles.active=dev</code>时,报<code>Application has been compiled by a more recent version of the Java Runtime (class file version 55.0), this versions up to 52.0</code>;what? 应用被最新的java版本执行过了，当前版本是52.0；一番搜索说jdk版本太低了，那就装个jdk11吧；</p>
 </blockquote>
 <h3 id="安装前的疑问"><a href="#安装前的疑问" class="headerlink" title="安装前的疑问"></a>安装前的疑问</h3><p>安装jdk11?那我之前安装的jdk8要删了吗？肯定不用吧，然后带着疑问去找了下解决办法，果然可以动态指定运行版本</p>
-<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#x32;&#54;&#x39;&#54;&#x36;&#55;&#49;&#x32;&#x38;&#x35;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d;" >&#x32;&#54;&#x39;&#54;&#x36;&#55;&#49;&#x32;&#x38;&#x35;&#64;&#113;&#x71;&#x2e;&#99;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#x32;&#x36;&#57;&#x36;&#54;&#x37;&#49;&#x32;&#x38;&#x35;&#x40;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;" >&#x32;&#x36;&#57;&#x36;&#54;&#x37;&#49;&#x32;&#x38;&#x35;&#x40;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>下载如下所示macos对应的jdk11:<br><a href="https://imgtu.com/i/6ahdXt"><img  
                      lazyload
                      src="/images/loading.svg"
