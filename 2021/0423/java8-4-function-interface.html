@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="viEcho">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://viecho.github.io/2021/0423/java8-4-function-interface.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="前面博客说了要聊聊Java8 新特性来着，当然这个新是相对于7而言的哈，你要知道Java 都14了；本来想先写篇关于optional 的博客，翻开optional 类，发现都是函数式接口，所以咱们还是按顺序来，先来看看函数式接口Function；  function函数型接口 定义我们先来看下以下代码： 12345678910111213141516package com.springstudy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8之4大函数式接口详解">
+<meta property="og:url" content="https://viecho.github.io/2021/0423/java8-4-function-interface.html">
+<meta property="og:site_name" content="叁有三分之一">
+<meta property="og:description" content="前面博客说了要聊聊Java8 新特性来着，当然这个新是相对于7而言的哈，你要知道Java 都14了；本来想先写篇关于optional 的博客，翻开optional 类，发现都是函数式接口，所以咱们还是按顺序来，先来看看函数式接口Function；  function函数型接口 定义我们先来看下以下代码： 12345678910111213141516package com.springstudy">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/08/G2ISiD.png">
+<meta property="article:published_time" content="2021-04-23T11:55:09.320Z">
+<meta property="article:modified_time" content="2024-01-18T06:48:31.101Z">
+<meta property="article:author" content="viEcho">
+<meta property="article:tag" content="functionInterface">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/08/G2ISiD.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            java8之4大函数式接口详解 -
+        
+        叁有三分之一
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        叁有三分之一
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"viecho.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"baoj0719@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry/","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                叁有三分之一
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-coffee fa-fw"></i>
+                                    后端
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/java">
+                                                    JAVA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/db">
+                                                    DB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/springboot">
+                                                    SPRINGBOOT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">
+                                                    设计模式
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E7%AE%97%E6%B3%95">
+                                                    算法
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-gears fa-fw"></i>
+                                    中间件
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/kafka">
+                                                    KAFKA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/redis">
+                                                    REDIS
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/recketMq">
+                                                    ROCKETMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/rabbitMq">
+                                                    RABBITMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/xxlJob">
+                                                    XXLJOB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-cloud fa-fw"></i>
+                                    云原生
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/docker">
+                                                    DOCKER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/linux">
+                                                    LINUX
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/toolsSetting"
+                                        >
+                                    <i class="fa-regular fa-gavel fa-fw"></i>
+                                    TOOLS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E6%BA%90%E7%A0%81"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    源码
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/web%E7%AF%87"
+                                        >
+                                    <i class="fa-brands fa-internet-explorer fa-fw"></i>
+                                    WEB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/mianshi"
+                                        >
+                                    <i class="fa-regular fa-file-text fa-fw"></i>
+                                    面试题
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/viEcho">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">
+                                                    评论管理
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-后端"
+                        >
+                            <span>
+                                后端
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-后端">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/java">JAVA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/db">DB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/springboot">SPRINGBOOT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E7%AE%97%E6%B3%95">算法</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-中间件"
+                        >
+                            <span>
+                                中间件
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-中间件">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/kafka">KAFKA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/redis">REDIS</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/recketMq">ROCKETMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/rabbitMq">RABBITMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/xxlJob">XXLJOB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-云原生"
+                        >
+                            <span>
+                                云原生
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-云原生">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/docker">DOCKER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/linux">LINUX</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/toolsSetting"
+                        >
+                            <span>
+                                TOOLS
+                            </span>
+                            
+                                <i class="fa-regular fa-gavel fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E6%BA%90%E7%A0%81"
+                        >
+                            <span>
+                                源码
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/web%E7%AF%87"
+                        >
+                            <span>
+                                WEB
+                            </span>
+                            
+                                <i class="fa-brands fa-internet-explorer fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/mianshi"
+                        >
+                            <span>
+                                面试题
+                            </span>
+                            
+                                <i class="fa-regular fa-file-text fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/viEcho">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">评论管理</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+            <!--手机模式下增加侧边栏的导航-->
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/essays"
+                         >
+                            <span>说说</span>
+                            <i class="fa-solid fa-keynote fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/masonry/"
+                         >
+                            <span>相册</span>
+                            <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/archives"
+                         >
+                            <span>归档</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/categories/other"
+                         >
+                            <span>其他</span>
+                            <i class="fa-regular fa-head-side-headphones fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">92</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="/../images/java/21/4/23/function.png" alt="java8之4大函数式接口详解" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">java8之4大函数式接口详解</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/favicon.ico">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">viEcho</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2021-04-23 19:55:09</span>
+        <span class="mobile">2021-04-23 19:55:09</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-18 14:48:31</span>
+            <span class="mobile">2024-01-18 14:48:31</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/java/">java</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/functionInterface/">functionInterface</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <blockquote>
+<p>前面博客说了要聊聊Java8 新特性来着，当然这个新是相对于7而言的哈，你要知道Java 都14了；本来想先写篇关于optional 的博客，翻开optional 类，发现都是函数式接口，所以咱们还是按顺序来，先来看看函数式接口Function；</p>
+</blockquote>
+<h3 id="function函数型接口-定义"><a href="#function函数型接口-定义" class="headerlink" title="function函数型接口 定义"></a>function函数型接口 定义</h3><p>我们先来看下以下代码：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springstudy.testDemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FunTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        List&lt;String&gt; languages = Arrays.asList(<span class="string">&quot;c++&quot;</span>,<span class="string">&quot;java&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">        Function&lt;String, Integer&gt; function = String::length;</span><br><span class="line">        languages.stream()</span><br><span class="line">                .map(function)</span><br><span class="line">                .forEach(System.out::println);</span><br><span class="line">        <span class="comment">// 输出 3 ， 4 ，0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>以上代码，定义了一个流输出languages 每个元素的长度。为什么是这样的呢？我们带着问题一起来看下Function接口的源码</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/08/G2ISiD.png"
+                     
+                ></p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* <span class="meta">@param</span> &lt;T&gt; the type of the input to the function</span><br><span class="line">* <span class="meta">@param</span> &lt;R&gt; the type of the result of the function</span><br></pre></td></tr></table></figure></div>
+<p>可以看到T是这个方法的输入类型，R是这个方法的输出类型，那我们同样可以这样让他返回一个判断的boolean 值；</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;String, Boolean&gt; function1 = String::isEmpty;</span><br><span class="line">        languages.stream()</span><br><span class="line">         .map(function1)</span><br><span class="line">         .forEach(System.out::println);</span><br><span class="line">        <span class="comment">// 输出 false,false,true</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>好，接下来我们结合源码一个个验证它内部方法的作用：</p>
+<ul>
+<li>1.R apply(T t)<br>接受一个T类型参数，执行对应返回类型为R的函数<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function&lt;Integer,Integer&gt; num2 = i-&gt; i*<span class="number">2</span>;</span><br><span class="line">Function&lt;Integer,Integer&gt; power = i -&gt; i*i;</span><br><span class="line"></span><br><span class="line">System.out.println(num2.apply(<span class="number">3</span>)); <span class="comment">// 输出6</span></span><br><span class="line">System.out.println(power.apply(<span class="number">3</span>)); <span class="comment">// 输出9</span></span><br></pre></td></tr></table></figure></div></li>
+<li><ol start="2">
+<li>compose<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(num2.compose(power).apply(<span class="number">3</span>)); <span class="comment">// 输出18</span></span><br><span class="line">System.out.println(power.compose(num2).apply(<span class="number">3</span>)); <span class="comment">// 输出36</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 源码如下：</span></span><br><span class="line"><span class="comment">// default &lt;V&gt; Function&lt;V, R&gt; compose(Function&lt;? super V, ? extends T&gt; before) &#123;</span></span><br><span class="line"><span class="comment">//     Objects.requireNonNull(before);</span></span><br><span class="line"><span class="comment">//     return (V v) -&gt; apply(before.apply(v));</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从源码我们可以看到compose 传人一个不能null 的函数，紧接着执行了apply()方法 apply中先执行了传人的函数；</span></span><br><span class="line"><span class="comment">// 那么我们拆解下num2.compose(power).apply(3)输出18的函数执行顺序：</span></span><br><span class="line"><span class="comment">// power.apply(3)得 9  然后num2.apply(9)得18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拆解下power.compose(num2).apply(3)输出36的函数执行顺序：</span></span><br><span class="line"><span class="comment">// num2.apply(3)得 6  然后power.apply(6)得36</span></span><br></pre></td></tr></table></figure></div></li>
+</ol>
+</li>
+<li>3.andThen<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(num2.andThen(power).apply(<span class="number">3</span>)); <span class="comment">// 输出36</span></span><br><span class="line">System.out.println(power.andThen(num2).apply(<span class="number">3</span>)); <span class="comment">// 输出18</span></span><br><span class="line"><span class="comment">//  源码如下</span></span><br><span class="line"><span class="comment">// default &lt;V&gt; Function&lt;T, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after) &#123;</span></span><br><span class="line"><span class="comment">//     Objects.requireNonNull(after);</span></span><br><span class="line"><span class="comment">//     return (T t) -&gt; after.apply(apply(t));</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 哈哈，聪明如你看输出结果都应该猜出来 compose 和 andThen 函数执行顺序正好反过来了</span></span><br><span class="line"><span class="comment">// 继续拆解：</span></span><br><span class="line"><span class="comment">// num2.andThen(power).apply(3) 执行顺序：num2.apply(3)得6 然后power.apply(6)得36</span></span><br><span class="line"><span class="comment">// power.andThen(num2).apply(3) 执行顺序：power.apply(3)得9 然后num2.apply(3)得18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//其实源码里很多代码取名还有参数都很规范，基本上你看名字就知道代表的逻辑含义了</span></span><br><span class="line"><span class="comment">//所以别再低头码砖,有时间撸一下源码逻辑，面向源码学习吧...</span></span><br></pre></td></tr></table></figure></div></li>
+<li>4.identity<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Stream&lt;String&gt; stream = languages.stream();</span><br><span class="line">Map&lt;String, Integer&gt; map = stream.collect(Collectors.toMap(str -&gt; str, String::length));</span><br><span class="line">System.out.println(map); <span class="comment">// 输出 &#123;=0, c++=3, java=4&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将str -&gt; 表达式改写为Function.identity()</span></span><br><span class="line">Stream&lt;String&gt; stream1 = languages.stream();</span><br><span class="line">Map&lt;String, Integer&gt; map1 = stream1.collect(Collectors.toMap(Function.identity(), String::length));</span><br><span class="line">System.out.println(map1);</span><br><span class="line"></span><br><span class="line">可以看到str -&gt; str 等效于Function.identity()</span><br><span class="line"><span class="comment">//static &lt;T&gt; Function&lt;T, T&gt; identity() &#123;</span></span><br><span class="line"><span class="comment">//     return t -&gt; t;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure></div>
+可见identity 方法返回一个同等的Function 函数，其实function函数式接口有点类似C++中指针的概念，变量可以指向一个函数方法，并且可以通过compose 和 andThen 可将函数联合起来使用，而identity这个static 方法可以获取到当前指向的方法！</li>
+</ul>
+<h3 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h3><p>Predicate 断言函数式接口，所谓断言就是断定预言一个判定结果的意思</p>
+<p>首先我们来看如下代码：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> testDemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Pre</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        Predicate&lt;String&gt; predicate1 = s -&gt; s.equals(<span class="string">&quot;echo&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(predicate1.test(<span class="string">&quot;Echo&quot;</span>));</span><br><span class="line">        <span class="comment">// 输出 false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>以上代码我们可以看到定义一个predicate1 断言函数，用于比较输入字符串是否和<code>&quot;echo&quot;</code>相等</p>
+<p>可以看到返回<code>false</code>,是不是达到了和我们写<code>if</code>判断一样的效果；</p>
+<p>同样我们带着好奇一起来看下其内部其他方法的定义及作用：</p>
+<ul>
+<li>1.and</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(predicate1.and(predicate2).test(<span class="string">&quot;Echo&quot;</span>));</span><br><span class="line"><span class="comment">// 输出 false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 源码如下：</span></span><br><span class="line"><span class="comment">//default Predicate&lt;T&gt; and(Predicate&lt;? super T&gt; other) &#123;</span></span><br><span class="line"><span class="comment">//    Objects.requireNonNull(other);</span></span><br><span class="line"><span class="comment">//    return (t) -&gt; test(t) &amp;&amp; other.test(t);</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从源码可以看出and 方法只是对两个断言函数做了 &amp;&amp; 操作</span></span><br><span class="line"><span class="comment">// 上面代码执行顺序是predicate1.test(&quot;Echo&quot;) &amp;&amp; predicate2.test(‘Echo)</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>2.negate</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> System.out.println(predicate1.negate().test(<span class="string">&quot;Echo&quot;</span>));</span><br><span class="line"><span class="comment">// 输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 源码如下：</span></span><br><span class="line"><span class="comment">//default Predicate&lt;T&gt; negate() &#123;</span></span><br><span class="line"><span class="comment">//    return (t) -&gt; !test(t);</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"><span class="comment">// 从源码可以看出negate() 方法就是对断言函数进行取反</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>3.or</li>
+</ul>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 聪明如你，肯定已经知道这个方法是 或 的关系了</span></span><br><span class="line">System.out.println(predicate1.or(predicate2).test(<span class="string">&quot;Echo&quot;</span>));</span><br><span class="line"><span class="comment">// 输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 源码如下：</span></span><br><span class="line"><span class="comment">//default Predicate&lt;T&gt; or(Predicate&lt;? super T&gt; other) &#123;</span></span><br><span class="line"><span class="comment">//    Objects.requireNonNull(other);</span></span><br><span class="line"><span class="comment">//    return (t) -&gt; test(t) || other.test(t);</span></span><br><span class="line"><span class="comment">//&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 从源码可以看出negate() 方法就是对断言函数进行取 或</span></span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>4.isEqual</li>
+</ul>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Predicate&lt;Object&gt; im_echo = Predicate.isEqual(&quot;im_echo&quot;);</span><br><span class="line">System.out.println(im_echo.test(&quot;im_echo&quot;));</span><br><span class="line">// 输出 true</span><br><span class="line"></span><br><span class="line">// 源码如下：</span><br><span class="line">//static &lt;T&gt; Predicate&lt;T&gt; isEqual(Object targetRef) &#123;</span><br><span class="line">//    return (null == targetRef)</span><br><span class="line">//    ? Objects::isNull</span><br><span class="line">//    : object -&gt; targetRef.equals(object);</span><br><span class="line">//&#125;</span><br><span class="line"></span><br><span class="line">// 可以看到内部是一个三目运算，比较目标值和原值是否相等</span><br><span class="line">// 这样乍一看这方法和Predicate&lt;String&gt; predicate1 = s -&gt; s.equals(&quot;echo&quot;); 有啥区别啊?</span><br><span class="line">// 哈哈，其实不然。我们常规的判断前面值需要先判断x！=null 然后再x.equals(xxx)</span><br><span class="line">// Predicate.isEqual(x).test(xxx) 则完全不需要判空，而上面自己写equals 实在有点啰嗦了</span><br><span class="line"></span><br><span class="line"> System.out.println(Predicate.isEqual(null).test(&quot;xxx&quot;));</span><br><span class="line"> // 输出 false</span><br></pre></td></tr></table></figure></div>
+<h3 id="Supplier-Consumer"><a href="#Supplier-Consumer" class="headerlink" title="Supplier &amp; Consumer"></a>Supplier &amp; Consumer</h3><p>四大函数式接口已经总结了两个了，还有剩余的供给型接口Supplier<T> 和消费型接口Consumer<T> ，<br>我习惯称其为生产者和消费者接口类，感觉这样更好理解点；顾名思义，生产只管定义加工产出，消费只管使用！</p>
+<p>废话不多说，我们继续还是来看以下代码：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> testDemo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Predicate;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Supplier;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerAndSupplier</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">hello</span> <span class="operator">=</span> <span class="string">&quot;hello,java8&quot;</span>;</span><br><span class="line">        Consumer&lt;String&gt; consumer1 =  con -&gt; System.out.println(con.toUpperCase());</span><br><span class="line">        consumer1.accept(hello);</span><br><span class="line">        <span class="comment">// 输出 HELLO,JAVA8</span></span><br><span class="line"></span><br><span class="line">        Consumer&lt;String&gt; consumer2 = con -&gt; System.out.println(Arrays.toString(con.split(<span class="string">&quot;,&quot;</span>)));</span><br><span class="line">        consumer2.accept(hello);</span><br><span class="line">        <span class="comment">// 输出 [hello, java8]</span></span><br><span class="line"></span><br><span class="line">        consumer2.andThen(consumer1).accept(hello);</span><br><span class="line">        <span class="comment">// 输出 [hello, java8] 、HELLO,JAVA8</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// andThen 源码如下：</span></span><br><span class="line">        <span class="comment">// default Consumer&lt;T&gt; andThen(Consumer&lt;? super T&gt; after) &#123;</span></span><br><span class="line">        <span class="comment">//    Objects.requireNonNull(after);</span></span><br><span class="line">        <span class="comment">//    return (T t) -&gt; &#123; accept(t); after.accept(t); &#125;;</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// 可以看到andThen(Consumer&lt;? super T&gt; after) 参数是后执行的</span></span><br><span class="line">        <span class="comment">// 也就是和 function的andThen方法是一样的 都是从前往后顺序执行的</span></span><br><span class="line"></span><br><span class="line">        Supplier&lt;String&gt; supplier1 = () -&gt; hello;</span><br><span class="line">        System.out.println(supplier1.get());</span><br><span class="line">        <span class="comment">// 输出 hello,java8</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>从以上代码我们基本知道了Consumer 和 Supplier函数接口的用法，那你说他们是对应的，何以体现呢？</p>
+<p>我们继续来看下面的代码：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String,Object&gt; userMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(<span class="number">16</span>);</span><br><span class="line">userMap.put(<span class="string">&quot;id&quot;</span>,<span class="string">&quot;1&quot;</span>);</span><br><span class="line">userMap.put(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;echo&quot;</span>);</span><br><span class="line">Consumer&lt;Map&lt;String,Object&gt;&gt; consumerMap = map -&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (Predicate.isEqual(map.get(<span class="string">&quot;id&quot;</span>)).test(<span class="string">&quot;1&quot;</span>))&#123;</span><br><span class="line">        map.put(<span class="string">&quot;name&quot;</span>,<span class="string">&quot;hello,echo！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">consumerMap.accept(userMap);</span><br><span class="line">Supplier&lt;Map&lt;String,Object&gt;&gt; supplierMap = () -&gt; userMap;</span><br><span class="line">System.out.println(supplierMap.get());</span><br><span class="line"><span class="comment">// 输出 &#123;name=hello,echo !, id=1&#125;</span></span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>小结：<br>其实源码很简单，只要你去看基本都能看懂；对于复杂的源码，其实我们只需要梳理对应的逻辑就好，无需面面俱到！<br>为什么要看函数式接口的源码呢？是因为 java8 之后的版本源码里面基本都是lambda表达式+stream流，而这两个里面就是函数式接口的具体应用！而用的最多的就是4大函数式接口，所以理解它对于我们后面阅读源码很有必要！</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> java8之4大函数式接口详解</li>
+        <li><strong>Author:</strong> viEcho</li>
+        <li><strong>Created at
+                :</strong> 2021-04-23 19:55:09</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-01-18 14:48:31
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://viecho.github.io/2021/0423/java8-4-function-interface.html
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/functionInterface/">#functionInterface</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2021/0423/jvm-talk.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">浅谈jvm虚拟机</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2021/0423/ioc-aop-talk.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">浅谈对 IOC 和 AOP的认知</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://echo-talk.vercel.app/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">java8之4大函数式接口详解</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#function%E5%87%BD%E6%95%B0%E5%9E%8B%E6%8E%A5%E5%8F%A3-%E5%AE%9A%E4%B9%89"><span class="nav-text">function函数型接口 定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predicate"><span class="nav-text">Predicate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supplier-Consumer"><span class="nav-text">Supplier &amp; Consumer</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">viEcho</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+            <div class="icp-info my-1">
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.mps.gov.cn/#/query/webSearch?code=42011102005477
+                
+                ">鄂公网安备42011102005477号</a>
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.miit.gov.cn/#/Integrated/recordQuery
+                
+                ">鄂ICP备2024034846号-1</a>
+            </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+            <li class="right-bottom-tools tool-aplayer flex justify-center items-center">
+
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="viEcho">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://viecho.github.io/2021/0502/docker-base-info.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="接上篇，这个5.1继续肝docker;  镜像什么叫镜像？ Docker镜像是一个特殊的文件系统(分层的联合文件系统)，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等信息)。 什么叫分层的文件系统呢？ 例如我们去dockerhub上搜索centos，我这里安装的是centos8的版本，所以去看看8下面都有啥吧；标红的地方点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker镜像，容器，挂载卷">
+<meta property="og:url" content="https://viecho.github.io/2021/0502/docker-base-info.html">
+<meta property="og:site_name" content="叁有三分之一">
+<meta property="og:description" content="接上篇，这个5.1继续肝docker;  镜像什么叫镜像？ Docker镜像是一个特殊的文件系统(分层的联合文件系统)，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等信息)。 什么叫分层的文件系统呢？ 例如我们去dockerhub上搜索centos，我这里安装的是centos8的版本，所以去看看8下面都有啥吧；标红的地方点">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/02/gePZpd.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/02/geP639.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/02/geknXR.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/03/gmHs4x.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/03/gmbxyD.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/03/gmqR7d.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/04/gmjng0.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/04/gmj5Vg.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/04/gmv3sf.png">
+<meta property="article:published_time" content="2021-05-02T08:29:46.765Z">
+<meta property="article:modified_time" content="2024-01-18T06:46:46.294Z">
+<meta property="article:author" content="viEcho">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/05/02/gePZpd.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            docker镜像，容器，挂载卷 -
+        
+        叁有三分之一
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        叁有三分之一
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"viecho.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"baoj0719@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry/","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                叁有三分之一
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-coffee fa-fw"></i>
+                                    后端
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/java">
+                                                    JAVA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/db">
+                                                    DB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/springboot">
+                                                    SPRINGBOOT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">
+                                                    设计模式
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E7%AE%97%E6%B3%95">
+                                                    算法
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-gears fa-fw"></i>
+                                    中间件
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/kafka">
+                                                    KAFKA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/redis">
+                                                    REDIS
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/recketMq">
+                                                    ROCKETMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/rabbitMq">
+                                                    RABBITMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/xxlJob">
+                                                    XXLJOB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-cloud fa-fw"></i>
+                                    云原生
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/docker">
+                                                    DOCKER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/linux">
+                                                    LINUX
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/toolsSetting"
+                                        >
+                                    <i class="fa-regular fa-gavel fa-fw"></i>
+                                    TOOLS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E6%BA%90%E7%A0%81"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    源码
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/web%E7%AF%87"
+                                        >
+                                    <i class="fa-brands fa-internet-explorer fa-fw"></i>
+                                    WEB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/mianshi"
+                                        >
+                                    <i class="fa-regular fa-file-text fa-fw"></i>
+                                    面试题
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/viEcho">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">
+                                                    评论管理
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-后端"
+                        >
+                            <span>
+                                后端
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-后端">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/java">JAVA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/db">DB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/springboot">SPRINGBOOT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E7%AE%97%E6%B3%95">算法</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-中间件"
+                        >
+                            <span>
+                                中间件
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-中间件">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/kafka">KAFKA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/redis">REDIS</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/recketMq">ROCKETMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/rabbitMq">RABBITMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/xxlJob">XXLJOB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-云原生"
+                        >
+                            <span>
+                                云原生
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-云原生">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/docker">DOCKER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/linux">LINUX</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/toolsSetting"
+                        >
+                            <span>
+                                TOOLS
+                            </span>
+                            
+                                <i class="fa-regular fa-gavel fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E6%BA%90%E7%A0%81"
+                        >
+                            <span>
+                                源码
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/web%E7%AF%87"
+                        >
+                            <span>
+                                WEB
+                            </span>
+                            
+                                <i class="fa-brands fa-internet-explorer fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/mianshi"
+                        >
+                            <span>
+                                面试题
+                            </span>
+                            
+                                <i class="fa-regular fa-file-text fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/viEcho">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">评论管理</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+            <!--手机模式下增加侧边栏的导航-->
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/essays"
+                         >
+                            <span>说说</span>
+                            <i class="fa-solid fa-keynote fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/masonry/"
+                         >
+                            <span>相册</span>
+                            <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/archives"
+                         >
+                            <span>归档</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/categories/other"
+                         >
+                            <span>其他</span>
+                            <i class="fa-regular fa-head-side-headphones fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">92</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="/../images/docker/21/5/2/docker_image.jpg" alt="docker镜像，容器，挂载卷" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">docker镜像，容器，挂载卷</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/favicon.ico">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">viEcho</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2021-05-02 16:29:46</span>
+        <span class="mobile">2021-05-02 16:29:46</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-18 14:46:46</span>
+            <span class="mobile">2024-01-18 14:46:46</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/docker/">docker</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/docker/">docker</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <blockquote>
+<p>接上篇，这个5.1继续肝docker;</p>
+</blockquote>
+<h3 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h3><p>什么叫镜像？</p>
+<p>Docker镜像是一个特殊的文件系统(分层的联合文件系统)，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等信息)。</p>
+<p>什么叫分层的文件系统呢？</p>
+<p>例如我们去dockerhub上搜索centos，我这里安装的是centos8的版本，所以去看看8下面都有啥吧；<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gePZpd"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/02/gePZpd.png"
+                     
+                ></a><br>标红的地方点进去，我们看下它的dockerfile（dockerfile是指构建docker镜像的指令脚本）</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/geP639"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/02/geP639.png"
+                     
+                ></a><br>可以看到centos8的dockerfile很简单，from是说明它基于什么构建的，可以看到centos8是基于scratch这个空镜像来构建的；add 添加一个centos的压缩包；LABEL是标签说明，CMD是运行完此镜像后默认执行的指令，可以看到启动centos8镜像后，它指定进入了bash脚本界面；</p>
+<p>官方说明：scratch镜像是一个空的镜像，可以用于构建busybox等超小镜像，可以说是真正的从零开始构建属于自己的镜像</p>
+<p>注📢：macos系统其实也采用了分层的文件系统，去dockerhub搜Ubantu也可以看到它对应的镜像；或者你在升级你的mac系统时，如果点开详情，或者看它的更新包，可以看到它的更新包中包含了基于上次安装的数据卷(volumes)；</p>
+<p>docker镜像常用相关命令：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">docker image ls # 列出当前宿主机上所有镜像</span><br><span class="line">docker image ls ubuntu:16.04 # 列出指定的镜像</span><br><span class="line">docker pull hello-world #拉取镜像</span><br><span class="line">docker run hello-world #运行镜像</span><br><span class="line">docker rmi hello-world #删除镜像</span><br><span class="line">docker run -i -t --rm ubuntu:16.04 /bin/bash</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-i：允许你对容器内的标准输入进行交互</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">-t：在新容器内指定一个伪终端或终端</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">–<span class="built_in">rm</span>：容器退出后立即删除容器。一般情况下，无需指定此参数。一般我测试用的话可以加上，容器停止后立即删除容器</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ubuntu:16.04：以此镜像为基础启动容器</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/bin/bash：指定的交互式Shell</span></span><br><span class="line">docker inspect 578c3e61a98c #查看指定镜像id 镜像的详情</span><br><span class="line">docker image rm 578c3e61a98c # docker删除指定镜像Id镜像</span><br><span class="line">docker image rm $(docker image ls -q) #删除所有镜像</span><br><span class="line">docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot; -e &quot;ES_JAVA_OPTS=-Xms64m -Xmx512m&quot; elasticsearch:7.7.1 # 后台运行名称为elasticsearch的镜像，并指定端口映射；将9300映射到9200的宿主机端口上，-e指定单机运行模式，-e指定运行的java环境配置 容器名称为elasticsearch:7.7.1</span><br></pre></td></tr></table></figure></div>
+<h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><p>docker的镜像启动后就是一个容器了，之前我们安装docker时，运行了HelloWorld的测试程序镜像，那么它启动后就是一个容器实例（就是我们运行的服务）；</p>
+<p>我们看下protainerUi容器的详情：<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/geknXR"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/02/geknXR.png"
+                     
+                ></a></p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        # 发现镜像Id580c0e4e98b06d 是容器id的前缀</span><br><span class="line">        &quot;Id&quot;: &quot;sha256:580c0e4e98b06d258754cf28c55f21a6fa0dc386e6fe0bf67e453c3642de9b8b&quot;,</span><br><span class="line">        # 用的是最新的版本</span><br><span class="line">        &quot;RepoTags&quot;: [</span><br><span class="line">            &quot;portainer/portainer:latest&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;RepoDigests&quot;: [</span><br><span class="line">            &quot;portainer/portainer@sha256:fb45b43738646048a0a0cc74fcee2865b69efde857e710126084ee5de9be0f3f&quot;</span><br><span class="line">        ],</span><br><span class="line">        &quot;Parent&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Comment&quot;: &quot;buildkit.dockerfile.v0&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2021-03-18T19:53:42.48462213Z&quot;,</span><br><span class="line">        &quot;Container&quot;: &quot;&quot;,</span><br><span class="line">        # 容器配置</span><br><span class="line">        &quot;ContainerConfig&quot;: &#123;</span><br><span class="line">            &quot;Hostname&quot;: &quot;&quot;,</span><br><span class="line">            &quot;Domainname&quot;: &quot;&quot;,</span><br><span class="line">            &quot;User&quot;: &quot;&quot;,</span><br><span class="line">            &quot;AttachStdin&quot;: false,</span><br><span class="line">            &quot;AttachStdout&quot;: false,</span><br><span class="line">            &quot;AttachStderr&quot;: false,</span><br><span class="line">            &quot;Tty&quot;: false,</span><br><span class="line">            &quot;OpenStdin&quot;: false,</span><br><span class="line">            &quot;StdinOnce&quot;: false,</span><br><span class="line">            &quot;Env&quot;: null,</span><br><span class="line">            &quot;Cmd&quot;: null,</span><br><span class="line">            &quot;Image&quot;: &quot;&quot;,</span><br><span class="line">            &quot;Volumes&quot;: null,</span><br><span class="line">            &quot;WorkingDir&quot;: &quot;&quot;,</span><br><span class="line">            &quot;Entrypoint&quot;: null,</span><br><span class="line">            &quot;OnBuild&quot;: null,</span><br><span class="line">            &quot;Labels&quot;: null</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;DockerVersion&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Author&quot;: &quot;&quot;,</span><br><span class="line">        &quot;Config&quot;: &#123;</span><br><span class="line">            &quot;Hostname&quot;: &quot;&quot;,</span><br><span class="line">            &quot;Domainname&quot;: &quot;&quot;,</span><br><span class="line">            &quot;User&quot;: &quot;&quot;,</span><br><span class="line">            &quot;AttachStdin&quot;: false,</span><br><span class="line">            &quot;AttachStdout&quot;: false,</span><br><span class="line">            &quot;AttachStderr&quot;: false,</span><br><span class="line">            # 绑定的端口</span><br><span class="line">            &quot;ExposedPorts&quot;: &#123;</span><br><span class="line">                &quot;9000/tcp&quot;: &#123;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;Tty&quot;: false,</span><br><span class="line">            &quot;OpenStdin&quot;: false,</span><br><span class="line">            &quot;StdinOnce&quot;: false,</span><br><span class="line">            # 容器和宿主机文件映射</span><br><span class="line">            &quot;Env&quot;: [</span><br><span class="line">                &quot;PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;Cmd&quot;: null,</span><br><span class="line">            &quot;Image&quot;: &quot;&quot;,</span><br><span class="line">            # 数据卷为空</span><br><span class="line">            &quot;Volumes&quot;: &#123;</span><br><span class="line">                &quot;/data&quot;: &#123;&#125;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;WorkingDir&quot;: &quot;/&quot;,</span><br><span class="line">            &quot;Entrypoint&quot;: [</span><br><span class="line">                &quot;/portainer&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;OnBuild&quot;: null,</span><br><span class="line">            &quot;Labels&quot;: null</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Architecture&quot;: &quot;amd64&quot;,</span><br><span class="line">        &quot;Os&quot;: &quot;linux&quot;,</span><br><span class="line">        &quot;Size&quot;: 79085285,</span><br><span class="line">        &quot;VirtualSize&quot;: 79085285,</span><br><span class="line">        # 驱动</span><br><span class="line">        &quot;GraphDriver&quot;: &#123;</span><br><span class="line">            &quot;Data&quot;: &#123;</span><br><span class="line">                &quot;LowerDir&quot;: &quot;/var/lib/docker/overlay2/12662c46247e8aaf8712d025187a532bdc2c87d9ecdef2074deb38aaefcf0a5d/diff:/var/lib/docker/overlay2/4548e695971c596b459c5c3ef688f96b7b2b35969a109d90c21933878a052e4e/diff&quot;,</span><br><span class="line">                &quot;MergedDir&quot;: &quot;/var/lib/docker/overlay2/7752938c5962b1fc34cbe172f43ee485b9212ea87df836764298283ddd4c7a35/merged&quot;,</span><br><span class="line">                &quot;UpperDir&quot;: &quot;/var/lib/docker/overlay2/7752938c5962b1fc34cbe172f43ee485b9212ea87df836764298283ddd4c7a35/diff&quot;,</span><br><span class="line">                &quot;WorkDir&quot;: &quot;/var/lib/docker/overlay2/7752938c5962b1fc34cbe172f43ee485b9212ea87df836764298283ddd4c7a35/work&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            &quot;Name&quot;: &quot;overlay2&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;RootFS&quot;: &#123;</span><br><span class="line">            &quot;Type&quot;: &quot;layers&quot;,</span><br><span class="line">            # portainer镜像是基于以下镜像而来的，可以看到有三层</span><br><span class="line">            &quot;Layers&quot;: [</span><br><span class="line">                &quot;sha256:8dfce63a73970a18bcc2ca447d9c252aedd3157e9ee02a88e66c53571279aee9&quot;,</span><br><span class="line">                &quot;sha256:11bdf2a940a7eb35fe69359d45eaeb6f8553a682a19e26db49d4c924588bb6c4&quot;,</span><br><span class="line">                &quot;sha256:658693958bcb13c9d33a49d82f1e1297073066bec8d8b07dd49357ad5c08ce58&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Metadata&quot;: &#123;</span><br><span class="line">            &quot;LastTagTime&quot;: &quot;0001-01-01T00:00:00Z&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></div>
+<p>docker容器相关命令：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker start|stop|restart hello-world|578c3e61a98c # 启动|停止|重启指定 容器名称|容器id的容器</span><br><span class="line">docker inspect 578c3e61a98c #查看指定容器id的详情</span><br><span class="line">docker exec -it 578c3e61a98c|hello-world /bin/sh #进入指定 容器id|容器名称 的容器</span><br><span class="line">docker rm -f 578c3e61a98c|hello-world # 强制删除指定 容器id|容器名称 的容器</span><br><span class="line">docker stats 578c3e61a98c|hello-world # 查看指定 容器id|容器名称 的容器占用资源情况</span><br><span class="line">docker top 578c3e61a98c|hello-world # 查看指定 容器id|容器名称 的容器正在运行的进程</span><br><span class="line">docker logs 578c3e61a98c|hello-world # 查看指定 容器id|容器名称 的容器的日志</span><br></pre></td></tr></table></figure></div>
+<h3 id="卷挂载"><a href="#卷挂载" class="headerlink" title="卷挂载"></a>卷挂载</h3><p>我们知道，docker是一种虚拟化的方式，根据需求将环境和配置、应用一起打包后，然后运行在宿主机上来对外提供服务的；<br>docker为了数据持久化，提供了数据卷；把数据卷(文件目录)挂载到本地后，这样即使删除了容器，数据也还在本地；真正做到删库跑路；</p>
+<p>数据卷可以在一个或多个容器间通信，实现数据的持久化和共享；和我们将数据拷贝到另一个目录下的原理是一样的；<br>示例：<br>我们下载个tomcat并启动下：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm tomcat9.0 #测试运行tomcat9.0镜像 没找到默认拉取最新的并将tag命名为9.0</span><br></pre></td></tr></table></figure></div>
+<p>下载并启动完后，我们查看镜像发现确实多了个tomcat9.0，这时候由于我们没有配置端口映射，直接访问localhost:8080是在宿主机上访问的，肯定访问不到，所以我们得进入容器内访问，发现访问报404,所以服务实际上启动了的，至于为啥404我们后面再分析；<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gmHs4x"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/03/gmHs4x.png"
+                     
+                ></a></p>
+<p>退出，可以看到容器被删除了；接下来我们正常启动下，带上端口映射和对应镜像的tag,如果不指定tag会去下载最新的版本并启动;我们这里就使用刚下载的就好<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gmbxyD"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/03/gmbxyD.png"
+                     
+                ></a><br>启动完后，我们直接在服务器上访问，发现可以连通了，但是同样报404；<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gmqR7d"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/03/gmqR7d.png"
+                     
+                ></a><br>我们进入容器看到webapps下发现啥都没有，能不报404吗？一般我们用tomcat部署项目，都是放在tomcat webapps这个目录下的，如果我们后面采用集群部署项目，那么多个tomcat容器，难道我都要每次都进入容器把应用拷进来;docker其实也想到了，docker可以提供卷挂载，我们只需要将容器中指定目录挂载到我们主机上，就可以实现部署一份，多份同步了；</p>
+<p>同样，我们思考下容器启动了后，数据放在哪儿？放在容器中，删除容器的话是不是容器里的数据就没了，所以为了数据的同步持久化，docker提供了数据卷，我们同样可以将数据卷和一些重要信息放在本地，这样即使删除了容器，数据还在本地；卷可以在一个或多个容器间通信，提供数据的持久化和数据共享；</p>
+<blockquote>
+<p>测试挂载</p>
+</blockquote>
+<p>我们使用下载的centos镜像，运行进入容器发现容器没有运行，<code>docker ps</code>查看运行中的容器，<code>docker ps -a</code>查看所有容器；因为我们下载的centos里面啥都没有，没有做任何事情docker默认不启动；<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/gmjng0"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/04/gmjng0.png"
+                     
+                ></a></p>
+<p>那我们测试挂载启动看下，我们将容器的文件目录挂载到主机的home目录下：<br>我们启动centos容器后，看下是否有挂载;查看容器详情中的mounts信息，发现已经挂载上了；</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker ps # 查看运行的容器</span><br><span class="line">docker inspect 9bdcdbaf27fa # 查看容器详情</span><br></pre></td></tr></table></figure></div>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gmj5Vg"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/04/gmj5Vg.png"
+                     
+                ></a></p>
+<p>接着我么测试下往home目录下写东西，看容器中是否相应的文件产生，反之再试下容器中写东西，看主机是否同步；<br>我们先看下主机&#x2F;homr目录下是否是空的.可以看到容器和主机间通过挂载是可以实现双向同步；</p>
+<p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gmv3sf"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://z3.ax1x.com/2021/05/04/gmv3sf.png"
+                     
+                ></a></p>
+<p>同理：我们用docker安装mysql时，挂载关键的配置文件即可，这样即使我们删除了容器，一旦重启容器，数据就会同步到容器中；实现本地-多容器同步；</p>
+<p>dockerhub上官方关于mysql的同步挂载的命令如下：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker安装mysql 必要步骤： -e MYSQL_ROOT_PASSWORD=my-secret-p @ mysql的初始密码！</span></span><br><span class="line">docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql核心1  配置</span></span><br><span class="line">docker run --name some-mysql -v /my/custom:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mysql核心2 数据存储！</span></span><br><span class="line">docker run --name some-mysql -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>小结：至此我们关于docker的镜像容器挂载卷都有认识，通过挂载通信，可以很清晰的感受到docker的便捷;</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> docker镜像，容器，挂载卷</li>
+        <li><strong>Author:</strong> viEcho</li>
+        <li><strong>Created at
+                :</strong> 2021-05-02 16:29:46</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-01-18 14:46:46
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://viecho.github.io/2021/0502/docker-base-info.html
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/docker/">#docker</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2021/0502/portainer-install.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">docker安装可视化Portainer界面</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2021/0428/double-annotation.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">手撸两个注解</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://echo-talk.vercel.app/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">docker镜像，容器，挂载卷</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F"><span class="nav-text">镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8"><span class="nav-text">容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E6%8C%82%E8%BD%BD"><span class="nav-text">卷挂载</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">viEcho</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+            <div class="icp-info my-1">
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.mps.gov.cn/#/query/webSearch?code=42011102005477
+                
+                ">鄂公网安备42011102005477号</a>
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.miit.gov.cn/#/Integrated/recordQuery
+                
+                ">鄂ICP备2024034846号-1</a>
+            </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+            <li class="right-bottom-tools tool-aplayer flex justify-center items-center">
+
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
