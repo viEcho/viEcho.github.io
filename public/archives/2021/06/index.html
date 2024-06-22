@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="viEcho">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://viecho.github.io/archives/2021/06/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta property="og:type" content="website">
+<meta property="og:title" content="叁有三分之一">
+<meta property="og:url" content="https://viecho.github.io/archives/2021/06/index.html">
+<meta property="og:site_name" content="叁有三分之一">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="viEcho">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Archive: 2021/6 -
+        
+        叁有三分之一
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        叁有三分之一
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"viecho.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"baoj0719@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry/","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                叁有三分之一
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-coffee fa-fw"></i>
+                                    后端
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/java">
+                                                    JAVA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/db">
+                                                    DB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/springboot">
+                                                    SPRINGBOOT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">
+                                                    设计模式
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E7%AE%97%E6%B3%95">
+                                                    算法
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-gears fa-fw"></i>
+                                    中间件
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/kafka">
+                                                    KAFKA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/redis">
+                                                    REDIS
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/recketMq">
+                                                    ROCKETMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/rabbitMq">
+                                                    RABBITMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/xxlJob">
+                                                    XXLJOB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-cloud fa-fw"></i>
+                                    云原生
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/docker">
+                                                    DOCKER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/linux">
+                                                    LINUX
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/toolsSetting"
+                                        >
+                                    <i class="fa-regular fa-gavel fa-fw"></i>
+                                    TOOLS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E6%BA%90%E7%A0%81"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    源码
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/web%E7%AF%87"
+                                        >
+                                    <i class="fa-brands fa-internet-explorer fa-fw"></i>
+                                    WEB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/mianshi"
+                                        >
+                                    <i class="fa-regular fa-file-text fa-fw"></i>
+                                    面试题
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/viEcho">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">
+                                                    评论管理
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-后端"
+                        >
+                            <span>
+                                后端
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-后端">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/java">JAVA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/db">DB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/springboot">SPRINGBOOT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E7%AE%97%E6%B3%95">算法</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-中间件"
+                        >
+                            <span>
+                                中间件
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-中间件">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/kafka">KAFKA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/redis">REDIS</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/recketMq">ROCKETMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/rabbitMq">RABBITMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/xxlJob">XXLJOB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-云原生"
+                        >
+                            <span>
+                                云原生
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-云原生">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/docker">DOCKER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/linux">LINUX</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/toolsSetting"
+                        >
+                            <span>
+                                TOOLS
+                            </span>
+                            
+                                <i class="fa-regular fa-gavel fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E6%BA%90%E7%A0%81"
+                        >
+                            <span>
+                                源码
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/web%E7%AF%87"
+                        >
+                            <span>
+                                WEB
+                            </span>
+                            
+                                <i class="fa-brands fa-internet-explorer fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/mianshi"
+                        >
+                            <span>
+                                面试题
+                            </span>
+                            
+                                <i class="fa-regular fa-file-text fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/viEcho">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">评论管理</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+            <!--手机模式下增加侧边栏的导航-->
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/essays"
+                         >
+                            <span>说说</span>
+                            <i class="fa-solid fa-keynote fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/masonry/"
+                         >
+                            <span>相册</span>
+                            <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/archives"
+                         >
+                            <span>归档</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/categories/other"
+                         >
+                            <span>其他</span>
+                            <i class="fa-regular fa-head-side-headphones fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">92</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="archive-container shadow-none hover:shadow-none sm:shadow-redefine sm:hover:shadow-redefine-hover">
+    
+
+<div class="archive-list-container">
+    
+        <section class="archive-item">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2024</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">5</span>
+            </div>
+            <ul class="article-list pl-8 text-lg leading-[1.5]">
+              
+                
+                    
+                    <li class="article-item" date-is='06-21'>
+                
+                
+                    <a href="/2024/0621/mysql-join-left-join.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mysql之join left join踩坑记</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='06-18'>
+                
+                
+                    <a href="/2024/0618/py-shell-for-generate-db-data.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">手撸一个造数脚本工具类</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='03-07'>
+                
+                
+                    <a href="/2024/0307/mybatis-lixiang.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mybatisli逆向工程</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='01-16'>
+                
+                
+                    <a href="/2024/0116/push-project-to-gitee-github.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">idea项目同步到gitee及github</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='01-10'>
+                
+                
+                    <a href="/2024/0110/strategy-pattern.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">基于注解实现策略模式</span>
+                    </a>
+                
+              
+            </ul>
+        </section>
+    
+        <section class="archive-item">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2022</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">5</span>
+            </div>
+            <ul class="article-list pl-8 text-lg leading-[1.5]">
+              
+                
+                    
+                    <li class="article-item" date-is='04-18'>
+                
+                
+                    <a href="/2022/0418/mac-virtual-machine-static-ip.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mac虚拟机搭建&amp;设置静态ip</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='04-17'>
+                
+                
+                    <a href="/2022/0417/install-kafka-cluster.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">虚拟机上安装集群kafka</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2022/0417/install-kafka.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">虚拟机上安装单机kafka</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='03-17'>
+                
+                
+                    <a href="/2022/0317/mac-command-shell.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mac终端常用命令及环境配置</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='02-19'>
+                
+                
+                    <a href="/2022/0219/hexo-3d-virtual-character.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">hexo添加3d人物</span>
+                    </a>
+                
+              
+            </ul>
+        </section>
+    
+        <section class="archive-item">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2021</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">80</span>
+            </div>
+            <ul class="article-list pl-8 text-lg leading-[1.5]">
+              
+                
+                    
+                    <li class="article-item" date-is='06-27'>
+                
+                
+                    <a href="/2021/0627/mybatis-plus-binging-error.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='05-22'>
+                
+                
+                    <a href="/2021/0522/idea-template-comment.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">idea类和方法配置注释模板</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='05-21'>
+                
+                
+                    <a href="/2021/0521/mysql-1064.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mysql执行建表语句报1064</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='05-15'>
+                
+                
+                    <a href="/2021/0515/docker-cluster.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">docker之集群搭建(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0515/docker-file-springboot.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">springboot项目之dockerFile镜像构建(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0515/docker-net.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">docker之网络通信(待填坑)</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='05-07'>
+                
+                
+                    <a href="/2021/0507/docker-file.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">docker之dockerFile</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='05-06'>
+                
+                
+                    <a href="/2021/0506/3-rubik-s-cube.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">三阶魔方还原公式</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='05-02'>
+                
+                
+                    <a href="/2021/0502/portainer-install.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">docker安装可视化Portainer界面</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0502/docker-base-info.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">docker镜像，容器，挂载卷</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='04-28'>
+                
+                
+                    <a href="/2021/0428/double-annotation.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">手撸两个注解</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='04-24'>
+                
+                
+                    <a href="/2021/0424/wordpress-site-note.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">wordpress建站笔记</span>
+                    </a>
+                
+              
+                
+                    
+                    <li class="article-item" date-is='04-23'>
+                
+                
+                    <a href="/2021/0423/docker-install.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">docker安装</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/bug-for-mysql.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">一个bug引发的对于mysql语句的探究</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/db-meate-data.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mysql,oracle,sqlServer 元数据查询</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mysql-db-shell.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mysql 常用脚本</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mysql-connect-error.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mysql本地连接报错</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/java8-4-function-interface.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">java8之4大函数式接口详解</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/thread-base-knowledge.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">线程基础知识-必知必会</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/poi-big-count-datas-export.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">poi SXSSFWorkbook大数据量导出实践</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/deep-shallow-clone.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">由一个bug谈谈深浅克隆</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/activity-practice-1.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">layui表格及工作流二次开发实践1</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/maven-package-to-small.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">包总是太大？maven一个配置教你瘦身</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/activity-practice-2.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">工作流二次开发之新增表单实践2</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/common-response-exception.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">统一返回处理&amp;统一异常封装</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/jmm-memory-model.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">JMM 内存模型知识点探究</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/ioc-aop-talk.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">浅谈对 IOC 和 AOP的认知</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/java8-optional.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">java8 新特性之optional</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/java8-stream.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">jdk1.8新特性之stream流</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mybatis-she-ji-mo-shi.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">从mybatis看设计模式的应用</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/8-lock-question.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">经典8锁问题--助你彻底搞懂锁的概念</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/4-characteristics-of-transaction.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">浅谈事务的四大特性及多线程事务问题</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/jvm-talk.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">浅谈jvm虚拟机</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/recursion-for-tree.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">记一个递归封装树形结构</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/balance-tree.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">链表&amp;二叉树&amp;平衡二叉树&amp;红黑树</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/wei-operation.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">位运算</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/time-space-complexity.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">时间复杂度&amp;空间复杂度</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/install-java-linux.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux上安装java</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/install-mysql-linux.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux上安装mysql</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/install-redis-linux.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux上安装redis</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/install-ngnix-linux.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux上安装nginx</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/install-tomcat-linux.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux上安装tomcat</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/aliyun-oss-sdk.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">阿里云OSS SDk实践篇</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/install-jenkins-linux.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">linux上安装jenkins(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/6-sheji-yuan-ze.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">六大设计原则及使用场景</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/singleton-pattern.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">设计模式之单例模式</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/string-source-code.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">String 聊源码解读</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/hashmap-source-code.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">HashMap 源码分析</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/understand-springcloud.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">宏观的认识SpringCloud</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/springboot-mybaits-druid.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">springboot集成mybatis和druid监控</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/springboot-more-datasource.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">SpringBoot整合多数据源</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/springcloud-ribbon.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">SpringCloud之Ribbon(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/springcloud-eureka.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">SpringCloud之Eureka</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/write-one-starter.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">SpringBoot自定义一个starter</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/swagger-ui.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">世界上最流行的框架Swagger</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/teache-you-log.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">你真的会打印日志吗？</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/use-interceptor.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">Interceptor的使用及探究</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mybatisplus-generate-code.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mybatisPlus 实践篇之逆向工程</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mybatisplus-crud-code.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mybatisPlus 实践篇之CRUD操作</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/springboot-switch.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">springBoot 中的那些“开关”</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/first-see-security.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">初窥SpringSecurity安全框架</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/springboot-auto-config.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">springweb自动配置分析及flyway插件使用</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mac-jdk8-jdk11.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mac安装jdk11动态指定运行版本</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/idea-shortcut-key.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">idea 常用快捷键</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/idea-can-not-find-class.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">idea 无法加载识别本地类</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/jemeter-introduction.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">jemeter 压测入门篇</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/navicat-install.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">navicat安装教程（附带工具）</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/vscode-vue-config.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">vsCode vue开发配置</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/web-ui-evolution.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">前端架构演进及主流UI</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/es6-grammar-sample.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">es6语法示例(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/vue-compent-transfer-value.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">vue 组件间传值(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/vue-project-build.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">vue项目搭建</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/vue-store-statue-manage.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">vue store状态管理(待填坑)</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/md-grammar.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">markdown 语法</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/picture-bad.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">图床的使用</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/halo-domain.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">halo 配置域名</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/jia-gou-shi.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">架构师进阶</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/my-616.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">my616</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/recent-think.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">谈谈最近的感想</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2021/0423/mac-pro-experience.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">mac pro初体验</span>
+                    </a>
+                
+              
+            </ul>
+        </section>
+    
+        <section class="archive-item">
+            <div class="archive-item-header flex flex-row items-center mb-2">
+                <span class="archive-year font-semibold text-3xl mr-2">2020</span>
+                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">2</span>
+            </div>
+            <ul class="article-list pl-8 text-lg leading-[1.5]">
+              
+                
+                    
+                    <li class="article-item" date-is='10-08'>
+                
+                
+                    <a href="/2020/1008/jar-run-step.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">jar包发版步骤</span>
+                    </a>
+                
+              
+                
+                
+                    <a href="/2020/1008/firewall-shell.html" target="_blank" class="block overflow-hidden">
+                        <span class="article-title mb-0.5 text-2xl">firewall相关命令</span>
+                    </a>
+                
+              
+            </ul>
+        </section>
+    
+</div>
+
+</div>
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">viEcho</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+            <div class="icp-info my-1">
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.mps.gov.cn/#/query/webSearch?code=42011102005477
+                
+                ">鄂公网安备42011102005477号</a>
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.miit.gov.cn/#/Integrated/recordQuery
+                
+                ">鄂ICP备2024034846号-1</a>
+            </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+            <li class="right-bottom-tools tool-aplayer flex justify-center items-center">
+
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>

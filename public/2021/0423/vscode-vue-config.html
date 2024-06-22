@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="viEcho">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://viecho.github.io/2021/0423/vscode-vue-config.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="之前说了前端框架的演进，那就开干吧！开干之前我们初始化vue项目后需要做些什么呢？  下载检查插件 vetur  Vetur支持.vue文件的语法高亮显示，除了支持template模板以外，还支持大多数主流的前端开发脚本和插件，比如Sass和TypeScrip  eslint   1.审查代码是否符合编码规范和统一的代码风格； 2.审查代码是否存在语法错误npm install eslint -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vsCode vue开发配置">
+<meta property="og:url" content="https://viecho.github.io/2021/0423/vscode-vue-config.html">
+<meta property="og:site_name" content="叁有三分之一">
+<meta property="og:description" content="之前说了前端框架的演进，那就开干吧！开干之前我们初始化vue项目后需要做些什么呢？  下载检查插件 vetur  Vetur支持.vue文件的语法高亮显示，除了支持template模板以外，还支持大多数主流的前端开发脚本和插件，比如Sass和TypeScrip  eslint   1.审查代码是否符合编码规范和统一的代码风格； 2.审查代码是否存在语法错误npm install eslint -">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/01/Gl0BQK.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/01/GlBpmF.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/01/GlBz9I.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/01/GlDeCn.png">
+<meta property="article:published_time" content="2021-04-23T11:55:09.330Z">
+<meta property="article:modified_time" content="2024-01-18T07:14:48.304Z">
+<meta property="article:author" content="viEcho">
+<meta property="article:tag" content="vue,eslint">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/01/Gl0BQK.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            vsCode vue开发配置 -
+        
+        叁有三分之一
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        叁有三分之一
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"viecho.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"baoj0719@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springboot","设计模式":"/categories/设计模式","算法":"/categories/算法"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/源码","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web篇","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry/","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                叁有三分之一
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-coffee fa-fw"></i>
+                                    后端
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/java">
+                                                    JAVA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/db">
+                                                    DB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/springboot">
+                                                    SPRINGBOOT
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">
+                                                    设计模式
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/%E7%AE%97%E6%B3%95">
+                                                    算法
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-gears fa-fw"></i>
+                                    中间件
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/kafka">
+                                                    KAFKA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/redis">
+                                                    REDIS
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/recketMq">
+                                                    ROCKETMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/rabbitMq">
+                                                    RABBITMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/xxlJob">
+                                                    XXLJOB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-cloud fa-fw"></i>
+                                    云原生
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/docker">
+                                                    DOCKER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/linux">
+                                                    LINUX
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/toolsSetting"
+                                        >
+                                    <i class="fa-regular fa-gavel fa-fw"></i>
+                                    TOOLS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/%E6%BA%90%E7%A0%81"
+                                        >
+                                    <i class="fa-regular fa-code fa-fw"></i>
+                                    源码
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/web%E7%AF%87"
+                                        >
+                                    <i class="fa-brands fa-internet-explorer fa-fw"></i>
+                                    WEB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/mianshi"
+                                        >
+                                    <i class="fa-regular fa-file-text fa-fw"></i>
+                                    面试题
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/viEcho">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">
+                                                    评论管理
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-后端"
+                        >
+                            <span>
+                                后端
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-后端">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/java">JAVA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/db">DB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/springboot">SPRINGBOOT</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F">设计模式</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/%E7%AE%97%E6%B3%95">算法</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-中间件"
+                        >
+                            <span>
+                                中间件
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-中间件">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/kafka">KAFKA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/redis">REDIS</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/recketMq">ROCKETMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/rabbitMq">RABBITMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/xxlJob">XXLJOB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-云原生"
+                        >
+                            <span>
+                                云原生
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-云原生">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/docker">DOCKER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/linux">LINUX</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/toolsSetting"
+                        >
+                            <span>
+                                TOOLS
+                            </span>
+                            
+                                <i class="fa-regular fa-gavel fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/%E6%BA%90%E7%A0%81"
+                        >
+                            <span>
+                                源码
+                            </span>
+                            
+                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/web%E7%AF%87"
+                        >
+                            <span>
+                                WEB
+                            </span>
+                            
+                                <i class="fa-brands fa-internet-explorer fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/mianshi"
+                        >
+                            <span>
+                                面试题
+                            </span>
+                            
+                                <i class="fa-regular fa-file-text fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/viEcho">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">评论管理</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+            <!--手机模式下增加侧边栏的导航-->
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/essays"
+                         >
+                            <span>说说</span>
+                            <i class="fa-solid fa-keynote fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/masonry/"
+                         >
+                            <span>相册</span>
+                            <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/archives"
+                         >
+                            <span>归档</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/categories/other"
+                         >
+                            <span>其他</span>
+                            <i class="fa-regular fa-head-side-headphones fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">64</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">92</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="/../images/toolsSetting/21/4/23/vscode.png" alt="vsCode vue开发配置" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">vsCode vue开发配置</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/favicon.ico">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">viEcho</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2021-04-23 19:55:09</span>
+        <span class="mobile">2021-04-23 19:55:09</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-18 15:14:48</span>
+            <span class="mobile">2024-01-18 15:14:48</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/toolsSetting/">toolsSetting</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/vue-eslint/">vue,eslint</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>9 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <blockquote>
+<p>之前说了前端框架的演进，那就开干吧！开干之前我们初始化vue项目后需要做些什么呢？</p>
+</blockquote>
+<h3 id="下载检查插件"><a href="#下载检查插件" class="headerlink" title="下载检查插件"></a>下载检查插件</h3><blockquote>
+<p>vetur</p>
+</blockquote>
+<p>Vetur支持.vue文件的语法高亮显示，除了支持template模板以外，还支持大多数主流的前端开发脚本和插件，比如Sass和TypeScrip<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/01/Gl0BQK.png"
+                      alt="Vetur插件"
+                ></p>
+<blockquote>
+<p>eslint</p>
+</blockquote>
+<ul>
+<li>1.审查代码是否符合编码规范和统一的代码风格；</li>
+<li>2.审查代码是否存在语法错误<br><code>npm install eslint --save-dev</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/01/GlBpmF.png"
+                      alt="eslint插件"
+                ><br>注意：这里之所以安装了对应的依赖还安装插件是因为后面我们的配置需要插件来协助，不然是无法识别的！</li>
+</ul>
+<h3 id="setting-json配置"><a href="#setting-json配置" class="headerlink" title="setting.json配置"></a>setting.json配置</h3><div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;window.zoomLevel&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;terminal.integrated.rendererType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dom&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 打开代码自动提示</span></span><br><span class="line">    <span class="attr">&quot;editor.suggest.snippetsPreventQuickSuggestions&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 文件格式</span></span><br><span class="line">    <span class="attr">&quot;emmet.syntaxProfiles&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;vue-html&quot;</span><span class="punctuation">:</span> <span class="string">&quot;html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;html&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// tab 自动补全标签</span></span><br><span class="line">    <span class="attr">&quot;emmet.triggerExpansionOnTab&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;emmet.includeLanguages&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;vue-html&quot;</span><span class="punctuation">:</span> <span class="string">&quot;html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;vue&quot;</span><span class="punctuation">:</span> <span class="string">&quot;html&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 代码缩进修改成4个空格 如果同时设置了eslint缩进会和其冲突(如果你不要eslint 可以放开下面三个配置)</span></span><br><span class="line">    <span class="comment">// &quot;editor.tabSize&quot;: 4,</span></span><br><span class="line">    <span class="comment">// &quot;editor.formatOnType&quot;: true, // 代码格式化 同eslint冲突</span></span><br><span class="line">    <span class="comment">// &quot;editor.formatOnSave&quot;: true, // 代码保存时自动格式化 同eslint冲突</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 不檢查縮進，保存后統一按設置項來設置</span></span><br><span class="line">    <span class="attr">&quot;editor.detectIndentation&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 控制 Markdown 预览中使用的字号(以像素为单位)。</span></span><br><span class="line">    <span class="attr">&quot;markdown.preview.fontSize&quot;</span><span class="punctuation">:</span> <span class="number">13</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 控制终端的字号(以像素为单位)。</span></span><br><span class="line">    <span class="attr">&quot;terminal.integrated.fontSize&quot;</span><span class="punctuation">:</span> <span class="number">12</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 切换文件时自动保存</span></span><br><span class="line">    <span class="attr">&quot;files.autoSave&quot;</span><span class="punctuation">:</span> <span class="string">&quot;onFocusChange&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 文件保存时自动去除多余的空格</span></span><br><span class="line">    <span class="attr">&quot;files.trimTrailingWhitespace&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 终端选中即复制</span></span><br><span class="line">    <span class="attr">&quot;terminal.integrated.copyOnSelection&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 換行</span></span><br><span class="line">    <span class="attr">&quot;editor.wordWrap&quot;</span><span class="punctuation">:</span> <span class="string">&quot;on&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;editor.fontSize&quot;</span><span class="punctuation">:</span> <span class="number">13</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 設置行高</span></span><br><span class="line">    <span class="attr">&quot;editor.lineHeight&quot;</span><span class="punctuation">:</span> <span class="number">20</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// &quot;eslint.autoFixOnSave&quot;: true,</span></span><br><span class="line">    <span class="comment">// &quot;eslint.validate&quot;: [</span></span><br><span class="line">    <span class="comment">//     &quot;javascript&quot;,</span></span><br><span class="line">    <span class="comment">//     &quot;javascriptreact&quot;,</span></span><br><span class="line">    <span class="comment">//     &quot;html&quot;,</span></span><br><span class="line">    <span class="comment">//     &#123;</span></span><br><span class="line">    <span class="comment">//         &quot;language&quot;: &quot;vue&quot;,</span></span><br><span class="line">    <span class="comment">//         &quot;autoFix&quot;: true</span></span><br><span class="line">    <span class="comment">//     &#125;</span></span><br><span class="line">    <span class="comment">// ],</span></span><br><span class="line">    <span class="attr">&quot;eslint.options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="string">&quot;html&quot;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;vetur.validation.template&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatter.html&quot;</span><span class="punctuation">:</span> <span class="string">&quot;js-beautify-html&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;vetur.format.defaultFormatterOptions&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;js-beautify-html&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="comment">// 属性强制折行对齐</span></span><br><span class="line">            <span class="attr">&quot;wrap_attributes&quot;</span><span class="punctuation">:</span> <span class="string">&quot;force-aligned&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">//空格</span></span><br><span class="line">    <span class="attr">&quot;javascript.format.insertSpaceBeforeFunctionParenthesis&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;editor.codeActionsOnSave&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;source.fixAll.eslint&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="eslintrc-js配置"><a href="#eslintrc-js配置" class="headerlink" title=".eslintrc.js配置"></a>.eslintrc.js配置</h3><div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://eslint.org/docs/user-guide/configuring</span></span><br><span class="line"></span><br><span class="line">module.exports = <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">//此项是用来告诉eslint找当前配置文件不能往父级查找</span></span><br><span class="line">    root<span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">//此项是用来指定eslint解析器的，解析器必须符合规则，babel-eslint解析器是对babel解析器的包装使其与ESLint解析</span></span><br><span class="line">    parser<span class="punctuation">:</span> <span class="string">&quot;babel-eslint&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">//此项是用来指定javaScript语言类型和风格，sourceType用来指定js导入的方式，默认是script，此处设置为module，指某块导入方式</span></span><br><span class="line">    parserOptions<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="comment">// 设置 script(默认) 或 module，如果代码是在ECMASCRIPT中的模块</span></span><br><span class="line">        sourceType<span class="punctuation">:</span> <span class="string">&quot;module&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;ecmaVersion&quot;</span><span class="punctuation">:</span> <span class="number">6</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;ecmaFeatures&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;jsx&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 此项指定环境的全局变量，下面的配置指定为浏览器环境</span></span><br><span class="line">    env<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;browser&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;node&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;commonjs&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;es6&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;amd&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// https://github.com/standard/standard/blob/master/docs/RULES-en.md</span></span><br><span class="line">    <span class="comment">// 此项是用来配置标准的js风格，就是说写代码的时候要规范的写，如果你使用vs-code我觉得应该可以避免出错</span></span><br><span class="line">    extends<span class="punctuation">:</span> <span class="string">&quot;vue&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// 此项是用来提供插件的，插件名称省略了eslint-plugin-，下面这个配置是用来规范html的</span></span><br><span class="line">    plugins<span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;html&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;flow-vars&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;react&quot;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    下面这些rules是用来设置从插件来的规范代码的规则，使用必须去掉前缀eslint-plugin-</span></span><br><span class="line"><span class="comment">    主要有如下的设置规则，可以设置字符串也可以设置数字，两者效果一致</span></span><br><span class="line"><span class="comment">    &quot;off&quot; -&gt; 0 关闭规则</span></span><br><span class="line"><span class="comment">    &quot;warn&quot; -&gt; 1 开启警告规则</span></span><br><span class="line"><span class="comment">    &quot;error&quot; -&gt; 2 开启错误规则</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    rules<span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;indent&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;warn&quot;</span><span class="punctuation">,</span> <span class="number">4</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="comment">// 缩进4个空格</span></span><br><span class="line">        <span class="attr">&quot;consistent-return&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// return 后面是否允许省略</span></span><br><span class="line">        <span class="attr">&quot;quotes&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 强制一致使用反引号，双引号或单引号</span></span><br><span class="line">        <span class="attr">&quot;prefer-const&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 如果一个变量从不重新分配，使用const声明更好</span></span><br><span class="line">        <span class="attr">&quot;space-before-function-paren&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 函数定义时括号前面要不要有空格</span></span><br><span class="line">        <span class="comment">// &quot;space-before-function-paren&quot;: [&quot;error&quot;, &#123; // 函数括号前端需要一个空格</span></span><br><span class="line">        <span class="comment">//     &quot;anonymous&quot;: &quot;always&quot;,</span></span><br><span class="line">        <span class="comment">//     &quot;named&quot;: &quot;always&quot;,</span></span><br><span class="line">        <span class="comment">//     &quot;asyncArrow&quot;: &quot;ignore&quot;</span></span><br><span class="line">        <span class="comment">// &#125;],</span></span><br><span class="line">        <span class="attr">&quot;camelcase&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span><span class="comment">//强制驼峰法命名</span></span><br><span class="line">        <span class="attr">&quot;semi&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;error&quot;</span><span class="punctuation">,</span> <span class="string">&quot;always&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="comment">// 语句后面添加的分号</span></span><br><span class="line">        <span class="attr">&quot;no-unneeded-ternary&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 当存在更简单的选择时不允许三元运算符</span></span><br><span class="line">        <span class="attr">&quot;no-return-assign&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">//</span></span><br><span class="line">        <span class="attr">&quot;object-curly-spacing&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 在大括号内强制执行一致的间距</span></span><br><span class="line">        <span class="attr">&quot;padded-blocks&quot;</span><span class="punctuation">:</span> &#x27;off&#x27;<span class="punctuation">,</span> <span class="comment">// 要求或不允许块内的填充</span></span><br><span class="line">        <span class="attr">&quot;arrow-parens&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 它也将有助于找到箭头函数（=&gt;），这些函数可能被错误地包含在一个条件中，如果这样的比较&gt;=是有意的。</span></span><br><span class="line">        <span class="attr">&quot;generator-star-spacing&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span> <span class="comment">// 围绕*生成器函数（generator-star-spacing）强制执行间距</span></span><br><span class="line">        <span class="attr">&quot;no-debugger&quot;</span><span class="punctuation">:</span> process.env.NODE_ENV === <span class="string">&quot;production&quot;</span> ? <span class="number">2</span> <span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="comment">// &quot;semi-spacing&quot;: [&quot;error&quot;, &#123;&quot;before&quot;: false, &quot;after&quot;: false&#125;], // 分号前后不准有空格</span></span><br><span class="line">        <span class="attr">&quot;no-trailing-spaces&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;error&quot;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;skipBlankLines&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span> <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span> <span class="comment">// 允许在空行上结尾空白</span></span><br><span class="line">        <span class="attr">&quot;no-multiple-empty-lines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;error&quot;</span><span class="punctuation">,</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;max&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span> <span class="comment">// &quot;max&quot;（默认2：）强制连续空行的最大数量</span></span><br><span class="line">            <span class="attr">&quot;maxEOF&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span> <span class="comment">// &quot;maxEOF&quot; 在文件末尾强制执行最大数量的连续空行</span></span><br><span class="line">            <span class="attr">&quot;maxBOF&quot;</span><span class="punctuation">:</span> <span class="number">2</span> <span class="comment">// &quot;maxBOF&quot; 在文件的开头强制执行最大数量的连续空行</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;eslint.validate&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="comment">//开启对.vue文件中错误的检查</span></span><br><span class="line">            <span class="string">&quot;javascript&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="string">&quot;javascriptreact&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;language&quot;</span><span class="punctuation">:</span> <span class="string">&quot;html&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;autoFix&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;language&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vue&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;autoFix&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span></span><br><span class="line">        <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span>;</span><br></pre></td></tr></table></figure></div>
+<h3 id="editorconfig配置"><a href="#editorconfig配置" class="headerlink" title=".editorconfig配置"></a>.editorconfig配置</h3><div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># EditorConfig文件使用INI格式。斜杠(/)作为路径分隔符，#或者;作为注释。路径支持通配符<span class="punctuation">:</span></span><br><span class="line"># 表明是最顶层的配置文件，发现设为<span class="literal"><span class="keyword">true</span></span>时，才会停止查找.editorconfig文件</span><br><span class="line">root = <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"></span><br><span class="line"># * 匹配除/之外的任意字符</span><br><span class="line"># **    匹配任意字符串</span><br><span class="line"># ? 匹配任意单个字符</span><br><span class="line"># <span class="punctuation">[</span>name<span class="punctuation">]</span>    匹配name字符</span><br><span class="line"># <span class="punctuation">[</span>!name<span class="punctuation">]</span>   不匹配name字符</span><br><span class="line"># <span class="punctuation">[</span>s1<span class="punctuation">,</span>s2<span class="punctuation">,</span>s3<span class="punctuation">]</span>    匹配给定的字符串</span><br><span class="line"># <span class="punctuation">[</span>num1..num2<span class="punctuation">]</span>  匹配num1到mun2直接的整数</span><br><span class="line"><span class="punctuation">[</span>*<span class="punctuation">]</span></span><br><span class="line"># 文件的charset。有以下几种类型：latin1<span class="punctuation">,</span> utf<span class="number">-8</span><span class="punctuation">,</span> utf<span class="number">-8</span>-bom<span class="punctuation">,</span> utf<span class="number">-16</span>be<span class="punctuation">,</span> utf<span class="number">-16</span>le</span><br><span class="line">charset = utf<span class="number">-8</span></span><br><span class="line"># 缩进使用 tab 或者 space</span><br><span class="line">indent_style = space</span><br><span class="line"># 缩进为 space 时，缩进的字符数</span><br><span class="line">indent_size = <span class="number">4</span></span><br><span class="line"># 换行符的类型。lf<span class="punctuation">,</span> cr<span class="punctuation">,</span> crlf三种</span><br><span class="line">end_of_line = lf</span><br><span class="line"># 是否将行尾空格自动删除</span><br><span class="line">trim_trailing_whitespace = <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"># 是否使文件以一个空白行结尾</span><br><span class="line">insert_final_newline = <span class="literal"><span class="keyword">true</span></span></span><br></pre></td></tr></table></figure></div>
+<h3 id="eslintignore配置"><a href="#eslintignore配置" class="headerlink" title=".eslintignore配置"></a>.eslintignore配置</h3><p>一般默认的，我们无需修改</p>
+<div class="highlight-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">build<span class="comment">/*.js</span></span><br><span class="line"><span class="comment">config/*.js</span></span><br><span class="line"><span class="comment">node_modules/*.js</span></span><br><span class="line"><span class="comment">static/*/</span>*.js</span><br><span class="line">src/vendor/plugins<span class="comment">/*.js</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="js修改"><a href="#js修改" class="headerlink" title="js修改"></a>js修改</h3><p>一般，我们需要编译时就校验而不是webpack打包时再校验，可以注释掉webpack.dev.conf.js中的此段js</p>
+<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">createLintingRule</span> = (<span class="params"></span>) =&gt; (</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// test: /\.(js|vue)$/,</span></span><br><span class="line">        <span class="comment">// loader: &#x27;eslint-loader&#x27;,</span></span><br><span class="line">        <span class="comment">// enforce: &#x27;pre&#x27;,</span></span><br><span class="line">        <span class="comment">// include: [resolve(&#x27;src&#x27;), resolve(&#x27;test&#x27;)],</span></span><br><span class="line">        <span class="comment">// options: &#123;</span></span><br><span class="line">        <span class="comment">//   formatter: require(&#x27;eslint-friendly-formatter&#x27;),</span></span><br><span class="line">        <span class="comment">//   emitWarning: !config.dev.showEslintErrorsInOverlay</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></div>
+<p>而我们如果需要禁用eslint只需要在config下的index.js中将<code>useEslint: true,</code>改为false即可！</p>
+<h3 id="配置vue-模版"><a href="#配置vue-模版" class="headerlink" title="配置vue 模版"></a>配置vue 模版</h3><p>操作如下图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/01/GlBz9I.png"
+                     
+                ></p>
+<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;Create vue template&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;prefix&quot;</span>: <span class="string">&quot;vue&quot;</span>,</span><br><span class="line">        <span class="string">&quot;body&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;&lt;template&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  &lt;div class=\&quot;container\&quot;&gt;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  &lt;/div&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&lt;/template&gt;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&lt;script&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;export default &#123;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  name: &#x27;c&#x27;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  data () &#123;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;    return &#123;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;    &#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  &#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  props: &#123;&#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  components: &#123;&#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  watch: &#123;&#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  computed: &#123;&#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  created () &#123;&#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  mounted () &#123;&#125;,&quot;</span>,</span><br><span class="line">            <span class="string">&quot;  methods: &#123;&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&lt;/script&gt;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&lt;style scoped lang=\&quot;scss\&quot;&gt;\n&quot;</span>,</span><br><span class="line">            <span class="string">&quot;&lt;/style&gt;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$2&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;description&quot;</span>: <span class="string">&quot;Create vue template&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>那么我们只需要新建一个.vue的页面就可以得到一个模版如下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/01/GlDeCn.png"
+                     
+                ><br>注：这里我们配置模版，尽量按vue的生命周期，从前向后配置！引入的组件和定义的数据还是按在script最上层，这样使得数据层结构一目了然！</p>
+<blockquote>
+<p>小结：工欲善其事，必先利其器！vue撸起，后面将继续总结es6语法，数据的双向绑定，父子组件通信，函数异步调用，bus、store、路由等配置及用法。奥利给，前端代码也撸起来吧！</p>
+</blockquote>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> vsCode vue开发配置</li>
+        <li><strong>Author:</strong> viEcho</li>
+        <li><strong>Created at
+                :</strong> 2021-04-23 19:55:09</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-01-18 15:14:48
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://viecho.github.io/2021/0423/vscode-vue-config.html
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/vue-eslint/">#vue,eslint</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2021/0423/navicat-install.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">navicat安装教程（附带工具）</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2021/0423/web-ui-evolution.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">前端架构演进及主流UI</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://echo-talk.vercel.app/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">vsCode vue开发配置</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%A3%80%E6%9F%A5%E6%8F%92%E4%BB%B6"><span class="nav-text">下载检查插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setting-json%E9%85%8D%E7%BD%AE"><span class="nav-text">setting.json配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eslintrc-js%E9%85%8D%E7%BD%AE"><span class="nav-text">.eslintrc.js配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#editorconfig%E9%85%8D%E7%BD%AE"><span class="nav-text">.editorconfig配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eslintignore%E9%85%8D%E7%BD%AE"><span class="nav-text">.eslintignore配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js%E4%BF%AE%E6%94%B9"><span class="nav-text">js修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEvue-%E6%A8%A1%E7%89%88"><span class="nav-text">配置vue 模版</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">viEcho</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+            <div class="icp-info my-1">
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.mps.gov.cn/#/query/webSearch?code=42011102005477
+                
+                ">鄂公网安备42011102005477号</a>
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.miit.gov.cn/#/Integrated/recordQuery
+                
+                ">鄂ICP备2024034846号-1</a>
+            </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+            <li class="right-bottom-tools tool-aplayer flex justify-center items-center">
+
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
