@@ -4752,7 +4752,7 @@ html.is-animating .scroll-progress-bar {
   font-size: 1rem;
   padding: 3px 15px;
   display: block;
-  text-align: center;
+  text-align: left;
   border-radius: 8px;
   transition-property: color, background, box-shadow, border-color, all;
   transition-delay: 0s, 0s, 0s, 0s, 0s;
