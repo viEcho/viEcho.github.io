@@ -923,11 +923,11 @@
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">101</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">102</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -963,11 +963,11 @@
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">101</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">102</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -1031,6 +1031,82 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2021/0627/mybatis-plus-binging-error.html">
+                            <img src="/../images/java/21/6/27/mybatis_plus.png" alt="org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2021/0627/mybatis-plus-binging-error.html">
+                            org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+最近自己写了个小项目：vBills 一个单体的账单可视化系统；因为用了mybatis-plus，所以开发起来很便捷；但是一些稍微复杂一点的查询还是得自己手写sql,然后就自己写了个查询，自测时发现dao层和xml文件映射不上，就这个点上卡了一个多小...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sun Jun 27 2021 12:23:52 GMT+0800">
+                
+                    2021-06-27
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/java/">java</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/mybatis/">mybatis</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/0627/mybatis-plus-binging-error.html">Read more<span class="seo-reader-text">org.apache.ibatis.binding.BindingException: Invalid bound statement (not found)</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1706,85 +1782,6 @@ Docker镜像是一个特殊的文件系统(分层的联合文件系统)，除了
     </div>
 
     <a href="/2021/0502/docker-base-info.html">Read more<span class="seo-reader-text">docker镜像，容器，挂载卷</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2021/0428/double-annotation.html">
-                            <img src="/../images/java/21/4/28/java_zj.png" alt="手撸两个注解" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2021/0428/double-annotation.html">
-                            手撸两个注解
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-项目中很多地方的重复轮子都可以抽出来用AOP切面的形式搞定，这次我们就来撸两个注解玩下
-
-TimerLog注解打印耗时项目中，我们经常打印日志看下逻辑的耗时，大家都是各写各的搞的很不规范，那么我们为何不弄个注解，用的时候方法上加上不就可以了；
-自定...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Apr 28 2021 08:42:52 GMT+0800">
-                
-                    2021-04-28
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/java/">java</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/aspect/">aspect</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/0428/double-annotation.html">Read more<span class="seo-reader-text">手撸两个注解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
