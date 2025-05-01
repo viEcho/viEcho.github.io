@@ -20,14 +20,15 @@
     
         <meta name="description" content="最近在玩solidity，所以记录一下solidity的一些语法规则  1、可见性修饰符控制函数&#x2F;变量的访问边界    修饰符 访问范围 典型场景    public 合约内外均可访问（自动生成状态变量的 getter 函数） 公开接口方法（balanceOf()）   external 只能通过外部交易调用（合约内部不可直接调用） 回调函数（receive()）   internal">
 <meta property="og:type" content="article">
-<meta property="og:title" content="solidity基本语法规则">
+<meta property="og:title" content="(一)solidity基本语法规则">
 <meta property="og:url" content="https://viecho.github.io/2025/0413/solidity-base-programming-rules.html">
 <meta property="og:site_name" content="叁有三分之一">
 <meta property="og:description" content="最近在玩solidity，所以记录一下solidity的一些语法规则  1、可见性修饰符控制函数&#x2F;变量的访问边界    修饰符 访问范围 典型场景    public 合约内外均可访问（自动生成状态变量的 getter 函数） 公开接口方法（balanceOf()）   external 只能通过外部交易调用（合约内部不可直接调用） 回调函数（receive()）   internal">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-13T10:21:20.683Z">
-<meta property="article:modified_time" content="2025-04-13T11:35:29.256Z">
+<meta property="article:modified_time" content="2025-05-01T12:08:53.174Z">
 <meta property="article:author" content="viEcho">
+<meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary">
     
     
@@ -40,7 +41,7 @@
     
     <title>
         
-            solidity基本语法规则 -
+            (一)solidity基本语法规则 -
         
         叁有三分之一
     </title>
@@ -887,7 +888,7 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">72</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">73</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
@@ -895,7 +896,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">102</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">103</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -922,10 +923,10 @@
             
                 
                 
-                <img src="/../images/other/25/4/13/solidity_base.png" alt="solidity基本语法规则" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                <img src="/../images/other/25/4/13/solidity_base.png" alt="(一)solidity基本语法规则" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
                 
                 <div class="w-full flex items-center absolute bottom-0 justify-start">
-                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">solidity基本语法规则</h1>
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(一)solidity基本语法规则</h1>
                 </div>
             
             </div>
@@ -953,8 +954,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-04-13 19:35:29</span>
-            <span class="mobile">2025-04-13 19:35:29</span>
+            <span class="desktop">2025-05-01 20:08:53</span>
+            <span class="mobile">2025-05-01 20:08:53</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -986,6 +987,17 @@
             </ul>
         </span>
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/solidity/">solidity</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
 
     
@@ -1095,7 +1107,7 @@
 </tr>
 </tbody></table>
 <p><strong>继承示例</strong></p>
-<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基类合约</span></span><br><span class="line">contract <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="comment">// 可覆盖的基类方法</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">calculate</span>(<span class="params">uint a</span>)</span><br><span class="line">        public</span><br><span class="line">        virtual</span><br><span class="line">        pure</span><br><span class="line">        returns (uint)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类合约</span></span><br><span class="line">contract <span class="title class_">Child</span> is <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="comment">// 正确顺序：public → pure → override</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">calculate</span>(<span class="params">uint b</span>)</span><br><span class="line">        public</span><br><span class="line">        pure</span><br><span class="line">        override</span><br><span class="line">        returns (uint)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//调用父类方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">calculate</span>(b) + <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基类合约</span></span><br><span class="line">contract <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="comment">// 可覆盖的基类方法</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">calculate</span>(<span class="params">uint a</span>)</span><br><span class="line">        public</span><br><span class="line">        virtual</span><br><span class="line">        pure</span><br><span class="line">        <span class="title function_">returns</span> (uint)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> a * <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类合约</span></span><br><span class="line">contract <span class="title class_">Child</span> is <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="comment">// 正确顺序：public → pure → override</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">calculate</span>(<span class="params">uint b</span>)</span><br><span class="line">        public</span><br><span class="line">        pure</span><br><span class="line">        override</span><br><span class="line">        <span class="title function_">returns</span> (uint)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//调用父类方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">super</span>.<span class="title function_">calculate</span>(b) + <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <h4 id="4-关键规则总结"><a href="#4-关键规则总结" class="headerlink" title="4.关键规则总结"></a>4.关键规则总结</h4><p>A.标准修饰符顺序：<code>可见性 → 状态可变性 → 继承</code></p>
 <p>B.状态访问限制函数禁止以下操作</p>
 <div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uint x = storageVar;       <span class="comment">// 禁止读取状态</span></span><br><span class="line">emit <span class="title class_">Transfer</span>(msg.<span class="property">sender</span>); <span class="comment">// 禁止触发事件</span></span><br></pre></td></tr></table></figure></div>
@@ -1216,14 +1228,14 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> solidity基本语法规则</li>
+        <li><strong>Title:</strong> (一)solidity基本语法规则</li>
         <li><strong>Author:</strong> viEcho</li>
         <li><strong>Created at
                 :</strong> 2025-04-13 18:21:20</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-04-13 19:35:29
+                    :</strong> 2025-05-01 20:08:53
             </li>
         
         <li>
@@ -1246,6 +1258,14 @@
         
 
         
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/solidity/">#solidity</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
   <div class="recommended-article px-2 sm:px-6 md:px-8">
@@ -1253,33 +1273,48 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2021/0423/java8-4-function-interface.html" title="java8之4大函数式接口详解" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
+  <img src="/images/other/25/4/13/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
+  <span class="title">(二)solidity内置对象及函数</span>
+</a><a class="recommended-article-item" href="/2021/0423/java8-4-function-interface.html" title="java8之4大函数式接口详解" rel="bookmark">
   <img src="/images/java/21/4/23/function.png" alt="java8之4大函数式接口详解" class="!max-w-none">
   <span class="title">java8之4大函数式接口详解</span>
 </a><a class="recommended-article-item" href="/2021/0423/vscode-vue-config.html" title="vsCode vue开发配置" rel="bookmark">
   <img src="/images/toolsSetting/21/4/23/vscode.png" alt="vsCode vue开发配置" class="!max-w-none">
   <span class="title">vsCode vue开发配置</span>
-</a><a class="recommended-article-item" href="/2024/0110/proxy-mode.html" title="代理模式" rel="bookmark">
-  <img src="/images/sheji/24/1/14/sjms.png" alt="代理模式" class="!max-w-none">
-  <span class="title">代理模式</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2021/0423/java8-4-function-interface.html" title="java8之4大函数式接口详解" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
+  <img src="/images/other/25/4/13/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
+  <span class="title">(二)solidity内置对象及函数</span>
+</a><a class="recommended-article-item" href="/2021/0423/java8-4-function-interface.html" title="java8之4大函数式接口详解" rel="bookmark">
   <img src="/images/java/21/4/23/function.png" alt="java8之4大函数式接口详解" class="!max-w-none">
   <span class="title">java8之4大函数式接口详解</span>
-</a><a class="recommended-article-item" href="/2021/0423/vscode-vue-config.html" title="vsCode vue开发配置" rel="bookmark">
-  <img src="/images/toolsSetting/21/4/23/vscode.png" alt="vsCode vue开发配置" class="!max-w-none">
-  <span class="title">vsCode vue开发配置</span>
 </a></div>
    </div>
   </div>
 
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/0501/solidity-inner-object-and-function.html"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">(二)solidity内置对象及函数</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
                 
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
@@ -1351,7 +1386,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">solidity基本语法规则</div>
+        <div class="page-title">(一)solidity基本语法规则</div>
         <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">1、可见性修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%8A%B6%E6%80%81%E5%8F%AF%E5%8F%98%E6%80%A7%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">2、状态可变性修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%BB%A7%E6%89%BF%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">3、继承修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE"><span class="nav-text">5.存储位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">6.常用数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%BB%84%E5%90%88%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E7%A4%BA%E4%BE%8B"><span class="nav-text">7.组合使用场景示例</span></a></li></ol>
 
     </div>
