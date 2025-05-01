@@ -1092,14 +1092,14 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/python/</loc>
+    <loc>https://viecho.github.io/tags/stream/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/stream/</loc>
+    <loc>https://viecho.github.io/tags/python/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1449,6 +1449,13 @@
   </url>
   
   <url>
+    <loc>https://viecho.github.io/tags/%E9%AD%94%E6%96%B9/</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://viecho.github.io/tags/%E5%9B%BE%E5%BA%8A/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -1457,13 +1464,6 @@
   
   <url>
     <loc>https://viecho.github.io/tags/halo/</loc>
-    <lastmod>2025-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://viecho.github.io/tags/%E9%AD%94%E6%96%B9/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1484,14 +1484,14 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/study/</loc>
+    <loc>https://viecho.github.io/tags/solidity/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/%E8%81%8A%E8%81%8A/</loc>
+    <loc>https://viecho.github.io/tags/study/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1505,7 +1505,7 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/tags/solidity/</loc>
+    <loc>https://viecho.github.io/tags/%E8%81%8A%E8%81%8A/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1528,14 +1528,14 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/kafka/</loc>
+    <loc>https://viecho.github.io/categories/java/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/java/</loc>
+    <loc>https://viecho.github.io/categories/kafka/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1605,14 +1605,14 @@
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/other/self/</loc>
+    <loc>https://viecho.github.io/categories/other/solidity/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://viecho.github.io/categories/other/solidity/</loc>
+    <loc>https://viecho.github.io/categories/other/self/</loc>
     <lastmod>2025-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
