@@ -26,7 +26,7 @@
 <meta property="og:description" content="最近在玩solidity，所以记录一下solidity的一些语法规则  1、可见性修饰符控制函数&#x2F;变量的访问边界    修饰符 访问范围 典型场景    public 合约内外均可访问（自动生成状态变量的 getter 函数） 公开接口方法（balanceOf()）   external 只能通过外部交易调用（合约内部不可直接调用） 回调函数（receive()）   internal">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-13T10:21:20.683Z">
-<meta property="article:modified_time" content="2025-05-01T12:08:53.174Z">
+<meta property="article:modified_time" content="2025-05-02T08:08:31.661Z">
 <meta property="article:author" content="viEcho">
 <meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
     
     <script id="hexo-configurations">
     window.config = {"hostname":"viecho.github.io","root":"/","language":"en","path":"search.xml"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"1156947957@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"导航":{"path":"/links","icon":"fa-regular fa-map"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"Java":"/categories/java","DB":"/categories/db","SpringBoot":"/categories/springBoot","设计模式":"/categories/sheji","算法":"/categories/math"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"源码":{"path":"/categories/sourceCode","icon":"fa-regular fa-code"},"Web":{"path":"/categories/web","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":3,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"1156947957@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"导航":{"path":"/links","icon":"fa-regular fa-map"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"DB":"/categories/db","算法":"/categories/math","源码":"/categories/soruceCode","Java":"/categories/java","设计模式":"/categories/sheji","Solidity":"/categories/solidity","SpringBoot":"/categories/springBoot"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"Web":{"path":"/categories/web","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":3,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
     window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
     window.data = {"masonry":true};
   </script>
@@ -325,20 +325,26 @@
                                     <ul class="sub-menu">
                                         
                                             <li>
-                                                <a href="/categories/java">
-                                                    JAVA
-                                                </a>
-                                            </li>
-                                        
-                                            <li>
                                                 <a href="/categories/db">
                                                     DB
                                                 </a>
                                             </li>
                                         
                                             <li>
-                                                <a href="/categories/springBoot">
-                                                    SPRINGBOOT
+                                                <a href="/categories/math">
+                                                    算法
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/soruceCode">
+                                                    源码
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/java">
+                                                    JAVA
                                                 </a>
                                             </li>
                                         
@@ -349,8 +355,14 @@
                                             </li>
                                         
                                             <li>
-                                                <a href="/categories/math">
-                                                    算法
+                                                <a href="/categories/solidity">
+                                                    SOLIDITY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/springBoot">
+                                                    SPRINGBOOT
                                                 </a>
                                             </li>
                                         
@@ -452,23 +464,6 @@
                                         >
                                     <i class="fa-regular fa-gavel fa-fw"></i>
                                     TOOLS
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/categories/sourceCode"
-                                        >
-                                    <i class="fa-regular fa-code fa-fw"></i>
-                                    源码
                                     
                                 </a>
 
@@ -615,17 +610,22 @@
                                 
                                     <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
                                         <a class=" text-third-text-color text-xl"
-                                           href="/categories/java">JAVA</a>
-                                    </div>
-                                
-                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
-                                        <a class=" text-third-text-color text-xl"
                                            href="/categories/db">DB</a>
                                     </div>
                                 
                                     <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
                                         <a class=" text-third-text-color text-xl"
-                                           href="/categories/springBoot">SPRINGBOOT</a>
+                                           href="/categories/math">算法</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/soruceCode">源码</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/java">JAVA</a>
                                     </div>
                                 
                                     <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
@@ -635,7 +635,12 @@
                                 
                                     <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
                                         <a class=" text-third-text-color text-xl"
-                                           href="/categories/math">算法</a>
+                                           href="/categories/solidity">SOLIDITY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/springBoot">SPRINGBOOT</a>
                                     </div>
                                 
                             </div>
@@ -738,26 +743,6 @@
                             </span>
                             
                                 <i class="fa-regular fa-gavel fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/categories/sourceCode"
-                        >
-                            <span>
-                                源码
-                            </span>
-                            
-                                <i class="fa-regular fa-code fa-sm fa-fw"></i>
                             
                         </a>
                         
@@ -896,7 +881,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">103</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">105</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -923,7 +908,7 @@
             
                 
                 
-                <img src="/../images/other/25/4/13/solidity_base.png" alt="(一)solidity基本语法规则" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                <img src="/../images/solidity/25/5/1/solidity_base.png" alt="(一)solidity基本语法规则" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
                 
                 <div class="w-full flex items-center absolute bottom-0 justify-start">
                     <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(一)solidity基本语法规则</h1>
@@ -954,8 +939,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-05-01 20:08:53</span>
-            <span class="mobile">2025-05-01 20:08:53</span>
+            <span class="desktop">2025-05-02 16:08:31</span>
+            <span class="mobile">2025-05-02 16:08:31</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -969,17 +954,7 @@
                     
                         
                         <li>
-                            <a href="/categories/other/">other</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/other/solidity/">solidity</a>&nbsp;
+                            <a href="/categories/solidity/">solidity</a>&nbsp;
                         </li>
                     
                     
@@ -1003,12 +978,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.2k Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.3k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>5 Mins</span>
         </span>
     
     
@@ -1086,6 +1061,12 @@
 <td align="center">支付功能（<code>deposit()</code>）</td>
 </tr>
 </tbody></table>
+
+  <div class="note p-4 mb-4 rounded-small danger">
+    <p>状态变量不加修饰符，默认为internal;在solidity &gt; 0.5后，函数的声明必须加上修饰符</p>
+
+  </div>
+
 <h3 id="3、继承修饰符"><a href="#3、继承修饰符" class="headerlink" title="3、继承修饰符"></a>3、继承修饰符</h3><p>管理合约继承体系中的函数覆盖</p>
 <table>
 <thead>
@@ -1216,6 +1197,12 @@
 <td>代币合约交互（如<code>IERC20(token).transfer()</code>）、可升级代理合约逻辑</td>
 </tr>
 </tbody></table>
+
+  <div class="note p-4 mb-4 rounded-small danger">
+    <p>当函数参数涉及引用类型（如 string、array、struct）时，必须显式声明其数据位置（memory 或 calldata）<br>Solidity 0.5.0+ 版本严格要求所有引用类型参数必须明确数据位置，而旧版本允许隐式处理。若未指定，编译器会强制报错</p>
+
+  </div>
+
 <h3 id="7-组合使用场景示例"><a href="#7-组合使用场景示例" class="headerlink" title="7.组合使用场景示例"></a>7.组合使用场景示例</h3><ol>
 <li>结构体 + 映射 + 动态数组<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">UserManager</span> &#123;</span><br><span class="line">    struct <span class="title class_">User</span> &#123;</span><br><span class="line">        address wallet;</span><br><span class="line">        uint256 score;</span><br><span class="line">        bool isActive;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">mapping</span>(<span class="function"><span class="params">address</span> =&gt;</span> <span class="title class_">User</span>) private users;  <span class="comment">// 地址到用户的快速查找</span></span><br><span class="line">    address[] public userList;               <span class="comment">// 遍历所有用户地址</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">addUser</span>(<span class="params">address _wallet</span>) public &#123;</span><br><span class="line">        users[_wallet] = <span class="title class_">User</span>(_wallet, <span class="number">0</span>, <span class="literal">true</span>);</span><br><span class="line">        userList.<span class="title function_">push</span>(_wallet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
 <li>枚举 + 结构体<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">contract <span class="title class_">OrderSystem</span> &#123;</span><br><span class="line">    enum <span class="title class_">OrderStatus</span> &#123;</span><br><span class="line">        <span class="title class_">Created</span>,</span><br><span class="line">        <span class="title class_">Paid</span>,</span><br><span class="line">        <span class="title class_">Shipped</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    struct <span class="title class_">Order</span> &#123;</span><br><span class="line">        uint256 id;</span><br><span class="line">        address buyer;</span><br><span class="line">        <span class="title class_">OrderStatus</span> status;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title class_">Order</span>[] public orders;  <span class="comment">// 动态数组存储订单</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">shipOrder</span>(<span class="params">uint256 _id</span>) public &#123;</span><br><span class="line">        orders[_id].<span class="property">status</span> = <span class="title class_">OrderStatus</span>.<span class="property">Shipped</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
@@ -1235,7 +1222,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-05-01 20:08:53
+                    :</strong> 2025-05-02 16:08:31
             </li>
         
         <li>
@@ -1273,27 +1260,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
-  <img src="/images/other/25/4/13/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/solidity-proxy-call.html" title="(三)solidity代理调用" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(三)solidity代理调用" class="!max-w-none">
+  <span class="title">(三)solidity代理调用</span>
+</a><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
   <span class="title">(二)solidity内置对象及函数</span>
-</a><a class="recommended-article-item" href="/2021/0423/java8-4-function-interface.html" title="java8之4大函数式接口详解" rel="bookmark">
-  <img src="/images/java/21/4/23/function.png" alt="java8之4大函数式接口详解" class="!max-w-none">
-  <span class="title">java8之4大函数式接口详解</span>
-</a><a class="recommended-article-item" href="/2021/0423/vscode-vue-config.html" title="vsCode vue开发配置" rel="bookmark">
-  <img src="/images/toolsSetting/21/4/23/vscode.png" alt="vsCode vue开发配置" class="!max-w-none">
-  <span class="title">vsCode vue开发配置</span>
+</a><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
+  <span class="title">(四) ERC20 && ERC721 简介</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
-  <img src="/images/other/25/4/13/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/solidity-proxy-call.html" title="(三)solidity代理调用" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(三)solidity代理调用" class="!max-w-none">
+  <span class="title">(三)solidity代理调用</span>
+</a><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
   <span class="title">(二)solidity内置对象及函数</span>
-</a><a class="recommended-article-item" href="/2021/0423/java8-4-function-interface.html" title="java8之4大函数式接口详解" rel="bookmark">
-  <img src="/images/java/21/4/23/function.png" alt="java8之4大函数式接口详解" class="!max-w-none">
-  <span class="title">java8之4大函数式接口详解</span>
 </a></div>
    </div>
   </div>
