@@ -663,6 +663,953 @@
       </categories>
   </entry>
   <entry>
+    <title>linux上安装java</title>
+    <url>/2021/0423/install-java-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="前提说明"><a href="#前提说明" class="headerlink" title="前提说明"></a>前提说明</h4><p>搞这么久开发，是不是得自己搞台服务器呢？so,just do it！<br>那么，服务器的选择很多！自己的本子开个虚拟机玩一下也不是不可以，但是这玩意儿吃内存啊。后面整个mbp32g 的玩一下，我这13年上大学时买的thinkpad 加了内存换了移动硬盘只能满足平常办公用，开个idea,webstorm 跑个jemter压测啥的还是卡的不行，说到底还是系统的问题！废话不多说，其实各大厂商的云服务器大同小异，考虑稳定、性价比、易用性，本次我选择腾讯云！</p>
+<p>注册账号，申请啥的我就不说了，按照官网的指引来就好！</p>
+<p>新建一个实例，将会为你分配一个公网ip,密码啥的自己记得修改下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1StpIe.png"
+                     
+                ></p>
+<p>点击登录，这里我绑定的是微信扫码登录即可。可以发现要求密码或秘钥登录，懒得配秘钥，这里采用密码登录。<br>不在此处选择登录，这里登录时会打开一个网页版终端，操作不惯！<br>用xshell工具链接公网ip,我用的是Xshell+Xftp 整合版 这个方便好使，没有的私我可以发你<br>废话不多说，连它<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1StCPH.png"
+                     
+                ></p>
+<p>腾讯云centos 镜像你申请时已经安装好了，基础的环境已经有了，接下来就是像你平时和本地一样装java mysql tomcat 等类似了</p>
+<h4 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h4><p>查看yum库中的Java安装包：<br><code>yum -y list java*</code><br>将java-1.8.0的所有相关Java程序都安装上：<br><code>yum -y install java-1.8.0-openjdk*</code></p>
+<p>查看刚安装的Java版本信息。<br>输入：java -version 可查看Java版本<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SYzVO.png"
+                     
+                ></p>
+<p>输入：javac 可查看Java的编译器命令用法<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1StSaD.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>jdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装mysql</title>
+    <url>/2021/0423/install-mysql-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="mysql下载"><a href="#mysql下载" class="headerlink" title="mysql下载"></a>mysql下载</h4><p>先验证是否安装了mysql 若无输出则证明未安装过！执行命令:<br><code>rpm -qa | grep mysql</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skpTJ.png"
+                     
+                ><br>先下载mysql的repo源，这玩意儿又叫mysql源，字面上理解就是mysql的源码,执行命令：<br><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sFvOU.png"
+                     
+                ></p>
+<p>安装mysql-community-release-el7-5.noarch.rpm包,执行命令：<br><code>sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sFzmF.png"
+                     
+                ></p>
+<p>安装mysql，执行命令：<br><code>sudo yum install mysql-server</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skPYR.png"
+                     
+                ></p>
+<p>可以看到130多M还是挺大的<br>输入y确认，开始下载！好不容易到100%，还得下载依赖，继续y确认下载<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skif1.png"
+                     
+                ><br>可算ojbk了，继续！</p>
+<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>登录然后重置密码,执行：<br><code>mysql -u root</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skAl6.png"
+                     
+                ></p>
+<p>原因是&#x2F;var&#x2F;lib&#x2F;mysql的访问权限问题。下面的命令把&#x2F;var&#x2F;lib&#x2F;mysql的拥有者改为当前用户<br>执行命令赋权，重启mysql：<br><code>sudo chown -R openscanner:openscanner /var/lib/mysql</code><br><code>service mysqld restart</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skCk9.png"
+                     
+                ></p>
+<p>再次重置密码：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=password(&#x27;123456&#x27;) where user=&#x27;root&#x27;;</span><br><span class="line">exit;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skm0e.png"
+                     
+                ></p>
+<p>测试链接一下:<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sknTH.png"
+                     
+                ></p>
+<p>原因：mysql服务器 root 默认只允许 localhost 也就是 127.0.0.1 连接<br>登录mysql: <code>mysql -u root -p</code><br>输入密码:直接回车即可  输入了会报错如下所示<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skemD.png"
+                     
+                ></p>
+<h4 id="解决连接报错"><a href="#解决连接报错" class="headerlink" title="解决连接报错"></a>解决连接报错</h4><p>继续<code>mysql -u root -p</code>  回车  然后执行以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">use mysql; 选择mysql库</span><br><span class="line">select host from user where user=&#x27;root&#x27;;查看mysql库中的user表的host值（即可进行连接访问的主机/IP名称）</span><br><span class="line">update user set host = &#x27;%&#x27; where user =&#x27;root&#x27;; 修改host值（以通配符%的内容增加主机/IP地址），当然也可以直接增加IP地址 %通配符表示所有ip都允许通过root账号链接</span><br><span class="line">flush privileges; 刷新MySQL的系统权限相关表</span><br><span class="line">select host from user where user=&#x27;root&#x27;; 再重新查看user表时，有修改。。</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h4 id="重连测试"><a href="#重连测试" class="headerlink" title="重连测试"></a>重连测试</h4><p>然后这时候用客户端重连一下试试：ok啦<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skKkd.png"
+                     
+                ></p>
+<p>创建个数据库测试，对了 新建的数据打开自带了三个库  别手贱删哈，你表的创建执行都和这里面的表相关，不然你commit rollback 它怎么知道的，我之前本地安装mysql学习时手贱删过，后来发现数据再执行sql操作时就报错，找了各种办法最后重装才解决，所以不懂要么去研究要么不要动。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skVOO.png"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1skMtA.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装nginx</title>
+    <url>/2021/0423/install-ngnix-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="解压安装："><a href="#解压安装：" class="headerlink" title="解压安装："></a>解压安装：</h4><p>nginx按装一定要使用命令安装，因为需要解压后编译 已经配置成全局的<br>下载常用的包，高版本的安装出了一次问题，就切换成低版本的了，如图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sS2RO.png"
+                     
+                ></p>
+<p>接下来执行以下命令：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr  进入压缩文件存放目录</span><br><span class="line">tar -xzvf nginx-1.13.9.tar.gz   解压</span><br><span class="line">cd  nginx-1.13.9 进入解压后文件</span><br><span class="line">mkdir /usr/local/nginx   在local目录下新建nginx目录</span><br><span class="line">./configure --prefix=/usr/local/nginx   配置成全局</span><br><span class="line">make &amp;&amp; make install  安装</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>but….执行到第5步报错了，报错信息如下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSci6.png"
+                     
+                ></p>
+<p>the HTTP rewrite module requires the PCRE library HTTP重写模块需要PCRE库<br>什么鬼？pcre 是啥？一脸懵逼吧，本地装ngnix解压就好了  没这么坑啊！ 所以，装环境还是和本地有一点区别的，但是大同小异不要慌！你遇到了别人一定也遇到了，让我们来了解下什么叫pcre:<br>详见此篇博客：安装 Nginx 前 必须安装 PCRE—<a class="link"   href="https://www.jianshu.com/p/14c81fbcb401" >https://www.jianshu.com/p/14c81fbcb401 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>不懂就学嘛(百度)！</p>
+<p>使用以下命令安装：yum -y install zlib zlib-devel openssl openssl–devel pcre pcre-devel</p>
+<p>再次执行5.6命令  发现：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSyIx.png"
+                     
+                ></p>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><p>wtf? 没有配置环境变量！！！<br>执行vim &#x2F;etc&#x2F;profile<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSsd1.png"
+                     
+                ></p>
+<p>记住以上框出来的命令，o 只读  e编辑  r覆盖  q退出  a取消<br>编辑后一直向下键看到for循环后加上以下代码：<br>PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin<br>export PATH<br>:wq!</p>
+<p>:wq表示保存并退出vi编辑模式   ———题外话：linux下命令真的要学一下<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSrZR.png"
+                     
+                ></p>
+<p>退出来后执行：source &#x2F;etc&#x2F;profile 使配置生效  还是在&#x2F;usr&#x2F;local&#x2F;sbin 目录下执行</p>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>然后因为nginx 是全局的了，可以直接在根目录下执行nginx 浏览器输入公网ip，不带端口哈出现如下界面表示nginx启动成功！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sSRzD.png"
+                     
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装redis</title>
+    <url>/2021/0423/install-redis-linux.html</url>
+    <content><![CDATA[<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h4 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h4><p>作为一名开发，面试最常问的恐怕就有你们开发过程中用过什么缓存？能否简单谈谈redis等等<br>so,作为一个可基于内存持久化的、日志级别的、非关型数据库，学习和掌握好它还是很有必要的。<br>上面mysql 安装到了usr下面  所有我也会将redis安装到其下<br>进入到usr目录下：<code>cd /usr</code><br>下载安装包：<br><code>wget http://download.redis.io/releases/redis-5.0.5.tar.gz</code><br>打开服务器目录刷新就会看到对应的包在usr下生成了:<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sVoj0.png"
+                     
+                ></p>
+<p>解压:<code>tar xzf redis-5.0.5.tar.gz</code><br>查看解压后的文件：<code>ls -al</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sVbHU.png"
+                     
+                ></p>
+<h4 id="安装，配置后台运行"><a href="#安装，配置后台运行" class="headerlink" title="安装，配置后台运行"></a>安装，配置后台运行</h4><p>进入安装目录：<code>cd redis-5.0.5</code><br>安装：<code>make</code><br>–接下来一定要执行: <code>make install</code>  此命令意思是拷贝redis的相关文件到&#x2F;usr&#x2F;local&#x2F;bin这个目录下 不执行这个命令将不执行<code>redis-server redis.conf</code>这个命令是不会执行的<br>进入当前src 目录下，会有redis服务端程序redis-server和用于测试的客户端程序redis-cli<br>进入src目录：<code>cd src</code><br>查看对应的文件：<code>ls -al</code><br>配置redis.conf文件，将redis设为后台运行<br>redis默认不是守护进程，也就是说只要在linux上做了其他操作、或者exit强制退出、或者关闭连接工具（putty&#x2F;xshell）等，都会导致redis进程退出，这样非常的麻烦，所以需要让redis服务端在后台运行，即守护进程模式。当redis.conf配置文件中，daemonize属性值设为yes时，代表开启守护进程。<br>编辑redis.conf文件：<code>vi redis.conf</code><br>搜索对应的配置：<code>/daemonize</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sVX4J.png"
+                     
+                ></p>
+<p>将no改为yes: 按i进入编辑模式  改完esc退出编辑模式   回车 输入:wq!保存并退出<br>—-redis数据库默认不设密码，但这样会自动开启保护模式，只能本地访问，不能远程访问。所以为了能远程访问，就必须设置密码<br>配置密码：<code>vi redis.conf </code><br>搜索redis密码：<code>/requirepass foobared </code> 改为123456 同上保存并退出<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZ9u6.png"
+                     
+                ></p>
+<h4 id="启动配置："><a href="#启动配置：" class="headerlink" title="启动配置："></a>启动配置：</h4><p>进入到bin目录下安装启动配置：<br><code>cd /usr/redis-5.0.5</code><br><code>./utils/install_server.sh</code><br>默认的配置文件是6379.conf<br>默认的日志文件是redis_6379.log<br>默认的运行实例是6379<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZegI.png"
+                     
+                ></p>
+<p>直接启动：<code>service redis_6379 start</code><br>停止：<code>service redis_6379 stop</code><br>查看进程：<code>ps -aux | grep redis</code><br>启动和停止可以看到 进程的变化<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZUK0.png"
+                     
+                ></p>
+<p>配置公网链接：为了是其他机器能够链接这台服务器<br>需要更改配置将redis.conf中bind 127.0.0.1注释掉！<br>执行：<code>cd /usr/redis-5.0.5</code><br><code>vi redis.conf</code> 修改 完成后 需要重复执行 上面的“启动配置” 步骤 让修改的配置生效<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZD54.png"
+                     
+                ></p>
+<p>查看进程：<code>ps -aux | grep redis</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZsPJ.png"
+                     
+                ></p>
+<p>杀掉进程：<code>kill -9 进程号</code><br>重启redis: <code>service redis_6379 start</code><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZRr6.png"
+                     
+                ></p>
+<p>后面的server * 代表允许所有的ip访问<br>此时再用redis 客户端链接测试  链接成功！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZ5Ie.png"
+                     
+                ></p>
+<h4 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h4><p>那链接上了，我们来测试一下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1sZ7RA.png"
+                     
+                ></p>
+<p>刷新客户端看下有没有写进来：ok 写进来了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1seCzn.png"
+                     
+                ></p>
+<p>好了，那么这个地方16个 db又是代表什么意思呢？学东西还是要有不断追问的能力，当你一步一步的自我解答寻找答案的时候就是慢慢掌握的时候！<br>Redis支持多个数据库，并且每个数据库的数据是隔离的不能共享，并且基于单机才有，如果是集群就没有数据库的概念。<br>Redis是一个字典结构的存储服务器，而实际上一个Redis实例提供了多个用来存储数据的字典，客户端可以指定将数据存储在哪个字典中，这1-16其实就是代表16个字典！<br>那么怎么用呢？  像sql语句一样  但是又不是  redis一个实例下默认有16个字典库，select 1代表选用1号字典库，同一个库中插入相同的key 后面的value值将会覆盖前面的值！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1seVdU.png"
+                     
+                ></p>
+<p>看看字典1库中值：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/02/05/1senJJ.png"
+                     
+                ></p>
+<p>自此，我们已经完成了redis 单台服务器的搭建测试和客户端工具的测试！</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装tomcat</title>
+    <url>/2021/0423/install-tomcat-linux.html</url>
+    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h4><p>接下来装个最简单的web服务器tomcat吧，人家idea就是内置tomcat的，不要看不起他<br>官网下载，这次我下载的tomcat9 按道理版本越高兼容性越好，就他了！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUmCQ.md.png"
+                      border="0" 
+                ><br>将本地的tomcat 解压到服务器上，一般的xshell xftp 是分离的 所以你要用两个工具（这个时候就体现出Xshell+Xftp 整合版的便携性了），输两次密码连接，这时候就体现这工具的便携性了，直接点这个打开服务器目录<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUZ4g.png"
+                      border="0" 
+                ><br>我没有使用命令上传然后解压，其实文件不大，上传速度很快！<br>然后，进到bin目录下 启动tomcat 如果遇到没有权限 输入最后两个命令即可</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /data/apache-tomcat-9.0.30/bin</span><br><span class="line">chmod u+x *.sh</span><br><span class="line">./startup.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUkHf.png"
+                      border="0" 
+                >
+
+<h4 id="测试8080端口"><a href="#测试8080端口" class="headerlink" title="测试8080端口"></a>测试8080端口</h4><p>然后浏览器输入 公网ip+默认端口8080 即可看到tomcat启动页：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2020/01/17/1SUFDP.png"
+                      border="0" 
+                ></p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里云OSS SDk实践篇</title>
+    <url>/2021/0423/aliyun-oss-sdk.html</url>
+    <content><![CDATA[<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><blockquote>
+<p>我们知道一般的热点数据我们直接存到数据库，但是类似一些表格模板，附件等静态资源放在哪里呢？</p>
+</blockquote>
+<ul>
+<li>数据库</li>
+<li>数据库 + 本地文件（IO流）</li>
+<li>数据库 + 缓存 + 文件服务器（Hdfs 、fastDFS、服务器集群）</li>
+<li>数据库 + 缓存 + 文件存储（对象存储服务OSS）</li>
+</ul>
+<p>因为阿里云提供了各种常用语言的SDK,所以进行文件的存储就变得十分简单，那本文就来介绍下阿里云的对象存储OSS使用。</p>
+<h4 id="开通OSS服务"><a href="#开通OSS服务" class="headerlink" title="开通OSS服务"></a>开通OSS服务</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9YFoj.png"
+                     
+                ></p>
+<p>搜索后，购买直接就可以使用，它是按流量计算费用的，话说我们买个10块钱的足够我们基本的学习使用了，不够了再充值嘛！我这里因为用的就是阿里云服务器，所以好像是赠送了40G的存储，具体也懒的去了解，反正没要我再交钱就是。</p>
+<h4 id="了解阿里云OSS"><a href="#了解阿里云OSS" class="headerlink" title="了解阿里云OSS"></a>了解阿里云OSS</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9NvWR.png"
+                     
+                ></p>
+<p>通过了解它的官方文档，我们基本可以知道阿里云OSS提供了面向各种常用语言的SDk，通过这些SDK我们基本可以知道如何使用了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9a7aF.png"
+                     
+                ></p>
+<p>点击<code>JAVA SDK快速入门</code>我们可以看到对应的maven 工程示例；这里自己点进去了解即可！</p>
+<p>题外话: 后面对于其他东西的学习，个人建议都是先找官方文档了解，至于本篇博客个人也只是做个笔记，记录下简单的使用，肯定不如官网的全面。</p>
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><h4 id="1-创建Bucket"><a href="#1-创建Bucket" class="headerlink" title="1.创建Bucket"></a>1.创建Bucket</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9WhHH.png"
+                     
+                ></p>
+<p>如果你听了我的建议，了解过JAVA SDk 中的工程例子，我想你应该知道要使用OSS 需要4个参数：</p>
+<ul>
+<li>endpoint</li>
+<li>AccessKeyID</li>
+<li>AccessKeySecret</li>
+<li>bucketName</li>
+</ul>
+<p>这里我们先记录下 <code>bucketName: oss-study01</code>;<code>endpoint:oss-cn-beijing.aliyuncs.com</code></p>
+<h4 id="2-创建文件夹"><a href="#2-创建文件夹" class="headerlink" title="2.创建文件夹"></a>2.创建文件夹</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9fILF.png"
+                     
+                ></p>
+<p>创建一个存放图片的文件夹images</p>
+<h4 id="3-上传一张图片测试"><a href="#3-上传一张图片测试" class="headerlink" title="3.上传一张图片测试"></a>3.上传一张图片测试</h4><p>注意：是点击进此文件后再上传</p>
+<p>这里我们选择单个文件的权限是公共读，当然你也可以通过修改整个文件的权限，目前此文件夹我们没修改就是默认的私有的！</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J94nc6.png"
+                     
+                ></p>
+<h4 id="4-访问控制"><a href="#4-访问控制" class="headerlink" title="4.访问控制"></a>4.访问控制</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J95Ar8.png"
+                     
+                ></p>
+<p>添加用户组–&gt;创建用户–&gt;添加用户到用户组–&gt;分配用户组权限–&gt;保存账号信息</p>
+<p>其实就像我们的系统的权限，角色和用户的关系，某些用户是某些角色，某些角色就具有某些分配好的权限！</p>
+<p>具体步骤截图如下：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9Irpn.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9oDED.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9oXrV.png"
+                     
+                ></p>
+<p>记录下</p>
+<ul>
+<li><p>AccessKeyID: LTAI4FoYHgbk2y3woYH191Ys</p>
+</li>
+<li><p>AccessKeySecret：FVZzvz4G9e39ako5vVMASYryrbpnJu</p>
+</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9TQxI.png"
+                     
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/15/J9TyZT.png"
+                     
+                ></p>
+<h3 id="测试SDK"><a href="#测试SDK" class="headerlink" title="测试SDK"></a>测试SDK</h3><h4 id="1-创建微服务，引入阿里OSS依赖"><a href="#1-创建微服务，引入阿里OSS依赖" class="headerlink" title="1.创建微服务，引入阿里OSS依赖"></a>1.创建微服务，引入阿里OSS依赖</h4><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-测试"><a href="#2-测试" class="headerlink" title="2. 测试"></a>2. 测试</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.coding.aliyunoss;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.CannedAccessControlList;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.GetObjectRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.OSSObjectSummary;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.ObjectListing;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OSSTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">endpoint</span> <span class="operator">=</span> <span class="string">&quot;oss-cn-beijing.aliyuncs.com&quot;</span>;</span><br><span class="line">    <span class="comment">// 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。</span></span><br><span class="line">    <span class="comment">// 强烈建议您创建并使用RAM账号进行API访问或日常运维，</span></span><br><span class="line">    <span class="comment">// 请登录 https://ram.console.aliyun.com 创建RAM账号。</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeyId</span> <span class="operator">=</span> <span class="string">&quot;LTAI4GKkPcWRY6zDgxBwgjaS&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeySecret</span> <span class="operator">=</span> <span class="string">&quot;fvQ0rtW2ezAS4jiMCjIp7JrzKSCmPJ&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">bucketName</span> <span class="operator">=</span> <span class="string">&quot;oss-study01&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否 bucketName，如果不存在就创建，修改权限</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建oss 实例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCreate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        ossClient.createBucket(bucketName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断当前实例是否存在</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testExist</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">exist</span> <span class="operator">=</span> ossClient.doesBucketExist(bucketName);</span><br><span class="line">        System.out.println(exist);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 修改权限 公共读</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        ossClient.setBucketAcl(bucketName,CannedAccessControlList.PublicRead);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件流。</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFileUpload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// 上传到 oss 后需要一个文件名(保证唯一 /2020/4/1/xxxxxxxx.jpg)！</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.putObject(bucketName, objectName, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;C:\\Users\\Administrator\\Desktop\\dafault.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下载文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDownload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.getObject(<span class="keyword">new</span> <span class="title class_">GetObjectRequest</span>(bucketName,objectName),<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;a.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看文件列表</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testShowList</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// ossClient.listObjects返回ObjectListing实例，包含此次listObject请求的返回结果。</span></span><br><span class="line">        <span class="type">ObjectListing</span> <span class="variable">objectListing</span> <span class="operator">=</span> ossClient.listObjects(bucketName);</span><br><span class="line">        <span class="comment">// objectListing.getObjectSummaries获取所有文件的描述信息。</span></span><br><span class="line">        <span class="keyword">for</span> (OSSObjectSummary objectSummary : objectListing.getObjectSummaries()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot; - &quot;</span> + objectSummary.getKey() + <span class="string">&quot;  &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;(size = &quot;</span> + objectSummary.getSize() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDeleted</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.deleteObject(bucketName,objectName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>好了，后面我们就可以用接口调用，完成我们文件的上传和下载了。是不是很简单？赶快试试吧；加油，奥利给！</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>sdk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux上安装jenkins(待填坑)</title>
+    <url>/2021/0423/install-jenkins-linux.html</url>
+    <content><![CDATA[<h4 id="项目部署步骤："><a href="#项目部署步骤：" class="headerlink" title="项目部署步骤："></a>项目部署步骤：</h4>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>jar包发版步骤</title>
+    <url>/2020/1008/jar-run-step.html</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h3 id="1-clean-后-package-打包前需核对配置文件是否正确"><a href="#1-clean-后-package-打包前需核对配置文件是否正确" class="headerlink" title="1.clean 后 package ,打包前需核对配置文件是否正确"></a>1.clean 后 package ,打包前需核对配置文件是否正确</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar1.png"
+                     
+                ></p>
+<p>生成的jar包（target文件下）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar2.png"
+                     
+                ></p>
+<h3 id="2-打开sheel工具-链接到具体的环境"><a href="#2-打开sheel工具-链接到具体的环境" class="headerlink" title="2.打开sheel工具 链接到具体的环境"></a>2.打开sheel工具 链接到具体的环境</h3><p>执行命令：ps -ef | grep jar</p>
+<p>查看运行中的jar: ps  aux|grep  jar<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar3.png"
+                     
+                ></p>
+<h3 id="3-将对应的包的进程杀掉-最后的数字是进程号"><a href="#3-将对应的包的进程杀掉-最后的数字是进程号" class="headerlink" title="3.将对应的包的进程杀掉 最后的数字是进程号"></a>3.将对应的包的进程杀掉 最后的数字是进程号</h3><p>执行命令：kill -9 2980</p>
+<h3 id="4-查看对应进程（jar包）的存放路径、"><a href="#4-查看对应进程（jar包）的存放路径、" class="headerlink" title="4.查看对应进程（jar包）的存放路径、"></a>4.查看对应进程（jar包）的存放路径、</h3><p>执行命令：ll &#x2F;proc&#x2F;2980<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar4.png"
+                     
+                ></p>
+<p>其中cwd -&gt; &#x2F;home&#x2F;bigdatashare&#x2F;exchange 就是文件的存放路径</p>
+<p>&#x20;exe -&gt; &#x2F;usr&#x2F;java&#x2F;jdk1.8.0_171-amd64&#x2F;jre&#x2F;bin&#x2F;java 是运行环境 jdk的存放路径</p>
+<h3 id="5-打开xftp-有的工具不是集成在一起的-需要单独连接"><a href="#5-打开xftp-有的工具不是集成在一起的-需要单独连接" class="headerlink" title="5.打开xftp,有的工具不是集成在一起的 需要单独连接"></a>5.打开xftp,有的工具不是集成在一起的 需要单独连接</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar5.png"
+                     
+                ></p>
+<h3 id="6-复制对应路径，更改上次包名xxx-copy，表示备份-以免上去出问题可以回退"><a href="#6-复制对应路径，更改上次包名xxx-copy，表示备份-以免上去出问题可以回退" class="headerlink" title="6.复制对应路径，更改上次包名xxx-copy，表示备份 以免上去出问题可以回退"></a>6.复制对应路径，更改上次包名xxx-copy，表示备份 以免上去出问题可以回退</h3><p>将左侧本地打包后jar包拖到右侧，底部会显示上传进度<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar6.png"
+                     
+                ></p>
+<h3 id="7-执行启动打包后jar"><a href="#7-执行启动打包后jar" class="headerlink" title="7.执行启动打包后jar"></a>7.执行启动打包后jar</h3><p>执行命令：nohup java -jar .&#x2F;bigdata-dev.jar &gt; .&#x2F;bigdata-dev.log 2&gt;&amp;1 &amp;</p>
+<p>&#x20;后面的&#x2F;bigdata-dev.log 表示执行的日志 ，发生异常是可以查看</p>
+<h3 id="8-查看打包进程的命令：tail-f-bigdata-dev-log"><a href="#8-查看打包进程的命令：tail-f-bigdata-dev-log" class="headerlink" title="8.查看打包进程的命令：tail -f bigdata-dev.log"></a>8.查看打包进程的命令：tail -f bigdata-dev.log</h3><p>命令执行后：会看到对应springBoot启动的过程（和本地终端启动一样）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/linux/21/4/23/jar7.png"
+                     
+                ></p>
+<p>至此，简单的将jar打包到linux环境 完成！</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>jar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>firewall相关命令</title>
+    <url>/2020/1008/firewall-shell.html</url>
+    <content><![CDATA[<p>[TOC]<br>环境：VMware、CentOS8</p>
+<p>从centos7开始使用systemctl.firewalld来管理服务和程序，包括了service和chkconfig。</p>
+<p>防火墙状态：systemctl status firewalld.service</p>
+<p>Active: inactive (dead)&#x2F;active(running)</p>
+<p>关闭firewall：systemctl stop firewalld.service</p>
+<p>重启：systemctl restart firewalld.service</p>
+<p>启动：systemctl start firewalld.service</p>
+<p>禁止firewall开机启动:systemctl disable firewalld.service</p>
+<p>设置开机启用：systemctl enable firewalld.service</p>
+<p>查看服务是否开机启动：systemctl is-enabled firewalld.service;echo</p>
+<p>查看已启动的服务列表：systemctl list-unit-files|grep enabled</p>
+<p>查看已经开放的端口：firewall-cmd –list-ports</p>
+<p>开启端口：firewall-cmd –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent</p>
+<p>命令含义：</p>
+<p>–zone #作用域</p>
+<p>–add-port&#x3D;80&#x2F;tcp #添加端口，格式为：端口&#x2F;通讯协议</p>
+<p>–permanent #永久生效，没有此参数重启后失效</p>
+]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>jar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>链表&amp;二叉树&amp;平衡二叉树&amp;红黑树</title>
+    <url>/2021/0423/balance-tree.html</url>
+    <content><![CDATA[<blockquote>
+<p>当你还不能对自我说这天学到了什么东西时，你最好就不要去睡觉</p>
+</blockquote>
+<p>最近也在看HashMap相关的东西，你知道的这基本是面试必问的东西；据说很多兄弟都是败在了HashMap的夺命连环问上的，然后铭心自问发现自己也说不清楚；那怎么办呢？当然是硬着头皮上呗，在研究HashMap的原理前，我们是需要了解了解下链表、二叉树、平衡二叉树、红黑树这些数据结构的；特别说明下，本文只是为了说清楚各种数据结构的概念及特点，对于更深层次的算法探究这里不作扩展！</p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是一种物理存储结构上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的；</p>
+<p>它的数据结构如下图所示（注意：这里的指针实际上指的是存储的pre节点对next节点数据的引用地址！）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHsQsS.png"
+                      alt="链表"
+                ></p>
+<p>从图中，我们可以了解到：</p>
+<ul>
+<li>链表在物理结构上是不连续的</li>
+<li>它是大小是不确定的，链表的大小可以动态的按需分配的</li>
+<li>对于尾节点来说，它的指针为null</li>
+<li>在数据结构上来说，它是连续的，通过指针连续，故没有内存空间的浪费</li>
+</ul>
+<p>链表的优点：</p>
+<ul>
+<li>增，删节点效率高；因为只需要改变前面节点和当前节点的指针就可以了</li>
+<li>链表在物理结构上是不连续的，所以对内存的利用率是极高的（内存就像一个杯子，链表这种结构每个节点就相当于一粒粒沙子，只要有点空间都可以利用，即它不要求连续的大空间）</li>
+<li>链表的大小可以动态增减，可以做到灵活扩展</li>
+</ul>
+<p>链表的缺点：</p>
+<ul>
+<li>查询效率低；当查询某个节点，因为它是散乱分布的；并不知道每个节点的具体位置，所以不得不遍历获取！</li>
+</ul>
+<p>上图所示的只是一个单链表，其实链表还有很多种，例如双向链表，循环单链表，循环双链表等；对于链表的更多知识，请参考博客：<a class="link"   href="https://www.cnblogs.com/baixianlong/p/10759599.html"  target="_blank">数据结构–基于java的链表实现 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树是一种每个节点最多只有两个分支节点的树形的数据结构，它的数据结构如下图所示：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHTvIx.png"
+                      alt="二叉树"
+                ></p>
+<p>从图中，我们可以了解到：</p>
+<ul>
+<li>二叉树每个节点最多两个子节点</li>
+<li>处于顶层的是根节点；处于同一层的，同一个父节点的是兄弟节点</li>
+<li>没有子节点的是叶节点（叶子就是末梢了，不会再长出新的东西来）</li>
+</ul>
+<p>二叉树的子节点，又可以称为左子节点和右子节点；二叉树的优点是增删查都快，缺点是算法复杂；</p>
+<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>了解平衡二叉树之前，我们需要知道 <strong>二叉查找树</strong>，二叉查找树是一种有特殊规范的二叉树，二叉查找树又被称为二叉搜索树、有序二叉树、排序二叉树；</p>
+<p>那什么样的树才叫二叉查找树呢？看下图：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHLuAs.png"
+                      alt="二叉查找树"
+                ></p>
+<p>上图就是一个标准的二叉查找树，它符合以下的规范：</p>
+<ul>
+<li>若任意节点的左子树不为空，则左子树的值均小于它根节点的值；</li>
+<li>若任意节点的右子树不为空，则右子树的值均大于它根节点的值；</li>
+<li>任意节点的左子树，右子树都为二叉查找树（开始套娃了，哈哈）；</li>
+</ul>
+<p>那么什么叫平衡二叉树呢？为啥非得要说清楚二叉查找树再说平衡二叉树呢？</p>
+<p>其实所谓的平衡二叉树是指改进的二叉查找树，为了减少二叉查找树的深度，平衡二叉树将二叉查找树的节点平均的分布；一般而言，随着树的深度提高查询的平均复杂度就会提高，因此为了实现更好的查询效率就提出了平衡二叉树的这一数据结构！</p>
+<p>如下图，我们看下非平衡二叉树和平衡二叉树的区别：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHXw6K.png"
+                      alt="非平衡二叉树&amp;平衡二叉树"
+                ></p>
+<p>其实平衡二叉树比二叉查找树多了个平衡的特点，它体现在：平衡二叉树的任意节点的左子树高度和右子树高度差值都不能大于1；</p>
+<p>这里需要说明一个平衡因子的概念：我们将二叉树上节点的左子树深度减去右子树深度的值称为<strong>平衡因子BF（Balance Factor）</strong>,那么平衡二叉树上所有节点的平衡因子只可能是-1，0，1；只要二叉树上有一个节点的平衡因子的绝对值大于1，则该二叉树就是不平衡的；</p>
+<p>那么当扩展到N个节点来看，平衡二叉树优势明显；它显著的减少了查询的深度，从而提高了查询的效率；</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>了解了平衡二叉树后，我们再来看下什么样的树叫红黑树；如下图所示：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UbPb4S.png"
+                      alt="红黑树"
+                ></p>
+<p>红黑树除了具有二叉查找树的基本特点外，还具有以下几个特点：</p>
+<ul>
+<li>各节点是红色或黑色，根节点是黑色</li>
+<li>所有的叶子节点都是空节点（NIL节点）且是黑色</li>
+<li>每个红色的节点都必须有两个黑色的子节点（每个叶子节点到根节点的路径上不能有连续的两个红色节点）</li>
+<li>每个节点到该节点下的子孙节点的所有路径上，包含同等数目的黑色节点</li>
+</ul>
+<p>红黑树的优点：相对于普通的二叉树来说，普通的二叉树可能退化为链表的形式，那么时间复杂度会退化到O(n);而红黑树是一种在平衡二叉树上又添加了新特点的树形结构，它的高度趋近于log2n，它的添加删除查询的时间复杂为O(log n)。</p>
+<p>红黑树是一种自平衡的平衡二叉树，它保持自平衡和红黑树特点的方式是：变色，左旋和右旋；</p>
+<blockquote>
+<p>对比AVL树</p>
+</blockquote>
+<p>AVL树也是一种自平衡树（本质也是一种二叉排序树，二叉搜索树，只是在此之上增加了平衡的特点），它和红黑树的不同在于，它增加了节点高度的属性，保存了各个节点的高度信息（以确保各节点的平衡因子绝对值不大于1）；而红黑树也包含了ACV的特性，只是实现不同，它增加了红黑属性的定义，更加简单的确保了树的再平衡计算，并且相比较每个节点记录高度信息来说，节省了内存；</p>
+<blockquote>
+<p>小结：关于链表，二叉树，平衡二叉树，红黑树的概念及其理解就先总结到这里；后面我们将继续了解，HashMap的底层实现，接下来就是巴源码啦，看看头发好像还能肝下去，奥利给！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>位运算</title>
+    <url>/2021/0423/wei-operation.html</url>
+    <content><![CDATA[<blockquote>
+<p>再肝HashMap之前，还是需要了解位运算滴</p>
+</blockquote>
+<p>接上篇，我们总结了链表乃至红黑树的概念及其理解；准备去扒源码的，发现里面一堆位运算；这写的都是啥啥啥？脑海中不自觉的浮现了这个表情包，可以说再形象不过了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/23/Uq2euq.jpg"
+                     
+                ><br>哈哈哈，想想这东西搞清楚了可以更好的阅读源码乃至装逼,心情不无激动了哈。废话不多说，咱们开干！</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>我们知道，所有的数字及字符在计算机中都是以二进制存储的，而位运算就是直接对二进制数据进行操作。</p>
+<p>不同于我们普通的加减乘除操作，位运算符如下：</p>
+<ul>
+<li>位与运算：&amp;</li>
+<li>位或运算：|</li>
+<li>位异或运算：^</li>
+<li>位左移运算：&lt;&lt;</li>
+<li>位右移运算：&gt;&gt;</li>
+<li>无符号右移：&gt;&gt;&gt;</li>
+<li>位取反运算：~</li>
+</ul>
+<p>当然，和加减乘除一样，运算时有个先后顺序（先乘除后加减），位运算也有它的先后顺序；按优先级排序如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">1 取反</th>
+<th align="center">2 左右位移</th>
+<th align="center">3 位与</th>
+<th align="center">4 位异或</th>
+<th align="center">5 位或</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">~</td>
+<td align="center">&lt;&lt;<br>&gt;&gt;</td>
+<td align="center">&amp;</td>
+<td align="center">^</td>
+<td align="center">|</td>
+</tr>
+</tbody></table>
+<p>我们知道二进制中只有0和1的概念（1 理解为在对应的位数上有值，为真！0理解为在对应的位数上没有值，为假），我们举例说明如下：</p>
+<h3 id="用法栗子"><a href="#用法栗子" class="headerlink" title="用法栗子"></a>用法栗子</h3><blockquote>
+<p>位与 &amp;（同真则真，同假则假，不同则假）</p>
+</blockquote>
+<ul>
+<li>1 &amp; 1 &#x3D; 1；</li>
+<li>0 &amp; 0 &#x3D; 0；</li>
+<li>1 &amp; 0 &#x3D; 0；</li>
+</ul>
+<p>关于10进制转二进制这里就不在赘述了（除二取余），例如：5 &amp; 6 &#x3D; 4；我们看下怎么来的：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>取&amp;</td>
+<td>0000 0100   &#x3D; 1* 2的平方 &#x3D; 4</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>位或 |（同真则真，同假则假，不同则真）</p>
+</blockquote>
+<ul>
+<li>1 | 1 &#x3D; 1；</li>
+<li>0 | 0 &#x3D; 0；</li>
+<li>0 | 1 &#x3D; 1；</li>
+</ul>
+<p>例如：5 | 6 &#x3D; 7；我们看下怎么来的：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>取&amp;</td>
+<td>0000 0111   &#x3D; 1* 2的平方 + 1*  2+1* 2的0次方 &#x3D; 7</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>位异或 ^（同真同假则假，不同则真）</p>
+</blockquote>
+<ul>
+<li>1 ^ 1 &#x3D; 0;</li>
+<li>0 ^ 0 &#x3D; 0;</li>
+<li>0 ^ 1 &#x3D; 1;</li>
+</ul>
+<p>例如： 5 ^ 6 &#x3D; 3;我们看下怎么来的：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>取^</td>
+<td>0000 0011   &#x3D; 1*  2+1* 2的0次方 &#x3D; 3</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>左移（&lt;&lt;)</p>
+</blockquote>
+<p>左移就是将一个二进制的数据整体向左移动，正数后面虚位补0（负数后面虚位补1,例子略）；例如：2 &lt;&lt; 2 &#x3D; 8;</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>0000 0010</td>
+</tr>
+<tr>
+<td>&lt;&lt; 2(左移2位)</td>
+<td>0000 1000</td>
+</tr>
+<tr>
+<td></td>
+<td>1* 2的三次方 &#x3D; 8</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>右移（&gt;&gt;）</p>
+</blockquote>
+<p>右移就是将一个二进制的数据整体向右移动，前面虚位补0（负数前面虚位补1，,例子略）；例如： 6 &gt;&gt; 2 &#x3D; 1;</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>&gt;&gt; 2(右移2位)</td>
+<td>0000  0001</td>
+</tr>
+<tr>
+<td></td>
+<td>1* 2的0次方 &#x3D; 1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>无符号右移&gt;&gt;&gt;</p>
+</blockquote>
+<p>无符号右移，不论正数负数都补0；因为无符号右移只在32位或64位下才有意义，这里不再讨论；</p>
+<blockquote>
+<p>取反~</p>
+</blockquote>
+<p>取反就是在原有的数字上加1然后取反就是了，公式如下：~ x &#x3D; - (x + 1);例如：~ 5 &#x3D; - (5+1) &#x3D; -6;</p>
+<p>好，至此位运算的方法已经总结完了；我们来看下结合几个简单的算法题来看下位运算具体可以怎么用，又是如何给我们的计算带来便捷的。</p>
+<h3 id="算法栗子"><a href="#算法栗子" class="headerlink" title="算法栗子"></a>算法栗子</h3><blockquote>
+<p>一. 交换变量</p>
+</blockquote>
+<p>我们还记得冒泡算法，有个交换变量的过程；</p>
+<p>大体过程如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">// 定义的临时变量</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">temp = a; a = b; b = temp;</span><br><span class="line"><span class="comment">// temp = 1; a = 2; b = 0;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这里临时变量的做法其实是用空间换时间，这样做是需要额外的存储空间的；那么我们采用位异或^运算就可以解决这个问题：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line">a = a ^ b;</span><br></pre></td></tr></table></figure></div>
+
+<p>这样就可以了？这样就可以达到交换的目的？哈哈，是不是还有点懵；别急，读懂下面这三行代码还需要知道异或运算的一些性质：</p>
+<ul>
+<li>位异或满足交换定律：<code>a ^ b = b ^ a</code>;</li>
+<li>位异或满足结合定律：<code>（a ^ b）^ c = a ^（b ^ c)</code>;</li>
+<li>任何数和0异或都是它自己：<code>x ^ 0 = x</code>;</li>
+</ul>
+<p>了解了这些后，我们再看看上面三个式子：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">a = a ^ b; <span class="comment">// 第一步</span></span><br><span class="line">b = a ^ b; <span class="comment">// 第二步</span></span><br><span class="line">a = a ^ b; <span class="comment">// 第三步</span></span><br><span class="line"></span><br><span class="line">将 a = a^b 代入 第二步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">b = a^b^b = a^<span class="number">0</span> = a;</span><br><span class="line"></span><br><span class="line">将 b=a^b 代入 第三步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">a = a^a^b = <span class="number">0</span>^b = b;</span><br><span class="line"></span><br><span class="line">这样就完成了数值的交换，是不是有点意思了；那咱们继续！</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>二. 2的幂运算</p>
+</blockquote>
+<p>假设给定一个数，我们需要判断一个数是否是2的多少次幂，如果是则返回true,不是则返回false;</p>
+<p>通常我们怎么做呢？写一个循环，然后一直除以2当能除净且除到最后值为1时，我们判断这个值为2的幂返回true;</p>
+<p>通常我们怎么写呢？示例如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">f</span> <span class="operator">=</span> checkMi(<span class="number">8</span>);</span><br><span class="line">    System.out.println(f);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">checkMi</span><span class="params">(<span class="type">float</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        x = x/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">1</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>那么这种写法算是很普通的写法了，逼格不够高哈！我们来看看位运算一般怎么解决的：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">z</span> <span class="operator">=</span> x&amp;(x-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> x&gt;<span class="number">1</span> &amp; z == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>是不是少了很多代码，也显得逼格满满！哈哈，要读懂这行代码，我们需要明白什么样的数才是2的幂。来看下列数据找下规律：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">1： 0000 0001</span><br><span class="line">2： 0000 0010</span><br><span class="line">3： 0000 0011</span><br><span class="line">4： 0000 0100</span><br><span class="line">7： 0000 0111</span><br><span class="line">8： 0000 1000</span><br><span class="line">15：0000 1111</span><br><span class="line">16：0001 0000</span><br><span class="line">...以此类推，我们知道类似于这样的的高位数都是1，低位数都是0的数才能是2的幂</span><br></pre></td></tr></table></figure></div>
+
+<p>对于1，3，7，15这样的数都是高位是0低位都是1的数；所以此时<code>x&amp;(x-1)==0</code></p>
+<blockquote>
+<p>三. 找不同</p>
+</blockquote>
+<p>假如给出一个字符串s1,然后将s1字符串中字符顺序打乱，再加入一个新的字符生成一个s2,让你比较这两个字符串找出新插入的字符；</p>
+<p>例如：String s1 &#x3D; “abca”;加入一个新字符”x”,String s2 &#x3D; “bacxa”,请你设计一个算法找出新插入的字符”x”;我想我们大多数人的想法就是用获取每个字符的HashCode，并记录每个字符出现的次数；然后比较两个字符串中，每个字符的出现次数；直到在s2中找到出现一次的”x”为止；算法我就不写了，感兴趣的同学可以自己尝试写下；我们这里重点说下利用位运算怎么实现：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;abca&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;bacxa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    System.out.println(findChar(s1,s2));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">char</span> <span class="title function_">findChar</span><span class="params">(String s1, String s2)</span>&#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> s1 + s2;</span><br><span class="line">    <span class="type">int</span> <span class="variable">first</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">        first ^= Integer.valueOf(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">char</span>)first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>有没有被惊艳到？哈哈，我们还是来看下这个算法：我们这里用了异或这个位运算（同真同假则假，不同则真）；其次<code>Integer.valueOf(s.charAt(i))</code>是获取每个字符的Ascii码。这里就不计算每个字符的Ascii码了，就拿的值“53135”举例：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">0^5^3^1^3^5 = 0^(5^5)^(3^3)^1 = 0^0^0^1 = 1;//就酱紫找到了多出来的那个数了</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>四. “1”个数的奇偶</p>
+</blockquote>
+<p>假设给定一个8位的二进制，我们要统计下这个8个数字中1的个数的奇偶；若为奇数个则返回1，若为偶数个则返回0；例如：0011 0111共有5个1，则返回1；这里我们就不讨论平常的做法了哈，我们直接来位运算的实现：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">number</span> <span class="operator">=</span> <span class="string">&quot;00010110&quot;</span>;</span><br><span class="line">    System.out.println(findOddEven(number));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">findOddEven</span><span class="params">(String number)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        count += Integer.parseInt(String.valueOf(number.charAt(i))) &amp; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count &amp; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们来解释下：这段代码就是运用了位与运算，<code>Integer.parseInt(String.valueOf(number.charAt(i))) &amp; 1</code>取出每一个数字和1与运算；为1则count自增1；这点和我们自己写代码完全一致哈，关键是后面这句<code>count &amp; 1</code>；count 是偶数返回0，是奇数返回1；我们知道用位与运算，同真则真，同假则假，不同则假；1的8位二进制是<code>0000 0001</code>那么任何数和它位与运算，高位都会被抵消掉变成0，那么最关键的就是看最后一位了是不是1了；很明显，最后一位为1的就是奇数，否则为偶数；这个算法正是运用了这一点；</p>
+<p>同理，更牛掰的写法如下（但是可读性不好）：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">n = n^(n&gt;&gt;1)</span><br><span class="line">n = n^(n&gt;&gt;2)</span><br><span class="line">n = n^(n&gt;&gt;4)</span><br><span class="line">return n &amp; 1</span><br><span class="line">//这里的n代表循环中每一个元素 这个可以自行推导下</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>小结：关于位运算就先总结到这儿；算法的例子皆来源于LeetCode（还是要多去上面多摩擦摩擦智商）；搞懂这些后我们再来掰扯下那些源码，相信肯定不会再那么痛苦！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>时间复杂度&amp;空间复杂度</title>
+    <url>/2021/0423/time-space-complexity.html</url>
+    <content><![CDATA[<blockquote>
+<p>老说时间复杂度，空间复杂度，能不能简单描述一下？说人话！</p>
+</blockquote>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>Space Complexity,对一个算法在运行过程中临时占用存储度空间的度量，记做<code>S(n)=O(f(n))</code>;</p>
+<p>其实白话就是，一段程序运行需要分配的空间，我们用一个线性函数来描述它的变化趋势，我们把这个变化趋势整体就叫做这个算法的空间复杂度！</p>
+<p>来看以下代码示例：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">b+=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> a + b;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> [] arr = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">mi</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (<span class="type">int</span>)Math.pow(n,mi);</span><br><span class="line"><span class="type">int</span> [] arr1 = <span class="keyword">new</span> <span class="title class_">int</span>[m];</span><br></pre></td></tr></table></figure></div>
+
+<p>那么上面一段代码的空间复杂度分别怎么表示呢？</p>
+<p>可以看到因为a,b,c 三个变量都是加减操作，存储空间根据字节长度有关，它们的字节都是线性增长的，所以它的空间复杂度我们记做：<br>$$<br>S(n)&#x3D;O(1)<br>$$<br>arr 数组分配的空间和它的初始长度n 相关，所以它的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n);<br>$$<br>arr1 数组分配的空间和它的初始长度m 相关，而m 是n的mi次方即: <code>m = n^mi</code></p>
+<p>这里是mi为2, 则arr1的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n^2)<br>$$</p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>Time Complexity, 对一个算法运行时所需要消耗的时间的度量，记做：<code>T(n) = O(n)</code>;</p>
+<p>白话理解就是一个程序运行所需要的时间，我们并不是直接描述它占用时间的长短，而是从宏观上评估它的所消耗时间的一个趋势，而它的变化趋势我们也可以用各种线性函数来表示（即所写代码的执行次数和什么相关的函数），那这种线性函数的描述方式我们叫做时间复杂度；</p>
+<p>来看以下代码示例：</p>
+<h4 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> count;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">count = i + j + k;</span><br></pre></td></tr></table></figure></div>
+
+<p>从上面代码我们可以看到，这段代码程序是自上向下执行一次的，那么对于这种只执行一次的代码时间复杂度我们记做：<br>$$<br>T(n)&#x3D;O(1)<br>$$</p>
+<h4 id="O-log3n"><a href="#O-log3n" class="headerlink" title="O(log3n)"></a>O(log3n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;=n)&#123;</span><br><span class="line">    i=<span class="number">3</span>*i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在上面代码中，while循环每次i都自增3倍，如果自增x次后i&gt;n就退出循环了，也就是3的x次方时退出了循环，可以确定的是x次循环后i一定是一个大于n的某个值，在时间复杂度的考量中我们将此值忽略直接记做n,那么3的x次方等于n,成对数即是<code>x = log(3)(n)</code>。说明这段代码的执行次数x 是个对数函数，对应的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(log_3n)<br>$$</p>
+<h4 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上面代码是一个简单的for循环，那么很明显它的执行次数和n的大小有关，我们将这种for循环的时间复杂度记做：<br>$$<br>T(n)&#x3D;O(n)<br>$$</p>
+<h4 id="O-nlogN"><a href="#O-nlogN" class="headerlink" title="O(nlogN)"></a>O(nlogN)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="type">int</span> j;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(j&lt;n)&#123;</span><br><span class="line">        j = <span class="number">2</span>*j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在上面一段代码中，我们可以看到for循环中每次都对i 重新做了赋值操作;</p>
+<p>保证 while 循环每次都能执行<code>log(2)(n)</code>次，那么它总的执行次数就是<code>n*log(2)(n)</code>, 那么这个时候决定执行的次数的关键就在于n的大小了，至于是2倍还是几倍的增长变得不再那么重要，我们可以忽略（极限思维）统一记做N。那么它的时间复杂度我们就记做：<br>$$<br>T(n)&#x3D; O(nlogN)<br>$$</p>
+<h4 id="O-n-k"><a href="#O-n-k" class="headerlink" title="O(n^k)"></a>O(n^k)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上面代码三个for循环，明显执行了n* n * n即n^3,它的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(n^3)<br>$$</p>
+<h4 id="O-2-n-，O-n"><a href="#O-2-n-，O-n" class="headerlink" title="O(2^n)，O(n!)"></a>O(2^n)，<strong>O(n!)</strong></h4><p>实际上幂指数增长和穷举，基本没有见过这样的程序，你想什么样的算法会是指数性的和穷举型的？（网络攻击？这两个不常见，了解即可）</p>
+<h4 id="常见时间复杂度函数图"><a href="#常见时间复杂度函数图" class="headerlink" title="常见时间复杂度函数图"></a>常见时间复杂度函数图</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/28/J5Fsn1.png"
+                     
+                ></p>
+<p>从图中我们可以看到趋势越陡的函数时间复杂度肯定大，那么以上的时间复杂度从大到小依次是：<br><code>2^n &gt; (n^3)/3 &gt; 5n^2 &gt; 500log(2)(n) &gt; 100n</code></p>
+<p>那么我们可以推断出常见的时间时间复杂度从大到小依次是：<br>$$<br>O(2^n) &gt; O(n^3)&gt;O(n^2)&gt;O(nlog_2n)&gt;O(n)&gt;O(log_2n)&gt;O(1)<br>$$</p>
+<p><strong>时间复杂度越大，算法的执行效率越低！</strong></p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>最后关于时间复杂度的更形象的总结，推荐篇博客 :<a class="link"   href="https://blog.csdn.net/qq_41523096/article/details/82142747"  target="_blank">一套图 搞懂“时间复杂度” <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>关于8大排序算法时间复杂度稳定性的总结，推荐博客：<a class="link"   href="https://blog.csdn.net/Elsa15/article/details/90138249"  target="_blank">八大排序算法、稳定性及时间复杂度 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<blockquote>
+<p>小结：我们学习了解任何知识，一定不能死啃概念，要试着把自己不能理解的东西抽象成自己可以理解的东西!很多东西我们不能理解，是很多时候是有些技术类文章不说人话。有些也是自己眼界不够，而有些则是说的人能力不够还无法做到通俗易懂的讲解出来！如果你能做到通俗易懂的讲解出来，那说明你已经掌握了！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>复杂度</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java8之4大函数式接口详解</title>
     <url>/2021/0423/java8-4-function-interface.html</url>
     <content><![CDATA[<blockquote>
@@ -993,55 +1940,6 @@
       </tags>
   </entry>
   <entry>
-    <title>包总是太大？maven一个配置教你瘦身</title>
-    <url>/2021/0423/maven-package-to-small.html</url>
-    <content><![CDATA[<blockquote>
-<p>微服务项目越来越多，特别是一个父工程下有多个子工程这种，每次打包都发现一个包都有40～50M；但是实际上有的项目代码是没有多少的，那为什么打完包后还是有这么大呢？</p>
-</blockquote>
-<p>其实是因为打成的包是一个可执行的jar,对应的依赖jar也被打包进去了。但是对于我们来说，若是其实项目的依赖的jar就那么多，我们能不能打包单个微服务时，不将这些依赖的jar打包进去，而是在项目运行启动的时候指定依赖jar的地址让其运行就可以了呢？</p>
-<p>答案是肯定的，maven改写下配置文件即可实现。话不多说，我们开始：</p>
-<h3 id="直接执行打包"><a href="#直接执行打包" class="headerlink" title="直接执行打包"></a>直接执行打包</h3><p>这里以一个开源的项目bootdo为例，直接执行打包<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/16/UrIDO0.jpg"
-                      alt="88M"
-                ></p>
-<p>我们可以解压看下，其实就是因为依赖的jar包被打包进去了，才会有88M之多！<br>我们将打包后的这个文件夹改名增加后缀“_old”，并且文件夹类型改为zip后，再使用命令</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">unzip -d bootdo-2.0.0_old bootdo-2.0.0_old.zip</span><br></pre></td></tr></table></figure></div>
-<p>如下图所示：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/17/UrbkV0.png"
-                     
-                ></p>
-<p>我们点开解压后的文件，可以看到项目依赖的jar包都在BOOT-INF&#x2F;lib下；</p>
-<h3 id="更改mvn打包配置"><a href="#更改mvn打包配置" class="headerlink" title="更改mvn打包配置"></a>更改mvn打包配置</h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>true<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- spring-boot:run 中文乱码解决 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">jvmArguments</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.bootdo.BootdoApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">layout</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--注：若是有子工程这样添加进来，我这里bootdo就是一个单独的工程所以这里我只添加一个 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.bootdo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bootdo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-<p>添加这些配置后，我们再次打包看下大小（注：直接package，不要clean，不然你解压的jar后面指定不了！）：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/17/Ur7YTK.png"
-                      alt="22M"
-                ><br>可以看到，我们打完包后只有22M的一个大小了，因为本项目包含了很多静态文件，例如图片图标啥的（其实这些都可以无损压缩下的）所以还是有20M多，但是基本已经是以前的1&#x2F;4大小了；</p>
-<h3 id="如何启动"><a href="#如何启动" class="headerlink" title="如何启动"></a>如何启动</h3><p>很明显，我们直接运行现在的jar包是无法运行的，我们必须告诉编译器项目运行jar的位置</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">java -Dloader.path=./bootdo-2.0.0_old/BOOT-INF/lib/ -jar bootdo-2.0.0.jar</span><br></pre></td></tr></table></figure></div>
-<p>如下图所示，我们指定了mvn其他依赖的位置后，就可以启动此项目了；<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/17/UrqYT0.png"
-                     
-                ></p>
-<blockquote>
-<p>小结：这是我本地的演示，那么实际到项目上时，我们可以第一次打包将需要的jar包放到指定的位置，后面jenkin打包或手动启动时，指定路径即可。是不是很简单，那就赶快尝试下吧！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>mvn</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>工作流二次开发之新增表单实践2</title>
     <url>/2021/0423/activity-practice-2.html</url>
     <content><![CDATA[<blockquote>
@@ -1129,6 +2027,55 @@
       </categories>
       <tags>
         <tag>activity</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>包总是太大？maven一个配置教你瘦身</title>
+    <url>/2021/0423/maven-package-to-small.html</url>
+    <content><![CDATA[<blockquote>
+<p>微服务项目越来越多，特别是一个父工程下有多个子工程这种，每次打包都发现一个包都有40～50M；但是实际上有的项目代码是没有多少的，那为什么打完包后还是有这么大呢？</p>
+</blockquote>
+<p>其实是因为打成的包是一个可执行的jar,对应的依赖jar也被打包进去了。但是对于我们来说，若是其实项目的依赖的jar就那么多，我们能不能打包单个微服务时，不将这些依赖的jar打包进去，而是在项目运行启动的时候指定依赖jar的地址让其运行就可以了呢？</p>
+<p>答案是肯定的，maven改写下配置文件即可实现。话不多说，我们开始：</p>
+<h3 id="直接执行打包"><a href="#直接执行打包" class="headerlink" title="直接执行打包"></a>直接执行打包</h3><p>这里以一个开源的项目bootdo为例，直接执行打包<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/16/UrIDO0.jpg"
+                      alt="88M"
+                ></p>
+<p>我们可以解压看下，其实就是因为依赖的jar包被打包进去了，才会有88M之多！<br>我们将打包后的这个文件夹改名增加后缀“_old”，并且文件夹类型改为zip后，再使用命令</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">unzip -d bootdo-2.0.0_old bootdo-2.0.0_old.zip</span><br></pre></td></tr></table></figure></div>
+<p>如下图所示：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/17/UrbkV0.png"
+                     
+                ></p>
+<p>我们点开解压后的文件，可以看到项目依赖的jar包都在BOOT-INF&#x2F;lib下；</p>
+<h3 id="更改mvn打包配置"><a href="#更改mvn打包配置" class="headerlink" title="更改mvn打包配置"></a>更改mvn打包配置</h3><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">executable</span>&gt;</span>true<span class="tag">&lt;/<span class="name">executable</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- spring-boot:run 中文乱码解决 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">jvmArguments</span>&gt;</span>-Dfile.encoding=UTF-8<span class="tag">&lt;/<span class="name">jvmArguments</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span>com.bootdo.BootdoApplication<span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">layout</span>&gt;</span>ZIP<span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--注：若是有子工程这样添加进来，我这里bootdo就是一个单独的工程所以这里我只添加一个 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.bootdo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bootdo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">goal</span>&gt;</span>repackage<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<p>添加这些配置后，我们再次打包看下大小（注：直接package，不要clean，不然你解压的jar后面指定不了！）：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/17/Ur7YTK.png"
+                      alt="22M"
+                ><br>可以看到，我们打完包后只有22M的一个大小了，因为本项目包含了很多静态文件，例如图片图标啥的（其实这些都可以无损压缩下的）所以还是有20M多，但是基本已经是以前的1&#x2F;4大小了；</p>
+<h3 id="如何启动"><a href="#如何启动" class="headerlink" title="如何启动"></a>如何启动</h3><p>很明显，我们直接运行现在的jar包是无法运行的，我们必须告诉编译器项目运行jar的位置</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">java -Dloader.path=./bootdo-2.0.0_old/BOOT-INF/lib/ -jar bootdo-2.0.0.jar</span><br></pre></td></tr></table></figure></div>
+<p>如下图所示，我们指定了mvn其他依赖的位置后，就可以启动此项目了；<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/17/UrqYT0.png"
+                     
+                ></p>
+<blockquote>
+<p>小结：这是我本地的演示，那么实际到项目上时，我们可以第一次打包将需要的jar包放到指定的位置，后面jenkin打包或手动启动时，指定路径即可。是不是很简单，那就赶快尝试下吧！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>mvn</tag>
       </tags>
   </entry>
   <entry>
@@ -2037,953 +2984,6 @@
       </tags>
   </entry>
   <entry>
-    <title>链表&amp;二叉树&amp;平衡二叉树&amp;红黑树</title>
-    <url>/2021/0423/balance-tree.html</url>
-    <content><![CDATA[<blockquote>
-<p>当你还不能对自我说这天学到了什么东西时，你最好就不要去睡觉</p>
-</blockquote>
-<p>最近也在看HashMap相关的东西，你知道的这基本是面试必问的东西；据说很多兄弟都是败在了HashMap的夺命连环问上的，然后铭心自问发现自己也说不清楚；那怎么办呢？当然是硬着头皮上呗，在研究HashMap的原理前，我们是需要了解了解下链表、二叉树、平衡二叉树、红黑树这些数据结构的；特别说明下，本文只是为了说清楚各种数据结构的概念及特点，对于更深层次的算法探究这里不作扩展！</p>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是一种物理存储结构上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的；</p>
-<p>它的数据结构如下图所示（注意：这里的指针实际上指的是存储的pre节点对next节点数据的引用地址！）</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHsQsS.png"
-                      alt="链表"
-                ></p>
-<p>从图中，我们可以了解到：</p>
-<ul>
-<li>链表在物理结构上是不连续的</li>
-<li>它是大小是不确定的，链表的大小可以动态的按需分配的</li>
-<li>对于尾节点来说，它的指针为null</li>
-<li>在数据结构上来说，它是连续的，通过指针连续，故没有内存空间的浪费</li>
-</ul>
-<p>链表的优点：</p>
-<ul>
-<li>增，删节点效率高；因为只需要改变前面节点和当前节点的指针就可以了</li>
-<li>链表在物理结构上是不连续的，所以对内存的利用率是极高的（内存就像一个杯子，链表这种结构每个节点就相当于一粒粒沙子，只要有点空间都可以利用，即它不要求连续的大空间）</li>
-<li>链表的大小可以动态增减，可以做到灵活扩展</li>
-</ul>
-<p>链表的缺点：</p>
-<ul>
-<li>查询效率低；当查询某个节点，因为它是散乱分布的；并不知道每个节点的具体位置，所以不得不遍历获取！</li>
-</ul>
-<p>上图所示的只是一个单链表，其实链表还有很多种，例如双向链表，循环单链表，循环双链表等；对于链表的更多知识，请参考博客：<a class="link"   href="https://www.cnblogs.com/baixianlong/p/10759599.html"  target="_blank">数据结构–基于java的链表实现 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树是一种每个节点最多只有两个分支节点的树形的数据结构，它的数据结构如下图所示：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHTvIx.png"
-                      alt="二叉树"
-                ></p>
-<p>从图中，我们可以了解到：</p>
-<ul>
-<li>二叉树每个节点最多两个子节点</li>
-<li>处于顶层的是根节点；处于同一层的，同一个父节点的是兄弟节点</li>
-<li>没有子节点的是叶节点（叶子就是末梢了，不会再长出新的东西来）</li>
-</ul>
-<p>二叉树的子节点，又可以称为左子节点和右子节点；二叉树的优点是增删查都快，缺点是算法复杂；</p>
-<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>了解平衡二叉树之前，我们需要知道 <strong>二叉查找树</strong>，二叉查找树是一种有特殊规范的二叉树，二叉查找树又被称为二叉搜索树、有序二叉树、排序二叉树；</p>
-<p>那什么样的树才叫二叉查找树呢？看下图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHLuAs.png"
-                      alt="二叉查找树"
-                ></p>
-<p>上图就是一个标准的二叉查找树，它符合以下的规范：</p>
-<ul>
-<li>若任意节点的左子树不为空，则左子树的值均小于它根节点的值；</li>
-<li>若任意节点的右子树不为空，则右子树的值均大于它根节点的值；</li>
-<li>任意节点的左子树，右子树都为二叉查找树（开始套娃了，哈哈）；</li>
-</ul>
-<p>那么什么叫平衡二叉树呢？为啥非得要说清楚二叉查找树再说平衡二叉树呢？</p>
-<p>其实所谓的平衡二叉树是指改进的二叉查找树，为了减少二叉查找树的深度，平衡二叉树将二叉查找树的节点平均的分布；一般而言，随着树的深度提高查询的平均复杂度就会提高，因此为了实现更好的查询效率就提出了平衡二叉树的这一数据结构！</p>
-<p>如下图，我们看下非平衡二叉树和平衡二叉树的区别：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHXw6K.png"
-                      alt="非平衡二叉树&amp;平衡二叉树"
-                ></p>
-<p>其实平衡二叉树比二叉查找树多了个平衡的特点，它体现在：平衡二叉树的任意节点的左子树高度和右子树高度差值都不能大于1；</p>
-<p>这里需要说明一个平衡因子的概念：我们将二叉树上节点的左子树深度减去右子树深度的值称为<strong>平衡因子BF（Balance Factor）</strong>,那么平衡二叉树上所有节点的平衡因子只可能是-1，0，1；只要二叉树上有一个节点的平衡因子的绝对值大于1，则该二叉树就是不平衡的；</p>
-<p>那么当扩展到N个节点来看，平衡二叉树优势明显；它显著的减少了查询的深度，从而提高了查询的效率；</p>
-<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>了解了平衡二叉树后，我们再来看下什么样的树叫红黑树；如下图所示：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UbPb4S.png"
-                      alt="红黑树"
-                ></p>
-<p>红黑树除了具有二叉查找树的基本特点外，还具有以下几个特点：</p>
-<ul>
-<li>各节点是红色或黑色，根节点是黑色</li>
-<li>所有的叶子节点都是空节点（NIL节点）且是黑色</li>
-<li>每个红色的节点都必须有两个黑色的子节点（每个叶子节点到根节点的路径上不能有连续的两个红色节点）</li>
-<li>每个节点到该节点下的子孙节点的所有路径上，包含同等数目的黑色节点</li>
-</ul>
-<p>红黑树的优点：相对于普通的二叉树来说，普通的二叉树可能退化为链表的形式，那么时间复杂度会退化到O(n);而红黑树是一种在平衡二叉树上又添加了新特点的树形结构，它的高度趋近于log2n，它的添加删除查询的时间复杂为O(log n)。</p>
-<p>红黑树是一种自平衡的平衡二叉树，它保持自平衡和红黑树特点的方式是：变色，左旋和右旋；</p>
-<blockquote>
-<p>对比AVL树</p>
-</blockquote>
-<p>AVL树也是一种自平衡树（本质也是一种二叉排序树，二叉搜索树，只是在此之上增加了平衡的特点），它和红黑树的不同在于，它增加了节点高度的属性，保存了各个节点的高度信息（以确保各节点的平衡因子绝对值不大于1）；而红黑树也包含了ACV的特性，只是实现不同，它增加了红黑属性的定义，更加简单的确保了树的再平衡计算，并且相比较每个节点记录高度信息来说，节省了内存；</p>
-<blockquote>
-<p>小结：关于链表，二叉树，平衡二叉树，红黑树的概念及其理解就先总结到这里；后面我们将继续了解，HashMap的底层实现，接下来就是巴源码啦，看看头发好像还能肝下去，奥利给！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>位运算</title>
-    <url>/2021/0423/wei-operation.html</url>
-    <content><![CDATA[<blockquote>
-<p>再肝HashMap之前，还是需要了解位运算滴</p>
-</blockquote>
-<p>接上篇，我们总结了链表乃至红黑树的概念及其理解；准备去扒源码的，发现里面一堆位运算；这写的都是啥啥啥？脑海中不自觉的浮现了这个表情包，可以说再形象不过了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/23/Uq2euq.jpg"
-                     
-                ><br>哈哈哈，想想这东西搞清楚了可以更好的阅读源码乃至装逼,心情不无激动了哈。废话不多说，咱们开干！</p>
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>我们知道，所有的数字及字符在计算机中都是以二进制存储的，而位运算就是直接对二进制数据进行操作。</p>
-<p>不同于我们普通的加减乘除操作，位运算符如下：</p>
-<ul>
-<li>位与运算：&amp;</li>
-<li>位或运算：|</li>
-<li>位异或运算：^</li>
-<li>位左移运算：&lt;&lt;</li>
-<li>位右移运算：&gt;&gt;</li>
-<li>无符号右移：&gt;&gt;&gt;</li>
-<li>位取反运算：~</li>
-</ul>
-<p>当然，和加减乘除一样，运算时有个先后顺序（先乘除后加减），位运算也有它的先后顺序；按优先级排序如下：</p>
-<table>
-<thead>
-<tr>
-<th align="center">1 取反</th>
-<th align="center">2 左右位移</th>
-<th align="center">3 位与</th>
-<th align="center">4 位异或</th>
-<th align="center">5 位或</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">~</td>
-<td align="center">&lt;&lt;<br>&gt;&gt;</td>
-<td align="center">&amp;</td>
-<td align="center">^</td>
-<td align="center">|</td>
-</tr>
-</tbody></table>
-<p>我们知道二进制中只有0和1的概念（1 理解为在对应的位数上有值，为真！0理解为在对应的位数上没有值，为假），我们举例说明如下：</p>
-<h3 id="用法栗子"><a href="#用法栗子" class="headerlink" title="用法栗子"></a>用法栗子</h3><blockquote>
-<p>位与 &amp;（同真则真，同假则假，不同则假）</p>
-</blockquote>
-<ul>
-<li>1 &amp; 1 &#x3D; 1；</li>
-<li>0 &amp; 0 &#x3D; 0；</li>
-<li>1 &amp; 0 &#x3D; 0；</li>
-</ul>
-<p>关于10进制转二进制这里就不在赘述了（除二取余），例如：5 &amp; 6 &#x3D; 4；我们看下怎么来的：</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>5</td>
-<td>0000 0101</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>取&amp;</td>
-<td>0000 0100   &#x3D; 1* 2的平方 &#x3D; 4</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>位或 |（同真则真，同假则假，不同则真）</p>
-</blockquote>
-<ul>
-<li>1 | 1 &#x3D; 1；</li>
-<li>0 | 0 &#x3D; 0；</li>
-<li>0 | 1 &#x3D; 1；</li>
-</ul>
-<p>例如：5 | 6 &#x3D; 7；我们看下怎么来的：</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>5</td>
-<td>0000 0101</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>取&amp;</td>
-<td>0000 0111   &#x3D; 1* 2的平方 + 1*  2+1* 2的0次方 &#x3D; 7</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>位异或 ^（同真同假则假，不同则真）</p>
-</blockquote>
-<ul>
-<li>1 ^ 1 &#x3D; 0;</li>
-<li>0 ^ 0 &#x3D; 0;</li>
-<li>0 ^ 1 &#x3D; 1;</li>
-</ul>
-<p>例如： 5 ^ 6 &#x3D; 3;我们看下怎么来的：</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>5</td>
-<td>0000 0101</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>取^</td>
-<td>0000 0011   &#x3D; 1*  2+1* 2的0次方 &#x3D; 3</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>左移（&lt;&lt;)</p>
-</blockquote>
-<p>左移就是将一个二进制的数据整体向左移动，正数后面虚位补0（负数后面虚位补1,例子略）；例如：2 &lt;&lt; 2 &#x3D; 8;</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2</td>
-<td>0000 0010</td>
-</tr>
-<tr>
-<td>&lt;&lt; 2(左移2位)</td>
-<td>0000 1000</td>
-</tr>
-<tr>
-<td></td>
-<td>1* 2的三次方 &#x3D; 8</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>右移（&gt;&gt;）</p>
-</blockquote>
-<p>右移就是将一个二进制的数据整体向右移动，前面虚位补0（负数前面虚位补1，,例子略）；例如： 6 &gt;&gt; 2 &#x3D; 1;</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>&gt;&gt; 2(右移2位)</td>
-<td>0000  0001</td>
-</tr>
-<tr>
-<td></td>
-<td>1* 2的0次方 &#x3D; 1</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>无符号右移&gt;&gt;&gt;</p>
-</blockquote>
-<p>无符号右移，不论正数负数都补0；因为无符号右移只在32位或64位下才有意义，这里不再讨论；</p>
-<blockquote>
-<p>取反~</p>
-</blockquote>
-<p>取反就是在原有的数字上加1然后取反就是了，公式如下：~ x &#x3D; - (x + 1);例如：~ 5 &#x3D; - (5+1) &#x3D; -6;</p>
-<p>好，至此位运算的方法已经总结完了；我们来看下结合几个简单的算法题来看下位运算具体可以怎么用，又是如何给我们的计算带来便捷的。</p>
-<h3 id="算法栗子"><a href="#算法栗子" class="headerlink" title="算法栗子"></a>算法栗子</h3><blockquote>
-<p>一. 交换变量</p>
-</blockquote>
-<p>我们还记得冒泡算法，有个交换变量的过程；</p>
-<p>大体过程如下：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">// 定义的临时变量</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">temp = a; a = b; b = temp;</span><br><span class="line"><span class="comment">// temp = 1; a = 2; b = 0;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>这里临时变量的做法其实是用空间换时间，这样做是需要额外的存储空间的；那么我们采用位异或^运算就可以解决这个问题：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line">a = a ^ b;</span><br></pre></td></tr></table></figure></div>
-
-<p>这样就可以了？这样就可以达到交换的目的？哈哈，是不是还有点懵；别急，读懂下面这三行代码还需要知道异或运算的一些性质：</p>
-<ul>
-<li>位异或满足交换定律：<code>a ^ b = b ^ a</code>;</li>
-<li>位异或满足结合定律：<code>（a ^ b）^ c = a ^（b ^ c)</code>;</li>
-<li>任何数和0异或都是它自己：<code>x ^ 0 = x</code>;</li>
-</ul>
-<p>了解了这些后，我们再看看上面三个式子：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">a = a ^ b; <span class="comment">// 第一步</span></span><br><span class="line">b = a ^ b; <span class="comment">// 第二步</span></span><br><span class="line">a = a ^ b; <span class="comment">// 第三步</span></span><br><span class="line"></span><br><span class="line">将 a = a^b 代入 第二步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">b = a^b^b = a^<span class="number">0</span> = a;</span><br><span class="line"></span><br><span class="line">将 b=a^b 代入 第三步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">a = a^a^b = <span class="number">0</span>^b = b;</span><br><span class="line"></span><br><span class="line">这样就完成了数值的交换，是不是有点意思了；那咱们继续！</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>二. 2的幂运算</p>
-</blockquote>
-<p>假设给定一个数，我们需要判断一个数是否是2的多少次幂，如果是则返回true,不是则返回false;</p>
-<p>通常我们怎么做呢？写一个循环，然后一直除以2当能除净且除到最后值为1时，我们判断这个值为2的幂返回true;</p>
-<p>通常我们怎么写呢？示例如下：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">f</span> <span class="operator">=</span> checkMi(<span class="number">8</span>);</span><br><span class="line">    System.out.println(f);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">checkMi</span><span class="params">(<span class="type">float</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        x = x/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">1</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>那么这种写法算是很普通的写法了，逼格不够高哈！我们来看看位运算一般怎么解决的：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">z</span> <span class="operator">=</span> x&amp;(x-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> x&gt;<span class="number">1</span> &amp; z == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>是不是少了很多代码，也显得逼格满满！哈哈，要读懂这行代码，我们需要明白什么样的数才是2的幂。来看下列数据找下规律：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">1： 0000 0001</span><br><span class="line">2： 0000 0010</span><br><span class="line">3： 0000 0011</span><br><span class="line">4： 0000 0100</span><br><span class="line">7： 0000 0111</span><br><span class="line">8： 0000 1000</span><br><span class="line">15：0000 1111</span><br><span class="line">16：0001 0000</span><br><span class="line">...以此类推，我们知道类似于这样的的高位数都是1，低位数都是0的数才能是2的幂</span><br></pre></td></tr></table></figure></div>
-
-<p>对于1，3，7，15这样的数都是高位是0低位都是1的数；所以此时<code>x&amp;(x-1)==0</code></p>
-<blockquote>
-<p>三. 找不同</p>
-</blockquote>
-<p>假如给出一个字符串s1,然后将s1字符串中字符顺序打乱，再加入一个新的字符生成一个s2,让你比较这两个字符串找出新插入的字符；</p>
-<p>例如：String s1 &#x3D; “abca”;加入一个新字符”x”,String s2 &#x3D; “bacxa”,请你设计一个算法找出新插入的字符”x”;我想我们大多数人的想法就是用获取每个字符的HashCode，并记录每个字符出现的次数；然后比较两个字符串中，每个字符的出现次数；直到在s2中找到出现一次的”x”为止；算法我就不写了，感兴趣的同学可以自己尝试写下；我们这里重点说下利用位运算怎么实现：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;abca&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;bacxa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    System.out.println(findChar(s1,s2));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">char</span> <span class="title function_">findChar</span><span class="params">(String s1, String s2)</span>&#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> s1 + s2;</span><br><span class="line">    <span class="type">int</span> <span class="variable">first</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">        first ^= Integer.valueOf(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">char</span>)first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>有没有被惊艳到？哈哈，我们还是来看下这个算法：我们这里用了异或这个位运算（同真同假则假，不同则真）；其次<code>Integer.valueOf(s.charAt(i))</code>是获取每个字符的Ascii码。这里就不计算每个字符的Ascii码了，就拿的值“53135”举例：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">0^5^3^1^3^5 = 0^(5^5)^(3^3)^1 = 0^0^0^1 = 1;//就酱紫找到了多出来的那个数了</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>四. “1”个数的奇偶</p>
-</blockquote>
-<p>假设给定一个8位的二进制，我们要统计下这个8个数字中1的个数的奇偶；若为奇数个则返回1，若为偶数个则返回0；例如：0011 0111共有5个1，则返回1；这里我们就不讨论平常的做法了哈，我们直接来位运算的实现：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">number</span> <span class="operator">=</span> <span class="string">&quot;00010110&quot;</span>;</span><br><span class="line">    System.out.println(findOddEven(number));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">findOddEven</span><span class="params">(String number)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        count += Integer.parseInt(String.valueOf(number.charAt(i))) &amp; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count &amp; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>我们来解释下：这段代码就是运用了位与运算，<code>Integer.parseInt(String.valueOf(number.charAt(i))) &amp; 1</code>取出每一个数字和1与运算；为1则count自增1；这点和我们自己写代码完全一致哈，关键是后面这句<code>count &amp; 1</code>；count 是偶数返回0，是奇数返回1；我们知道用位与运算，同真则真，同假则假，不同则假；1的8位二进制是<code>0000 0001</code>那么任何数和它位与运算，高位都会被抵消掉变成0，那么最关键的就是看最后一位了是不是1了；很明显，最后一位为1的就是奇数，否则为偶数；这个算法正是运用了这一点；</p>
-<p>同理，更牛掰的写法如下（但是可读性不好）：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">n = n^(n&gt;&gt;1)</span><br><span class="line">n = n^(n&gt;&gt;2)</span><br><span class="line">n = n^(n&gt;&gt;4)</span><br><span class="line">return n &amp; 1</span><br><span class="line">//这里的n代表循环中每一个元素 这个可以自行推导下</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>小结：关于位运算就先总结到这儿；算法的例子皆来源于LeetCode（还是要多去上面多摩擦摩擦智商）；搞懂这些后我们再来掰扯下那些源码，相信肯定不会再那么痛苦！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>时间复杂度&amp;空间复杂度</title>
-    <url>/2021/0423/time-space-complexity.html</url>
-    <content><![CDATA[<blockquote>
-<p>老说时间复杂度，空间复杂度，能不能简单描述一下？说人话！</p>
-</blockquote>
-<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>Space Complexity,对一个算法在运行过程中临时占用存储度空间的度量，记做<code>S(n)=O(f(n))</code>;</p>
-<p>其实白话就是，一段程序运行需要分配的空间，我们用一个线性函数来描述它的变化趋势，我们把这个变化趋势整体就叫做这个算法的空间复杂度！</p>
-<p>来看以下代码示例：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">b+=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> a + b;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> [] arr = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">mi</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (<span class="type">int</span>)Math.pow(n,mi);</span><br><span class="line"><span class="type">int</span> [] arr1 = <span class="keyword">new</span> <span class="title class_">int</span>[m];</span><br></pre></td></tr></table></figure></div>
-
-<p>那么上面一段代码的空间复杂度分别怎么表示呢？</p>
-<p>可以看到因为a,b,c 三个变量都是加减操作，存储空间根据字节长度有关，它们的字节都是线性增长的，所以它的空间复杂度我们记做：<br>$$<br>S(n)&#x3D;O(1)<br>$$<br>arr 数组分配的空间和它的初始长度n 相关，所以它的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n);<br>$$<br>arr1 数组分配的空间和它的初始长度m 相关，而m 是n的mi次方即: <code>m = n^mi</code></p>
-<p>这里是mi为2, 则arr1的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n^2)<br>$$</p>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>Time Complexity, 对一个算法运行时所需要消耗的时间的度量，记做：<code>T(n) = O(n)</code>;</p>
-<p>白话理解就是一个程序运行所需要的时间，我们并不是直接描述它占用时间的长短，而是从宏观上评估它的所消耗时间的一个趋势，而它的变化趋势我们也可以用各种线性函数来表示（即所写代码的执行次数和什么相关的函数），那这种线性函数的描述方式我们叫做时间复杂度；</p>
-<p>来看以下代码示例：</p>
-<h4 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> count;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">count = i + j + k;</span><br></pre></td></tr></table></figure></div>
-
-<p>从上面代码我们可以看到，这段代码程序是自上向下执行一次的，那么对于这种只执行一次的代码时间复杂度我们记做：<br>$$<br>T(n)&#x3D;O(1)<br>$$</p>
-<h4 id="O-log3n"><a href="#O-log3n" class="headerlink" title="O(log3n)"></a>O(log3n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;=n)&#123;</span><br><span class="line">    i=<span class="number">3</span>*i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>在上面代码中，while循环每次i都自增3倍，如果自增x次后i&gt;n就退出循环了，也就是3的x次方时退出了循环，可以确定的是x次循环后i一定是一个大于n的某个值，在时间复杂度的考量中我们将此值忽略直接记做n,那么3的x次方等于n,成对数即是<code>x = log(3)(n)</code>。说明这段代码的执行次数x 是个对数函数，对应的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(log_3n)<br>$$</p>
-<h4 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>上面代码是一个简单的for循环，那么很明显它的执行次数和n的大小有关，我们将这种for循环的时间复杂度记做：<br>$$<br>T(n)&#x3D;O(n)<br>$$</p>
-<h4 id="O-nlogN"><a href="#O-nlogN" class="headerlink" title="O(nlogN)"></a>O(nlogN)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="type">int</span> j;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(j&lt;n)&#123;</span><br><span class="line">        j = <span class="number">2</span>*j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>在上面一段代码中，我们可以看到for循环中每次都对i 重新做了赋值操作;</p>
-<p>保证 while 循环每次都能执行<code>log(2)(n)</code>次，那么它总的执行次数就是<code>n*log(2)(n)</code>, 那么这个时候决定执行的次数的关键就在于n的大小了，至于是2倍还是几倍的增长变得不再那么重要，我们可以忽略（极限思维）统一记做N。那么它的时间复杂度我们就记做：<br>$$<br>T(n)&#x3D; O(nlogN)<br>$$</p>
-<h4 id="O-n-k"><a href="#O-n-k" class="headerlink" title="O(n^k)"></a>O(n^k)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>上面代码三个for循环，明显执行了n* n * n即n^3,它的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(n^3)<br>$$</p>
-<h4 id="O-2-n-，O-n"><a href="#O-2-n-，O-n" class="headerlink" title="O(2^n)，O(n!)"></a>O(2^n)，<strong>O(n!)</strong></h4><p>实际上幂指数增长和穷举，基本没有见过这样的程序，你想什么样的算法会是指数性的和穷举型的？（网络攻击？这两个不常见，了解即可）</p>
-<h4 id="常见时间复杂度函数图"><a href="#常见时间复杂度函数图" class="headerlink" title="常见时间复杂度函数图"></a>常见时间复杂度函数图</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/28/J5Fsn1.png"
-                     
-                ></p>
-<p>从图中我们可以看到趋势越陡的函数时间复杂度肯定大，那么以上的时间复杂度从大到小依次是：<br><code>2^n &gt; (n^3)/3 &gt; 5n^2 &gt; 500log(2)(n) &gt; 100n</code></p>
-<p>那么我们可以推断出常见的时间时间复杂度从大到小依次是：<br>$$<br>O(2^n) &gt; O(n^3)&gt;O(n^2)&gt;O(nlog_2n)&gt;O(n)&gt;O(log_2n)&gt;O(1)<br>$$</p>
-<p><strong>时间复杂度越大，算法的执行效率越低！</strong></p>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>最后关于时间复杂度的更形象的总结，推荐篇博客 :<a class="link"   href="https://blog.csdn.net/qq_41523096/article/details/82142747"  target="_blank">一套图 搞懂“时间复杂度” <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>关于8大排序算法时间复杂度稳定性的总结，推荐博客：<a class="link"   href="https://blog.csdn.net/Elsa15/article/details/90138249"  target="_blank">八大排序算法、稳定性及时间复杂度 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<blockquote>
-<p>小结：我们学习了解任何知识，一定不能死啃概念，要试着把自己不能理解的东西抽象成自己可以理解的东西!很多东西我们不能理解，是很多时候是有些技术类文章不说人话。有些也是自己眼界不够，而有些则是说的人能力不够还无法做到通俗易懂的讲解出来！如果你能做到通俗易懂的讲解出来，那说明你已经掌握了！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>复杂度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装java</title>
-    <url>/2021/0423/install-java-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="前提说明"><a href="#前提说明" class="headerlink" title="前提说明"></a>前提说明</h4><p>搞这么久开发，是不是得自己搞台服务器呢？so,just do it！<br>那么，服务器的选择很多！自己的本子开个虚拟机玩一下也不是不可以，但是这玩意儿吃内存啊。后面整个mbp32g 的玩一下，我这13年上大学时买的thinkpad 加了内存换了移动硬盘只能满足平常办公用，开个idea,webstorm 跑个jemter压测啥的还是卡的不行，说到底还是系统的问题！废话不多说，其实各大厂商的云服务器大同小异，考虑稳定、性价比、易用性，本次我选择腾讯云！</p>
-<p>注册账号，申请啥的我就不说了，按照官网的指引来就好！</p>
-<p>新建一个实例，将会为你分配一个公网ip,密码啥的自己记得修改下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1StpIe.png"
-                     
-                ></p>
-<p>点击登录，这里我绑定的是微信扫码登录即可。可以发现要求密码或秘钥登录，懒得配秘钥，这里采用密码登录。<br>不在此处选择登录，这里登录时会打开一个网页版终端，操作不惯！<br>用xshell工具链接公网ip,我用的是Xshell+Xftp 整合版 这个方便好使，没有的私我可以发你<br>废话不多说，连它<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1StCPH.png"
-                     
-                ></p>
-<p>腾讯云centos 镜像你申请时已经安装好了，基础的环境已经有了，接下来就是像你平时和本地一样装java mysql tomcat 等类似了</p>
-<h4 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h4><p>查看yum库中的Java安装包：<br><code>yum -y list java*</code><br>将java-1.8.0的所有相关Java程序都安装上：<br><code>yum -y install java-1.8.0-openjdk*</code></p>
-<p>查看刚安装的Java版本信息。<br>输入：java -version 可查看Java版本<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SYzVO.png"
-                     
-                ></p>
-<p>输入：javac 可查看Java的编译器命令用法<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1StSaD.png"
-                     
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>jdk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装mysql</title>
-    <url>/2021/0423/install-mysql-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="mysql下载"><a href="#mysql下载" class="headerlink" title="mysql下载"></a>mysql下载</h4><p>先验证是否安装了mysql 若无输出则证明未安装过！执行命令:<br><code>rpm -qa | grep mysql</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skpTJ.png"
-                     
-                ><br>先下载mysql的repo源，这玩意儿又叫mysql源，字面上理解就是mysql的源码,执行命令：<br><code>wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sFvOU.png"
-                     
-                ></p>
-<p>安装mysql-community-release-el7-5.noarch.rpm包,执行命令：<br><code>sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sFzmF.png"
-                     
-                ></p>
-<p>安装mysql，执行命令：<br><code>sudo yum install mysql-server</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skPYR.png"
-                     
-                ></p>
-<p>可以看到130多M还是挺大的<br>输入y确认，开始下载！好不容易到100%，还得下载依赖，继续y确认下载<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skif1.png"
-                     
-                ><br>可算ojbk了，继续！</p>
-<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>登录然后重置密码,执行：<br><code>mysql -u root</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skAl6.png"
-                     
-                ></p>
-<p>原因是&#x2F;var&#x2F;lib&#x2F;mysql的访问权限问题。下面的命令把&#x2F;var&#x2F;lib&#x2F;mysql的拥有者改为当前用户<br>执行命令赋权，重启mysql：<br><code>sudo chown -R openscanner:openscanner /var/lib/mysql</code><br><code>service mysqld restart</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skCk9.png"
-                     
-                ></p>
-<p>再次重置密码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -u root</span><br><span class="line">use mysql;</span><br><span class="line">update user set password=password(&#x27;123456&#x27;) where user=&#x27;root&#x27;;</span><br><span class="line">exit;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skm0e.png"
-                     
-                ></p>
-<p>测试链接一下:<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sknTH.png"
-                     
-                ></p>
-<p>原因：mysql服务器 root 默认只允许 localhost 也就是 127.0.0.1 连接<br>登录mysql: <code>mysql -u root -p</code><br>输入密码:直接回车即可  输入了会报错如下所示<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skemD.png"
-                     
-                ></p>
-<h4 id="解决连接报错"><a href="#解决连接报错" class="headerlink" title="解决连接报错"></a>解决连接报错</h4><p>继续<code>mysql -u root -p</code>  回车  然后执行以下命令：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">use mysql; 选择mysql库</span><br><span class="line">select host from user where user=&#x27;root&#x27;;查看mysql库中的user表的host值（即可进行连接访问的主机/IP名称）</span><br><span class="line">update user set host = &#x27;%&#x27; where user =&#x27;root&#x27;; 修改host值（以通配符%的内容增加主机/IP地址），当然也可以直接增加IP地址 %通配符表示所有ip都允许通过root账号链接</span><br><span class="line">flush privileges; 刷新MySQL的系统权限相关表</span><br><span class="line">select host from user where user=&#x27;root&#x27;; 再重新查看user表时，有修改。。</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<h4 id="重连测试"><a href="#重连测试" class="headerlink" title="重连测试"></a>重连测试</h4><p>然后这时候用客户端重连一下试试：ok啦<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skKkd.png"
-                     
-                ></p>
-<p>创建个数据库测试，对了 新建的数据打开自带了三个库  别手贱删哈，你表的创建执行都和这里面的表相关，不然你commit rollback 它怎么知道的，我之前本地安装mysql学习时手贱删过，后来发现数据再执行sql操作时就报错，找了各种办法最后重装才解决，所以不懂要么去研究要么不要动。<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skVOO.png"
-                     
-                ><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1skMtA.png"
-                     
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装nginx</title>
-    <url>/2021/0423/install-ngnix-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="解压安装："><a href="#解压安装：" class="headerlink" title="解压安装："></a>解压安装：</h4><p>nginx按装一定要使用命令安装，因为需要解压后编译 已经配置成全局的<br>下载常用的包，高版本的安装出了一次问题，就切换成低版本的了，如图：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sS2RO.png"
-                     
-                ></p>
-<p>接下来执行以下命令：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /usr  进入压缩文件存放目录</span><br><span class="line">tar -xzvf nginx-1.13.9.tar.gz   解压</span><br><span class="line">cd  nginx-1.13.9 进入解压后文件</span><br><span class="line">mkdir /usr/local/nginx   在local目录下新建nginx目录</span><br><span class="line">./configure --prefix=/usr/local/nginx   配置成全局</span><br><span class="line">make &amp;&amp; make install  安装</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>but….执行到第5步报错了，报错信息如下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSci6.png"
-                     
-                ></p>
-<p>the HTTP rewrite module requires the PCRE library HTTP重写模块需要PCRE库<br>什么鬼？pcre 是啥？一脸懵逼吧，本地装ngnix解压就好了  没这么坑啊！ 所以，装环境还是和本地有一点区别的，但是大同小异不要慌！你遇到了别人一定也遇到了，让我们来了解下什么叫pcre:<br>详见此篇博客：安装 Nginx 前 必须安装 PCRE—<a class="link"   href="https://www.jianshu.com/p/14c81fbcb401" >https://www.jianshu.com/p/14c81fbcb401 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>不懂就学嘛(百度)！</p>
-<p>使用以下命令安装：yum -y install zlib zlib-devel openssl openssl–devel pcre pcre-devel</p>
-<p>再次执行5.6命令  发现：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSyIx.png"
-                     
-                ></p>
-<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h4><p>wtf? 没有配置环境变量！！！<br>执行vim &#x2F;etc&#x2F;profile<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSsd1.png"
-                     
-                ></p>
-<p>记住以上框出来的命令，o 只读  e编辑  r覆盖  q退出  a取消<br>编辑后一直向下键看到for循环后加上以下代码：<br>PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin<br>export PATH<br>:wq!</p>
-<p>:wq表示保存并退出vi编辑模式   ———题外话：linux下命令真的要学一下<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSrZR.png"
-                     
-                ></p>
-<p>退出来后执行：source &#x2F;etc&#x2F;profile 使配置生效  还是在&#x2F;usr&#x2F;local&#x2F;sbin 目录下执行</p>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>然后因为nginx 是全局的了，可以直接在根目录下执行nginx 浏览器输入公网ip，不带端口哈出现如下界面表示nginx启动成功！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sSRzD.png"
-                     
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装redis</title>
-    <url>/2021/0423/install-redis-linux.html</url>
-    <content><![CDATA[<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h4 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h4><p>作为一名开发，面试最常问的恐怕就有你们开发过程中用过什么缓存？能否简单谈谈redis等等<br>so,作为一个可基于内存持久化的、日志级别的、非关型数据库，学习和掌握好它还是很有必要的。<br>上面mysql 安装到了usr下面  所有我也会将redis安装到其下<br>进入到usr目录下：<code>cd /usr</code><br>下载安装包：<br><code>wget http://download.redis.io/releases/redis-5.0.5.tar.gz</code><br>打开服务器目录刷新就会看到对应的包在usr下生成了:<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sVoj0.png"
-                     
-                ></p>
-<p>解压:<code>tar xzf redis-5.0.5.tar.gz</code><br>查看解压后的文件：<code>ls -al</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sVbHU.png"
-                     
-                ></p>
-<h4 id="安装，配置后台运行"><a href="#安装，配置后台运行" class="headerlink" title="安装，配置后台运行"></a>安装，配置后台运行</h4><p>进入安装目录：<code>cd redis-5.0.5</code><br>安装：<code>make</code><br>–接下来一定要执行: <code>make install</code>  此命令意思是拷贝redis的相关文件到&#x2F;usr&#x2F;local&#x2F;bin这个目录下 不执行这个命令将不执行<code>redis-server redis.conf</code>这个命令是不会执行的<br>进入当前src 目录下，会有redis服务端程序redis-server和用于测试的客户端程序redis-cli<br>进入src目录：<code>cd src</code><br>查看对应的文件：<code>ls -al</code><br>配置redis.conf文件，将redis设为后台运行<br>redis默认不是守护进程，也就是说只要在linux上做了其他操作、或者exit强制退出、或者关闭连接工具（putty&#x2F;xshell）等，都会导致redis进程退出，这样非常的麻烦，所以需要让redis服务端在后台运行，即守护进程模式。当redis.conf配置文件中，daemonize属性值设为yes时，代表开启守护进程。<br>编辑redis.conf文件：<code>vi redis.conf</code><br>搜索对应的配置：<code>/daemonize</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sVX4J.png"
-                     
-                ></p>
-<p>将no改为yes: 按i进入编辑模式  改完esc退出编辑模式   回车 输入:wq!保存并退出<br>—-redis数据库默认不设密码，但这样会自动开启保护模式，只能本地访问，不能远程访问。所以为了能远程访问，就必须设置密码<br>配置密码：<code>vi redis.conf </code><br>搜索redis密码：<code>/requirepass foobared </code> 改为123456 同上保存并退出<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZ9u6.png"
-                     
-                ></p>
-<h4 id="启动配置："><a href="#启动配置：" class="headerlink" title="启动配置："></a>启动配置：</h4><p>进入到bin目录下安装启动配置：<br><code>cd /usr/redis-5.0.5</code><br><code>./utils/install_server.sh</code><br>默认的配置文件是6379.conf<br>默认的日志文件是redis_6379.log<br>默认的运行实例是6379<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZegI.png"
-                     
-                ></p>
-<p>直接启动：<code>service redis_6379 start</code><br>停止：<code>service redis_6379 stop</code><br>查看进程：<code>ps -aux | grep redis</code><br>启动和停止可以看到 进程的变化<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZUK0.png"
-                     
-                ></p>
-<p>配置公网链接：为了是其他机器能够链接这台服务器<br>需要更改配置将redis.conf中bind 127.0.0.1注释掉！<br>执行：<code>cd /usr/redis-5.0.5</code><br><code>vi redis.conf</code> 修改 完成后 需要重复执行 上面的“启动配置” 步骤 让修改的配置生效<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZD54.png"
-                     
-                ></p>
-<p>查看进程：<code>ps -aux | grep redis</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZsPJ.png"
-                     
-                ></p>
-<p>杀掉进程：<code>kill -9 进程号</code><br>重启redis: <code>service redis_6379 start</code><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZRr6.png"
-                     
-                ></p>
-<p>后面的server * 代表允许所有的ip访问<br>此时再用redis 客户端链接测试  链接成功！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZ5Ie.png"
-                     
-                ></p>
-<h4 id="连接测试"><a href="#连接测试" class="headerlink" title="连接测试"></a>连接测试</h4><p>那链接上了，我们来测试一下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1sZ7RA.png"
-                     
-                ></p>
-<p>刷新客户端看下有没有写进来：ok 写进来了<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1seCzn.png"
-                     
-                ></p>
-<p>好了，那么这个地方16个 db又是代表什么意思呢？学东西还是要有不断追问的能力，当你一步一步的自我解答寻找答案的时候就是慢慢掌握的时候！<br>Redis支持多个数据库，并且每个数据库的数据是隔离的不能共享，并且基于单机才有，如果是集群就没有数据库的概念。<br>Redis是一个字典结构的存储服务器，而实际上一个Redis实例提供了多个用来存储数据的字典，客户端可以指定将数据存储在哪个字典中，这1-16其实就是代表16个字典！<br>那么怎么用呢？  像sql语句一样  但是又不是  redis一个实例下默认有16个字典库，select 1代表选用1号字典库，同一个库中插入相同的key 后面的value值将会覆盖前面的值！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1seVdU.png"
-                     
-                ></p>
-<p>看看字典1库中值：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/02/05/1senJJ.png"
-                     
-                ></p>
-<p>自此，我们已经完成了redis 单台服务器的搭建测试和客户端工具的测试！</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装tomcat</title>
-    <url>/2021/0423/install-tomcat-linux.html</url>
-    <content><![CDATA[<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><h4 id="安装tomcat"><a href="#安装tomcat" class="headerlink" title="安装tomcat"></a>安装tomcat</h4><p>接下来装个最简单的web服务器tomcat吧，人家idea就是内置tomcat的，不要看不起他<br>官网下载，这次我下载的tomcat9 按道理版本越高兼容性越好，就他了！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUmCQ.md.png"
-                      border="0" 
-                ><br>将本地的tomcat 解压到服务器上，一般的xshell xftp 是分离的 所以你要用两个工具（这个时候就体现出Xshell+Xftp 整合版的便携性了），输两次密码连接，这时候就体现这工具的便携性了，直接点这个打开服务器目录<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUZ4g.png"
-                      border="0" 
-                ><br>我没有使用命令上传然后解压，其实文件不大，上传速度很快！<br>然后，进到bin目录下 启动tomcat 如果遇到没有权限 输入最后两个命令即可</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd /data/apache-tomcat-9.0.30/bin</span><br><span class="line">chmod u+x *.sh</span><br><span class="line">./startup.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUkHf.png"
-                      border="0" 
-                >
-
-<h4 id="测试8080端口"><a href="#测试8080端口" class="headerlink" title="测试8080端口"></a>测试8080端口</h4><p>然后浏览器输入 公网ip+默认端口8080 即可看到tomcat启动页：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2020/01/17/1SUFDP.png"
-                      border="0" 
-                ></p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云OSS SDk实践篇</title>
-    <url>/2021/0423/aliyun-oss-sdk.html</url>
-    <content><![CDATA[<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><blockquote>
-<p>我们知道一般的热点数据我们直接存到数据库，但是类似一些表格模板，附件等静态资源放在哪里呢？</p>
-</blockquote>
-<ul>
-<li>数据库</li>
-<li>数据库 + 本地文件（IO流）</li>
-<li>数据库 + 缓存 + 文件服务器（Hdfs 、fastDFS、服务器集群）</li>
-<li>数据库 + 缓存 + 文件存储（对象存储服务OSS）</li>
-</ul>
-<p>因为阿里云提供了各种常用语言的SDK,所以进行文件的存储就变得十分简单，那本文就来介绍下阿里云的对象存储OSS使用。</p>
-<h4 id="开通OSS服务"><a href="#开通OSS服务" class="headerlink" title="开通OSS服务"></a>开通OSS服务</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9YFoj.png"
-                     
-                ></p>
-<p>搜索后，购买直接就可以使用，它是按流量计算费用的，话说我们买个10块钱的足够我们基本的学习使用了，不够了再充值嘛！我这里因为用的就是阿里云服务器，所以好像是赠送了40G的存储，具体也懒的去了解，反正没要我再交钱就是。</p>
-<h4 id="了解阿里云OSS"><a href="#了解阿里云OSS" class="headerlink" title="了解阿里云OSS"></a>了解阿里云OSS</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9NvWR.png"
-                     
-                ></p>
-<p>通过了解它的官方文档，我们基本可以知道阿里云OSS提供了面向各种常用语言的SDk，通过这些SDK我们基本可以知道如何使用了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9a7aF.png"
-                     
-                ></p>
-<p>点击<code>JAVA SDK快速入门</code>我们可以看到对应的maven 工程示例；这里自己点进去了解即可！</p>
-<p>题外话: 后面对于其他东西的学习，个人建议都是先找官方文档了解，至于本篇博客个人也只是做个笔记，记录下简单的使用，肯定不如官网的全面。</p>
-<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><h4 id="1-创建Bucket"><a href="#1-创建Bucket" class="headerlink" title="1.创建Bucket"></a>1.创建Bucket</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9WhHH.png"
-                     
-                ></p>
-<p>如果你听了我的建议，了解过JAVA SDk 中的工程例子，我想你应该知道要使用OSS 需要4个参数：</p>
-<ul>
-<li>endpoint</li>
-<li>AccessKeyID</li>
-<li>AccessKeySecret</li>
-<li>bucketName</li>
-</ul>
-<p>这里我们先记录下 <code>bucketName: oss-study01</code>;<code>endpoint:oss-cn-beijing.aliyuncs.com</code></p>
-<h4 id="2-创建文件夹"><a href="#2-创建文件夹" class="headerlink" title="2.创建文件夹"></a>2.创建文件夹</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9fILF.png"
-                     
-                ></p>
-<p>创建一个存放图片的文件夹images</p>
-<h4 id="3-上传一张图片测试"><a href="#3-上传一张图片测试" class="headerlink" title="3.上传一张图片测试"></a>3.上传一张图片测试</h4><p>注意：是点击进此文件后再上传</p>
-<p>这里我们选择单个文件的权限是公共读，当然你也可以通过修改整个文件的权限，目前此文件夹我们没修改就是默认的私有的！</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J94nc6.png"
-                     
-                ></p>
-<h4 id="4-访问控制"><a href="#4-访问控制" class="headerlink" title="4.访问控制"></a>4.访问控制</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J95Ar8.png"
-                     
-                ></p>
-<p>添加用户组–&gt;创建用户–&gt;添加用户到用户组–&gt;分配用户组权限–&gt;保存账号信息</p>
-<p>其实就像我们的系统的权限，角色和用户的关系，某些用户是某些角色，某些角色就具有某些分配好的权限！</p>
-<p>具体步骤截图如下：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9Irpn.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9oDED.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9oXrV.png"
-                     
-                ></p>
-<p>记录下</p>
-<ul>
-<li><p>AccessKeyID: LTAI4FoYHgbk2y3woYH191Ys</p>
-</li>
-<li><p>AccessKeySecret：FVZzvz4G9e39ako5vVMASYryrbpnJu</p>
-</li>
-</ul>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9TQxI.png"
-                     
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/15/J9TyZT.png"
-                     
-                ></p>
-<h3 id="测试SDK"><a href="#测试SDK" class="headerlink" title="测试SDK"></a>测试SDK</h3><h4 id="1-创建微服务，引入阿里OSS依赖"><a href="#1-创建微服务，引入阿里OSS依赖" class="headerlink" title="1.创建微服务，引入阿里OSS依赖"></a>1.创建微服务，引入阿里OSS依赖</h4><div class="highlight-container" data-rel="Xml"><figure class="iseeu highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.aliyun.oss<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aliyun-sdk-oss<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-
-<h4 id="2-测试"><a href="#2-测试" class="headerlink" title="2. 测试"></a>2. 测试</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.coding.aliyunoss;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSS;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.OSSClientBuilder;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.CannedAccessControlList;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.GetObjectRequest;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.OSSObjectSummary;</span><br><span class="line"><span class="keyword">import</span> com.aliyun.oss.model.ObjectListing;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OSSTest</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">endpoint</span> <span class="operator">=</span> <span class="string">&quot;oss-cn-beijing.aliyuncs.com&quot;</span>;</span><br><span class="line">    <span class="comment">// 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。</span></span><br><span class="line">    <span class="comment">// 强烈建议您创建并使用RAM账号进行API访问或日常运维，</span></span><br><span class="line">    <span class="comment">// 请登录 https://ram.console.aliyun.com 创建RAM账号。</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeyId</span> <span class="operator">=</span> <span class="string">&quot;LTAI4GKkPcWRY6zDgxBwgjaS&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">accessKeySecret</span> <span class="operator">=</span> <span class="string">&quot;fvQ0rtW2ezAS4jiMCjIp7JrzKSCmPJ&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">bucketName</span> <span class="operator">=</span> <span class="string">&quot;oss-study01&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断是否 bucketName，如果不存在就创建，修改权限</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建oss 实例</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCreate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        ossClient.createBucket(bucketName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断当前实例是否存在</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testExist</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">exist</span> <span class="operator">=</span> ossClient.doesBucketExist(bucketName);</span><br><span class="line">        System.out.println(exist);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 修改权限 公共读</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testUpdate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        ossClient.setBucketAcl(bucketName,CannedAccessControlList.PublicRead);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 上传文件流。</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFileUpload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// 上传到 oss 后需要一个文件名(保证唯一 /2020/4/1/xxxxxxxx.jpg)！</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.putObject(bucketName, objectName, <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;C:\\Users\\Administrator\\Desktop\\dafault.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下载文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDownload</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.getObject(<span class="keyword">new</span> <span class="title class_">GetObjectRequest</span>(bucketName,objectName),<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;a.jpg&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查看文件列表</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testShowList</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="comment">// ossClient.listObjects返回ObjectListing实例，包含此次listObject请求的返回结果。</span></span><br><span class="line">        <span class="type">ObjectListing</span> <span class="variable">objectListing</span> <span class="operator">=</span> ossClient.listObjects(bucketName);</span><br><span class="line">        <span class="comment">// objectListing.getObjectSummaries获取所有文件的描述信息。</span></span><br><span class="line">        <span class="keyword">for</span> (OSSObjectSummary objectSummary : objectListing.getObjectSummaries()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot; - &quot;</span> + objectSummary.getKey() + <span class="string">&quot;  &quot;</span> +</span><br><span class="line">                    <span class="string">&quot;(size = &quot;</span> + objectSummary.getSize() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除文件</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDeleted</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 对象</span></span><br><span class="line">        <span class="type">OSS</span> <span class="variable">ossClient</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OSSClientBuilder</span>().build(endpoint, accessKeyId, accessKeySecret);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 方法 (修改已经有的，创建新的)</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">objectName</span> <span class="operator">=</span> <span class="string">&quot;images/default.jpg&quot;</span>;</span><br><span class="line">        ossClient.deleteObject(bucketName,objectName);</span><br><span class="line">        <span class="comment">// 关闭对象</span></span><br><span class="line">        ossClient.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<p>好了，后面我们就可以用接口调用，完成我们文件的上传和下载了。是不是很简单？赶快试试吧；加油，奥利给！</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>sdk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux上安装jenkins(待填坑)</title>
-    <url>/2021/0423/install-jenkins-linux.html</url>
-    <content><![CDATA[<h4 id="项目部署步骤："><a href="#项目部署步骤：" class="headerlink" title="项目部署步骤："></a>项目部署步骤：</h4>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>jar包发版步骤</title>
-    <url>/2020/1008/jar-run-step.html</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h3 id="1-clean-后-package-打包前需核对配置文件是否正确"><a href="#1-clean-后-package-打包前需核对配置文件是否正确" class="headerlink" title="1.clean 后 package ,打包前需核对配置文件是否正确"></a>1.clean 后 package ,打包前需核对配置文件是否正确</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar1.png"
-                     
-                ></p>
-<p>生成的jar包（target文件下）<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar2.png"
-                     
-                ></p>
-<h3 id="2-打开sheel工具-链接到具体的环境"><a href="#2-打开sheel工具-链接到具体的环境" class="headerlink" title="2.打开sheel工具 链接到具体的环境"></a>2.打开sheel工具 链接到具体的环境</h3><p>执行命令：ps -ef | grep jar</p>
-<p>查看运行中的jar: ps  aux|grep  jar<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar3.png"
-                     
-                ></p>
-<h3 id="3-将对应的包的进程杀掉-最后的数字是进程号"><a href="#3-将对应的包的进程杀掉-最后的数字是进程号" class="headerlink" title="3.将对应的包的进程杀掉 最后的数字是进程号"></a>3.将对应的包的进程杀掉 最后的数字是进程号</h3><p>执行命令：kill -9 2980</p>
-<h3 id="4-查看对应进程（jar包）的存放路径、"><a href="#4-查看对应进程（jar包）的存放路径、" class="headerlink" title="4.查看对应进程（jar包）的存放路径、"></a>4.查看对应进程（jar包）的存放路径、</h3><p>执行命令：ll &#x2F;proc&#x2F;2980<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar4.png"
-                     
-                ></p>
-<p>其中cwd -&gt; &#x2F;home&#x2F;bigdatashare&#x2F;exchange 就是文件的存放路径</p>
-<p>&#x20;exe -&gt; &#x2F;usr&#x2F;java&#x2F;jdk1.8.0_171-amd64&#x2F;jre&#x2F;bin&#x2F;java 是运行环境 jdk的存放路径</p>
-<h3 id="5-打开xftp-有的工具不是集成在一起的-需要单独连接"><a href="#5-打开xftp-有的工具不是集成在一起的-需要单独连接" class="headerlink" title="5.打开xftp,有的工具不是集成在一起的 需要单独连接"></a>5.打开xftp,有的工具不是集成在一起的 需要单独连接</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar5.png"
-                     
-                ></p>
-<h3 id="6-复制对应路径，更改上次包名xxx-copy，表示备份-以免上去出问题可以回退"><a href="#6-复制对应路径，更改上次包名xxx-copy，表示备份-以免上去出问题可以回退" class="headerlink" title="6.复制对应路径，更改上次包名xxx-copy，表示备份 以免上去出问题可以回退"></a>6.复制对应路径，更改上次包名xxx-copy，表示备份 以免上去出问题可以回退</h3><p>将左侧本地打包后jar包拖到右侧，底部会显示上传进度<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar6.png"
-                     
-                ></p>
-<h3 id="7-执行启动打包后jar"><a href="#7-执行启动打包后jar" class="headerlink" title="7.执行启动打包后jar"></a>7.执行启动打包后jar</h3><p>执行命令：nohup java -jar .&#x2F;bigdata-dev.jar &gt; .&#x2F;bigdata-dev.log 2&gt;&amp;1 &amp;</p>
-<p>&#x20;后面的&#x2F;bigdata-dev.log 表示执行的日志 ，发生异常是可以查看</p>
-<h3 id="8-查看打包进程的命令：tail-f-bigdata-dev-log"><a href="#8-查看打包进程的命令：tail-f-bigdata-dev-log" class="headerlink" title="8.查看打包进程的命令：tail -f bigdata-dev.log"></a>8.查看打包进程的命令：tail -f bigdata-dev.log</h3><p>命令执行后：会看到对应springBoot启动的过程（和本地终端启动一样）<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/linux/21/4/23/jar7.png"
-                     
-                ></p>
-<p>至此，简单的将jar打包到linux环境 完成！</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>jar</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>firewall相关命令</title>
-    <url>/2020/1008/firewall-shell.html</url>
-    <content><![CDATA[<p>[TOC]<br>环境：VMware、CentOS8</p>
-<p>从centos7开始使用systemctl.firewalld来管理服务和程序，包括了service和chkconfig。</p>
-<p>防火墙状态：systemctl status firewalld.service</p>
-<p>Active: inactive (dead)&#x2F;active(running)</p>
-<p>关闭firewall：systemctl stop firewalld.service</p>
-<p>重启：systemctl restart firewalld.service</p>
-<p>启动：systemctl start firewalld.service</p>
-<p>禁止firewall开机启动:systemctl disable firewalld.service</p>
-<p>设置开机启用：systemctl enable firewalld.service</p>
-<p>查看服务是否开机启动：systemctl is-enabled firewalld.service;echo</p>
-<p>查看已启动的服务列表：systemctl list-unit-files|grep enabled</p>
-<p>查看已经开放的端口：firewall-cmd –list-ports</p>
-<p>开启端口：firewall-cmd –zone&#x3D;public –add-port&#x3D;80&#x2F;tcp –permanent</p>
-<p>命令含义：</p>
-<p>–zone #作用域</p>
-<p>–add-port&#x3D;80&#x2F;tcp #添加端口，格式为：端口&#x2F;通讯协议</p>
-<p>–permanent #永久生效，没有此参数重启后失效</p>
-]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>jar</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>六大设计原则及使用场景</title>
     <url>/2021/0423/6-sheji-yuan-ze.html</url>
     <content><![CDATA[<blockquote>
@@ -3694,6 +3694,52 @@
       <tags>
         <tag>solidity</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>(五) solidity的位运算实践</title>
+    <url>/2025/0511/solidity-wei-math.html</url>
+    <content><![CDATA[<h3 id="✅代码"><a href="#✅代码" class="headerlink" title="✅代码"></a>✅代码</h3><div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="code"><pre><span class="line">contract <span class="title class_">BitwiseOps</span>&#123;</span><br><span class="line">    <span class="comment">// x     = 1110 = 8 + 4 + 2 + 0 = 14</span></span><br><span class="line">    <span class="comment">// y     = 1011 = 8 + 0 + 2 + 1 = 11</span></span><br><span class="line">    <span class="comment">// x &amp; y = 1010 = 8 + 0 + 2 + 0 = 10</span></span><br><span class="line">    <span class="comment">// 与 -&gt; 同1为1 不同为0</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">and</span>(<span class="params">uint256 x, uint256 y</span>) external pure <span class="title function_">returns</span> (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> x &amp; y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// x     = 1100 = 8 + 4 + 0 + 0 = 12</span></span><br><span class="line">    <span class="comment">// y     = 1001 = 8 + 0 + 0 + 1 = 9</span></span><br><span class="line">    <span class="comment">// x | y = 1101 = 8 + 4 + 0 + 1 = 13</span></span><br><span class="line">    <span class="comment">// 或 -&gt; 同1为1 同0为0 不同为1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">or</span>(<span class="params">uint256 x, uint256 y</span>) external pure <span class="title function_">returns</span> (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> x | y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// x     = 1100 = 8 + 4 + 0 + 0 = 12</span></span><br><span class="line">    <span class="comment">// y     = 0101 = 0 + 4 + 0 + 1 = 5</span></span><br><span class="line">    <span class="comment">// x ^ y = 1001 = 8 + 0 + 0 + 1 = 9</span></span><br><span class="line">    <span class="comment">// 异或 -&gt; 同1为0 同0为0 不同为1</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">xor</span>(<span class="params">uint256 x,uint256 y</span>) external pure <span class="title function_">returns</span> (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> x ^ y;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// x   = 00001100 = 0 + 0 + 0 + 0 + 8 + 4 + 0 + 0 = 12</span></span><br><span class="line">    <span class="comment">// ~x  = 11110011 = 128 +64 +32 +16 +0 +0 +2 +1 = 243</span></span><br><span class="line">    <span class="comment">// 取反 -&gt; 取反 0 to 1,1 to 0</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">not</span>(<span class="params">uint256 x</span>) external pure <span class="title function_">returns</span> (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> ~x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1&lt;&lt;0 = 0001 -&gt; 0001 = 1</span></span><br><span class="line">    <span class="comment">// 1&lt;&lt;1 = 0001 -&gt; 0010 = 2</span></span><br><span class="line">    <span class="comment">// 1&lt;&lt;2 = 0001 -&gt; 0100 = 4</span></span><br><span class="line">    <span class="comment">// 1&lt;&lt;3 = 0001 -&gt; 1000 = 8</span></span><br><span class="line">    <span class="comment">// 3&lt;&lt;2 = 0011 -&gt; 1100 = 12</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">shiftLeft</span>(<span class="params">uint256 x,uint256 bits</span>) external pure <span class="title function_">returns</span> (uint256) &#123;</span><br><span class="line">        <span class="keyword">return</span> x &lt;&lt; bits;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 8 &gt;&gt; 0 = 1000 -&gt; 1000 = 8</span></span><br><span class="line">    <span class="comment">// 8 &gt;&gt; 1 = 1000 -&gt; 0100 = 4</span></span><br><span class="line">    <span class="comment">// 8 &gt;&gt; 2 = 1000 -&gt; 0010 = 2</span></span><br><span class="line">    <span class="comment">// 8 &gt;&gt; 3 = 1000 -&gt; 0001 = 1</span></span><br><span class="line">    <span class="comment">// 8 &gt;&gt; 4 = 1000 -&gt; 0000 = 0</span></span><br><span class="line">    <span class="comment">// 12&gt;&gt; 1 = 1100 -&gt; 0110 = 6</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">shiftRight</span>(<span class="params">uint256 x,uint256 bits</span>) external pure <span class="title function_">returns</span>(<span class="params">uint256</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> x &gt;&gt; bits;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get last n bits from x</span></span><br><span class="line">    <span class="comment">// example, 13 last 3 bits</span></span><br><span class="line">    <span class="comment">// x      = 1101 = 13</span></span><br><span class="line">    <span class="comment">// mask   = (1&lt;&lt;n)-1</span></span><br><span class="line">    <span class="comment">//          0001 &lt;&lt; 3 = 1000 - 1 = 0111 = 6</span></span><br><span class="line">    <span class="comment">// output = 1101 &amp; 0111 = 0101 = 4 + 1 = 5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// example, 8 last 2 bits</span></span><br><span class="line">    <span class="comment">// x      = 0100 = 8</span></span><br><span class="line">    <span class="comment">// mask   = (1&lt;&lt;2)-1</span></span><br><span class="line">    <span class="comment">//           0001 &lt;&lt; 2 = 0100 - 1 = 0011 = 3</span></span><br><span class="line">    <span class="comment">// output = 0100 &amp; 0011 = 0000  = 0</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getLastNBits</span>(<span class="params">uint256 x,uint256 n</span>)external pure <span class="title function_">returns</span>(<span class="params">uint256</span>)&#123;</span><br><span class="line">        uint mask = (<span class="number">1</span>&lt;&lt;n) - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> x &amp; mask;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//- 数学上， x % (1 &lt;&lt; n) 等价于 x &amp; ((1 &lt;&lt; n) - 1)</span></span><br><span class="line">    <span class="comment">//- 但模运算方法少了一次减法操作(不需要 -1 )</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">getLastNBitUsingMod</span>(<span class="params">uint256 x,uint n</span>) external pure <span class="title function_">returns</span>(<span class="params">uint256</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> x % (<span class="number">1</span>&lt;&lt;n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="📚位与、位或，异或、取反"><a href="#📚位与、位或，异或、取反" class="headerlink" title="📚位与、位或，异或、取反"></a>📚位与、位或，异或、取反</h3><blockquote>
+<p>位与：同1为1，不同为0</p>
+</blockquote>
+<ul>
+<li>掩码操作（提取特定位）</li>
+<li>清零某些位</li>
+</ul>
+<blockquote>
+<p>位或：只要有一个为1则为1</p>
+</blockquote>
+<ul>
+<li>设置特定位为1</li>
+<li>合并位标志</li>
+</ul>
+<blockquote>
+<p>异或：只要不同就位1</p>
+</blockquote>
+<ul>
+<li>任何数异或自己得0：x ^ x &#x3D; 0</li>
+<li>可逆性：x ^ y ^ y &#x3D; x</li>
+<li>交换两个变量的值</li>
+<li>简单加密&#x2F;解密</li>
+<li>校验数据</li>
+</ul>
+<blockquote>
+<p>取反：0为1，1为0</p>
+</blockquote>
+<h3 id="📚位移"><a href="#📚位移" class="headerlink" title="📚位移"></a>📚位移</h3><p>左移：x &lt;&lt; n，二进制的表现形式为所有位向左移动n位；对于数学上的表现形式为：x乘以2的n次方 <br><br>右移：x &gt;&gt; n，二进制的表现形式为所有位向右移动n位; 对于数学上的表现形式为：x除以2的n次方</p>
+<ul>
+<li>常用于数据结构的扩容 或者使用一个标志位记录某个状态的值</li>
+</ul>
+<p>以下是一个简单的状态标志位的实现(java代码类似)：</p>
+<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="code"><pre><span class="line">contract <span class="title class_">Example</span>&#123;</span><br><span class="line">    uint <span class="variable constant_">ACTIVE</span> = <span class="number">1</span> &lt;&lt; <span class="number">0</span>;    <span class="comment">// 0001 (1)</span></span><br><span class="line">    uint <span class="variable constant_">LOCKED</span> = <span class="number">1</span> &lt;&lt; <span class="number">1</span>;    <span class="comment">// 0010 (2)</span></span><br><span class="line">    uint <span class="variable constant_">VIP</span> = <span class="number">1</span> &lt;&lt; <span class="number">2</span>;       <span class="comment">// 0100 (4)</span></span><br><span class="line">    uint <span class="variable constant_">VVIP</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>;      <span class="comment">// 1000 (8)</span></span><br><span class="line">    uint <span class="variable constant_">SVIP</span> = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;      <span class="comment">// 10000 (16)</span></span><br><span class="line">    uint <span class="variable constant_">ALL</span> = <span class="variable constant_">ACTIVE</span> | <span class="variable constant_">LOCKED</span> | <span class="variable constant_">VIP</span> | <span class="variable constant_">VVIP</span> | <span class="variable constant_">SVIP</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置状态</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">setStatus</span>(<span class="params">uint _status</span>) external &#123;</span><br><span class="line">        <span class="built_in">require</span>(status &lt;= <span class="variable constant_">ALL</span>, <span class="string">&quot;Invalid status&quot;</span>);</span><br><span class="line">        status |= _status;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 移除状态</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">unsetStatus</span>(<span class="params">uint _status</span>) external &#123;</span><br><span class="line">        status &amp;= ~_status;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 判断状态</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">hashStatus</span>(<span class="params">uint _status</span>) external view <span class="title function_">returns</span>(<span class="params">uint</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (status &amp; _status) == _status;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+]]></content>
+      <categories>
+        <category>solidity</category>
+      </categories>
   </entry>
   <entry>
     <title>String 聊源码解读</title>
@@ -5128,7 +5174,7 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
 <p>之前自己用halo搭建了个人博客，想着自己把源码拉下来学习研究下的，包下到本地后发现在终端中执行 <code>java -jar halo.jar --spring.profiles.active=dev</code>时,报<code>Application has been compiled by a more recent version of the Java Runtime (class file version 55.0), this versions up to 52.0</code>;what? 应用被最新的java版本执行过了，当前版本是52.0；一番搜索说jdk版本太低了，那就装个jdk11吧；</p>
 </blockquote>
 <h3 id="安装前的疑问"><a href="#安装前的疑问" class="headerlink" title="安装前的疑问"></a>安装前的疑问</h3><p>安装jdk11?那我之前安装的jdk8要删了吗？肯定不用吧，然后带着疑问去找了下解决办法，果然可以动态指定运行版本</p>
-<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#50;&#54;&#x39;&#54;&#54;&#55;&#x31;&#50;&#56;&#53;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109;" >&#50;&#54;&#x39;&#54;&#54;&#55;&#x31;&#50;&#56;&#53;&#64;&#x71;&#x71;&#x2e;&#x63;&#x6f;&#109; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#50;&#x36;&#57;&#54;&#x36;&#55;&#x31;&#50;&#56;&#53;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;" >&#50;&#x36;&#57;&#54;&#x36;&#55;&#x31;&#50;&#56;&#53;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>下载如下所示macos对应的jdk11:<br><a href="https://imgtu.com/i/6ahdXt"><img  
                      lazyload
                      src="/images/loading.svg"
@@ -6034,6 +6080,276 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </tags>
   </entry>
   <entry>
+    <title>架构师进阶</title>
+    <url>/2021/0423/jia-gou-shi.html</url>
+    <content><![CDATA[<blockquote>
+<p>如果你已经工作了，可以根据公司的业务需求有针对性的去学习，下面的列表仅仅起一个参考的作用，当你想学的时候，知道有哪些东西需要学习</p>
+</blockquote>
+<h3 id="java-基础"><a href="#java-基础" class="headerlink" title="java 基础"></a>java 基础</h3><blockquote>
+<p>第一层主要包括如下部分（已经列好顺序）：</p>
+</blockquote>
+<ol>
+<li>Java 基础语法</li>
+<li>Java 面向对象</li>
+<li>Java 常用类详解</li>
+<li>Java 异常机制</li>
+<li>Java 集合与数据结构</li>
+<li>Java IO</li>
+<li>Java 多线程</li>
+<li>Java 网络编程</li>
+<li>Java 注解+反射</li>
+<li>23 种设计模式</li>
+<li>正则表达式</li>
+<li>XML 解析&#x2F; JSON 解析</li>
+<li>Java 10、11、12 新特性</li>
+<li>AIO、BIO、NIO</li>
+</ol>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><blockquote>
+<p>第二层主要是修炼数据库，从基本用法到查询优化、读写分离等等都需要掌握，这里以 MySQL 数据库为例：</p>
+</blockquote>
+<ol>
+<li>数据库的基本概念</li>
+<li>数据库和表的基本操作</li>
+<li>索引与数据完整性约束</li>
+<li>数据库中的各种复杂查询操作</li>
+<li>MySQL 中常见函数的使用</li>
+<li>存储过程、触发器以及事件等</li>
+<li>数据库的备份与恢复</li>
+<li>数据库用户管理与数据库安全性</li>
+<li>事务和多用户</li>
+<li>读写分离环境搭建+实践</li>
+<li>JDBC</li>
+<li>常见数据库连接池的配置+使用</li>
+</ol>
+<h3 id="web基础"><a href="#web基础" class="headerlink" title="web基础"></a>web基础</h3><blockquote>
+<p>第三层主要是修炼 Web 基础，主要包括前端的基础知识，先不用深入学习前端，后端的 Jsp&#x2F;Servlet，有人会说现在公司都不用 Jsp&#x2F;Servlet 了，还学这些干嘛？但是万变不离其宗，哪个顶尖高手不是从扎马步开始的？这些掌握好了，框架的原理才好理解。</p>
+</blockquote>
+<ol>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>jQuery</li>
+<li>Tomcat</li>
+<li>Servlet（基本用法，Session、Cookie 等）</li>
+<li>Jsp（原理、九大内置对象等）</li>
+<li>EL 和 JSTL</li>
+<li>过滤器&#x2F;监听器等</li>
+<li>Ajax</li>
+<li>EasyUI</li>
+<li>ECharts</li>
+<li>BootStrap</li>
+<li>Git&#x2F;Svn</li>
+<li>WebSocket<br>前三层练好后，做个大学的毕设应该是够用了。</li>
+</ol>
+<h3 id="框架-工具"><a href="#框架-工具" class="headerlink" title="框架&amp;工具"></a>框架&amp;工具</h3><blockquote>
+<p>第四层主要是修炼各种框架以及工具：</p>
+</blockquote>
+<ol>
+<li>Spring</li>
+<li>SpringMVC</li>
+<li>MyBatis</li>
+<li>Maven&#x2F;Gradle</li>
+<li>Freemarker&#x2F;Thymeleaf</li>
+<li>Linux</li>
+<li>ActiveMQ&#x2F;RabbitMQ&#x2F;Kafka</li>
+<li>Netty</li>
+<li>Zookeeper</li>
+<li>Dubbo</li>
+<li>Redis</li>
+<li>RBAC</li>
+<li>Shiro</li>
+<li>Elasticsearch</li>
+<li>Nginx</li>
+<li>SSO</li>
+<li>Activiti</li>
+<li>Quartz</li>
+<li>Spring Batch</li>
+<li>MongoDB</li>
+<li>Spring Cache</li>
+<li>Jpa<br>这一层修炼完，你已经基本上达到了阳顶天的水平了，阳顶天是明教教主，那你出去找个项目经理的位置坐坐估计差不多吧。</li>
+</ol>
+<h3 id="微服务相关"><a href="#微服务相关" class="headerlink" title="微服务相关"></a>微服务相关</h3><blockquote>
+<p>最后还不得不说 Java 目前最火的微服务，这也是一项必备技能：</p>
+</blockquote>
+<ol>
+<li>Spring Boot 基本原理</li>
+<li>Spring Boot 基础配置</li>
+<li>Spring Boot 整理视图层技术</li>
+<li>Spring Boot 整合 Web 开发</li>
+<li>Spring Boot 整合持久层技术</li>
+<li>Spring Boot 整合 NoSQL</li>
+<li>Spring Boot 构建 RESTful 服务</li>
+<li>Spring Boot 整合各种缓存</li>
+<li>Spring Boot 安全管理</li>
+<li>Spring Boot 整合 WebSocket</li>
+<li>Spring Boot 整合消息服务</li>
+<li>Spring Boot 整合 Swagger、邮件等</li>
+<li>Spring Boot 应用监控</li>
+<li>Spring Cloud Eureka、Consul</li>
+<li>微服务注册与消费</li>
+<li>Spring Cloud OpenFeign</li>
+<li>服务容错保护 Resilience4j</li>
+<li>Spring Cloud Zuul&#x2F;Gateway</li>
+<li>Spring Cloud Config</li>
+<li>Spring Cloud Bus</li>
+<li>Spring Cloud Stream</li>
+<li>Spring Cloud Sleuth&#x2F;Zipkin</li>
+<li>Spring Cloud Admin</li>
+<li>Spring Cloud Alibaba<br>第五层修炼成功后，让老板加波薪水应该是可以的吧！</li>
+</ol>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><blockquote>
+<p>第六层主要是修炼前端，前端这几年发展的非常快，早已经不是画页面了,JavaScript 被玩的越来越溜了，所以前端不可小觑：</p>
+</blockquote>
+<ol>
+<li>HTML5 新特性</li>
+<li>CSS3</li>
+<li>ES6</li>
+<li>JS 模块化</li>
+<li>less</li>
+<li>NodeJS</li>
+<li>Webpack</li>
+<li>Grunt</li>
+<li>Gulp</li>
+<li>Zepto</li>
+<li>mpvue</li>
+<li>AngularJS&#x2F;Vue&#x2F;React（非专业前端建议修炼其中一个即可）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>self</category>
+      </categories>
+      <tags>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>my616</title>
+    <url>/2021/0423/my-616.html</url>
+    <content><![CDATA[<blockquote>
+<p>当时日远去，总有些记忆依旧闪烁！<br>—— ——my616, 愿大家都能各得其所，得偿所愿！</p>
+</blockquote>
+<embed src="https://www.56.com/u47/v_MTMwNjc1ODEy.html?from=groupmessage&refer2=direct" width="800" height="600"/>
+
+<p>视频链接：<a class="link"   href="https://www.56.com/u47/v_MTMwNjc1ODEy.html?from=groupmessage&refer2=direct" >my616 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>self</category>
+      </categories>
+      <tags>
+        <tag>616</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谈谈最近的感想</title>
+    <url>/2021/0423/recent-think.html</url>
+    <content><![CDATA[<blockquote>
+<p>欲买桂花同载酒, 终不似, 少年游</p>
+</blockquote>
+<h4 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作"></a>关于<span style="color:red">工作</span></h4><p>前面博客中也提到了，最近在改一些bug;接了一口锅，目前公司的治理管理平台，基本就我一个人在搞了，之前的人离职了…近40个bug 改的还剩4个了，有个功能没按需求要求做，这也提bug我真是日了狗了，测试都测过的东西！你现在才说做的不对，这特么要重新做知道吗？！哎，心累。</p>
+<p>新入职的一哥们儿，来干了快一个月辞职了，下班路上他吐槽坑有点多填不动了，谁说不是呢？</p>
+<p>这个星期，剩下的4个bug还都是牵扯到其他系统的！其他系统的人又没有人，所以就停了下来，暂时我也被抽去做别的项目的开发！倒也乐的去做点新功能，疫情期间形势不好，还是要认真做好本职工作，然后多学点东西！且行且珍惜，且苟且努力吧！</p>
+<h4 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于<span style="color:red">学习</span></h4><p>老实说，最近搬了家！东西实在太多了，花了近一千大洋找搬家公司搬到市内了，房租也是涨了不少！然后就是收拾东西了，我和老婆两个人收拾了一个星期，当然都是每天晚上回来收拾。就这样折腾来折腾去，基本房子已经焕然一新了，期间还和媳妇儿因为物品的摆放争执过，事后证明我对空间感的把握还是不错滴！</p>
+<p>网还没好，我不得不每天在公司中午休息时间和下班后的时间，学点东西或者写点东西什么的，工作一天没点输出总感觉这一天白过了！当然工作时偶尔也可以摸下鱼，但是总是会被叫去干其他的，写什么东西的话也不得劲!</p>
+<p>五一尽快把网搞好吧，把落下的网课补起来!</p>
+<h4 id="关于接私活儿"><a href="#关于接私活儿" class="headerlink" title="关于接私活儿"></a>关于<span style="color:red">接私活儿</span></h4><p>有时候在想，自己还能干多少年呢？</p>
+<p>CSDN上很多关于程序猿35岁的文章阅读量都还不错，说明大家都有这方面的焦虑。是啊，焦虑总是有的。最近一哥们儿找我，说手上有些私活儿的单.一个6000的单是做微信小程序分销商城的，另一个2000的单是Quartz做定时调度做数据处理的，同时还要改其他的bug，这种可能是同行扔过来的单明显是坑！</p>
+<p>你要知道一套完善的分销商城代码可以卖6万的，还有这个2000的这个单明显是运维的活儿！然后和我那哥们儿聊了一会儿，然后找理由推了！对于微信小程序，之前还专门花了一段时间学习的，只是没有去实践。这个看来可以是私活的一个方向，那么就学起来吧；很多东西真的是“因为你没用，所以你不会”！其实，之前搞过一段时间私活儿，被坑了所以对这个有点戒备心了！哈哈，暂时的目标就是玩转SpringBoot这套东西，然后再做点开源的东西出来！然后学学主流的中间件，学学linux!至于接私活，暂时就先放一放吧，很长一段时间主要还是多修炼修炼内功！</p>
+<h4 id="关于读书"><a href="#关于读书" class="headerlink" title="关于读书"></a>关于<span style="color:red">读书</span></h4><p>搬家时发现买了很多书真的还没好好看过（很多都是买回来翻翻，有需要查询或者写相关的东西的时候才去翻翻），编程方面的书就买了10来本，《大话数据结构》，《大话设计模式》，《重新定义SpringCloud实战》，《hadoop大数据挖掘》，《深入浅出SpringBoot》，《springCloud 与Docker 微服务架构实战》，《springBoot+vue 全栈开发实战》，《Java开发手册》，《深入理解java虚拟机》,《重构改善既有代码的设计》，《linux就该这么学》等等，这10来本书就躺在手边的书架上，还有其他的书被收到箱子里了，其实这些书里有些我买的是二手的，新书是真的贵啊！这样列举出来，其实也是我想推荐的书单！</p>
+<p>真的要去多看书了，看现阶段和自己学的相关的书，这样最有效率，用中学，然后有时间再学中用；然后就是输出倒逼输入了，坚持写博客吧；不管有没有人看，就当作是自己的积累，不积硅步无以至千里，不积小流无以成江海！</p>
+<h4 id="关于生活"><a href="#关于生活" class="headerlink" title="关于生活"></a>关于<span style="color:red">生活</span></h4><p>学习，绝不仅仅是为了工作的需求，充实自己的同时其实也是让自己变得更加自信的一个过程；人自信了，真的各种正能量就会汇聚过来，好事就会发生，我们习惯把这种东西称为好运！</p>
+<p>平衡好工作生活，很重要；年岁越大，你会发现这是一个慢慢剔除的过程，回归家庭找到工作之外家庭中的定位，人慢慢变得简单也许这就是幸福的模样吧；愿你们也能在生活中找到自己的归属，承担起自己该承担的责任，压力是有的但你扛过去了你就强大了。</p>
+<p>最后老话重提，好好吃饭，好好照顾好自己的身体，真的很重要！生活是一场长跑，路上的风景很重要，带自己去看风景的身体很重要，愿你有有趣的灵魂和一个强健的体魄！</p>
+<p>加油，奥利给！</p>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>self</category>
+      </categories>
+      <tags>
+        <tag>聊聊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mac pro初体验</title>
+    <url>/2021/0423/mac-pro-experience.html</url>
+    <content><![CDATA[<blockquote>
+<p>年前一直想买台mb的，想着过年再说，不巧过年因疫情没回去成！媳妇儿是医院的，她们医院的所有假期都取消然后回去上班了！因为过年快递又停业了，所以就想着年后再买，就这样时间来到了二月中旬在家办公的我，实在忍受不了我的旧电脑的运行速度，去苹果官网上订购了一台macpro.</p>
+</blockquote>
+<h4 id="下决心买"><a href="#下决心买" class="headerlink" title="下决心买"></a>下决心买</h4><p>年前和媳妇儿讨论说，我的就thinkpad都用7年了，要不我买台新的电脑吧！</p>
+<p>媳妇听后说要多少钱，我伸出三根手指，她说三千？我摇摇头，“天啦，三万，你是真的需要吗？这个电脑不是还可以用吗？我用的也不多，顶多做下ppt.我看你也没用多少啊，最多的时候写写博客，好像也没干啥吧！“</p>
+<p>”怎么没干什么，我打开idea说，你看这个卡的样子我都不愿开，你也知道我去年买了个固态换上，重装了玩indow7系统，你看家里一个电脑实在有点不够用，这段时间我在家上班，远程办公真的很卡，你晚上回来时不时的还要用它做ppt，我就又干不了活儿了！我们真的需要买一个，最近我考虑了很久，还是决定买个mac,我看了很多教程和评价。再说这点钱，你想想我要用这东西至少7&#x2F;8年吧，一年也就几千块钱。你看我这thinkpad我不也用了7年多了吗，现在不是也还在用！“</p>
+<p>tips:一直认为window7最好用，之前用的window10老是提醒更新，不更新不行！一气之下备份了重要文件，重装并且换了个固态，就这好了不少了，开机还是有点慢但是好在打开个什么东西没那么卡了！开会声会影，ps什么的就算了,电脑风扇分分钟发狂！</p>
+<p>“非要3万多吗？为什么这么贵？”</p>
+<p>“64g的内存啊，并且它是苹果啊！我这thinkpad和它比起来就是老爷车比兰博基尼，这样说你知道了吧！？”</p>
+<p>“内存是啥，你现在这个不也可以用吗？”</p>
+<p>“内存就是程序指令等运行的地方，就比方你手机上有个运行时内存，这个大手机才能运行的快”</p>
+<p>“那你用的了这么大的吗？你这个电脑不也才12g内存，我还是觉得好贵！买个两万多的不行吗？！“</p>
+<p>”我想着一步到位来着，怕以后不够用了还要加配置麻烦“</p>
+<p>“不行，太贵了！我不同意，最多买两万的”</p>
+<p>我故作惋惜，“好吧，我看看两万多的；你看这款两万5的可以吗？教育优惠买的话便宜近1800，我问同学借个教师资格证买个吧！”</p>
+<p>“还是好贵啊，不行！除非以后洗衣做饭拖地都你做才行！”</p>
+<p>“…我现在不是么，好好好，我答应还不行吗”</p>
+<p>。。。就这样软磨硬泡终于下单来，媳妇刷了码(我和媳妇儿的逗比日常over)</p>
+<p>然后就是漫长的等待审核，然后审核通过显示要等待15天才能发货，我了个xx…早知道就早点买了！</p>
+<h4 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h4><p>买了本子回来，媳妇儿打趣说家里多个来情敌，天天回来抱着它！笑try~…</p>
+<p>嗯，虽然这么多年用的是thinkpad,window系统操作习惯是真的有点不习惯，以至于我让她尝试用下mac，她表示用不惯，不想用！打字真心没有thinkpad那种高键位有手感！所以买回来一直是我独善其身了，哈哈！</p>
+<p>废话不多说，先聊聊是否真的有必要拥有一台mac:</p>
+<ul>
+<li>如果你喜欢苹果，买它！毕竟喜欢才是第一位的，千金难买我喜欢嘛！</li>
+<li>如果你经济允许，你熟悉ubantu操作系统或者愿意付出一定的学习成本的话，买它！</li>
+<li>如果你的工作和设备配置息息相关，电脑的响应速度已经严重影响了的工作和学习，那还是买一个吧；</li>
+<li>如果你不想那些讨厌的广告打扰到你，处于安全的考虑或者你想使用更加专业的设计软件，那么一定要买一个！</li>
+</ul>
+<p>好，个人觉得如果以上你都不满足，真心没必要换！因为这东西还真的是蛮贵的，并且mac的生态（免费的软件）并没有window系统的那么多，你要有这样的心理预期！<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/03/22/8IVjyR.png"
+                     
+                ><br>以上是我mac配置的基本信息，至于为啥没买16g的，是真的觉得16g越来越满足不了需求了！至于硬盘选择了1T的，2T觉得完全没必要，你可以外接个高速固态硬盘。你要知道加1T加了3000多软妹币啊！当然人家的固态盘是真的很好，比如我搜索个文件a,含a的文件有可能几万个，它能秒级响应！</p>
+<p>买了它，也是第一次知道idea居然可以秒开的，除了从程序坞那里抖几下，然后进度跳居然不停的就过去了，然后编译运行个普通项目！公司电脑：13S,我的mac:2.1秒左右！特意看了下，当然idea有个坑，host需要你自己配置下！不然你起项目，会发现编译运行怎么会比你的老本子还慢！没改之前，我的mac16s，一度让我怀疑哪里出了问题！</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//控制台没报错，但你有个提示：获取本机地址，走到了DNS解析，DNS递归解析不到本机域名，耗时5s左右</span></span><br><span class="line"><span class="comment">// 解决办法如下，个人建议按1方法，因为2方法，相当于写死了配置</span></span><br><span class="line"><span class="comment">//1. 就是把本机的hostname 添加到 hosts 中，例如:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 127.0.0.1 localhost</span></span><br><span class="line"><span class="comment">// 127.0.0.1 loulldeMacBook-Pro.local</span></span><br><span class="line"><span class="comment">// 255.255.255.255 broadcasthost</span></span><br><span class="line"><span class="comment">// ::1 localhost</span></span><br><span class="line"><span class="comment">// ::1 loulldeMacBook-Pro.local</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 执行scutil --set HostName &quot;localhost&quot;</span></span><br></pre></td></tr></table></figure></div>
+<p>然后就是开10几20多个窗口，切换很顺畅，再也没有卡顿感！不过有天电脑莫名风扇抽风，时不时的疯转。我去检查监视器，发现把所有软件都关了还是响！然后查各种资料找原因差点就打官网电话询问了，后来网上睡觉前更新系统（一直提醒我更新来着没更新，当然你不更新它不会一直提醒你，只是系统那个软件位置会有个提示需更新，我这强迫症必须要点开更新），然后风扇就恢复正常了！估计是系统有什么运行的问题，更新时一并被修复了！</p>
+<p>然后我每次使用它都不用关机，按任意一个健等屏幕亮后指纹解锁即可！开机后，之前常用的软件依旧打着很方便！<br>最重要的是它渲染视频真的很快，2&#x2F;3分钟一个半个小时的视频就渲染完成了！实在不得不说，香，是真香！</p>
+<h4 id="关于软件"><a href="#关于软件" class="headerlink" title="关于软件"></a>关于软件</h4><blockquote>
+<p>做开发常用的：</p>
+</blockquote>
+<ul>
+<li>idea</li>
+<li>vscode,</li>
+<li>googlechrome,</li>
+<li>navicat</li>
+<li>postman<blockquote>
+<p>推荐几个其他的,关键是免费</p>
+</blockquote>
+</li>
+<li>有道云笔记（之前一直用的印象笔记，后来老本子系统重装了再装就一直报错，查资料说是本地注册表没清理干净，然后费了老大劲儿还是不行。加之这个笔记软件同步是真的慢，就换了有道）</li>
+<li>Typora,这个没啥可说的基本都会用</li>
+<li>eZip 压缩解压软件</li>
+<li>Tinypic 图片压缩软件，你也可以选择在线压缩：<a class="link"   href="https://www.yasuotu.com/"  target="_blank">压缩图 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li>Ominiplyer 必须推荐，基本各种格式的视频都能播放</li>
+<li>ReadCHM 一款专门查看chm文件的软件 比如打开jdk手册就用它</li>
+<li>截图 顾名思义，一款为截图而生的软件</li>
+<li>GitKraken git客户端软件</li>
+<li>Skim 一款免费的pdf阅读器软件</li>
+<li>网易云音乐</li>
+<li>Proxyee down 高速下载器</li>
+<li>FinalShell 免费的ssh和ftp客户端集成者  必须推荐</li>
+<li>VMware 虚拟机客户端</li>
+<li>wps 作为国产软件，必须拥有姓名</li>
+</ul>
+<p>好了，基本如此。其他的视频处理软件，mac自带的iMovie剪辑已经够用了</p>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>self</category>
+      </categories>
+      <tags>
+        <tag>mbp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>markdown 语法</title>
     <url>/2021/0423/md-grammar.html</url>
     <content><![CDATA[<h1 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h1><p>：   <code># 这是一级标题</code><br>    <code>## 这是二级标题</code><br>   <code>### 这是三级标题</code><br>  <code>#### 这是四级标题</code><br> <code>##### 这是五级标题</code><br><code>###### 这是六级标题</code></p>
@@ -6391,275 +6707,5 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
         <category>other</category>
         <category>mess</category>
       </categories>
-  </entry>
-  <entry>
-    <title>架构师进阶</title>
-    <url>/2021/0423/jia-gou-shi.html</url>
-    <content><![CDATA[<blockquote>
-<p>如果你已经工作了，可以根据公司的业务需求有针对性的去学习，下面的列表仅仅起一个参考的作用，当你想学的时候，知道有哪些东西需要学习</p>
-</blockquote>
-<h3 id="java-基础"><a href="#java-基础" class="headerlink" title="java 基础"></a>java 基础</h3><blockquote>
-<p>第一层主要包括如下部分（已经列好顺序）：</p>
-</blockquote>
-<ol>
-<li>Java 基础语法</li>
-<li>Java 面向对象</li>
-<li>Java 常用类详解</li>
-<li>Java 异常机制</li>
-<li>Java 集合与数据结构</li>
-<li>Java IO</li>
-<li>Java 多线程</li>
-<li>Java 网络编程</li>
-<li>Java 注解+反射</li>
-<li>23 种设计模式</li>
-<li>正则表达式</li>
-<li>XML 解析&#x2F; JSON 解析</li>
-<li>Java 10、11、12 新特性</li>
-<li>AIO、BIO、NIO</li>
-</ol>
-<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><blockquote>
-<p>第二层主要是修炼数据库，从基本用法到查询优化、读写分离等等都需要掌握，这里以 MySQL 数据库为例：</p>
-</blockquote>
-<ol>
-<li>数据库的基本概念</li>
-<li>数据库和表的基本操作</li>
-<li>索引与数据完整性约束</li>
-<li>数据库中的各种复杂查询操作</li>
-<li>MySQL 中常见函数的使用</li>
-<li>存储过程、触发器以及事件等</li>
-<li>数据库的备份与恢复</li>
-<li>数据库用户管理与数据库安全性</li>
-<li>事务和多用户</li>
-<li>读写分离环境搭建+实践</li>
-<li>JDBC</li>
-<li>常见数据库连接池的配置+使用</li>
-</ol>
-<h3 id="web基础"><a href="#web基础" class="headerlink" title="web基础"></a>web基础</h3><blockquote>
-<p>第三层主要是修炼 Web 基础，主要包括前端的基础知识，先不用深入学习前端，后端的 Jsp&#x2F;Servlet，有人会说现在公司都不用 Jsp&#x2F;Servlet 了，还学这些干嘛？但是万变不离其宗，哪个顶尖高手不是从扎马步开始的？这些掌握好了，框架的原理才好理解。</p>
-</blockquote>
-<ol>
-<li>HTML</li>
-<li>CSS</li>
-<li>JavaScript</li>
-<li>jQuery</li>
-<li>Tomcat</li>
-<li>Servlet（基本用法，Session、Cookie 等）</li>
-<li>Jsp（原理、九大内置对象等）</li>
-<li>EL 和 JSTL</li>
-<li>过滤器&#x2F;监听器等</li>
-<li>Ajax</li>
-<li>EasyUI</li>
-<li>ECharts</li>
-<li>BootStrap</li>
-<li>Git&#x2F;Svn</li>
-<li>WebSocket<br>前三层练好后，做个大学的毕设应该是够用了。</li>
-</ol>
-<h3 id="框架-工具"><a href="#框架-工具" class="headerlink" title="框架&amp;工具"></a>框架&amp;工具</h3><blockquote>
-<p>第四层主要是修炼各种框架以及工具：</p>
-</blockquote>
-<ol>
-<li>Spring</li>
-<li>SpringMVC</li>
-<li>MyBatis</li>
-<li>Maven&#x2F;Gradle</li>
-<li>Freemarker&#x2F;Thymeleaf</li>
-<li>Linux</li>
-<li>ActiveMQ&#x2F;RabbitMQ&#x2F;Kafka</li>
-<li>Netty</li>
-<li>Zookeeper</li>
-<li>Dubbo</li>
-<li>Redis</li>
-<li>RBAC</li>
-<li>Shiro</li>
-<li>Elasticsearch</li>
-<li>Nginx</li>
-<li>SSO</li>
-<li>Activiti</li>
-<li>Quartz</li>
-<li>Spring Batch</li>
-<li>MongoDB</li>
-<li>Spring Cache</li>
-<li>Jpa<br>这一层修炼完，你已经基本上达到了阳顶天的水平了，阳顶天是明教教主，那你出去找个项目经理的位置坐坐估计差不多吧。</li>
-</ol>
-<h3 id="微服务相关"><a href="#微服务相关" class="headerlink" title="微服务相关"></a>微服务相关</h3><blockquote>
-<p>最后还不得不说 Java 目前最火的微服务，这也是一项必备技能：</p>
-</blockquote>
-<ol>
-<li>Spring Boot 基本原理</li>
-<li>Spring Boot 基础配置</li>
-<li>Spring Boot 整理视图层技术</li>
-<li>Spring Boot 整合 Web 开发</li>
-<li>Spring Boot 整合持久层技术</li>
-<li>Spring Boot 整合 NoSQL</li>
-<li>Spring Boot 构建 RESTful 服务</li>
-<li>Spring Boot 整合各种缓存</li>
-<li>Spring Boot 安全管理</li>
-<li>Spring Boot 整合 WebSocket</li>
-<li>Spring Boot 整合消息服务</li>
-<li>Spring Boot 整合 Swagger、邮件等</li>
-<li>Spring Boot 应用监控</li>
-<li>Spring Cloud Eureka、Consul</li>
-<li>微服务注册与消费</li>
-<li>Spring Cloud OpenFeign</li>
-<li>服务容错保护 Resilience4j</li>
-<li>Spring Cloud Zuul&#x2F;Gateway</li>
-<li>Spring Cloud Config</li>
-<li>Spring Cloud Bus</li>
-<li>Spring Cloud Stream</li>
-<li>Spring Cloud Sleuth&#x2F;Zipkin</li>
-<li>Spring Cloud Admin</li>
-<li>Spring Cloud Alibaba<br>第五层修炼成功后，让老板加波薪水应该是可以的吧！</li>
-</ol>
-<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><blockquote>
-<p>第六层主要是修炼前端，前端这几年发展的非常快，早已经不是画页面了,JavaScript 被玩的越来越溜了，所以前端不可小觑：</p>
-</blockquote>
-<ol>
-<li>HTML5 新特性</li>
-<li>CSS3</li>
-<li>ES6</li>
-<li>JS 模块化</li>
-<li>less</li>
-<li>NodeJS</li>
-<li>Webpack</li>
-<li>Grunt</li>
-<li>Gulp</li>
-<li>Zepto</li>
-<li>mpvue</li>
-<li>AngularJS&#x2F;Vue&#x2F;React（非专业前端建议修炼其中一个即可）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>self</category>
-      </categories>
-      <tags>
-        <tag>study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>my616</title>
-    <url>/2021/0423/my-616.html</url>
-    <content><![CDATA[<blockquote>
-<p>当时日远去，总有些记忆依旧闪烁！<br>—— ——my616, 愿大家都能各得其所，得偿所愿！</p>
-</blockquote>
-<embed src="https://www.56.com/u47/v_MTMwNjc1ODEy.html?from=groupmessage&refer2=direct" width="800" height="600"/>
-
-<p>视频链接：<a class="link"   href="https://www.56.com/u47/v_MTMwNjc1ODEy.html?from=groupmessage&refer2=direct" >my616 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>self</category>
-      </categories>
-      <tags>
-        <tag>616</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谈谈最近的感想</title>
-    <url>/2021/0423/recent-think.html</url>
-    <content><![CDATA[<blockquote>
-<p>欲买桂花同载酒, 终不似, 少年游</p>
-</blockquote>
-<h4 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作"></a>关于<span style="color:red">工作</span></h4><p>前面博客中也提到了，最近在改一些bug;接了一口锅，目前公司的治理管理平台，基本就我一个人在搞了，之前的人离职了…近40个bug 改的还剩4个了，有个功能没按需求要求做，这也提bug我真是日了狗了，测试都测过的东西！你现在才说做的不对，这特么要重新做知道吗？！哎，心累。</p>
-<p>新入职的一哥们儿，来干了快一个月辞职了，下班路上他吐槽坑有点多填不动了，谁说不是呢？</p>
-<p>这个星期，剩下的4个bug还都是牵扯到其他系统的！其他系统的人又没有人，所以就停了下来，暂时我也被抽去做别的项目的开发！倒也乐的去做点新功能，疫情期间形势不好，还是要认真做好本职工作，然后多学点东西！且行且珍惜，且苟且努力吧！</p>
-<h4 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于<span style="color:red">学习</span></h4><p>老实说，最近搬了家！东西实在太多了，花了近一千大洋找搬家公司搬到市内了，房租也是涨了不少！然后就是收拾东西了，我和老婆两个人收拾了一个星期，当然都是每天晚上回来收拾。就这样折腾来折腾去，基本房子已经焕然一新了，期间还和媳妇儿因为物品的摆放争执过，事后证明我对空间感的把握还是不错滴！</p>
-<p>网还没好，我不得不每天在公司中午休息时间和下班后的时间，学点东西或者写点东西什么的，工作一天没点输出总感觉这一天白过了！当然工作时偶尔也可以摸下鱼，但是总是会被叫去干其他的，写什么东西的话也不得劲!</p>
-<p>五一尽快把网搞好吧，把落下的网课补起来!</p>
-<h4 id="关于接私活儿"><a href="#关于接私活儿" class="headerlink" title="关于接私活儿"></a>关于<span style="color:red">接私活儿</span></h4><p>有时候在想，自己还能干多少年呢？</p>
-<p>CSDN上很多关于程序猿35岁的文章阅读量都还不错，说明大家都有这方面的焦虑。是啊，焦虑总是有的。最近一哥们儿找我，说手上有些私活儿的单.一个6000的单是做微信小程序分销商城的，另一个2000的单是Quartz做定时调度做数据处理的，同时还要改其他的bug，这种可能是同行扔过来的单明显是坑！</p>
-<p>你要知道一套完善的分销商城代码可以卖6万的，还有这个2000的这个单明显是运维的活儿！然后和我那哥们儿聊了一会儿，然后找理由推了！对于微信小程序，之前还专门花了一段时间学习的，只是没有去实践。这个看来可以是私活的一个方向，那么就学起来吧；很多东西真的是“因为你没用，所以你不会”！其实，之前搞过一段时间私活儿，被坑了所以对这个有点戒备心了！哈哈，暂时的目标就是玩转SpringBoot这套东西，然后再做点开源的东西出来！然后学学主流的中间件，学学linux!至于接私活，暂时就先放一放吧，很长一段时间主要还是多修炼修炼内功！</p>
-<h4 id="关于读书"><a href="#关于读书" class="headerlink" title="关于读书"></a>关于<span style="color:red">读书</span></h4><p>搬家时发现买了很多书真的还没好好看过（很多都是买回来翻翻，有需要查询或者写相关的东西的时候才去翻翻），编程方面的书就买了10来本，《大话数据结构》，《大话设计模式》，《重新定义SpringCloud实战》，《hadoop大数据挖掘》，《深入浅出SpringBoot》，《springCloud 与Docker 微服务架构实战》，《springBoot+vue 全栈开发实战》，《Java开发手册》，《深入理解java虚拟机》,《重构改善既有代码的设计》，《linux就该这么学》等等，这10来本书就躺在手边的书架上，还有其他的书被收到箱子里了，其实这些书里有些我买的是二手的，新书是真的贵啊！这样列举出来，其实也是我想推荐的书单！</p>
-<p>真的要去多看书了，看现阶段和自己学的相关的书，这样最有效率，用中学，然后有时间再学中用；然后就是输出倒逼输入了，坚持写博客吧；不管有没有人看，就当作是自己的积累，不积硅步无以至千里，不积小流无以成江海！</p>
-<h4 id="关于生活"><a href="#关于生活" class="headerlink" title="关于生活"></a>关于<span style="color:red">生活</span></h4><p>学习，绝不仅仅是为了工作的需求，充实自己的同时其实也是让自己变得更加自信的一个过程；人自信了，真的各种正能量就会汇聚过来，好事就会发生，我们习惯把这种东西称为好运！</p>
-<p>平衡好工作生活，很重要；年岁越大，你会发现这是一个慢慢剔除的过程，回归家庭找到工作之外家庭中的定位，人慢慢变得简单也许这就是幸福的模样吧；愿你们也能在生活中找到自己的归属，承担起自己该承担的责任，压力是有的但你扛过去了你就强大了。</p>
-<p>最后老话重提，好好吃饭，好好照顾好自己的身体，真的很重要！生活是一场长跑，路上的风景很重要，带自己去看风景的身体很重要，愿你有有趣的灵魂和一个强健的体魄！</p>
-<p>加油，奥利给！</p>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>self</category>
-      </categories>
-      <tags>
-        <tag>聊聊</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mac pro初体验</title>
-    <url>/2021/0423/mac-pro-experience.html</url>
-    <content><![CDATA[<blockquote>
-<p>年前一直想买台mb的，想着过年再说，不巧过年因疫情没回去成！媳妇儿是医院的，她们医院的所有假期都取消然后回去上班了！因为过年快递又停业了，所以就想着年后再买，就这样时间来到了二月中旬在家办公的我，实在忍受不了我的旧电脑的运行速度，去苹果官网上订购了一台macpro.</p>
-</blockquote>
-<h4 id="下决心买"><a href="#下决心买" class="headerlink" title="下决心买"></a>下决心买</h4><p>年前和媳妇儿讨论说，我的就thinkpad都用7年了，要不我买台新的电脑吧！</p>
-<p>媳妇听后说要多少钱，我伸出三根手指，她说三千？我摇摇头，“天啦，三万，你是真的需要吗？这个电脑不是还可以用吗？我用的也不多，顶多做下ppt.我看你也没用多少啊，最多的时候写写博客，好像也没干啥吧！“</p>
-<p>”怎么没干什么，我打开idea说，你看这个卡的样子我都不愿开，你也知道我去年买了个固态换上，重装了玩indow7系统，你看家里一个电脑实在有点不够用，这段时间我在家上班，远程办公真的很卡，你晚上回来时不时的还要用它做ppt，我就又干不了活儿了！我们真的需要买一个，最近我考虑了很久，还是决定买个mac,我看了很多教程和评价。再说这点钱，你想想我要用这东西至少7&#x2F;8年吧，一年也就几千块钱。你看我这thinkpad我不也用了7年多了吗，现在不是也还在用！“</p>
-<p>tips:一直认为window7最好用，之前用的window10老是提醒更新，不更新不行！一气之下备份了重要文件，重装并且换了个固态，就这好了不少了，开机还是有点慢但是好在打开个什么东西没那么卡了！开会声会影，ps什么的就算了,电脑风扇分分钟发狂！</p>
-<p>“非要3万多吗？为什么这么贵？”</p>
-<p>“64g的内存啊，并且它是苹果啊！我这thinkpad和它比起来就是老爷车比兰博基尼，这样说你知道了吧！？”</p>
-<p>“内存是啥，你现在这个不也可以用吗？”</p>
-<p>“内存就是程序指令等运行的地方，就比方你手机上有个运行时内存，这个大手机才能运行的快”</p>
-<p>“那你用的了这么大的吗？你这个电脑不也才12g内存，我还是觉得好贵！买个两万多的不行吗？！“</p>
-<p>”我想着一步到位来着，怕以后不够用了还要加配置麻烦“</p>
-<p>“不行，太贵了！我不同意，最多买两万的”</p>
-<p>我故作惋惜，“好吧，我看看两万多的；你看这款两万5的可以吗？教育优惠买的话便宜近1800，我问同学借个教师资格证买个吧！”</p>
-<p>“还是好贵啊，不行！除非以后洗衣做饭拖地都你做才行！”</p>
-<p>“…我现在不是么，好好好，我答应还不行吗”</p>
-<p>。。。就这样软磨硬泡终于下单来，媳妇刷了码(我和媳妇儿的逗比日常over)</p>
-<p>然后就是漫长的等待审核，然后审核通过显示要等待15天才能发货，我了个xx…早知道就早点买了！</p>
-<h4 id="初体验"><a href="#初体验" class="headerlink" title="初体验"></a>初体验</h4><p>买了本子回来，媳妇儿打趣说家里多个来情敌，天天回来抱着它！笑try~…</p>
-<p>嗯，虽然这么多年用的是thinkpad,window系统操作习惯是真的有点不习惯，以至于我让她尝试用下mac，她表示用不惯，不想用！打字真心没有thinkpad那种高键位有手感！所以买回来一直是我独善其身了，哈哈！</p>
-<p>废话不多说，先聊聊是否真的有必要拥有一台mac:</p>
-<ul>
-<li>如果你喜欢苹果，买它！毕竟喜欢才是第一位的，千金难买我喜欢嘛！</li>
-<li>如果你经济允许，你熟悉ubantu操作系统或者愿意付出一定的学习成本的话，买它！</li>
-<li>如果你的工作和设备配置息息相关，电脑的响应速度已经严重影响了的工作和学习，那还是买一个吧；</li>
-<li>如果你不想那些讨厌的广告打扰到你，处于安全的考虑或者你想使用更加专业的设计软件，那么一定要买一个！</li>
-</ul>
-<p>好，个人觉得如果以上你都不满足，真心没必要换！因为这东西还真的是蛮贵的，并且mac的生态（免费的软件）并没有window系统的那么多，你要有这样的心理预期！<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/03/22/8IVjyR.png"
-                     
-                ><br>以上是我mac配置的基本信息，至于为啥没买16g的，是真的觉得16g越来越满足不了需求了！至于硬盘选择了1T的，2T觉得完全没必要，你可以外接个高速固态硬盘。你要知道加1T加了3000多软妹币啊！当然人家的固态盘是真的很好，比如我搜索个文件a,含a的文件有可能几万个，它能秒级响应！</p>
-<p>买了它，也是第一次知道idea居然可以秒开的，除了从程序坞那里抖几下，然后进度跳居然不停的就过去了，然后编译运行个普通项目！公司电脑：13S,我的mac:2.1秒左右！特意看了下，当然idea有个坑，host需要你自己配置下！不然你起项目，会发现编译运行怎么会比你的老本子还慢！没改之前，我的mac16s，一度让我怀疑哪里出了问题！</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//控制台没报错，但你有个提示：获取本机地址，走到了DNS解析，DNS递归解析不到本机域名，耗时5s左右</span></span><br><span class="line"><span class="comment">// 解决办法如下，个人建议按1方法，因为2方法，相当于写死了配置</span></span><br><span class="line"><span class="comment">//1. 就是把本机的hostname 添加到 hosts 中，例如:</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 127.0.0.1 localhost</span></span><br><span class="line"><span class="comment">// 127.0.0.1 loulldeMacBook-Pro.local</span></span><br><span class="line"><span class="comment">// 255.255.255.255 broadcasthost</span></span><br><span class="line"><span class="comment">// ::1 localhost</span></span><br><span class="line"><span class="comment">// ::1 loulldeMacBook-Pro.local</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2. 执行scutil --set HostName &quot;localhost&quot;</span></span><br></pre></td></tr></table></figure></div>
-<p>然后就是开10几20多个窗口，切换很顺畅，再也没有卡顿感！不过有天电脑莫名风扇抽风，时不时的疯转。我去检查监视器，发现把所有软件都关了还是响！然后查各种资料找原因差点就打官网电话询问了，后来网上睡觉前更新系统（一直提醒我更新来着没更新，当然你不更新它不会一直提醒你，只是系统那个软件位置会有个提示需更新，我这强迫症必须要点开更新），然后风扇就恢复正常了！估计是系统有什么运行的问题，更新时一并被修复了！</p>
-<p>然后我每次使用它都不用关机，按任意一个健等屏幕亮后指纹解锁即可！开机后，之前常用的软件依旧打着很方便！<br>最重要的是它渲染视频真的很快，2&#x2F;3分钟一个半个小时的视频就渲染完成了！实在不得不说，香，是真香！</p>
-<h4 id="关于软件"><a href="#关于软件" class="headerlink" title="关于软件"></a>关于软件</h4><blockquote>
-<p>做开发常用的：</p>
-</blockquote>
-<ul>
-<li>idea</li>
-<li>vscode,</li>
-<li>googlechrome,</li>
-<li>navicat</li>
-<li>postman<blockquote>
-<p>推荐几个其他的,关键是免费</p>
-</blockquote>
-</li>
-<li>有道云笔记（之前一直用的印象笔记，后来老本子系统重装了再装就一直报错，查资料说是本地注册表没清理干净，然后费了老大劲儿还是不行。加之这个笔记软件同步是真的慢，就换了有道）</li>
-<li>Typora,这个没啥可说的基本都会用</li>
-<li>eZip 压缩解压软件</li>
-<li>Tinypic 图片压缩软件，你也可以选择在线压缩：<a class="link"   href="https://www.yasuotu.com/"  target="_blank">压缩图 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li>Ominiplyer 必须推荐，基本各种格式的视频都能播放</li>
-<li>ReadCHM 一款专门查看chm文件的软件 比如打开jdk手册就用它</li>
-<li>截图 顾名思义，一款为截图而生的软件</li>
-<li>GitKraken git客户端软件</li>
-<li>Skim 一款免费的pdf阅读器软件</li>
-<li>网易云音乐</li>
-<li>Proxyee down 高速下载器</li>
-<li>FinalShell 免费的ssh和ftp客户端集成者  必须推荐</li>
-<li>VMware 虚拟机客户端</li>
-<li>wps 作为国产软件，必须拥有姓名</li>
-</ul>
-<p>好了，基本如此。其他的视频处理软件，mac自带的iMovie剪辑已经够用了</p>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>self</category>
-      </categories>
-      <tags>
-        <tag>mbp</tag>
-      </tags>
   </entry>
 </search>
