@@ -1,0 +1,105 @@
+categories:
+  - name: "🔍 搜索引擎"
+    groups:
+      - name: "搜索"
+        links:
+          - { name: "Google", url: "https://www.google.com/", title: "全球最强大的技术搜索引擎" }
+          - { name: "Bing", url: "https://www.bing.com/", title: "微软出品，适合开发者使用" }
+          - { name: "Phind", url: "https://www.phind.com/", title: "专为开发者设计的AI搜索引擎" }
+          - { name: "Brave Search", url: "https://search.brave.com/", title: "隐私保护的开发者搜索引擎" }
+          - { name: "Marginalia", url: "https://www.marginalia.nu/", title: "专注于技术内容的独立搜索引擎" }
+
+  - name: "🤖 AI"
+    groups:
+      - name: "AI相关"
+        links:
+          - { name: "ChatGPT", url: "https://chatgpt.com/", title: "OpenAI开发的多模态AI" }
+          - { name: "Google Gemini", url: "https://gemini.google.com/app", title: "谷歌多模态AI" }
+          - { name: "Microsoft Copilot", url: "https://copilot.microsoft.com/", title: "基于GPT-4，内置Windows/Office生态" }
+          - { name: "Perplexity.ai", url: "https://www.perplexity.ai/", title: "专注精准答案的AI搜索引擎" }
+          - { name: "Poe", url: "https://poe.com/", title: "Quora旗下聚合平台" }
+          - { name: "通义千问", url: "https://tongyi.aliyun.com/qianwen/", title: "阿里云推出的通用AI" }
+          - { name: "文心一言", url: "https://yiyan.baidu.com/", title: "百度研发的多模态大模型" }
+          - { name: "讯飞星火", url: "https://xinghuo.xfyun.cn", title: "科大讯飞研发" }
+          - { name: "智谱清言", url: "https://chatglm.cn", title: "智谱AI开发的开源模型" }
+          - { name: "天工AI", url: "https://tiangong.cn", title: "昆仑万维推出的多模态AI" }
+          - { name: "豆包", url: "https://www.volcengine.com/product/ark", title: "字节跳动旗下AI" }
+          - { name: "商量", url: "https://chat.sensetime.com", title: "商汤科技研发" }
+          - { name: "GitHub Copilot", url: "https://github.com/features/copilot", title: "GitHub官方AI编程助手" }
+          - { name: "Amazon Q", url: "https://www.amazonq.com/", title: "AWS推出的AI编程助手" }
+          - { name: "Cursor", url: "https://www.cursor.so/", title: "专为开发者设计的AI代码编辑器" }
+          - { name: "Tabnine", url: "https://www.tabnine.com/", title: "AI代码补全工具" }
+          - { name: "Codeium", url: "https://codeium.com/", title: "免费的AI代码补全工具" }
+          - { name: "OpenAI", url: "https://openai.com/", title: "ChatGPT开发者平台" }
+          - { name: "Claude", url: "https://claude.ai/", title: "Anthropic的AI助手" }
+          - { name: "DeepSeek", url: "https://deepseek.com/", title: "深度求索AI大模型" }
+          - { name: "Moonshot", url: "https://www.moonshot.cn/", title: "月之暗面AI大模型" }
+          - { name: "Hugging Face", url: "https://huggingface.co/", title: "开源AI模型社区" }
+
+  - name: "💻 GitHub资源"
+    groups:
+      - name: "Java项目"
+        links:
+          - { name: "Spring Boot", url: "https://github.com/spring-projects/spring-boot", title: "Java最流行的框架" }
+          - { name: "Dubbo", url: "https://github.com/apache/dubbo", title: "高性能Java RPC框架" }
+          - { name: "Arthas", url: "https://github.com/alibaba/arthas", title: "Java诊断工具" }
+          - { name: "Java设计模式", url: "https://github.com/iluwatar/java-design-patterns", title: "Java设计模式示例" }
+          - { name: "Java算法", url: "https://github.com/TheAlgorithms/Java", title: "Java算法实现" }
+      - name: "AI项目"
+        links:
+          - { name: "LangChain", url: "https://github.com/langchain-ai/langchain", title: "LLM应用开发框架" }
+          - { name: "TensorFlow", url: "https://github.com/tensorflow/tensorflow", title: "谷歌深度学习框架" }
+          - { name: "PyTorch", url: "https://github.com/pytorch/pytorch", title: "Facebook深度学习框架" }
+          - { name: "vLLM", url: "https://github.com/vllm-project/vllm", title: "LLM高效推理框架" }
+          - { name: "MLC LLM", url: "https://github.com/mlc-ai/mlc-llm", title: "LLM本地部署方案" }
+
+  - name: "📚 技术博客"
+    groups:
+      - name: "Java技术"
+        links:
+          - { name: "Spring Blog", url: "https://spring.io/blog", title: "Spring官方博客" }
+          - { name: "Baeldung", url: "https://www.baeldung.com/", title: "优质Java教程网站" }
+          - { name: "InfoQ", url: "https://www.infoq.com/", title: "企业级Java技术资讯" }
+          - { name: "DZone", url: "https://dzone.com/", title: "Java开发者社区" }
+          - { name: "JavaWorld", url: "https://www.javaworld.com/", title: "Java技术新闻和教程" }
+      - name: "AI技术"
+        links:
+          - { name: "Google AI Blog", url: "https://ai.googleblog.com/", title: "Google AI研究博客" }
+          - { name: "OpenAI Blog", url: "https://openai.com/blog", title: "OpenAI官方博客" }
+          - { name: "Hugging Face Blog", url: "https://huggingface.co/blog", title: "Hugging Face技术博客" }
+          - { name: "Lil'Log", url: "https://lilianweng.github.io/", title: "深度学习研究博客" }
+          - { name: "fast.ai", url: "https://www.fast.ai/", title: "实用AI教程博客" }
+
+  - name: "🛠️ 在线工具"
+    groups:
+      - name: "开发工具"
+        links:
+          - { name: "JDoodle", url: "https://www.jdoodle.com/", title: "在线Java编译器" }
+          - { name: "OnlineGDB", url: "https://www.onlinegdb.com/", title: "在线调试工具" }
+          - { name: "JSON.cn", url: "https://www.json.cn/", title: "JSON格式化工具" }
+          - { name: "BeJson", url: "https://www.bejson.com/", title: "多种格式校验工具" }
+          - { name: "Draw.io", url: "https://www.draw.io/", title: "在线流程图工具" }
+      - name: "AI工具"
+        links:
+          - { name: "Prompting Guide", url: "https://www.promptingguide.ai/", title: "Prompt工程指南" }
+          - { name: "Playground AI", url: "https://playgroundai.com/", title: "在线AI图像生成" }
+          - { name: "Perplexity", url: "https://www.perplexity.ai/", title: "AI问答搜索工具" }
+          - { name: "Poe", url: "https://poe.com/", title: "多AI模型平台" }
+          - { name: "ChatPDF", url: "https://www.chatpdf.com/", title: "PDF文档AI分析" }
+
+  - name: "💾 生产力工具"
+    groups:
+      - name: "开发工具"
+        links:
+          - { name: "IntelliJ IDEA", url: "https://www.jetbrains.com/idea/", title: "Java最佳IDE" }
+          - { name: "VS Code", url: "https://code.visualstudio.com/", title: "轻量级代码编辑器" }
+          - { name: "Sublime Text", url: "https://www.sublimetext.com/", title: "高效文本编辑器" }
+          - { name: "GitKraken", url: "https://www.gitkraken.com/", title: "Git图形化工具" }
+          - { name: "Docker", url: "https://www.docker.com/", title: "容器化工具" }
+      - name: "效率工具"
+        links:
+          - { name: "Notion", url: "https://www.notion.so/", title: "全能笔记工具" }
+          - { name: "Obsidian", url: "https://obsidian.md/", title: "本地知识管理工具" }
+          - { name: "Postman", url: "https://www.postman.com/", title: "API开发测试工具" }
+          - { name: "Typora", url: "https://www.typora.io/", title: "优雅的Markdown编辑器" }
+          - { name: "Screen Studio", url: "https://www.screen.studio/", title: "屏幕录制工具" }

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 3px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* 大分类容器 */
+        .category {
+            margin-bottom: 20px;
+        }
+
+        .category span {
+            font-size: 13px;
+        }
+
+        /* 大分类标题（如"运维"）：文字蓝色+左侧竖条 */
+        .cat-title {
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .cat-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            bottom: 2px;
+            width: 2px;
+            /* 竖条宽度 */
+            background-color: #0072c6;
+            /* 蓝色竖条 */
+        }
+
+        /* 子分类标签（如"项目管理"）：深蓝色椭圆+白色文字 */
+        .subcat {
+            background-color: #3a94d5;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 0 12px 12px 0;
+            display: inline-block;
+            margin-right: 4px;
+            font-size: 15px;
+        }
+
+        /* 链接容器样式 */
+        .link-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* 链接项样式 */
+        .link-item {
+            border: 1px solid #a6e1c0;
+            background-color: #fff;
+            color: #000;
+            padding: 2px 6px;
+            text-decoration: none;
+            border-radius: 18px;
+            margin: 0 4px;
+            /* 控制链接间距 */
+            position: relative;
+        }
+
+        /* 在链接之间添加分隔线 */
+        .link-item+.link-item::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 16px;
+            background-color: #000;
+        }
+
+        /* 新增：响应式设计 */
+        /* 手机端响应式样式 */
+        @media screen and (max-width: 768px) {
+
+            /* 链接容器 - 自动换行 */
+            .link-group {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-bottom: 10px;
+            }
+
+            /* 子分类标签单独一行 */
+            .subcat {
+                display: block;
+                width: 100%;
+                margin-bottom: 8px;
+                text-align: center;
+                border-radius: 12px;
+            }
+
+            /* 链接项样式调整 */
+            .link-item {
+                padding: 4px 10px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            /* 移除链接间的分隔线 */
+            .link-item+.link-item::before {
+                display: none;
+            }
+        }
+
+        /* 小手机进一步优化 */
+        @media screen and (max-width: 480px) {
+            .link-group {
+                gap: 5px;
+            }
+
+            .subcat {
+                font-size: 13px;
+                padding: 2px 8px;
+            }
+
+            .link-item {
+                padding: 3px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nav-container"></div>
+    <!-- 加载 YAML 解析库和渲染脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.0.0/dist/js-yaml.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            document.getElementById('nav-container').innerHTML = '加载中...';
+            // 1. 加载 YAML 数据
+            const response = await fetch('nav-data.yml', {
+                headers: {
+                    'Cache-Control': 'no-cache'
+                }
+            });
+            const yamlText = await response.text();
+            const data = jsyaml.load(yamlText);
+
+            // 2. 定义模板渲染函数
+            const renderTemplate = (categories) => {
+                return categories.map(category => `
+        <div class="category cat-title">
+        <span>${category.name}</span>
+        ${category.groups.map(group => `
+          <div class="link-group">
+            <span class="subcat">${group.name}</span>
+            ${group.links.map(link => `
+              <a href="${link.url}"
+                 target="_blank"
+                 title="${link.title || ''}"
+                 class="link-item">
+                ${link.name}
+              </a>
+            `).join('')}
+          </div>
+        `).join('')} </div>`).join('');
+            };
+
+            // 3. 渲染到页面
+            document.getElementById('nav-container').innerHTML = renderTemplate(data.categories);
+        });
+    </script>
+</body>
+
+</html>
