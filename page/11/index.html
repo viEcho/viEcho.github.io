@@ -1027,25 +1027,24 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2021/0423/ioc-aop-talk.html">
-                            <img src="/../images/java/21/4/23/ioc.png" alt="浅谈对 IOC 和 AOP的认知" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2021/0423/java8-optional.html">
+                            <img src="/../images/java/21/4/23/optional.jpeg" alt="java8 新特性之optional" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2021/0423/ioc-aop-talk.html">
-                            浅谈对 IOC 和 AOP的认知
+                        <a href="/2021/0423/java8-optional.html">
+                            java8 新特性之optional
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-Spring学了这么久，IOC 和 AOP你真的认识到位了吗？
+拒绝非空判断，我们一起来折腾下java8的新特性optional类 吧；
 
-IOC作为spring的核心中的核心，这东西基本是面试必问的；而AOP作为继面向对象编程又一编程思想，则是每个java程序员必须要掌握的；
-IOCIOC,全称又叫Inversion ...
+概念为了解决空指针异常，Google公司著名的Guava项目引入了Optional类，Guava通过使用检查空值的方式来防止代码污染，它鼓励程序员写更干净的代码。受到Goo...
                         
                     </div>
 
@@ -1082,7 +1081,7 @@ IOCIOC,全称又叫Inversion ...
                     
                         <li>
                             
-                            <a href="/tags/ioc-aop/">ioc,aop</a>&nbsp;
+                            <a href="/tags/optional/">optional</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1090,7 +1089,7 @@ IOCIOC,全称又叫Inversion ...
         
     </div>
 
-    <a href="/2021/0423/ioc-aop-talk.html">Read more<span class="seo-reader-text">浅谈对 IOC 和 AOP的认知</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/0423/java8-optional.html">Read more<span class="seo-reader-text">java8 新特性之optional</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1501,75 +1500,6 @@ IOCIOC,全称又叫Inversion ...
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2020/1008/firewall-shell.html">
-                            firewall相关命令
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            [TOC]环境：VMware、CentOS8
-从centos7开始使用systemctl.firewalld来管理服务和程序，包括了service和chkconfig。
-防火墙状态：systemctl status firewalld.service...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Oct 08 2020 00:00:00 GMT+0800">
-                
-                    2020-10-08
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/linux/">linux</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/jar/">jar</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2020/1008/firewall-shell.html">Read more<span class="seo-reader-text">firewall相关命令</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
                         <a href="/2020/1008/jar-run-step.html">
                             jar包发版步骤
                         </a>
@@ -1627,6 +1557,75 @@ IOCIOC,全称又叫Inversion ...
     </div>
 
     <a href="/2020/1008/jar-run-step.html">Read more<span class="seo-reader-text">jar包发版步骤</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2020/1008/firewall-shell.html">
+                            firewall相关命令
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            [TOC]环境：VMware、CentOS8
+从centos7开始使用systemctl.firewalld来管理服务和程序，包括了service和chkconfig。
+防火墙状态：systemctl status firewalld.service...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Oct 08 2020 00:00:00 GMT+0800">
+                
+                    2020-10-08
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/linux/">linux</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/jar/">jar</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2020/1008/firewall-shell.html">Read more<span class="seo-reader-text">firewall相关命令</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
