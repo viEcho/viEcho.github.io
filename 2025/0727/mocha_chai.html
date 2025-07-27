@@ -20,13 +20,13 @@
     
         <meta name="description" content="概念作为 Web3 开发者，掌握 Mocha 和 Chai 是进行智能合约测试的基础；Mocha 是一个功能丰富的 JavaScript 测试框架，用于异步测试。Chai 提供了多种断言风格，最常用的是 expect 和 should。 测试的基本结构12345678910111213141516171819202122232425262728293031323334353637383940414">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mocha+Chai测试框架">
+<meta property="og:title" content="(六)Mocha+Chai测试框架">
 <meta property="og:url" content="https://viecho.github.io/2025/0727/mocha_chai.html">
 <meta property="og:site_name" content="叁有三分之一">
 <meta property="og:description" content="概念作为 Web3 开发者，掌握 Mocha 和 Chai 是进行智能合约测试的基础；Mocha 是一个功能丰富的 JavaScript 测试框架，用于异步测试。Chai 提供了多种断言风格，最常用的是 expect 和 should。 测试的基本结构12345678910111213141516171819202122232425262728293031323334353637383940414">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-07-27T08:11:39.166Z">
-<meta property="article:modified_time" content="2025-07-27T10:26:47.403Z">
+<meta property="article:modified_time" content="2025-07-27T10:36:08.192Z">
 <meta property="article:author" content="viEcho">
 <meta property="article:tag" content="测试">
 <meta name="twitter:card" content="summary">
@@ -41,7 +41,7 @@
     
     <title>
         
-            Mocha+Chai测试框架 -
+            (六)Mocha+Chai测试框架 -
         
         叁有三分之一
     </title>
@@ -906,8 +906,12 @@
 
         <div class="article-title relative w-full">
             
-                <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color text-4xl md:text-6xl font-bold px-2 sm:px-6 md:px-8 py-3">Mocha+Chai测试框架</h1>
+                
+                
+                <img src="/../images/solidity/25/5/1/solidity_base.png" alt="(六)Mocha+Chai测试框架" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(六)Mocha+Chai测试框架</h1>
                 </div>
             
             </div>
@@ -935,8 +939,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-07-27 18:26:47</span>
-            <span class="mobile">2025-07-27 18:26:47</span>
+            <span class="desktop">2025-07-27 18:36:08</span>
+            <span class="mobile">2025-07-27 18:36:08</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -1042,12 +1046,8 @@
 <td>简单测试</td>
 <td>复杂测试套件</td>
 </tr>
-<tr>
-<td>代码示例：</td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
+<p>代码示例：</p>
 <div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; loadFixture &#125; = <span class="built_in">require</span>(<span class="string">&quot;@nomicfoundation/hardhat-network-helpers&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; expect &#125; = <span class="built_in">require</span>(<span class="string">&quot;chai&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&quot;ERC20 Token&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">deployTokenFixture</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> [owner, user1, user2] = <span class="keyword">await</span> ethers.<span class="title function_">getSigners</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="title class_">Token</span> = <span class="keyword">await</span> ethers.<span class="title function_">getContractFactory</span>(<span class="string">&quot;MyToken&quot;</span>);</span><br><span class="line">    <span class="keyword">const</span> token = <span class="keyword">await</span> <span class="title class_">Token</span>.<span class="title function_">deploy</span>(<span class="number">1000000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123; token, owner, user1, user2 &#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&quot;should assign total supply to owner&quot;</span>, <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; token, owner &#125; = <span class="keyword">await</span> <span class="title function_">loadFixture</span>(deployTokenFixture);</span><br><span class="line">    <span class="title function_">expect</span>(<span class="keyword">await</span> token.<span class="title function_">balanceOf</span>(owner.<span class="property">address</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">1000000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&quot;should transfer tokens between accounts&quot;</span>, <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; token, owner, user1 &#125; = <span class="keyword">await</span> <span class="title function_">loadFixture</span>(deployTokenFixture);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> token.<span class="title function_">transfer</span>(user1.<span class="property">address</span>, <span class="number">100</span>);</span><br><span class="line">    <span class="title function_">expect</span>(<span class="keyword">await</span> token.<span class="title function_">balanceOf</span>(user1.<span class="property">address</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">100</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">it</span>(<span class="string">&quot;should fail if sender doesn&#x27;t have enough tokens&quot;</span>, <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; token, owner, user1, user2 &#125; = <span class="keyword">await</span> <span class="title function_">loadFixture</span>(deployTokenFixture);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">expect</span>(</span><br><span class="line">      token.<span class="title function_">connect</span>(user1).<span class="title function_">transfer</span>(user2.<span class="property">address</span>, <span class="number">1</span>)</span><br><span class="line">    ).<span class="property">to</span>.<span class="property">be</span>.<span class="title function_">revertedWith</span>(<span class="string">&quot;ERC20: transfer amount exceeds balance&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
 <p>【注意事项】<br><br>1.不要在 fixture 中执行测试逻辑，只做初始化 <br><br>2.避免在 fixture 中使用动态参数（除非包裹在函数中）<br><br>3.适合于大多数合约测试场景，但极简单测试可能不需要 <br><br>4.记住它只优化了部署开销，测试中的交易仍会执行 <br></p>
 <h3 id="describe和context的对比"><a href="#describe和context的对比" class="headerlink" title="describe和context的对比"></a>describe和context的对比</h3><div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用 describe 表达&quot;是什么&quot;</span></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;ERC20 Token&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">describe</span>(<span class="string">&#x27;transfer() 方法&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 测试转账功能本身</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 用 context 表达&quot;在什么条件下&quot;</span></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&#x27;ERC20 Token&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">context</span>(<span class="string">&#x27;当发送方余额充足时&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 测试成功场景</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">context</span>(<span class="string">&#x27;当发送方余额不足时&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 测试失败场景</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></div>
@@ -1069,14 +1069,14 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> Mocha+Chai测试框架</li>
+        <li><strong>Title:</strong> (六)Mocha+Chai测试框架</li>
         <li><strong>Author:</strong> viEcho</li>
         <li><strong>Created at
                 :</strong> 2025-07-27 16:11:39</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-07-27 18:26:47
+                    :</strong> 2025-07-27 18:36:08
             </li>
         
         <li>
@@ -1114,12 +1114,12 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
-  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
-  <span class="title">(四) ERC20 && ERC721 简介</span>
-</a><a class="recommended-article-item" href="/2025/0413/solidity-base-programming-rules.html" title="(一)solidity基本语法规则" rel="bookmark">
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0413/solidity-base-programming-rules.html" title="(一)solidity基本语法规则" rel="bookmark">
   <img src="/images/solidity/25/5/1/solidity_base.png" alt="(一)solidity基本语法规则" class="!max-w-none">
   <span class="title">(一)solidity基本语法规则</span>
+</a><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
+  <span class="title">(四) ERC20 && ERC721 简介</span>
 </a><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
   <img src="/images/solidity/25/5/1/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
   <span class="title">(二)solidity内置对象及函数</span>
@@ -1129,12 +1129,12 @@
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
-  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
-  <span class="title">(四) ERC20 && ERC721 简介</span>
-</a><a class="recommended-article-item" href="/2025/0413/solidity-base-programming-rules.html" title="(一)solidity基本语法规则" rel="bookmark">
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0413/solidity-base-programming-rules.html" title="(一)solidity基本语法规则" rel="bookmark">
   <img src="/images/solidity/25/5/1/solidity_base.png" alt="(一)solidity基本语法规则" class="!max-w-none">
   <span class="title">(一)solidity基本语法规则</span>
+</a><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
+  <img src="/images/solidity/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
+  <span class="title">(四) ERC20 && ERC721 简介</span>
 </a></div>
    </div>
   </div>
@@ -1212,7 +1212,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">Mocha+Chai测试框架</div>
+        <div class="page-title">(六)Mocha+Chai测试框架</div>
         <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-text">测试的基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chai%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%AD%E8%A8%80%E6%96%B9%E6%B3%95"><span class="nav-text">chai相关的断言方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%AD%E8%A8%80%E7%A4%BA%E4%BE%8B"><span class="nav-text">断言示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%AE%9A%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81"><span class="nav-text">特定场景下的合约代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%9D%97%E5%B5%8C%E5%A5%97"><span class="nav-text">测试块嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8fixture%E6%B5%8B%E8%AF%95%E5%A4%B9%E5%85%B7"><span class="nav-text">使用fixture测试夹具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fixtures%E5%87%BD%E6%95%B0%E5%AF%B9%E6%AF%94"><span class="nav-text">fixtures函数对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loadFixture%E4%BB%8B%E7%BB%8D"><span class="nav-text">loadFixture介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#describe%E5%92%8Ccontext%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-text">describe和context的对比</span></a></li></ol>
 
     </div>
