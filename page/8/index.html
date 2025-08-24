@@ -912,7 +912,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">108</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -952,7 +952,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">108</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -1027,27 +1027,24 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2021/0423/db-meate-data.html">
-                            <img src="/../images/db/21/4/23/3811.jpg" alt="mysql,oracle,sqlServer 元数据查询" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2021/0423/bug-for-mysql.html">
+                            <img src="/../images/db/21/4/23/bug.jpg" alt="一个bug引发的对于mysql语句的探究" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2021/0423/db-meate-data.html">
-                            mysql,oracle,sqlServer 元数据查询
+                        <a href="/2021/0423/bug-for-mysql.html">
+                            一个bug引发的对于mysql语句的探究
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-最近在做多数据源的配置，需要根据数据库名和表（及视图）名获取表和字段的元数据；现对于各种查询语句，总结如下：
+mysql 子查询加limit 和不加limit区别居然这么大
 
-mysql元数据
-查询表及视图（表名，表&#x2F;视图，表注释）
-
-123456SELECT	table_name,	table_ty...
+问题描述最近改了一个bug ,原有的系统是经过测试的，但是去年底负责这个系统的人离职了，然后环境切换后各种问题又爆粗来了，而手头目前没啥活儿的我就接过了锅，当然走的时候也不是和我交接...
                         
                     </div>
 
@@ -1092,7 +1089,7 @@ mysql元数据
         
     </div>
 
-    <a href="/2021/0423/db-meate-data.html">Read more<span class="seo-reader-text">mysql,oracle,sqlServer 元数据查询</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2021/0423/bug-for-mysql.html">Read more<span class="seo-reader-text">一个bug引发的对于mysql语句的探究</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1172,6 +1169,87 @@ sql语句最后指定主键12345678DROP TABLE IF EXISTS `user_info1`;CREATE TABL
     </div>
 
     <a href="/2021/0423/mysql-db-shell.html">Read more<span class="seo-reader-text">mysql 常用脚本</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2021/0423/db-meate-data.html">
+                            <img src="/../images/db/21/4/23/3811.jpg" alt="mysql,oracle,sqlServer 元数据查询" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2021/0423/db-meate-data.html">
+                            mysql,oracle,sqlServer 元数据查询
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+最近在做多数据源的配置，需要根据数据库名和表（及视图）名获取表和字段的元数据；现对于各种查询语句，总结如下：
+
+mysql元数据
+查询表及视图（表名，表&#x2F;视图，表注释）
+
+123456SELECT	table_name,	table_ty...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
+                
+                    2021-04-23
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/db/">db</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/mysql/">mysql</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/0423/db-meate-data.html">Read more<span class="seo-reader-text">mysql,oracle,sqlServer 元数据查询</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1716,82 +1794,6 @@ HashMap的常量设置123456789101112// 默认初始长度static final int DEFAU
     </div>
 
     <a href="/2021/0423/swagger-ui.html">Read more<span class="seo-reader-text">世界上最流行的框架Swagger</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2021/0423/springboot-switch.html">
-                            <img src="/../images/springboot/21/4/23/kaiguan.png" alt="springBoot 中的那些“开关”" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2021/0423/springboot-switch.html">
-                            springBoot 中的那些“开关”
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-在之前我们就Swagger使用篇，可以了解到根据不同环境更改为不同的配置，让不同的配置逻辑生效的处理办法。其实吧，有没有觉得这东西就像是一个开关，那么SpringBoot 我们可以怎么获取当前环境（获取其他配置相同）从而进行判断做一个开关呢？今天我...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Apr 23 2021 19:55:09 GMT+0800">
-                
-                    2021-04-23
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/springBoot/">springBoot</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/springBoot/">springBoot</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/0423/springboot-switch.html">Read more<span class="seo-reader-text">springBoot 中的那些“开关”</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
