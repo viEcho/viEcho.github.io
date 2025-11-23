@@ -908,11 +908,11 @@
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -948,11 +948,11 @@
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">15</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">109</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">110</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -1016,6 +1016,82 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2024/0621/mysql-join-left-join.html">
+                            <img src="/../images/db/24/6/21/sql_join.png" alt="mysql之join left join踩坑记" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2024/0621/mysql-join-left-join.html">
+                            mysql之join left join踩坑记
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+背景：最近优化个线上导出的功能，本来测试环境没啥问题；一上线不行了，下载超时；然后一顿改，把代码实现的逻辑全扔sql里了，发现反而更快，啥查询字段里不要加函数，分批查询啥的；没有，就是简单粗暴能查出来就行；别的事又催的紧，那就先上去看看再说吧；这不...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Jun 21 2024 22:28:37 GMT+0800">
+                
+                    2024-06-21
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/db/">db</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/mysql/">mysql</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/0621/mysql-join-left-join.html">Read more<span class="seo-reader-text">mysql之join left join踩坑记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -1639,23 +1715,21 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2024/0110/template-mode.html">
-                            <img src="/../images/sheji/24/1/14/sjms.png" alt="模板模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/observer-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="观察者模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2024/0110/template-mode.html">
-                            模板模式
+                        <a href="/2024/0110/observer-mode.html">
+                            观察者模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            具体代码见LocalDemo之shejimoshi模块
-模板模式是在抽象父类中公开定义方法，可以将一些通用的方法封装在这个方法中，子类可以根据需要来覆盖重写父类中的方法；如果想限定哪些方法子类不可重新，则将其方法声明为final修饰；
-
+                            观察者模式适用于发布订阅的场景，具体代码见LocalDemo之shejimoshi模块；关键点：1、针对观察者与被观察者分别定义接口，有利于分别进行扩展。2、重点就在被观察者的实现中：　　（1）定义观察者集合，并定义针对集合的添加、删除操作，用于增加...
                         
                     </div>
 
@@ -1692,7 +1766,7 @@
                     
                         <li>
                             
-                            <a href="/tags/template/">template</a>&nbsp;
+                            <a href="/tags/observer/">observer</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1700,83 +1774,7 @@
         
     </div>
 
-    <a href="/2024/0110/template-mode.html">Read more<span class="seo-reader-text">模板模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2024/0110/facade-mode.html">
-                            <img src="/../images/sheji/24/1/14/sjms.png" alt="门面模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2024/0110/facade-mode.html">
-                            门面模式
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            具体代码见LocalDemo之shejimoshi模块
-门面模式（Facade Pattern） 又叫外观模式，提供了一个统一的接口，用来访问子系统中的一群接口 。其主要特征是定义了一个高层接口，让子系统更容易使用，属于结构型模式。在我们日常编码中也...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
-                
-                    2024-01-10
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/sheji/">sheji</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fa-solid fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/facade/">facade</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2024/0110/facade-mode.html">Read more<span class="seo-reader-text">门面模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/observer-mode.html">Read more<span class="seo-reader-text">观察者模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>

@@ -11,20 +11,13 @@ categories:
 
   - name: "🤖 AI"
     groups:
-      - name: "AI相关"
+      - name: "AI相关(US)"
         links:
           - { name: "ChatGPT", url: "https://chatgpt.com/", title: "OpenAI开发的多模态AI" }
           - { name: "Google Gemini", url: "https://gemini.google.com/app", title: "谷歌多模态AI" }
           - { name: "Microsoft Copilot", url: "https://copilot.microsoft.com/", title: "基于GPT-4，内置Windows/Office生态" }
           - { name: "Perplexity.ai", url: "https://www.perplexity.ai/", title: "专注精准答案的AI搜索引擎" }
           - { name: "Poe", url: "https://poe.com/", title: "Quora旗下聚合平台" }
-          - { name: "通义千问", url: "https://tongyi.aliyun.com/qianwen/", title: "阿里云推出的通用AI" }
-          - { name: "文心一言", url: "https://yiyan.baidu.com/", title: "百度研发的多模态大模型" }
-          - { name: "讯飞星火", url: "https://xinghuo.xfyun.cn", title: "科大讯飞研发" }
-          - { name: "智谱清言", url: "https://chatglm.cn", title: "智谱AI开发的开源模型" }
-          - { name: "天工AI", url: "https://tiangong.cn", title: "昆仑万维推出的多模态AI" }
-          - { name: "豆包", url: "https://www.volcengine.com/product/ark", title: "字节跳动旗下AI" }
-          - { name: "商量", url: "https://chat.sensetime.com", title: "商汤科技研发" }
           - { name: "GitHub Copilot", url: "https://github.com/features/copilot", title: "GitHub官方AI编程助手" }
           - { name: "Amazon Q", url: "https://www.amazonq.com/", title: "AWS推出的AI编程助手" }
           - { name: "Cursor", url: "https://www.cursor.so/", title: "专为开发者设计的AI代码编辑器" }
@@ -32,9 +25,18 @@ categories:
           - { name: "Codeium", url: "https://codeium.com/", title: "免费的AI代码补全工具" }
           - { name: "OpenAI", url: "https://openai.com/", title: "ChatGPT开发者平台" }
           - { name: "Claude", url: "https://claude.ai/", title: "Anthropic的AI助手" }
-          - { name: "DeepSeek", url: "https://deepseek.com/", title: "深度求索AI大模型" }
           - { name: "Moonshot", url: "https://www.moonshot.cn/", title: "月之暗面AI大模型" }
           - { name: "Hugging Face", url: "https://huggingface.co/", title: "开源AI模型社区" }
+      - name: "AI相关(CN)"
+        links:
+          - { name: "Deepseek", url: "https://chat.deepseek.com/", title: "deepseek推出的深度求索" }
+          - { name: "通义千问", url: "https://tongyi.aliyun.com/qianwen/", title: "阿里云推出的通用AI" }
+          - { name: "文心一言", url: "https://yiyan.baidu.com/", title: "百度研发的多模态大模型" }
+          - { name: "讯飞星火", url: "https://xinghuo.xfyun.cn", title: "科大讯飞研发" }
+          - { name: "智谱清言", url: "https://chatglm.cn", title: "智谱AI开发的开源模型" }
+          - { name: "天工AI", url: "https://tiangong.cn", title: "昆仑万维推出的多模态AI" }
+          - { name: "豆包", url: "https://www.volcengine.com/product/ark", title: "字节跳动旗下AI" }
+          - { name: "商量", url: "https://chat.sensetime.com", title: "商汤科技研发" }
 
   - name: "💻 GitHub资源"
     groups:
@@ -96,6 +98,7 @@ categories:
           - { name: "Sublime Text", url: "https://www.sublimetext.com/", title: "高效文本编辑器" }
           - { name: "GitKraken", url: "https://www.gitkraken.com/", title: "Git图形化工具" }
           - { name: "Docker", url: "https://www.docker.com/", title: "容器化工具" }
+          - { name: "jetbraIn", url: "https://3.jetbra.in/", title: "idea工具" }
       - name: "效率工具"
         links:
           - { name: "Notion", url: "https://www.notion.so/", title: "全能笔记工具" }
