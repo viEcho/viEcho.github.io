@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="viEcho">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="https://viecho.github.io/2025/1129/null.html"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）ERC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(八)web3面试题第一弹">
+<meta property="og:url" content="https://viecho.github.io/2025/1129/null.html">
+<meta property="og:site_name" content="叁有三分之一">
+<meta property="og:description" content="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）ERC">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-29T11:30:35.538Z">
+<meta property="article:modified_time" content="2025-11-29T12:55:33.317Z">
+<meta property="article:author" content="viEcho">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            (八)web3面试题第一弹 -
+        
+        叁有三分之一
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    
+        <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    
+<script src="/js/libs/anime.min.js"></script>
+
+    <h1 class="ml13">
+        叁有三分之一
+    </h1>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+
+        anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [100,0],
+                translateZ: 0,
+                opacity: [0,1],
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i
+            }).add({
+            targets: '.ml13 .letter',
+            translateY: [0,-100],
+            opacity: [1,0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+        });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            hidePreloaderAfterTimeout(1000); // Hide after 1000 milliseconds once the window has loaded
+        });
+
+        // Backup failsafe: Hide preloader after a maximum of 5000 milliseconds, regardless of the window load event
+        hidePreloaderAfterTimeout(5000);
+
+        function hidePreloaderAfterTimeout(delay) {
+            setTimeout(function () {
+                var preloader = document.querySelector('.preloader');
+                preloader.style.opacity = '0';
+                setTimeout(function () {
+                    preloader.style.display = 'none';
+                }, 200);
+            }, delay);
+        }
+    </script>
+</div>
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    window.config = {"hostname":"viecho.github.io","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left"},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":true,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"s y s f z y .site","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/viEcho","zhihu":"https://www.zhihu.com/people/echo-59-1-68","email":"1156947957@qq.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"mini","audios":[{"name":"StartPoint","artist":"祭酒","url":"/music/祭酒 - Startingpoint.flac","cover":"/music/jiuji.jpg"}]},"mermaid":{"enable":true,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"导航":{"path":"/custom_html/daohang.html","icon":"fa-regular fa-map"},"后端":{"icon":"fa-regular fa-coffee","submenus":{"DB":"/categories/db","算法":"/categories/math","源码":"/categories/soruceCode","Java":"/categories/java","设计模式":"/categories/sheji","Solidity":"/categories/solidity","SpringBoot":"/categories/springBoot"}},"中间件":{"icon":"fa-regular fa-gears","submenus":{"Kafka":"/categories/kafka","Redis":"/categories/redis","RocketMq":"/categories/recketMq","RabbitMq":"/categories/rabbitMq","XxlJob":"/categories/xxlJob"}},"云原生":{"icon":"fa-regular fa-cloud","submenus":{"Docker":"/categories/docker","Linux":"/categories/linux"}},"Tools":{"path":"/categories/toolsSetting","icon":"fa-regular fa-gavel"},"Web":{"path":"/categories/web","icon":"fa-brands fa-internet-explorer"},"面试题":{"path":"/mianshi","icon":"fa-regular fa-file-text"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/viEcho","评论管理":"https://echo-talk.vercel.app/ui"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":3,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":{"说说":{"path":"/essays","icon":"fa-solid fa-keynote"},"相册":{"path":"/masonry","icon":"fa-solid fa-image"},"归档":{"path":"/archives","icon":"fa-regular fa-archive"},"其他":{"path":"/categories/other","icon":"fa-regular fa-head-side-headphones"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2020/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                叁有三分之一
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/custom_html/daohang.html"
+                                        >
+                                    <i class="fa-regular fa-map fa-fw"></i>
+                                    导航
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-coffee fa-fw"></i>
+                                    后端
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/db">
+                                                    DB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/math">
+                                                    算法
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/soruceCode">
+                                                    源码
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/java">
+                                                    JAVA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/sheji">
+                                                    设计模式
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/solidity">
+                                                    SOLIDITY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/springBoot">
+                                                    SPRINGBOOT
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-gears fa-fw"></i>
+                                    中间件
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/kafka">
+                                                    KAFKA
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/redis">
+                                                    REDIS
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/recketMq">
+                                                    ROCKETMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/rabbitMq">
+                                                    RABBITMQ
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/xxlJob">
+                                                    XXLJOB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-cloud fa-fw"></i>
+                                    云原生
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/categories/docker">
+                                                    DOCKER
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/categories/linux">
+                                                    LINUX
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/toolsSetting"
+                                        >
+                                    <i class="fa-regular fa-gavel fa-fw"></i>
+                                    TOOLS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories/web"
+                                        >
+                                    <i class="fa-brands fa-internet-explorer fa-fw"></i>
+                                    WEB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/mianshi"
+                                        >
+                                    <i class="fa-regular fa-file-text fa-fw"></i>
+                                    面试题
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/about">
+                                                    ME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/viEcho">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">
+                                                    评论管理
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/custom_html/daohang.html"
+                        >
+                            <span>
+                                导航
+                            </span>
+                            
+                                <i class="fa-regular fa-map fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-后端"
+                        >
+                            <span>
+                                后端
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-后端">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/db">DB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/math">算法</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/soruceCode">源码</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/java">JAVA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/sheji">设计模式</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/solidity">SOLIDITY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/springBoot">SPRINGBOOT</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-中间件"
+                        >
+                            <span>
+                                中间件
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-中间件">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/kafka">KAFKA</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/redis">REDIS</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/recketMq">ROCKETMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/rabbitMq">RABBITMQ</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/xxlJob">XXLJOB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-云原生"
+                        >
+                            <span>
+                                云原生
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-云原生">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/docker">DOCKER</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/categories/linux">LINUX</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/toolsSetting"
+                        >
+                            <span>
+                                TOOLS
+                            </span>
+                            
+                                <i class="fa-regular fa-gavel fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories/web"
+                        >
+                            <span>
+                                WEB
+                            </span>
+                            
+                                <i class="fa-brands fa-internet-explorer fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/mianshi"
+                        >
+                            <span>
+                                面试题
+                            </span>
+                            
+                                <i class="fa-regular fa-file-text fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/about">ME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/viEcho">GITHUB</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://echo-talk.vercel.app/ui">评论管理</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+            <!--手机模式下增加侧边栏的导航-->
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/essays"
+                         >
+                            <span>说说</span>
+                            <i class="fa-solid fa-keynote fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/masonry"
+                         >
+                            <span>相册</span>
+                            <i class="fa-solid fa-image fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/archives"
+                         >
+                            <span>归档</span>
+                            <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                            href="/categories/other"
+                         >
+                            <span>其他</span>
+                            <i class="fa-regular fa-head-side-headphones fa-sm fa-fw"></i>
+                         </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">74</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">111</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                
+                
+                <img src="/../images/web3/25/5/1/solidity_base.png" alt="(八)web3面试题第一弹" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                
+                <div class="w-full flex items-center absolute bottom-0 justify-start">
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(八)web3面试题第一弹</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/favicon.ico">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">viEcho</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv5</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-11-29 19:30:35</span>
+        <span class="mobile">2025-11-29 19:30:35</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-11-29 20:55:33</span>
+            <span class="mobile">2025-11-29 20:55:33</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/web3/">web3</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>4 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h3 id="1-erc20、erc721、erc1155还有其他哪些类型的合约-它们有啥区别-应用场景是啥？"><a href="#1-erc20、erc721、erc1155还有其他哪些类型的合约-它们有啥区别-应用场景是啥？" class="headerlink" title="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？"></a>1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？</h3><p>ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 <br><br>ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）<br><br>ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）<br><br>ERC165–接口检测，NFT 市场判断是否支持 721&#x2F;1155，合约间安全检查，插件式合约设计<br><br>EIP-2612（Permit）–用户免手续费批准 token，Walletless onboarding（无钱包注册），Gasless 授权<br><br>ERC-2981（NFT版税）–NFT 创作者抽成，音乐 NFT 收益分配，内容 NFT 创作者收益<br><br>ERC-4626（Vault 金库）–DeFi 存款收益池，自动化收益策略，质押凭证代币，稳定币收益池（一句话总结： “把钱存进池子→拿 share” 的模式都是 4626。）<br><br>ERC-4337（Account Abstraction）–社交恢复钱包;不需要助记词的账户(World App（Worldcoin 钱包);Gas 代付,策略型钱包（自动化）<br>自动扣款、自动 DCA 买币;多签 &#x2F; 权限控制钱包(企业钱包、DAO 多签)</p>
+<p>⚡ 进阶（看方向）<br>ERC-4907（租赁 NFT）–游戏角色租赁(租别人帐号&#x2F;角色一段时间);NFT 会员卡按天出租(类似「健身卡」的临时授权);共享资源(链上房间&#x2F;设备使用权) <br><br>ERC-5234&#x2F;5791（动态 NFT）–游戏角色升级(等级、装备、经验动态变更);活动徽章逐步进化(POAP → 达成条件 → 升级版 NFT);身份徽章（DID）(链上信用逐步提高);实时反映链上状态(清算、负债、抵押状态变化) <br><br>ERC-721C（受控可转移 NFT）–限制 NFT 在市场转卖（防倒卖）；游戏内 NFT 只能留在游戏生态（游戏内 NFT 只能留在游戏生态）；遵守监管要求（可冻结、可限制特定区域交易）</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>一句话用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ERC20</td>
+<td>同质化代币</td>
+</tr>
+<tr>
+<td>ERC721</td>
+<td>独特 NFT</td>
+</tr>
+<tr>
+<td>ERC721A</td>
+<td>低 gas NFT mint</td>
+</tr>
+<tr>
+<td>ERC1155</td>
+<td>游戏多资产</td>
+</tr>
+<tr>
+<td>ERC165</td>
+<td>接口检测</td>
+</tr>
+<tr>
+<td>EIP-2612</td>
+<td>离线授权 approve</td>
+</tr>
+<tr>
+<td>ERC-2981</td>
+<td>NFT 版税</td>
+</tr>
+<tr>
+<td>ERC-4626</td>
+<td>DeFi 金库</td>
+</tr>
+<tr>
+<td>ERC-4337</td>
+<td>智能钱包（AA）</td>
+</tr>
+<tr>
+<td>ERC-4907</td>
+<td>NFT 出租</td>
+</tr>
+<tr>
+<td>ERC-5234&#x2F;5791</td>
+<td>动态 NFT</td>
+</tr>
+<tr>
+<td>ERC-721C</td>
+<td>可控转移 NFT</td>
+</tr>
+</tbody></table>
+<h4 id="RC721-和-ERC721A-最大区别是什么？为什么-721A-Gas-更低？"><a href="#RC721-和-ERC721A-最大区别是什么？为什么-721A-Gas-更低？" class="headerlink" title="RC721 和 ERC721A 最大区别是什么？为什么 721A Gas 更低？"></a>RC721 和 ERC721A 最大区别是什么？为什么 721A Gas 更低？<br></h4><p>ERC721A 优化了批量 mint：多个 token 同时 mint 只更新一次 owner 数据。<br><br>通过 bitpacking、startTokenId 映射、减少存储操作降低 gas。</p>
+<h4 id="ERC1155-为什么比-ERC721-更适合-GameFi？"><a href="#ERC1155-为什么比-ERC721-更适合-GameFi？" class="headerlink" title="ERC1155 为什么比 ERC721 更适合 GameFi？"></a>ERC1155 为什么比 ERC721 更适合 GameFi？</h4><p>支持批量 mint 和 batch transfer（节省 80% Gas）。<br><br>一个合约支持多资产 ID（武器&#x2F;皮肤&#x2F;材料）。<br><br>可同时支持同质化、半同质化、非同质化资产 <br></p>
+<h4 id="FT-ERC20-和NFT-ERC721-的区别？"><a href="#FT-ERC20-和NFT-ERC721-的区别？" class="headerlink" title="FT (ERC20) 和NFT(ERC721) 的区别？"></a>FT (ERC20) 和NFT(ERC721) 的区别？</h4><p>FT是”商品货币” → 重在数量和流通 <br><br>NFT是”数字产权” → 重在所有权和唯一性 <br></p>
+<h4 id="混合型标准：ERC1155"><a href="#混合型标准：ERC1155" class="headerlink" title="混合型标准：ERC1155"></a>混合型标准：ERC1155</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">contract GameAssets is ERC1155 &#123;</span><br><span class="line">    // ID 1: 治疗药水 (FT性质)</span><br><span class="line">    // ID 2: 传说武器 (NFT性质)</span><br><span class="line"></span><br><span class="line">    function tradeAssets() public &#123;</span><br><span class="line">        // 可以用1个传说武器换50个治疗药水</span><br><span class="line">        _safeTransferFrom(playerA, playerB, 1, 50, &quot;&quot;); // 转移药水</span><br><span class="line">        _safeTransferFrom(playerB, playerA, 2, 1, &quot;&quot;); // 转移武器</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="2-自动做市商原理"><a href="#2-自动做市商原理" class="headerlink" title="2.自动做市商原理"></a>2.自动做市商原理</h3><p>AMM 不是在计算“真实价格”，而是用资金池的比例反映供需变化， 价格由数学公式（like x*y&#x3D;k）自动调节。不依赖订单簿，而是让用户与合约交易，实现持续报价和流动性。</p>
+<h4 id="如Uniswapv2-和Uniswap-V3（区间做市）的区别？"><a href="#如Uniswapv2-和Uniswap-V3（区间做市）的区别？" class="headerlink" title="如Uniswapv2 和Uniswap V3（区间做市）的区别？"></a>如Uniswapv2 和Uniswap V3（区间做市）的区别？</h4><h3 id="3-项目前期投资-和获得收益的。这个份额是怎么计算的"><a href="#3-项目前期投资-和获得收益的。这个份额是怎么计算的" class="headerlink" title="3.项目前期投资 和获得收益的。这个份额是怎么计算的"></a>3.项目前期投资 和获得收益的。这个份额是怎么计算的</h3><h3 id="4-eip191-简单的扩容和算法"><a href="#4-eip191-简单的扩容和算法" class="headerlink" title="4.eip191 简单的扩容和算法"></a>4.eip191 简单的扩容和算法</h3><h3 id="5-常见的docker命令及dockerfile脚本"><a href="#5-常见的docker命令及dockerfile脚本" class="headerlink" title="5.常见的docker命令及dockerfile脚本"></a>5.常见的docker命令及dockerfile脚本</h3><h3 id="6-onejs自动生成接口文档"><a href="#6-onejs自动生成接口文档" class="headerlink" title="6.onejs自动生成接口文档"></a>6.onejs自动生成接口文档</h3><h3 id="7-现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略-网格和信号交易"><a href="#7-现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略-网格和信号交易" class="headerlink" title="7.现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略.网格和信号交易"></a>7.现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略.网格和信号交易</h3><p>tips: 还有行情这里不同分钟的分钟线，会有不同纬度的表和定时任务 需要看看行情对应的接口文档</p>
+<h3 id="8-现价单和市价单-这里还有个OCD"><a href="#8-现价单和市价单-这里还有个OCD" class="headerlink" title="8.现价单和市价单 这里还有个OCD"></a>8.现价单和市价单 这里还有个OCD</h3><h3 id="9-撮合的流程需要熟悉"><a href="#9-撮合的流程需要熟悉" class="headerlink" title="9.撮合的流程需要熟悉"></a>9.撮合的流程需要熟悉</h3><h3 id="10-撮合交易为啥会用disruptor技术"><a href="#10-撮合交易为啥会用disruptor技术" class="headerlink" title="10.撮合交易为啥会用disruptor技术"></a>10.撮合交易为啥会用disruptor技术</h3><h3 id="11-现价单和市价单，websocket-通信的数据格式-Trade-server-里面的业务渠道-订单和实时成交-binary-message-需要需要查一下对应的含义"><a href="#11-现价单和市价单，websocket-通信的数据格式-Trade-server-里面的业务渠道-订单和实时成交-binary-message-需要需要查一下对应的含义" class="headerlink" title="11.现价单和市价单，websocket 通信的数据格式   Trade server 里面的业务渠道 订单和实时成交  binary message. 需要需要查一下对应的含义"></a>11.现价单和市价单，websocket 通信的数据格式   Trade server 里面的业务渠道 订单和实时成交  binary message. 需要需要查一下对应的含义</h3><h3 id="12-多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程-cpu爆满问题的排查处理"><a href="#12-多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程-cpu爆满问题的排查处理" class="headerlink" title="12.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程 cpu爆满问题的排查处理"></a>12.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程 cpu爆满问题的排查处理</h3><h3 id="13-了解nft对应的一些玩法-以及相关实现"><a href="#13-了解nft对应的一些玩法-以及相关实现" class="headerlink" title="13.了解nft对应的一些玩法 以及相关实现"></a>13.了解nft对应的一些玩法 以及相关实现</h3><h3 id="13-etc热更新的原理"><a href="#13-etc热更新的原理" class="headerlink" title="13.etc热更新的原理"></a>13.etc热更新的原理</h3><h3 id="14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"><a href="#14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的" class="headerlink" title="14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"></a>14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</h3><h3 id="15-常见的签名算法"><a href="#15-常见的签名算法" class="headerlink" title="15.常见的签名算法"></a>15.常见的签名算法</h3>
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> (八)web3面试题第一弹</li>
+        <li><strong>Author:</strong> viEcho</li>
+        <li><strong>Created at
+                :</strong> 2025-11-29 19:30:35</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-11-29 20:55:33
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://viecho.github.io/2025/1129/null.html
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+  <div class="recommended-article px-2 sm:px-6 md:px-8">
+   <div class="recommended-desktop">
+    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+    </div>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
+  <span class="title">(四) ERC20 && ERC721 简介</span>
+</a><a class="recommended-article-item" href="/2025/0812/web3-terms.html" title="(七)web3相关术语" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(七)web3相关术语" class="!max-w-none">
+  <span class="title">(七)web3相关术语</span>
+</a><a class="recommended-article-item" href="/2025/0413/solidity-base-programming-rules.html" title="(一)solidity基本语法规则" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(一)solidity基本语法规则" class="!max-w-none">
+  <span class="title">(一)solidity基本语法规则</span>
+</a></div>
+   </div>
+   <div class="recommended-mobile">
+   <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
+     <i aria-hidden="true"></i><span>推荐阅读</span>
+   </div>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
+  <span class="title">(四) ERC20 && ERC721 简介</span>
+</a><a class="recommended-article-item" href="/2025/0812/web3-terms.html" title="(七)web3相关术语" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(七)web3相关术语" class="!max-w-none">
+  <span class="title">(七)web3相关术语</span>
+</a></div>
+   </div>
+  </div>
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/1121/invist-way.html"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">1.雪球股票投资24章拆解</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://echo-talk.vercel.app/',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          requiredMeta: ['nick', 'mail'],
+          emoji: ['https://unpkg.com/@waline/emojis@1.2.0/weibo'],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">(八)web3面试题第一弹</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-erc20%E3%80%81erc721%E3%80%81erc1155%E8%BF%98%E6%9C%89%E5%85%B6%E4%BB%96%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%90%88%E7%BA%A6-%E5%AE%83%E4%BB%AC%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-text">1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E5%81%9A%E5%B8%82%E5%95%86%E5%8E%9F%E7%90%86"><span class="nav-text">2.自动做市商原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%A1%B9%E7%9B%AE%E5%89%8D%E6%9C%9F%E6%8A%95%E8%B5%84-%E5%92%8C%E8%8E%B7%E5%BE%97%E6%94%B6%E7%9B%8A%E7%9A%84%E3%80%82%E8%BF%99%E4%B8%AA%E4%BB%BD%E9%A2%9D%E6%98%AF%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E7%9A%84"><span class="nav-text">3.项目前期投资 和获得收益的。这个份额是怎么计算的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-eip191-%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%A9%E5%AE%B9%E5%92%8C%E7%AE%97%E6%B3%95"><span class="nav-text">4.eip191 简单的扩容和算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B8%B8%E8%A7%81%E7%9A%84docker%E5%91%BD%E4%BB%A4%E5%8F%8Adockerfile%E8%84%9A%E6%9C%AC"><span class="nav-text">5.常见的docker命令及dockerfile脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-onejs%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3"><span class="nav-text">6.onejs自动生成接口文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%8E%B0%E4%BB%B7%E5%8D%95%E5%B8%82%E4%BB%B7%E5%8D%95%E9%9C%80%E8%A6%81%E5%86%8D%E5%8E%BB%E7%9C%8B%E7%9C%8B%E6%AC%A7%E6%84%8F%E7%9A%84api%E6%96%87%E6%A1%A3%EF%BC%8C%E4%BA%86%E8%A7%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5-%E7%BD%91%E6%A0%BC%E5%92%8C%E4%BF%A1%E5%8F%B7%E4%BA%A4%E6%98%93"><span class="nav-text">7.现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略.网格和信号交易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E7%8E%B0%E4%BB%B7%E5%8D%95%E5%92%8C%E5%B8%82%E4%BB%B7%E5%8D%95-%E8%BF%99%E9%87%8C%E8%BF%98%E6%9C%89%E4%B8%AAOCD"><span class="nav-text">8.现价单和市价单 这里还有个OCD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%92%AE%E5%90%88%E7%9A%84%E6%B5%81%E7%A8%8B%E9%9C%80%E8%A6%81%E7%86%9F%E6%82%89"><span class="nav-text">9.撮合的流程需要熟悉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E6%92%AE%E5%90%88%E4%BA%A4%E6%98%93%E4%B8%BA%E5%95%A5%E4%BC%9A%E7%94%A8disruptor%E6%8A%80%E6%9C%AF"><span class="nav-text">10.撮合交易为啥会用disruptor技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%8E%B0%E4%BB%B7%E5%8D%95%E5%92%8C%E5%B8%82%E4%BB%B7%E5%8D%95%EF%BC%8Cwebsocket-%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-Trade-server-%E9%87%8C%E9%9D%A2%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%B8%A0%E9%81%93-%E8%AE%A2%E5%8D%95%E5%92%8C%E5%AE%9E%E6%97%B6%E6%88%90%E4%BA%A4-binary-message-%E9%9C%80%E8%A6%81%E9%9C%80%E8%A6%81%E6%9F%A5%E4%B8%80%E4%B8%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-text">11.现价单和市价单，websocket 通信的数据格式   Trade server 里面的业务渠道 订单和实时成交  binary message. 需要需要查一下对应的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98%EF%BC%8C%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E7%BA%BF%E7%A8%8B-cpu%E7%88%86%E6%BB%A1%E9%97%AE%E9%A2%98%E7%9A%84%E6%8E%92%E6%9F%A5%E5%A4%84%E7%90%86"><span class="nav-text">12.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程 cpu爆满问题的排查处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E4%BA%86%E8%A7%A3nft%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8E%A9%E6%B3%95-%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%AE%9E%E7%8E%B0"><span class="nav-text">13.了解nft对应的一些玩法 以及相关实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-etc%E7%83%AD%E6%9B%B4%E6%96%B0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">13.etc热更新的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8A%A0%E4%B9%90%E8%A7%82%E9%94%81%E5%9C%A8%E8%AE%A2%E5%8D%95%E6%94%AF%E4%BB%98%E5%9C%A8%E5%85%B3%E5%8D%95%E4%B8%8B%E7%9A%84%E5%86%B2%E7%AA%81%E5%9C%BA%E6%99%AF%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84"><span class="nav-text">14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-text">15.常见的签名算法</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">viEcho</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+            <div class="icp-info my-1">
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.mps.gov.cn/#/query/webSearch?code=42011102005477
+                
+                ">鄂公网安备42011102005477号</a>
+                <a target="_blank" rel="nofollow" href="
+                
+                    https://beian.miit.gov.cn/#/Integrated/recordQuery
+                
+                ">鄂ICP备2024034846号-1</a>
+            </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+            <li class="right-bottom-tools tool-aplayer flex justify-center items-center">
+
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/libs/mermaid.min.js"></script>
+
+    
+<script src="/js/plugins/mermaid.js"></script>
+
+
+
+
+    
+<script src="/js/libs/minimasonry.min.js"></script>
+
+    
+<script src="/js/plugins/masonry.js" type="module"></script>
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
