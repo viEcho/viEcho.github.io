@@ -13,21 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="https://viecho.github.io/2025/1129/web3-interview1.html"/>
+    <link rel="canonical" href="https://viecho.github.io/2025/1203/web3-interview1.html"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）ERC">
+        <meta name="description" content="1. 私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？private：只能在 当前合约 内部被调用（包括 this 也不能）。继承合约无法访问。编译器级别限制。internal：只能在 当前合约及其派生合约（继承）中访问，相当于 protected。public：既可以从合约内部直接调用，也会为外部生成 ABI，可被外部交易或其他合约">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(八)web3面试题第一弹">
-<meta property="og:url" content="https://viecho.github.io/2025/1129/web3-interview1.html">
+<meta property="og:title" content="(九)web3面试第一弹">
+<meta property="og:url" content="https://viecho.github.io/2025/1203/web3-interview1.html">
 <meta property="og:site_name" content="叁有三分之一">
-<meta property="og:description" content="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）ERC">
+<meta property="og:description" content="1. 私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？private：只能在 当前合约 内部被调用（包括 this 也不能）。继承合约无法访问。编译器级别限制。internal：只能在 当前合约及其派生合约（继承）中访问，相当于 protected。public：既可以从合约内部直接调用，也会为外部生成 ABI，可被外部交易或其他合约">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-11-29T11:30:35.538Z">
-<meta property="article:modified_time" content="2025-12-02T11:21:53.816Z">
+<meta property="article:published_time" content="2025-12-03T10:12:28.861Z">
+<meta property="article:modified_time" content="2025-12-08T12:44:26.076Z">
 <meta property="article:author" content="viEcho">
+<meta property="article:tag" content="solidity">
 <meta name="twitter:card" content="summary">
     
     
@@ -40,7 +41,7 @@
     
     <title>
         
-            (八)web3面试题第一弹 -
+            (九)web3面试第一弹 -
         
         叁有三分之一
     </title>
@@ -907,10 +908,10 @@
             
                 
                 
-                <img src="/../images/web3/25/11/30/web3.png" alt="(八)web3面试题第一弹" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                <img src="/../images/web3/25/5/1/solidity_base.png" alt="(九)web3面试第一弹" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
                 
                 <div class="w-full flex items-center absolute bottom-0 justify-start">
-                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(八)web3面试题第一弹</h1>
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(九)web3面试第一弹</h1>
                 </div>
             
             </div>
@@ -931,15 +932,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-11-29 19:30:35</span>
-        <span class="mobile">2025-11-29 19:30:35</span>
+        <span class="desktop">2025-12-03 18:12:28</span>
+        <span class="mobile">2025-12-03 18:12:28</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-12-02 19:21:53</span>
-            <span class="mobile">2025-12-02 19:21:53</span>
+            <span class="desktop">2025-12-08 20:44:26</span>
+            <span class="mobile">2025-12-08 20:44:26</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -962,16 +963,27 @@
         </span>
     
     
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/solidity/">solidity</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
 
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>2k Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.6k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>16 Mins</span>
         </span>
     
     
@@ -986,115 +998,161 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h3 id="1-erc20、erc721、erc1155还有其他哪些类型的合约-它们有啥区别-应用场景是啥？"><a href="#1-erc20、erc721、erc1155还有其他哪些类型的合约-它们有啥区别-应用场景是啥？" class="headerlink" title="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？"></a>1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？</h3><p>ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 <br><br>ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）<br><br>ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）<br><br>ERC165–接口检测，NFT 市场判断是否支持 721&#x2F;1155，合约间安全检查，插件式合约设计<br><br>EIP-2612（Permit）–用户免手续费批准 token，Walletless onboarding（无钱包注册），Gasless 授权<br><br>ERC-2981（NFT版税）–NFT 创作者抽成，音乐 NFT 收益分配，内容 NFT 创作者收益<br><br>ERC-4626（Vault 金库）–DeFi 存款收益池，自动化收益策略，质押凭证代币，稳定币收益池（一句话总结： “把钱存进池子→拿 share” 的模式都是 4626。）<br><br>ERC-4337（Account Abstraction）–社交恢复钱包;不需要助记词的账户(World App（Worldcoin 钱包);Gas 代付,策略型钱包（自动化）<br>自动扣款、自动 DCA 买币;多签 &#x2F; 权限控制钱包(企业钱包、DAO 多签)</p>
-<p>⚡ 进阶（看方向）<br>ERC-4907（租赁 NFT）–游戏角色租赁(租别人帐号&#x2F;角色一段时间);NFT 会员卡按天出租(类似「健身卡」的临时授权);共享资源(链上房间&#x2F;设备使用权) <br><br>ERC-5234&#x2F;5791（动态 NFT）–游戏角色升级(等级、装备、经验动态变更);活动徽章逐步进化(POAP → 达成条件 → 升级版 NFT);身份徽章（DID）(链上信用逐步提高);实时反映链上状态(清算、负债、抵押状态变化) <br><br>ERC-721C（受控可转移 NFT）–限制 NFT 在市场转卖（防倒卖）；游戏内 NFT 只能留在游戏生态（游戏内 NFT 只能留在游戏生态）；遵守监管要求（可冻结、可限制特定区域交易）</p>
+            <h3 id="1-私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？"><a href="#1-私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？" class="headerlink" title="1. 私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？"></a>1. 私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？</h3><p>private：只能在 当前合约 内部被调用（包括 this 也不能）。继承合约无法访问。编译器级别限制。<br>internal：只能在 当前合约及其派生合约（继承）中访问，相当于 protected。<br>public：既可以从合约内部直接调用，也会为外部生成 ABI，可被外部交易或其他合约通过 call 调用（生成 getter）。<br>external：只能从合约外部或通过 this.func() 从合约内部以外部调用方式调用（会把参数作为 calldata 传入）。当参数是大型数组&#x2F;字符串时，external 比 public 更省 gas（避免内存拷贝）。<br>小结：访问域 + 调用方式（internal&#x2F;public 可以内部直接调用；external 更适合外部调用&#x2F;节省拷贝）。</p>
+<h3 id="2-一个合约大小（部署后字节码）大约可以有多大？"><a href="#2-一个合约大小（部署后字节码）大约可以有多大？" class="headerlink" title="2. 一个合约大小（部署后字节码）大约可以有多大？"></a>2. 一个合约大小（部署后字节码）大约可以有多大？</h3><p>EVM 对合约字节码大小有限制：最大代码大小 24,576 bytes（约 24 KB），由 EIP-170 在 Spurious Dragon 引入。<br>超出会部署失败或抛出 out-of-gas&#x2F;错误。<br>常用应对：启用编译器优化、把逻辑拆分成库&#x2F;代理&#x2F;多合约、使用 delegatecall 或工厂模式。</p>
+<h3 id="3-create-和-create2-的区别？"><a href="#3-create-和-create2-的区别？" class="headerlink" title="3.create 和 create2 的区别？"></a>3.create 和 create2 的区别？</h3><p>CREATE（原始）：新合约地址由部署者地址 + 部署者 nonce（transaction&#x2F;creation count）决定（不可预测且随 nonce 变化）。</p>
+<p>CREATE2（EIP-1014）：地址由 keccak256(0xff ++ deployingAddress ++ salt ++ keccak256(init_code)) 决定，部署者可控制 salt 与 init_code，因此可以预计算&#x2F;确定目标地址，方便“预言式部署 &#x2F; 可替换部署 &#x2F; 工厂 + 代理” 等模式。</p>
+<p>注意：CREATE2 能预测地址，但如果相同地址已存在合约，后续部署会失败或覆盖策略要谨慎设计（安全风险与冲突）。</p>
+<h3 id="4-Solidity-0-8-0-版本中对运算符（算术）的重大变化？"><a href="#4-Solidity-0-8-0-版本中对运算符（算术）的重大变化？" class="headerlink" title="4.Solidity 0.8.0 版本中对运算符（算术）的重大变化？"></a>4.Solidity 0.8.0 版本中对运算符（算术）的重大变化？</h3><p>默认开启算术检查：所有整型算术运算（加减乘等）在溢出&#x2F;下溢时会 revert（之前需要 SafeMath）。若需要旧的环绕行为，可用 unchecked { … }。此外 ABI coder v2 默认启用等改动。</p>
 <table>
 <thead>
 <tr>
-<th>协议</th>
-<th>一句话用途</th>
+<th>功能</th>
+<th>ABI coder v1</th>
+<th>ABI coder v2</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>ERC20</td>
-<td>同质化代币</td>
+<td>嵌套 struct 支持</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
 </tr>
 <tr>
-<td>ERC721</td>
-<td>独特 NFT</td>
+<td>多维动态数组</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
 </tr>
 <tr>
-<td>ERC721A</td>
-<td>低 gas NFT mint</td>
+<td>Struct 作为 external 参数</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
 </tr>
 <tr>
-<td>ERC1155</td>
-<td>游戏多资产</td>
+<td>Struct 作为返回值</td>
+<td>❌ No</td>
+<td>✅ Yes</td>
 </tr>
 <tr>
-<td>ERC165</td>
-<td>接口检测</td>
+<td>编码更严格、安全</td>
+<td>❌ 较弱</td>
+<td>✅ 强</td>
 </tr>
 <tr>
-<td>EIP-2612</td>
-<td>离线授权 approve</td>
-</tr>
-<tr>
-<td>ERC-2981</td>
-<td>NFT 版税</td>
-</tr>
-<tr>
-<td>ERC-4626</td>
-<td>DeFi 金库</td>
-</tr>
-<tr>
-<td>ERC-4337</td>
-<td>智能钱包（AA）</td>
-</tr>
-<tr>
-<td>ERC-4907</td>
-<td>NFT 出租</td>
-</tr>
-<tr>
-<td>ERC-5234&#x2F;5791</td>
-<td>动态 NFT</td>
-</tr>
-<tr>
-<td>ERC-721C</td>
-<td>可控转移 NFT</td>
+<td>默认启用</td>
+<td>❌ 需要 <code>pragma</code></td>
+<td>✅ 默认</td>
 </tr>
 </tbody></table>
-<h4 id="RC721-和-ERC721A-最大区别是什么？为什么-721A-Gas-更低？"><a href="#RC721-和-ERC721A-最大区别是什么？为什么-721A-Gas-更低？" class="headerlink" title="RC721 和 ERC721A 最大区别是什么？为什么 721A Gas 更低？"></a>RC721 和 ERC721A 最大区别是什么？为什么 721A Gas 更低？<br></h4><p>ERC721A 优化了批量 mint：多个 token 同时 mint 只更新一次 owner 数据。<br><br>通过 bitpacking、startTokenId 映射、减少存储操作降低 gas。</p>
-<h4 id="ERC1155-为什么比-ERC721-更适合-GameFi？"><a href="#ERC1155-为什么比-ERC721-更适合-GameFi？" class="headerlink" title="ERC1155 为什么比 ERC721 更适合 GameFi？"></a>ERC1155 为什么比 ERC721 更适合 GameFi？</h4><p>支持批量 mint 和 batch transfer（节省 80% Gas）。<br><br>一个合约支持多资产 ID（武器&#x2F;皮肤&#x2F;材料）。<br><br>可同时支持同质化、半同质化、非同质化资产 <br></p>
-<h4 id="FT-ERC20-和NFT-ERC721-的区别？"><a href="#FT-ERC20-和NFT-ERC721-的区别？" class="headerlink" title="FT (ERC20) 和NFT(ERC721) 的区别？"></a>FT (ERC20) 和NFT(ERC721) 的区别？</h4><p>FT是”商品货币” → 重在数量和流通 <br><br>NFT是”数字产权” → 重在所有权和唯一性 <br></p>
-<h4 id="混合型标准：ERC1155"><a href="#混合型标准：ERC1155" class="headerlink" title="混合型标准：ERC1155"></a>混合型标准：ERC1155</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">contract GameAssets is ERC1155 &#123;</span><br><span class="line">    // ID 1: 治疗药水 (FT性质)</span><br><span class="line">    // ID 2: 传说武器 (NFT性质)</span><br><span class="line"></span><br><span class="line">    function tradeAssets() public &#123;</span><br><span class="line">        // 可以用1个传说武器换50个治疗药水</span><br><span class="line">        _safeTransferFrom(playerA, playerB, 1, 50, &quot;&quot;); // 转移药水</span><br><span class="line">        _safeTransferFrom(playerB, playerA, 2, 1, &quot;&quot;); // 转移武器</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>小结：从 0.8.x 开始 ABI coder v2 默认启用，它允许 struct 嵌套、复杂动态数组、更安全的编码方式，并全面支持复杂类型作为参数和返回值，大幅提升了 Solidity 的数据处理能力。</p>
+<h3 id="5-代理（proxy）需要哪种特殊的-call-才能工作？"><a href="#5-代理（proxy）需要哪种特殊的-call-才能工作？" class="headerlink" title="5. 代理（proxy）需要哪种特殊的 call 才能工作？"></a>5. 代理（proxy）需要哪种特殊的 call 才能工作？</h3><p>delegatecall：代理模式（如透明代理、Universal Upgradeable Proxy）通常使用 delegatecall 将调用上下文（storage、msg.sender）委托给实现合约（logic&#x2F;implementation）。delegatecall 使被调用合约在代理合约的 storage 中操作，从而实现可升级逻辑。</p>
+<p>额外说明：代理的 ABI&#x2F;存储槽布局必须严格匹配（避免存储冲突），常用专用槽存放 implementation 地址（EIP-1967 &#x2F; EIP-1822 等标准）。</p>
+<h3 id="6-在-EIP-1559-之前，如何计算以太坊交易的美元成本？"><a href="#6-在-EIP-1559-之前，如何计算以太坊交易的美元成本？" class="headerlink" title="6.在 EIP-1559 之前，如何计算以太坊交易的美元成本？"></a>6.在 EIP-1559 之前，如何计算以太坊交易的美元成本？</h3><p>⏳ EIP-1559 之前的计算，Gas Price是一个由用户设定的单一数值，整个交易费用会全额支付给矿工。<br>那时的美元成本计算公式更为直接：<br><strong>交易成本（美元） &#x3D; Gas Used × Gas Price × ETH&#x2F;USD 价格</strong><br>这里的 Gas Price 完全由市场供需决定，用户需要通过“拍卖”的方式与其他用户竞争，出价越高，交易被打包的概率越大。</p>
+<p>EIP-1559 之后的计算<br>现在，Gas Price 不再是单一数值，而是由一个固定部分和一个可选部分组成，即:<br><strong>实际Gas价格 (Effective Gas Price) &#x3D; 基础费用 (Base Fee) + 优先费 (Priority Fee)</strong></p>
+<p>基础费用 (Base Fee)：这是由网络自动计算的强制性费用,它会根据上一个区块的使用情况自动升降，目标是维持50%的区块空间利用率,最关键的是，这部分费用会被永久销毁（Burn）。<br>优先费 (Priority Fee)：这是你为了激励验证者（矿工的继任者）优先打包你的交易而自愿支付的“小费”</p>
+<p>所以，现在的美元成本计算公式为：<br><strong>交易成本（美元） &#x3D; Gas Used × (Base Fee + Priority Fee) × ETH&#x2F;USD 价格</strong></p>
+<h3 id="7-在区块链上跨区块创建随机数的挑战是什么？"><a href="#7-在区块链上跨区块创建随机数的挑战是什么？" class="headerlink" title="7.在区块链上跨区块创建随机数的挑战是什么？"></a>7.在区块链上跨区块创建随机数的挑战是什么？</h3><p>可预见&#x2F;可操控性：矿工&#x2F;验证者能观察到交易并操控区块属性（timestamp、blockhash、nonce等），从而在出块时选择是否包含交易或改变区块属性来影响随机数结果。<br>延迟性：跨区块随机种子（如使用前一区块 hash）可能在短期内被操控或受重组影响。<br>解决思路：使用链下或链上阈值签名 VRF（如 Chainlink VRF）、提交揭示（commit-reveal）或加密的多方计算（MPC）。</p>
+<h3 id="8-荷兰拍卖（Dutch-auction）和英式拍卖（English-auction）的区别？"><a href="#8-荷兰拍卖（Dutch-auction）和英式拍卖（English-auction）的区别？" class="headerlink" title="8.荷兰拍卖（Dutch auction）和英式拍卖（English auction）的区别？"></a>8.荷兰拍卖（Dutch auction）和英式拍卖（English auction）的区别？</h3><p>英式拍卖（English）：从低价开始，竞价者逐步加价，直到无人加价，最高出价者得标（常见于 eBay、传统拍卖）。<br>荷兰拍卖（Dutch）：从高价开始，价格逐步下降，直到第一个接受当前价格的出价者得标（快速成交，常用于花卉市场或某些 token 发售）。<br>在智能合约中实现上，荷兰拍卖常用时间衰减价格函数；英式拍卖要处理最高价、保证金、撤回等。</p>
+<h3 id="9-ERC-20-的-transfer-和-transferFrom-之间有什么区别？"><a href="#9-ERC-20-的-transfer-和-transferFrom-之间有什么区别？" class="headerlink" title="9.ERC-20 的 transfer 和 transferFrom 之间有什么区别？"></a>9.ERC-20 的 transfer 和 transferFrom 之间有什么区别？</h3><p>transfer(to, amount)：msg.sender 向 to 转账（直接扣自己账户）。<br>transferFrom(from, to, amount)：允许 msg.sender（通常是合约或第三方）从 from 的余额转账到 to，但前提是 from 已通过 approve(msg.sender, allowance) 授权足够的额度。常用于去中心化交易所、代付等场景。</p>
+<h3 id="10-对于地址白名单（whitelist），使用映射（mapping）还是数组更好，为什么？"><a href="#10-对于地址白名单（whitelist），使用映射（mapping）还是数组更好，为什么？" class="headerlink" title="10.对于地址白名单（whitelist），使用映射（mapping）还是数组更好，为什么？"></a>10.对于地址白名单（whitelist），使用映射（mapping）还是数组更好，为什么？</h3><p>mapping(address &#x3D;&gt; bool)：通常更好。<br>理由：查询 O(1)、gas 低：判断地址是否在白名单只需 mapping[addr]。容易增删：设置 true&#x2F;false 即可。</p>
+<p>数组：添加简单但 查询 O(n)（查找耗 gas），删除麻烦（需要移动元素或标记），不适合大量&#x2F;频繁判断场景。<br>小结：若你需要频繁做存在性检查，优先 mapping；若你需要枚举所有白名单地址（导出），可以额外维护数组，但注意同步成本。</p>
+<h3 id="11-为什么不使用-tx-origin-进行身份验证？"><a href="#11-为什么不使用-tx-origin-进行身份验证？" class="headerlink" title="11.为什么不使用 tx.origin 进行身份验证？"></a>11.为什么不使用 tx.origin 进行身份验证？</h3><p>安全风险（钓鱼&#x2F;重入委托攻击）：tx.origin 是交易的原始发起者（EOA），攻击者可以用中间合约诱导受害者签名交易，使 tx.origin 仍为受害者，而 msg.sender 是攻击合约，从而绕过 tx.origin 基于身份的验证。<br>推荐：使用 msg.sender 做访问控制（并结合 require、多签或 EIP-2771&#x2F;签名验证等更安全方案）。</p>
+<h3 id="12-以太坊使用什么哈希函数？"><a href="#12-以太坊使用什么哈希函数？" class="headerlink" title="12.以太坊使用什么哈希函数？"></a>12.以太坊使用什么哈希函数？</h3><p>以太坊 EVM 广泛使用 Keccak-256（通常称为 keccak256，与标准化的 SHA3-256 有细微差别—历史实现差异）。keccak256 用于地址计算、签名回退、存储哈希等。</p>
+<h3 id="13-1个ETH相当于多少-gwei？1-个-ETH-相当于多少-wei？"><a href="#13-1个ETH相当于多少-gwei？1-个-ETH-相当于多少-wei？" class="headerlink" title="13.1个ETH相当于多少 gwei？1 个 ETH 相当于多少 wei？"></a>13.1个ETH相当于多少 gwei？1 个 ETH 相当于多少 wei？</h3><p>1 ETH &#x3D; 1,000,000,000 gwei（即 10⁹ gwei）。<br>1 ETH &#x3D; 1,000,000,000,000,000,000 wei（即 10¹⁸ wei）。<br>常用单位关系：1 gwei &#x3D; 10^9 wei，1 ether &#x3D; 10^9 gwei &#x3D; 10^18 wei。</p>
+<h3 id="14-assert-和-require-有什么区别？"><a href="#14-assert-和-require-有什么区别？" class="headerlink" title="14. assert 和 require 有什么区别？"></a>14. assert 和 require 有什么区别？</h3><p>require(condition, “msg”)：用于检查函数输入、外部调用结果、条件不满足时回退并返还剩余 gas（EVM 会 revert 并可返回错误字符串）。<br>常用于用户输入校验与外部条件。</p>
+<p>assert(condition)：用于检测不应该发生的内部错误、不可达分支或程序错误（invariant）。失败时会触发 panic（消耗剩余 gas，表示严重错误，不建议用于常规输入校验）。</p>
+<p>简单判断：外部可控条件用 require；内部不变量或编译器&#x2F;逻辑错误用 assert。</p>
+<h3 id="15-什么是闪电贷（Flash-Loan）？"><a href="#15-什么是闪电贷（Flash-Loan）？" class="headerlink" title="15. 什么是闪电贷（Flash Loan）？"></a>15. 什么是闪电贷（Flash Loan）？</h3><p>闪电贷：在单笔交易内借入资产、使用这些资产执行任意操作（如套利、抵押、清算），并在同一交易结束前归还借款（加上手续费）。若未能归还，交易回滚（对借出方无损）。</p>
+<p>特点：无需抵押、原子性、被广泛用于套利或复杂 DeFi 操作，但也常被用于攻击链上脆弱协议。</p>
+<h3 id="16-什么是-检查-效果-交互（check-effects-interactions）模式？"><a href="#16-什么是-检查-效果-交互（check-effects-interactions）模式？" class="headerlink" title="16. 什么是 检查-效果-交互（check-effects-interactions）模式？"></a>16. 什么是 检查-效果-交互（check-effects-interactions）模式？</h3><p>模式步骤：<br>检查（Checks）：验证要求、权限、余额等 require。<br>效果（Effects）：更新合约内部状态（修改余额、标记已提现等）。<br>交互（Interactions）：与外部合约或地址交互（调用外部合约、转账等）。<br>目的：防止重入攻击（在与外部交互前先把内部状态更新为安全状态），是写安全合约的推荐模式。</p>
+<h3 id="17-运行独立验证节点（成为以太坊验证者）所需的最小以太数量是多少？"><a href="#17-运行独立验证节点（成为以太坊验证者）所需的最小以太数量是多少？" class="headerlink" title="17. 运行独立验证节点（成为以太坊验证者）所需的最小以太数量是多少？"></a>17. 运行独立验证节点（成为以太坊验证者）所需的最小以太数量是多少？</h3><p>最少需要 32 ETH（把 32 ETH 存入质押合约以激活一个独立 validator）。可以通过质押池（如 Rocket Pool 等）间接参与较少的金额，但独立激活需要 32 ETH。</p>
+<h3 id="18-fallback-和-receive-之间有什么区别？"><a href="#18-fallback-和-receive-之间有什么区别？" class="headerlink" title="18.fallback 和 receive 之间有什么区别？"></a>18.fallback 和 receive 之间有什么区别？</h3><p>receive() external payable：当合约收到 空数据 的 ETH 转账（例如 send &#x2F; transfer &#x2F; 直接转账）并且合约实现了 receive 时调用。<br>fallback() external [payable]：当没有匹配的函数签名被调用，或合约没有 receive 且收到了 ETH，fallback 会被触发。fallback 也可用于处理任意调用（包含数据）。</p>
+<p>小结：receive 专用于接收简单 ETH 转账；fallback 用于处理非匹配的函数调用或作为通用入口。</p>
+<h3 id="19-什么是重入（reentrancy）？"><a href="#19-什么是重入（reentrancy）？" class="headerlink" title="19.什么是重入（reentrancy）？"></a>19.什么是重入（reentrancy）？</h3><p>重入攻击：攻击者在合约执行外部调用（通常发送 ETH 或调用外部合约）后，利用被调用合约回调该合约的函数，导致原函数的内部状态在预期更新前被重复执行（例如多次提现）。</p>
+<p>防护：使用 check-effects-interactions、ReentrancyGuard（互斥锁）、把外部调用放在最后、以及使用 call 返回值处理而非 transfer（并要注意 gas）等方法。</p>
+<h3 id="20-如何使用-Solidity-进行类型转换？"><a href="#20-如何使用-Solidity-进行类型转换？" class="headerlink" title="20.如何使用 Solidity 进行类型转换？"></a>20.如何使用 Solidity 进行类型转换？</h3><p>基本语法：<br>整型转换（截断）：uint256(x)、int8(y) 等（注意截断&#x2F;符号）。<br>地址&#x2F;uint 转换（低级）：address(uint160(x)) 或 uint256(uint160(addr)) 等（需显式转换）。<br>bytes 与 string：bytes calldata、string(abi.encodePacked(…)) 等，字符串&#x2F;字节间转换需注意编码与拷贝。</p>
+<p>注意：强制类型转换可能截断数据或引入符号扩展，使用前务必确认范围与语义。</p>
+<h3 id="21-上海（Shanghai）升级后，每个区块的-gas-限制是多少？"><a href="#21-上海（Shanghai）升级后，每个区块的-gas-限制是多少？" class="headerlink" title="21.上海（Shanghai）升级后，每个区块的 gas 限制是多少？"></a>21.上海（Shanghai）升级后，每个区块的 gas 限制是多少？</h3><p>关键点：协议本身并未把 block gas limit 固定为单一不变数；<br>这是一个由验证者&#x2F;节点在共识范围内可调的参数（节点能在一定范围内调整 block gas target）。<br>在 Shanghai(2023)本身并没有直接把限制改成固定值；在不同时间点网络的常用&#x2F;建议值会变化。</p>
+<p>实际上，社区&#x2F;网络在后续阶段与升级前后调整了网络的常见块 gas 上限：近几年主网常见上限曾在 ~30M 区间（历史报道），而在 2025 年晚些时候社区推动把上限提升到 ~60M 以增加吞吐量（相关报道）。因此要以链上当前状态为准（可通过区块浏览器或 gas limit 统计站点实时查看）。</p>
+<h3 id="22-tx-origin-和-msg-sender-有什么区别？"><a href="#22-tx-origin-和-msg-sender-有什么区别？" class="headerlink" title="22.tx.origin 和 msg.sender 有什么区别？"></a>22.tx.origin 和 msg.sender 有什么区别？</h3><p>tx.origin：交易的原始发起者（最初发起该交易的 EOA）。<br>msg.sender：当前调用的直接调用者（可能是 EOA 或合约）。<br>安全建议：用于权限判断时不要用 tx.origin（见 Q11），应使用 msg.sender。</p>
+<h3 id="23-什么阻止无限循环永远运行？"><a href="#23-什么阻止无限循环永远运行？" class="headerlink" title="23.什么阻止无限循环永远运行？"></a>23.什么阻止无限循环永远运行？</h3><p>Gas 限制：以太坊的每笔交易有 gasLimit（交易发起者设置）和每个区块有 block gas limit。执行每条 EVM 指令消耗 gas，当 gas 用尽时交易会 revert，阻止无限循环无限执行。</p>
+<p>因此 EVM 的资源消耗用 gas 强制界限，防止无限循环耗尽网络资源。</p>
+<h3 id="24-如何向没有-payable-函数、receive-或-fallback-的合约发送以太？"><a href="#24-如何向没有-payable-函数、receive-或-fallback-的合约发送以太？" class="headerlink" title="24.如何向没有 payable 函数、receive 或 fallback 的合约发送以太？"></a>24.如何向没有 payable 函数、receive 或 fallback 的合约发送以太？</h3><p>不能：如果合约既没有 receive() 又没有 payable fallback，直接发送 ETH（value &gt; 0）会失败（交易 revert）。</p>
+<p>变通：可以把 ETH 发送到合约的创建者或中间合约（该合约实现 payable 并自行分发），或通过自毁（selfdestruct(target)）把 ETH 强制转入目标合约（selfdestruct 会把余额发送到目标地址且不触发接收方代码）。但 selfdestruct 的使用应谨慎（安全&#x2F;可维护性问题）。</p>
+<h3 id="25-view-和-pure-有什么区别？"><a href="#25-view-和-pure-有什么区别？" class="headerlink" title="25.view 和 pure 有什么区别？"></a>25.view 和 pure 有什么区别？</h3><p>view：表示函数不会修改区块链的状态（不会写 storage），但可以读取状态变量或区块信息（如 block.number）。调用时可作为 call 本地查询（不耗 gas，除非作为交易发送）。</p>
+<p>pure：不仅不修改状态，也不读取合约状态（不能访问 state 变量 或 block 等），只能基于输入参数进行纯计算。</p>
+<p>小结：pure 比 view 更严格（不能读 state）。</p>
+<h3 id="26-如何将-ERC-1155-的代币转换成-ERC-20-代币？"><a href="#26-如何将-ERC-1155-的代币转换成-ERC-20-代币？" class="headerlink" title="26.如何将 ERC-1155 的代币转换成 ERC-20 代币？"></a>26.如何将 ERC-1155 的代币转换成 ERC-20 代币？</h3><p>没有直接自动转换标准，常见做法：<br>使用一个 包装器（wrapper）合约：用户把 ERC-1155 的特定 token 转入包装合约，包装合约按某个比率 mint 对应的 ERC-20 代币；赎回时销毁 ERC-20 并退回 ERC-1155。</p>
+<p>或在应用层实现兑换逻辑（桥接、兑换合约、市场合约）。<br>注意：需要考虑可替代性、编号（id）与分量（amount）的语义差异。</p>
+<h3 id="27-访问控制（Access-Control）是什么？为什么重要？"><a href="#27-访问控制（Access-Control）是什么？为什么重要？" class="headerlink" title="27.访问控制（Access Control）是什么？为什么重要？"></a>27.访问控制（Access Control）是什么？为什么重要？</h3><p>访问控制：限制谁能调用合约中的敏感函数（如 mint、upgrade、withdraw）。<br>重要性：防止未授权操作、保护资金与合约逻辑、便于权限管理与审计。<br>常见实现：Ownable（单一拥有者）、角色管理（OpenZeppelin AccessControl）、多签（Gnosis Safe）、时间锁（Timelock）等。</p>
+<h3 id="28-修饰符（modifier）的作用是什么？"><a href="#28-修饰符（modifier）的作用是什么？" class="headerlink" title="28.修饰符（modifier）的作用是什么？"></a>28.修饰符（modifier）的作用是什么？</h3><p>modifier：Solidity 提供的语法，用于在函数执行前后插入可复用逻辑（如权限检查、输入校验、重入锁等）,写法简洁、可复用<br>常见示例：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">modifier onlyOwner() &#123;</span><br><span class="line">  require(msg.sender == owner, &quot;not owner&quot;);</span><br><span class="line">  _;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>在函数中使用 onlyOwner 可自动插入检查逻辑。</p>
+<h3 id="29-uint256-可以存储的最大值是多少？"><a href="#29-uint256-可以存储的最大值是多少？" class="headerlink" title="29.uint256 可以存储的最大值是多少？"></a>29.uint256 可以存储的最大值是多少？</h3><p>uint256 范围：0 到 2^256 - 1，即 115792089237316195423570985008687907853269984665640564039457584007913129639935（一个非常大的数，约 1.1579×10^77）。</p>
+<h3 id="30-什么是浮动利率（floating-rate）和固定利率（fixed-rate）？"><a href="#30-什么是浮动利率（floating-rate）和固定利率（fixed-rate）？" class="headerlink" title="30.什么是浮动利率（floating rate）和固定利率（fixed rate）？"></a>30.什么是浮动利率（floating rate）和固定利率（fixed rate）？</h3><p>固定利率（Fixed rate）：在借贷&#x2F;合约期内利率保持不变（借贷双方能预见利息成本&#x2F;收益）。优点：可预测，适合长期锁定。</p>
+<p>浮动利率（Floating &#x2F; variable rate）：利率随市场基准（如某个指数、借贷池的利用率或 oracle）变化而上下波动。优点：通常更灵活、可能在利率下降时期更便宜；缺点：不可预测且可能在利率高涨时成本急剧增加。</p>
+<p>在 DeFi：常见如 Aave 的可变利率与稳定利率选项（stable rate 实际上是相对稳定的可变策略），以及在衍生品中对冲不同利率风险的使用。</p>
+<h3 id="31-什么交永续合约？什么交交割合约？"><a href="#31-什么交永续合约？什么交交割合约？" class="headerlink" title="31.什么交永续合约？什么交交割合约？"></a>31.什么交永续合约？什么交交割合约？</h3><p>永续合约是“不过期的合约”，靠资金费率锚定现货<br>交割合约是“有期限的合约”，到期必须自动结算</p>
+<h3 id="32-资金费率？"><a href="#32-资金费率？" class="headerlink" title="32.资金费率？"></a>32.资金费率？</h3><p>资金费率是根据永续合约价格与现货价格之间的差异，定期在持有多头或空头头寸的交易者之间进行的资金支付。<br>⬆️ 在看涨市场中，资金费率为正，多头交易者向空头交易者支付资金费。<br>⬇️ 在看跌市场中，资金费率为负，空头交易者向多头交易者支付资金费。<br>一般交易所不收取资金费率转移的手续费，这些费用直接在交易者之间进行结算</p>
+<p>资金费率 &#x3D; 溢价指数 + 利率项</p>
+<h3 id="33-资金费率怎么得来的？"><a href="#33-资金费率怎么得来的？" class="headerlink" title="33.资金费率怎么得来的？"></a>33.资金费率怎么得来的？</h3><p>对于【永续合约】这种“没有交割日的衍生品”才有资金费率</p>
+<p>资金费率由两个组成部分构成：利率和溢价。<br>其中，溢价是确保永续合约价格与标的资产价格趋同的关键因素。<br>LBank 采用固定利率，假设持有现金等价物的回报高于持有 BTC 等价物。<br>默认利率为每天 0.03%（每个资金费率间隔为 0.01%），但可能会根据市场条件（如联邦基金利率的变化）进行调整。</p>
+<p>当永续合约价格与标记价格之间存在显著价差时，会使用溢价指数来强制实现价格趋同。<br>溢价指数针对每种交易工具单独计算，公式如下：</p>
+<p>✅ 溢价指数（P）计算公式：<br>溢价指数(P) &#x3D;[Max(0, 影响买入价格 − 现货价格) − Max(0, 现货价格 − 影响卖出价格)] &#x2F; 现货价格</p>
+<p>其中：<br>影响买入价格：购买名义影响量的价格<br>影响卖出价格：卖出名义影响量的价格</p>
+<h3 id="34-永续价，现货价，标记价，指数价？"><a href="#34-永续价，现货价，标记价，指数价？" class="headerlink" title="34.永续价，现货价，标记价，指数价？"></a>34.永续价，现货价，标记价，指数价？</h3><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>你看到的是什么</th>
+<th>真正用途</th>
+<th>会不会被操控</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ 现货价</td>
+<td>现货市场真实成交价</td>
+<td>真实买卖价格</td>
+<td>❌ 很难</td>
+</tr>
+<tr>
+<td>✅ 永续价</td>
+<td>你合约下单的价格，合约市场自己的成交价</td>
+<td>决定你盈亏的价格</td>
+<td>✅ 容易被影响</td>
+</tr>
+<tr>
+<td>✅ 指数价</td>
+<td>多家现货均价，多家主流现货交易所的加权平均价</td>
+<td>定价“锚点”</td>
+<td>❌ 基本不可操控</td>
+</tr>
+<tr>
+<td>✅ 标记价</td>
+<td>用来强平的价格，指数价+合理溢价修正</td>
+<td>决定你爆不爆仓，保护多数正常交易者</td>
+<td>❌ 按规则算</td>
+</tr>
+</tbody></table>
+<p>一句话总结：赚钱看永续价，爆仓看标记价，公平看指数价，真实买卖看现货价</p>
 
-<h3 id="2-自动做市商原理"><a href="#2-自动做市商原理" class="headerlink" title="2.自动做市商原理"></a>2.自动做市商原理</h3><p>AMM 不是在计算“真实价格”，而是用资金池的比例反映供需变化， 价格由数学公式（like x*y&#x3D;k）自动调节。不依赖订单簿，而是让用户与合约交易，实现持续报价和流动性。</p>
-<p>其本质是利用恒定乘积公式做市商，x*y&#x3D;k</p>
-<h4 id="无常损失"><a href="#无常损失" class="headerlink" title="无常损失"></a>无常损失</h4><p>承担的核心风险叫 无常损失（Impermanent Loss）。如果你提供了 ETH + USDC，当 ETH 涨价时：池子会自动卖 ETH（因为别人买）<br>你回收的 ETH 会比单纯持有 ETH 还少，损失相对价值就是无常损失；</p>
-<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始价格：1 ETH = 100 USDC</span></span><br><span class="line"><span class="comment">//k=x0 * ​y0​=1×100=100</span></span><br><span class="line"><span class="comment">// ETH涨价两倍 即1ETH = 200USDC</span></span><br><span class="line"><span class="comment">// 涨价后 x1 y1的关系是 y1 = x1 * 200</span></span><br><span class="line"></span><br><span class="line">x1*(200x1)=<span class="number">100</span></span><br><span class="line">x1^<span class="number">2</span> = <span class="number">0.5</span></span><br><span class="line">x1​≈<span class="number">0.70710678</span> <span class="variable constant_">ETH</span></span><br><span class="line">y1 = <span class="number">200</span> * x1 ≈<span class="number">141.421356</span> <span class="variable constant_">USDC</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//无常损失</span></span><br><span class="line"><span class="comment">//本来是1ETH + 100USDC 涨价后值 300USDC</span></span><br><span class="line"><span class="comment">//做市商后，0.70710678 ETH * 200 + 141.421356 = 282.842712 USD</span></span><br><span class="line"><span class="comment">//那么做市商的无常损失就是 IL=282.842712/300​−1≈−0.057193≈−5.72%</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="UniswapV2-和UniswapV3（区间做市）的区别？"><a href="#UniswapV2-和UniswapV3（区间做市）的区别？" class="headerlink" title="UniswapV2 和UniswapV3（区间做市）的区别？"></a>UniswapV2 和UniswapV3（区间做市）的区别？</h4><p>Uniswap V2 是恒定乘积 AMM，流动性平均分布在全部价格区间，简单但资金效率低。<br><br>Uniswap V3 最大的创新是“集中流动性”，LP 可以选择一个价格区间提供流动性，从而大大提升资金利用率和交易深度。<br><br>此外，V3 提供多个手续费档位，LP 头寸是 NFT，不再是 ERC20，同样 V3 的预言机更高精度也更省 Gas。<br><br>简单来说，V2 易用但低效，V3 更复杂但效率极高，也更符合专业做市的需求</p>
-<h3 id="3-LaunchPad项目前期投资和获得收益的。这个份额是怎么计算的"><a href="#3-LaunchPad项目前期投资和获得收益的。这个份额是怎么计算的" class="headerlink" title="3.LaunchPad项目前期投资和获得收益的。这个份额是怎么计算的"></a>3.LaunchPad项目前期投资和获得收益的。这个份额是怎么计算的</h3><p>Launchpad 的投资份额按比例分配：你占总池子多少，就给你多少项目代币。而收益取决于上线后的市场价格，而不是你投的金额本身</p>
-<h3 id="4-eip191-简单的扩容和算法"><a href="#4-eip191-简单的扩容和算法" class="headerlink" title="4.eip191 简单的扩容和算法"></a>4.eip191 简单的扩容和算法</h3><p>EIP-191 定义了一种对任意消息进行签名的格式，用来避免“把普通字符串当成交易签名”的安全问题 <br><br>算法为任意消息体进行签名时，先讲消息转为字节，然后在前面拼上魔方字节(0x19)+版本号version(0x00或0x45),然后再对整个拼接的消息做keccak256，再用secp256k1私钥签名</p>
-<div class="highlight-container" data-rel="Js"><figure class="iseeu highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//假设有人要签 hello：</span></span><br><span class="line"><span class="comment">//先把消息转为 bytes：&quot;hello&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//加上前缀：</span></span><br><span class="line"><span class="number">0x19</span> <span class="number">0x00</span> hello</span><br><span class="line"></span><br><span class="line"><span class="comment">//做哈希：</span></span><br><span class="line">msg_hash = <span class="title function_">keccak256</span>(<span class="number">0x19</span> <span class="number">0x00</span> hello)</span><br><span class="line"><span class="comment">//使用私钥对 msg_hash 做 ECDSA 签名：</span></span><br><span class="line">signature = <span class="title function_">ECDSA_sign</span>(msg_hash)</span><br></pre></td></tr></table></figure></div>
-<blockquote>
-<p>一句话总结<br>EIP-191 定义了签名消息的基本格式：0x19 + version + data。<br>算法就是先拼接前缀，再 keccak，再 secp256k1 签名。<br>version 字节让它具备扩容能力，比如 EIP-712 就是 version &#x3D; 0x45 的扩展版</p>
-</blockquote>
-<h4 id="eth-sign为何不安全？"><a href="#eth-sign为何不安全？" class="headerlink" title="eth_sign为何不安全？"></a>eth_sign为何不安全？</h4><p>eth_sign 没有把以下信息纳入签名：</p>
-<ul>
-<li>链 ID</li>
-<li>合约地址</li>
-<li>协议版本</li>
-<li>用户操作类型</li>
-</ul>
-<p>导致：</p>
-<ul>
-<li>同一签名可被在 另一个合约 &#x2F; 链 使用</li>
-<li>或者被重放在其他场景执行危险操作</li>
-</ul>
-<p>例如：你在某个DApp登录时签的消息，在另一个完全不同的DApp也能用！</p>
-<h4 id="作用域隔离Domain-Separator的作用"><a href="#作用域隔离Domain-Separator的作用" class="headerlink" title="作用域隔离Domain Separator的作用"></a>作用域隔离Domain Separator的作用</h4><p>Domain Separator 是 EIP-712 里用来做签名“作用域隔离”的哈希，包含协议名、版本、链 ID、验证合约等信息。它能确保用户的签名与一个特定的 DApp 和链绑定，避免签名被攻击者拿到其他链或其他合约重放，因此是结构化签名最核心的安全保障机制</p>
-<h3 id="5-常见的docker命令及dockerfile脚本"><a href="#5-常见的docker命令及dockerfile脚本" class="headerlink" title="5.常见的docker命令及dockerfile脚本"></a>5.常见的docker命令及dockerfile脚本</h3><p><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7306756690727747610" >Docker Compose：从零基础到实战应用的全面指南 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="6-现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略-网格和信号交易"><a href="#6-现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略-网格和信号交易" class="headerlink" title="6.现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略.网格和信号交易"></a>6.现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略.网格和信号交易</h3><p>tips: 还有行情这里不同分钟的分钟线，会有不同纬度的表和定时任务 需要看看行情对应的接口文档</p>
-<h3 id="7-现价单和市价单-这里还有个OCD"><a href="#7-现价单和市价单-这里还有个OCD" class="headerlink" title="7.现价单和市价单 这里还有个OCD"></a>7.现价单和市价单 这里还有个OCD</h3><h3 id="8-撮合的流程需要熟悉"><a href="#8-撮合的流程需要熟悉" class="headerlink" title="8.撮合的流程需要熟悉"></a>8.撮合的流程需要熟悉</h3><h3 id="9-撮合交易为啥会用disruptor技术"><a href="#9-撮合交易为啥会用disruptor技术" class="headerlink" title="9.撮合交易为啥会用disruptor技术"></a>9.撮合交易为啥会用disruptor技术</h3><h3 id="10-现价单和市价单，websocket-通信的数据格式-Trade-server-里面的业务渠道-订单和实时成交-binary-message-需要需要查一下对应的含义"><a href="#10-现价单和市价单，websocket-通信的数据格式-Trade-server-里面的业务渠道-订单和实时成交-binary-message-需要需要查一下对应的含义" class="headerlink" title="10.现价单和市价单，websocket 通信的数据格式   Trade server 里面的业务渠道 订单和实时成交  binary message. 需要需要查一下对应的含义"></a>10.现价单和市价单，websocket 通信的数据格式   Trade server 里面的业务渠道 订单和实时成交  binary message. 需要需要查一下对应的含义</h3><h3 id="11-多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程-cpu爆满问题的排查处理"><a href="#11-多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程-cpu爆满问题的排查处理" class="headerlink" title="11.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程 cpu爆满问题的排查处理"></a>11.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程 cpu爆满问题的排查处理</h3><h3 id="12-了解nft对应的一些玩法-以及相关实现"><a href="#12-了解nft对应的一些玩法-以及相关实现" class="headerlink" title="12.了解nft对应的一些玩法 以及相关实现"></a>12.了解nft对应的一些玩法 以及相关实现</h3><h3 id="13-ETCD热更新的原理"><a href="#13-ETCD热更新的原理" class="headerlink" title="13.ETCD热更新的原理"></a>13.ETCD热更新的原理</h3><h3 id="14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"><a href="#14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的" class="headerlink" title="14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"></a>14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</h3><h3 id="15-常见的签名算法"><a href="#15-常见的签名算法" class="headerlink" title="15.常见的签名算法"></a>15.常见的签名算法</h3><h3 id="16-合约怎么升级，如何监听线上事件？"><a href="#16-合约怎么升级，如何监听线上事件？" class="headerlink" title="16.合约怎么升级，如何监听线上事件？"></a>16.合约怎么升级，如何监听线上事件？</h3>
         </div>
 
         
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> (八)web3面试题第一弹</li>
+        <li><strong>Title:</strong> (九)web3面试第一弹</li>
         <li><strong>Author:</strong> viEcho</li>
         <li><strong>Created at
-                :</strong> 2025-11-29 19:30:35</li>
+                :</strong> 2025-12-03 18:12:28</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-12-02 19:21:53
+                    :</strong> 2025-12-08 20:44:26
             </li>
         
         <li>
-            <strong>Link:</strong> https://viecho.github.io/2025/1129/web3-interview1.html
+            <strong>Link:</strong> https://viecho.github.io/2025/1203/web3-interview1.html
         </li>
         <li>
             <strong>
@@ -1113,6 +1171,14 @@
         
 
         
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/solidity/">#solidity</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
 
         
   <div class="recommended-article px-2 sm:px-6 md:px-8">
@@ -1120,27 +1186,27 @@
     <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
     </div>
-    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
-  <img src="/images/web3/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
-  <span class="title">(四) ERC20 && ERC721 简介</span>
-</a><a class="recommended-article-item" href="/2025/1203/solidity-interview.html" title="(九)Solidity面试题第一弹" rel="bookmark">
-  <img src="/images/web3/25/5/1/solidity_base.png" alt="(九)Solidity面试题第一弹" class="!max-w-none">
-  <span class="title">(九)Solidity面试题第一弹</span>
-</a><a class="recommended-article-item" href="/2025/0812/web3-terms.html" title="(七)web3相关术语" rel="bookmark">
-  <img src="/images/web3/25/5/1/solidity_base.png" alt="(七)web3相关术语" class="!max-w-none">
-  <span class="title">(七)web3相关术语</span>
+    <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/solidity-proxy-call.html" title="(三)solidity代理调用" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(三)solidity代理调用" class="!max-w-none">
+  <span class="title">(三)solidity代理调用</span>
+</a><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
+  <span class="title">(二)solidity内置对象及函数</span>
+</a><a class="recommended-article-item" href="/2025/0413/solidity-base-programming-rules.html" title="(一)solidity基本语法规则" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(一)solidity基本语法规则" class="!max-w-none">
+  <span class="title">(一)solidity基本语法规则</span>
 </a></div>
    </div>
    <div class="recommended-mobile">
    <div class="recommended-article-header text-xl md:text-3xl font-bold mt-10">
      <i aria-hidden="true"></i><span>推荐阅读</span>
    </div>
-   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/erc20-vs-erc721.html" title="(四) ERC20 && ERC721 简介" rel="bookmark">
-  <img src="/images/web3/25/5/1/solidity_base.png" alt="(四) ERC20 && ERC721 简介" class="!max-w-none">
-  <span class="title">(四) ERC20 && ERC721 简介</span>
-</a><a class="recommended-article-item" href="/2025/1203/solidity-interview.html" title="(九)Solidity面试题第一弹" rel="bookmark">
-  <img src="/images/web3/25/5/1/solidity_base.png" alt="(九)Solidity面试题第一弹" class="!max-w-none">
-  <span class="title">(九)Solidity面试题第一弹</span>
+   <div class="recommended-article-group"><a class="recommended-article-item" href="/2025/0502/solidity-proxy-call.html" title="(三)solidity代理调用" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(三)solidity代理调用" class="!max-w-none">
+  <span class="title">(三)solidity代理调用</span>
+</a><a class="recommended-article-item" href="/2025/0501/solidity-inner-object-and-function.html" title="(二)solidity内置对象及函数" rel="bookmark">
+  <img src="/images/web3/25/5/1/solidity_base.png" alt="(二)solidity内置对象及函数" class="!max-w-none">
+  <span class="title">(二)solidity内置对象及函数</span>
 </a></div>
    </div>
   </div>
@@ -1148,29 +1214,14 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2025/1203/invest-tips.html"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">股票小贴士</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2025/1121/invest-way.html"
+                        href="/2025/1203/invest-tips.html"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">雪球股票投资24章拆解</span>
+                                <span class="post-nav-title-item">股票小贴士</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -1233,8 +1284,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">(八)web3面试题第一弹</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-erc20%E3%80%81erc721%E3%80%81erc1155%E8%BF%98%E6%9C%89%E5%85%B6%E4%BB%96%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%90%88%E7%BA%A6-%E5%AE%83%E4%BB%AC%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-text">1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E5%81%9A%E5%B8%82%E5%95%86%E5%8E%9F%E7%90%86"><span class="nav-text">2.自动做市商原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-LaunchPad%E9%A1%B9%E7%9B%AE%E5%89%8D%E6%9C%9F%E6%8A%95%E8%B5%84%E5%92%8C%E8%8E%B7%E5%BE%97%E6%94%B6%E7%9B%8A%E7%9A%84%E3%80%82%E8%BF%99%E4%B8%AA%E4%BB%BD%E9%A2%9D%E6%98%AF%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E7%9A%84"><span class="nav-text">3.LaunchPad项目前期投资和获得收益的。这个份额是怎么计算的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-eip191-%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%A9%E5%AE%B9%E5%92%8C%E7%AE%97%E6%B3%95"><span class="nav-text">4.eip191 简单的扩容和算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B8%B8%E8%A7%81%E7%9A%84docker%E5%91%BD%E4%BB%A4%E5%8F%8Adockerfile%E8%84%9A%E6%9C%AC"><span class="nav-text">5.常见的docker命令及dockerfile脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%8E%B0%E4%BB%B7%E5%8D%95%E5%B8%82%E4%BB%B7%E5%8D%95%E9%9C%80%E8%A6%81%E5%86%8D%E5%8E%BB%E7%9C%8B%E7%9C%8B%E6%AC%A7%E6%84%8F%E7%9A%84api%E6%96%87%E6%A1%A3%EF%BC%8C%E4%BA%86%E8%A7%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5-%E7%BD%91%E6%A0%BC%E5%92%8C%E4%BF%A1%E5%8F%B7%E4%BA%A4%E6%98%93"><span class="nav-text">6.现价单市价单需要再去看看欧意的api文档，了解对应的一些交易策略.网格和信号交易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%8E%B0%E4%BB%B7%E5%8D%95%E5%92%8C%E5%B8%82%E4%BB%B7%E5%8D%95-%E8%BF%99%E9%87%8C%E8%BF%98%E6%9C%89%E4%B8%AAOCD"><span class="nav-text">7.现价单和市价单 这里还有个OCD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%92%AE%E5%90%88%E7%9A%84%E6%B5%81%E7%A8%8B%E9%9C%80%E8%A6%81%E7%86%9F%E6%82%89"><span class="nav-text">8.撮合的流程需要熟悉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%92%AE%E5%90%88%E4%BA%A4%E6%98%93%E4%B8%BA%E5%95%A5%E4%BC%9A%E7%94%A8disruptor%E6%8A%80%E6%9C%AF"><span class="nav-text">9.撮合交易为啥会用disruptor技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E7%8E%B0%E4%BB%B7%E5%8D%95%E5%92%8C%E5%B8%82%E4%BB%B7%E5%8D%95%EF%BC%8Cwebsocket-%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-Trade-server-%E9%87%8C%E9%9D%A2%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%B8%A0%E9%81%93-%E8%AE%A2%E5%8D%95%E5%92%8C%E5%AE%9E%E6%97%B6%E6%88%90%E4%BA%A4-binary-message-%E9%9C%80%E8%A6%81%E9%9C%80%E8%A6%81%E6%9F%A5%E4%B8%80%E4%B8%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-text">10.现价单和市价单，websocket 通信的数据格式   Trade server 里面的业务渠道 订单和实时成交  binary message. 需要需要查一下对应的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98%EF%BC%8C%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E7%BA%BF%E7%A8%8B-cpu%E7%88%86%E6%BB%A1%E9%97%AE%E9%A2%98%E7%9A%84%E6%8E%92%E6%9F%A5%E5%A4%84%E7%90%86"><span class="nav-text">11.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程 cpu爆满问题的排查处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%BA%86%E8%A7%A3nft%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8E%A9%E6%B3%95-%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%AE%9E%E7%8E%B0"><span class="nav-text">12.了解nft对应的一些玩法 以及相关实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-ETCD%E7%83%AD%E6%9B%B4%E6%96%B0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">13.ETCD热更新的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8A%A0%E4%B9%90%E8%A7%82%E9%94%81%E5%9C%A8%E8%AE%A2%E5%8D%95%E6%94%AF%E4%BB%98%E5%9C%A8%E5%85%B3%E5%8D%95%E4%B8%8B%E7%9A%84%E5%86%B2%E7%AA%81%E5%9C%BA%E6%99%AF%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84"><span class="nav-text">14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-text">15.常见的签名算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E5%90%88%E7%BA%A6%E6%80%8E%E4%B9%88%E5%8D%87%E7%BA%A7%EF%BC%8C%E5%A6%82%E4%BD%95%E7%9B%91%E5%90%AC%E7%BA%BF%E4%B8%8A%E4%BA%8B%E4%BB%B6%EF%BC%9F"><span class="nav-text">16.合约怎么升级，如何监听线上事件？</span></a></li></ol>
+        <div class="page-title">(九)web3面试第一弹</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%A7%81%E6%9C%89%EF%BC%88private%EF%BC%89%E3%80%81%E5%86%85%E9%83%A8%EF%BC%88internal%EF%BC%89%E3%80%81%E5%85%AC%E5%85%B1%EF%BC%88public%EF%BC%89%E3%80%81%E5%A4%96%E9%83%A8%EF%BC%88external%EF%BC%89%E5%87%BD%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">1. 私有（private）、内部（internal）、公共（public）、外部（external）函数之间的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%80%E4%B8%AA%E5%90%88%E7%BA%A6%E5%A4%A7%E5%B0%8F%EF%BC%88%E9%83%A8%E7%BD%B2%E5%90%8E%E5%AD%97%E8%8A%82%E7%A0%81%EF%BC%89%E5%A4%A7%E7%BA%A6%E5%8F%AF%E4%BB%A5%E6%9C%89%E5%A4%9A%E5%A4%A7%EF%BC%9F"><span class="nav-text">2. 一个合约大小（部署后字节码）大约可以有多大？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-create-%E5%92%8C-create2-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">3.create 和 create2 的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Solidity-0-8-0-%E7%89%88%E6%9C%AC%E4%B8%AD%E5%AF%B9%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88%E7%AE%97%E6%9C%AF%EF%BC%89%E7%9A%84%E9%87%8D%E5%A4%A7%E5%8F%98%E5%8C%96%EF%BC%9F"><span class="nav-text">4.Solidity 0.8.0 版本中对运算符（算术）的重大变化？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BB%A3%E7%90%86%EF%BC%88proxy%EF%BC%89%E9%9C%80%E8%A6%81%E5%93%AA%E7%A7%8D%E7%89%B9%E6%AE%8A%E7%9A%84-call-%E6%89%8D%E8%83%BD%E5%B7%A5%E4%BD%9C%EF%BC%9F"><span class="nav-text">5. 代理（proxy）需要哪种特殊的 call 才能工作？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%9C%A8-EIP-1559-%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E4%BB%A5%E5%A4%AA%E5%9D%8A%E4%BA%A4%E6%98%93%E7%9A%84%E7%BE%8E%E5%85%83%E6%88%90%E6%9C%AC%EF%BC%9F"><span class="nav-text">6.在 EIP-1559 之前，如何计算以太坊交易的美元成本？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E5%9C%A8%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8A%E8%B7%A8%E5%8C%BA%E5%9D%97%E5%88%9B%E5%BB%BA%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9A%84%E6%8C%91%E6%88%98%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">7.在区块链上跨区块创建随机数的挑战是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E8%8D%B7%E5%85%B0%E6%8B%8D%E5%8D%96%EF%BC%88Dutch-auction%EF%BC%89%E5%92%8C%E8%8B%B1%E5%BC%8F%E6%8B%8D%E5%8D%96%EF%BC%88English-auction%EF%BC%89%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">8.荷兰拍卖（Dutch auction）和英式拍卖（English auction）的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-ERC-20-%E7%9A%84-transfer-%E5%92%8C-transferFrom-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">9.ERC-20 的 transfer 和 transferFrom 之间有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E5%AF%B9%E4%BA%8E%E5%9C%B0%E5%9D%80%E7%99%BD%E5%90%8D%E5%8D%95%EF%BC%88whitelist%EF%BC%89%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%98%A0%E5%B0%84%EF%BC%88mapping%EF%BC%89%E8%BF%98%E6%98%AF%E6%95%B0%E7%BB%84%E6%9B%B4%E5%A5%BD%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">10.对于地址白名单（whitelist），使用映射（mapping）还是数组更好，为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8-tx-origin-%E8%BF%9B%E8%A1%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9F"><span class="nav-text">11.为什么不使用 tx.origin 进行身份验证？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E4%BD%BF%E7%94%A8%E4%BB%80%E4%B9%88%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-text">12.以太坊使用什么哈希函数？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1%E4%B8%AAETH%E7%9B%B8%E5%BD%93%E4%BA%8E%E5%A4%9A%E5%B0%91-gwei%EF%BC%9F1-%E4%B8%AA-ETH-%E7%9B%B8%E5%BD%93%E4%BA%8E%E5%A4%9A%E5%B0%91-wei%EF%BC%9F"><span class="nav-text">13.1个ETH相当于多少 gwei？1 个 ETH 相当于多少 wei？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-assert-%E5%92%8C-require-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">14. assert 和 require 有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E4%BB%80%E4%B9%88%E6%98%AF%E9%97%AA%E7%94%B5%E8%B4%B7%EF%BC%88Flash-Loan%EF%BC%89%EF%BC%9F"><span class="nav-text">15. 什么是闪电贷（Flash Loan）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E4%BB%80%E4%B9%88%E6%98%AF-%E6%A3%80%E6%9F%A5-%E6%95%88%E6%9E%9C-%E4%BA%A4%E4%BA%92%EF%BC%88check-effects-interactions%EF%BC%89%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="nav-text">16. 什么是 检查-效果-交互（check-effects-interactions）模式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E8%BF%90%E8%A1%8C%E7%8B%AC%E7%AB%8B%E9%AA%8C%E8%AF%81%E8%8A%82%E7%82%B9%EF%BC%88%E6%88%90%E4%B8%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E9%AA%8C%E8%AF%81%E8%80%85%EF%BC%89%E6%89%80%E9%9C%80%E7%9A%84%E6%9C%80%E5%B0%8F%E4%BB%A5%E5%A4%AA%E6%95%B0%E9%87%8F%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-text">17. 运行独立验证节点（成为以太坊验证者）所需的最小以太数量是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-fallback-%E5%92%8C-receive-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">18.fallback 和 receive 之间有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E5%85%A5%EF%BC%88reentrancy%EF%BC%89%EF%BC%9F"><span class="nav-text">19.什么是重入（reentrancy）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-Solidity-%E8%BF%9B%E8%A1%8C%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%9F"><span class="nav-text">20.如何使用 Solidity 进行类型转换？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E4%B8%8A%E6%B5%B7%EF%BC%88Shanghai%EF%BC%89%E5%8D%87%E7%BA%A7%E5%90%8E%EF%BC%8C%E6%AF%8F%E4%B8%AA%E5%8C%BA%E5%9D%97%E7%9A%84-gas-%E9%99%90%E5%88%B6%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-text">21.上海（Shanghai）升级后，每个区块的 gas 限制是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-tx-origin-%E5%92%8C-msg-sender-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">22.tx.origin 和 msg.sender 有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E4%BB%80%E4%B9%88%E9%98%BB%E6%AD%A2%E6%97%A0%E9%99%90%E5%BE%AA%E7%8E%AF%E6%B0%B8%E8%BF%9C%E8%BF%90%E8%A1%8C%EF%BC%9F"><span class="nav-text">23.什么阻止无限循环永远运行？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E5%A6%82%E4%BD%95%E5%90%91%E6%B2%A1%E6%9C%89-payable-%E5%87%BD%E6%95%B0%E3%80%81receive-%E6%88%96-fallback-%E7%9A%84%E5%90%88%E7%BA%A6%E5%8F%91%E9%80%81%E4%BB%A5%E5%A4%AA%EF%BC%9F"><span class="nav-text">24.如何向没有 payable 函数、receive 或 fallback 的合约发送以太？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-view-%E5%92%8C-pure-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-text">25.view 和 pure 有什么区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-%E5%A6%82%E4%BD%95%E5%B0%86-ERC-1155-%E7%9A%84%E4%BB%A3%E5%B8%81%E8%BD%AC%E6%8D%A2%E6%88%90-ERC-20-%E4%BB%A3%E5%B8%81%EF%BC%9F"><span class="nav-text">26.如何将 ERC-1155 的代币转换成 ERC-20 代币？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%EF%BC%88Access-Control%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%8D%E8%A6%81%EF%BC%9F"><span class="nav-text">27.访问控制（Access Control）是什么？为什么重要？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%88modifier%EF%BC%89%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">28.修饰符（modifier）的作用是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-uint256-%E5%8F%AF%E4%BB%A5%E5%AD%98%E5%82%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-text">29.uint256 可以存储的最大值是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%AE%E5%8A%A8%E5%88%A9%E7%8E%87%EF%BC%88floating-rate%EF%BC%89%E5%92%8C%E5%9B%BA%E5%AE%9A%E5%88%A9%E7%8E%87%EF%BC%88fixed-rate%EF%BC%89%EF%BC%9F"><span class="nav-text">30.什么是浮动利率（floating rate）和固定利率（fixed rate）？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E4%BB%80%E4%B9%88%E4%BA%A4%E6%B0%B8%E7%BB%AD%E5%90%88%E7%BA%A6%EF%BC%9F%E4%BB%80%E4%B9%88%E4%BA%A4%E4%BA%A4%E5%89%B2%E5%90%88%E7%BA%A6%EF%BC%9F"><span class="nav-text">31.什么交永续合约？什么交交割合约？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E8%B5%84%E9%87%91%E8%B4%B9%E7%8E%87%EF%BC%9F"><span class="nav-text">32.资金费率？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E8%B5%84%E9%87%91%E8%B4%B9%E7%8E%87%E6%80%8E%E4%B9%88%E5%BE%97%E6%9D%A5%E7%9A%84%EF%BC%9F"><span class="nav-text">33.资金费率怎么得来的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E6%B0%B8%E7%BB%AD%E4%BB%B7%EF%BC%8C%E7%8E%B0%E8%B4%A7%E4%BB%B7%EF%BC%8C%E6%A0%87%E8%AE%B0%E4%BB%B7%EF%BC%8C%E6%8C%87%E6%95%B0%E4%BB%B7%EF%BC%9F"><span class="nav-text">34.永续价，现货价，标记价，指数价？</span></a></li></ol>
 
     </div>
 </div>
