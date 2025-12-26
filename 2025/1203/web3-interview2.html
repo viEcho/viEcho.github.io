@@ -20,13 +20,13 @@
     
         <meta name="description" content="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）ERC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(九)web3面试题第二弹">
+<meta property="og:title" content="(九)web3面试第二弹">
 <meta property="og:url" content="https://viecho.github.io/2025/1203/web3-interview2.html">
 <meta property="og:site_name" content="叁有三分之一">
 <meta property="og:description" content="1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？ERC20–同质化代币，稳定币；项目方发行的token,gameFi游戏货币，治理代币，奖励代币挖矿空投等 ERC721（含 721A，批量铸造节省90%gas费）–数藏，链上凭证，游戏装备（非同质化）ERC1155–游戏道具，可批量铸造和转账，半同质化资产（例如门票，同场次id不同座位不同id）ERC">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-12-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-12-09T09:51:01.643Z">
+<meta property="article:modified_time" content="2025-12-23T07:50:59.490Z">
 <meta property="article:author" content="viEcho">
 <meta name="twitter:card" content="summary">
     
@@ -40,7 +40,7 @@
     
     <title>
         
-            (九)web3面试题第二弹 -
+            (九)web3面试第二弹 -
         
         叁有三分之一
     </title>
@@ -880,7 +880,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">114</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">116</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -907,10 +907,10 @@
             
                 
                 
-                <img src="/../images/web3/25/11/30/web3.png" alt="(九)web3面试题第二弹" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
+                <img src="/../images/web3/25/11/30/web3.png" alt="(九)web3面试第二弹" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75"/>
                 
                 <div class="w-full flex items-center absolute bottom-0 justify-start">
-                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(九)web3面试题第二弹</h1>
+                    <h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-bold backdrop-blur-lg rounded-xl border border-border-color ">(九)web3面试第二弹</h1>
                 </div>
             
             </div>
@@ -938,8 +938,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-12-09 17:51:01</span>
-            <span class="mobile">2025-12-09 17:51:01</span>
+            <span class="desktop">2025-12-23 15:50:59</span>
+            <span class="mobile">2025-12-23 15:50:59</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -966,12 +966,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3.8k Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>14 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>15 Mins</span>
         </span>
     
     
@@ -1189,21 +1189,26 @@
 <p><strong>预约</strong> – 常用于 盲盒、空投、申购的预报名</p>
 <h3 id="13-ETCD热更新的原理"><a href="#13-ETCD热更新的原理" class="headerlink" title="13.ETCD热更新的原理"></a>13.ETCD热更新的原理</h3><p>ETCD热更新本质是通过Watch机制监听Key&#x2F;目录，当内容变化时实时推送事件，客户端收到后本地更新并刷新内存配置，无需重启</p>
 <p>ETCD热更新原理 &#x3D; Watch推送 → 内存更新配置 → 本地业务即时生效<br>核心3点：<br>Watch（长连接监听）<br>Revision（有序事件）<br>本地缓存（避免反复读 etcd）</p>
-<h3 id="14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"><a href="#14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的" class="headerlink" title="14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"></a>14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</h3><h3 id="15-常见的签名算法"><a href="#15-常见的签名算法" class="headerlink" title="15.常见的签名算法"></a>15.常见的签名算法</h3><h3 id="16-合约怎么升级，如何监听线上事件？"><a href="#16-合约怎么升级，如何监听线上事件？" class="headerlink" title="16.合约怎么升级，如何监听线上事件？"></a>16.合约怎么升级，如何监听线上事件？</h3>
+<h3 id="14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"><a href="#14-状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的" class="headerlink" title="14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的"></a>14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</h3><p>典型场景例子：<br>用户下单 → 状态为 UNPAID（待支付）<br>支付有延时（用户扫码慢、三方支付回调慢）<br>同时定时任务&#x2F;风控系统检查订单超时 → 尝试 “关闭订单（CANCELLED）”<br>两者同时更新订单状态，就会出现冲突</p>
+<p>我们常用的做法是用枚举状态机 + 乐观锁来解决这个问题的</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">OrderStatus</span> &#123;</span><br><span class="line">    unpaid, <span class="comment">// 创建,待支付</span></span><br><span class="line">    cancled,<span class="comment">// 超时取消</span></span><br><span class="line">    paid,<span class="comment">// 支付</span></span><br><span class="line">    fase_refund,<span class="comment">// 快速退款</span></span><br><span class="line">    delivered,<span class="comment">// 发货</span></span><br><span class="line">    received,<span class="comment">// 收货</span></span><br><span class="line">    refund,<span class="comment">// 退货退款</span></span><br><span class="line">    closed<span class="comment">// 关闭</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>状态机的逻辑是：更新状态时，取消订单时：已支付不能取消；支付回调时：已取消不能再支付</p>
+<p>乐观锁+状态机是为了避免同时支付和关单，只允许一个操作成功，另一个操作失败！</p>
+<h3 id="15-常见的签名算法"><a href="#15-常见的签名算法" class="headerlink" title="15.常见的签名算法"></a>15.常见的签名算法</h3><h3 id="16-合约怎么升级，如何监听线上事件？"><a href="#16-合约怎么升级，如何监听线上事件？" class="headerlink" title="16.合约怎么升级，如何监听线上事件？"></a>16.合约怎么升级，如何监听线上事件？</h3>
         </div>
 
         
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> (九)web3面试题第二弹</li>
+        <li><strong>Title:</strong> (九)web3面试第二弹</li>
         <li><strong>Author:</strong> viEcho</li>
         <li><strong>Created at
                 :</strong> 2025-12-03 00:00:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2025-12-09 17:51:01
+                    :</strong> 2025-12-23 15:50:59
             </li>
         
         <li>
@@ -1346,7 +1351,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">(九)web3面试题第二弹</div>
+        <div class="page-title">(九)web3面试第二弹</div>
         <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-erc20%E3%80%81erc721%E3%80%81erc1155%E8%BF%98%E6%9C%89%E5%85%B6%E4%BB%96%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%90%88%E7%BA%A6-%E5%AE%83%E4%BB%AC%E6%9C%89%E5%95%A5%E5%8C%BA%E5%88%AB-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E5%95%A5%EF%BC%9F"><span class="nav-text">1.erc20、erc721、erc1155还有其他哪些类型的合约 它们有啥区别?应用场景是啥？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%87%AA%E5%8A%A8%E5%81%9A%E5%B8%82%E5%95%86%E5%8E%9F%E7%90%86"><span class="nav-text">2.自动做市商原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-LaunchPad%E9%A1%B9%E7%9B%AE%E5%89%8D%E6%9C%9F%E6%8A%95%E8%B5%84%E5%92%8C%E8%8E%B7%E5%BE%97%E6%94%B6%E7%9B%8A%E7%9A%84%E3%80%82%E8%BF%99%E4%B8%AA%E4%BB%BD%E9%A2%9D%E6%98%AF%E6%80%8E%E4%B9%88%E8%AE%A1%E7%AE%97%E7%9A%84"><span class="nav-text">3.LaunchPad项目前期投资和获得收益的。这个份额是怎么计算的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-eip191-%E7%AE%80%E5%8D%95%E7%9A%84%E6%89%A9%E5%AE%B9%E5%92%8C%E7%AE%97%E6%B3%95"><span class="nav-text">4.eip191 简单的扩容和算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B8%B8%E8%A7%81%E7%9A%84docker%E5%91%BD%E4%BB%A4%E5%8F%8Adockerfile%E8%84%9A%E6%9C%AC"><span class="nav-text">5.常见的docker命令及dockerfile脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%8E%B0%E4%BB%B7%E5%A7%94%E6%89%98%EF%BC%8C%E5%B8%82%E4%BB%B7%E5%A7%94%E6%89%98%EF%BC%8C%E8%AE%A1%E4%BB%B7%E5%A7%94%E6%89%98%EF%BC%8COCO-%EF%BC%9B"><span class="nav-text">6.现价委托，市价委托，计价委托，OCO?；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E8%AE%A2%E5%8D%95%E7%B1%BB%E5%9E%8B"><span class="nav-text">7.订单类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E6%92%AE%E5%90%88%E7%9A%84%E6%B5%81%E7%A8%8B%E9%9C%80%E8%A6%81%E7%86%9F%E6%82%89%EF%BC%9B%E6%AC%A7%E6%84%8F%E7%9A%84api%E6%96%87%E6%A1%A3%EF%BC%8C%E4%BA%86%E8%A7%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5-%E7%BD%91%E6%A0%BC%E5%92%8C%E4%BF%A1%E5%8F%B7%E4%BA%A4%E6%98%93"><span class="nav-text">7.撮合的流程需要熟悉；欧意的api文档，了解对应的一些交易策略.网格和信号交易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E4%BA%A4%E6%98%93%E6%89%808%E5%A4%A7%E6%A0%B8%E5%BF%83%E7%B3%BB%E7%BB%9F"><span class="nav-text">8.交易所8大核心系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%92%AE%E5%90%88%E4%BA%A4%E6%98%93%E4%B8%BA%E5%95%A5%E4%BC%9A%E7%94%A8disruptor%E6%8A%80%E6%9C%AF"><span class="nav-text">8.撮合交易为啥会用disruptor技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-websocket%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%EF%BC%9BTrade-server%E9%87%8C%E9%9D%A2%E7%9A%84%E4%B8%9A%E5%8A%A1%E6%B8%A0%E9%81%93%EF%BC%8C%E8%AE%A2%E5%8D%95%E5%92%8C%E5%AE%9E%E6%97%B6%E6%88%90%E4%BA%A4binaryMessage-%E9%9C%80%E8%A6%81%E9%9C%80%E8%A6%81%E6%9F%A5%E4%B8%80%E4%B8%8B%E5%AF%B9%E5%BA%94%E7%9A%84%E5%90%AB%E4%B9%89"><span class="nav-text">9.websocket通信的数据格式；Trade-server里面的业务渠道，订单和实时成交binaryMessage. 需要需要查一下对应的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E6%92%AE%E5%90%88%E7%9A%84%E7%AD%96%E7%95%A5"><span class="nav-text">10.撮合的策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98%EF%BC%8C%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E5%AF%B9%E5%BA%94%E7%9A%84%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E7%BA%BF%E7%A8%8Bcpu%E7%88%86%E6%BB%A1%E9%97%AE%E9%A2%98%E7%9A%84%E6%8E%92%E6%9F%A5%E5%A4%84%E7%90%86"><span class="nav-text">11.多线程问题，需要了解对应的线程阻塞问题以及如何解决多线程cpu爆满问题的排查处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%BA%86%E8%A7%A3nft%E5%AF%B9%E5%BA%94%E7%9A%84%E4%B8%80%E4%BA%9B%E7%8E%A9%E6%B3%95%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%AE%9E%E7%8E%B0"><span class="nav-text">12.了解nft对应的一些玩法以及相关实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-ETCD%E7%83%AD%E6%9B%B4%E6%96%B0%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">13.ETCD热更新的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E7%8A%B6%E6%80%81%E6%9C%BA%E5%8A%A0%E4%B9%90%E8%A7%82%E9%94%81%E5%9C%A8%E8%AE%A2%E5%8D%95%E6%94%AF%E4%BB%98%E5%9C%A8%E5%85%B3%E5%8D%95%E4%B8%8B%E7%9A%84%E5%86%B2%E7%AA%81%E5%9C%BA%E6%99%AF%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84"><span class="nav-text">14.状态机加乐观锁在订单支付在关单下的冲突场景，以及如何起作用的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%AD%BE%E5%90%8D%E7%AE%97%E6%B3%95"><span class="nav-text">15.常见的签名算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-%E5%90%88%E7%BA%A6%E6%80%8E%E4%B9%88%E5%8D%87%E7%BA%A7%EF%BC%8C%E5%A6%82%E4%BD%95%E7%9B%91%E5%90%AC%E7%BA%BF%E4%B8%8A%E4%BA%8B%E4%BB%B6%EF%BC%9F"><span class="nav-text">16.合约怎么升级，如何监听线上事件？</span></a></li></ol>
 
     </div>
