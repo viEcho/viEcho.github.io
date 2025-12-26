@@ -964,6 +964,35 @@
       </tags>
   </entry>
   <entry>
+    <title>layui表格及工作流二次开发实践1</title>
+    <url>/2021/0423/activity-practice-1.html</url>
+    <content><![CDATA[<blockquote>
+<p>学而时习之不亦说乎</p>
+</blockquote>
+<h3 id="layui官网"><a href="#layui官网" class="headerlink" title="layui官网"></a>layui官网</h3><p><a class="link"   href="https://www.layui.com"  target="_blank">layui官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="安装包下载"><a href="#安装包下载" class="headerlink" title="安装包下载"></a>安装包下载</h3><p>进入官网点击立即下载  下载后的文件如下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/01/NTZlB4.png"
+                      alt="NTZlB4.png"
+                ></p>
+<p>注：mock.js 是我自己加的，模拟后台接口数据用的</p>
+<h3 id="chooseRoleDialog-html列表弹窗页面"><a href="#chooseRoleDialog-html列表弹窗页面" class="headerlink" title="chooseRoleDialog.html列表弹窗页面"></a>chooseRoleDialog.html列表弹窗页面</h3><div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;layui/css/layui.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;layui/layui.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;editor-app/libs/jquery_1.11.0/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;layui/mock.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.user-dialog</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">900px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: auto;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.user-dialog</span> <span class="selector-class">.tree-area</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: left</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.user-dialog</span> <span class="selector-class">.table-area</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: left</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.defined-area</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-left</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-top</span>: <span class="number">3%</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.layui-form-label</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">95px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;user-dialog&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    &lt;div class=&quot;tree-area&quot;&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;div id=&quot;tree_id&quot; class=&quot;demo-tree-more&quot;&gt;&lt;/div&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    &lt;/div&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;table-area&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-inline&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>角色分类编码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-inline&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;tel&quot;</span> <span class="attr">id</span>=<span class="string">&quot;roleSortCode&quot;</span> <span class="attr">name</span>=<span class="string">&quot;roleSortCode&quot;</span>  <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-inline&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>角色分类名称<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-inline&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;roleSortName&quot;</span> <span class="attr">name</span>=<span class="string">&quot;roleSortName&quot;</span> <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;queryTable()&quot;</span>&gt;</span>查询<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;resetQuery()&quot;</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;layui-hide&quot;</span> <span class="attr">id</span>=<span class="string">&quot;user_table&quot;</span> <span class="attr">lay-filter</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;page&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;div class=&quot;layui-btn-container defined-area&quot;&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;button type=&quot;button&quot; class=&quot;layui-btn&quot; onclick=&quot;canSave()&quot;&gt;确定&lt;/button&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;button type=&quot;button&quot; class=&quot;layui-btn&quot; onclick=&quot;closeDialog()&quot;&gt;取消&lt;/button&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;/div&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    layui.<span class="title function_">config</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">version</span>: <span class="string">&#x27;1591161919724&#x27;</span> <span class="comment">//为了更新 js 缓存,可忽略</span></span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> userStr = <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> selectUser = [];</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> selectUserId = [];</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> requestUrl = <span class="string">&quot;http://xx.xx.xx.xx:8890/upms/roleSort/pageRoleSort&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> getTableData;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> requestParams = &#123;<span class="attr">pageNum</span>:<span class="number">1</span>,<span class="attr">pageSize</span>:<span class="number">10</span>,<span class="attr">roleSortCode</span>:<span class="string">&quot;&quot;</span>,<span class="attr">roleSortName</span>:<span class="string">&quot;&quot;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> response = &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> tree,layer,util,laypage,table;</span></span><br><span class="line"><span class="language-javascript">    layui.<span class="title function_">use</span>([<span class="string">&#x27;tree&#x27;</span>, <span class="string">&#x27;util&#x27;</span>,<span class="string">&#x27;laypage&#x27;</span>, <span class="string">&#x27;layer&#x27;</span>, <span class="string">&#x27;table&#x27;</span>,<span class="string">&#x27;element&#x27;</span>, <span class="string">&#x27;slider&#x27;</span>], <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        tree = layui.<span class="property">tree</span></span></span><br><span class="line"><span class="language-javascript">        layer = layui.<span class="property">layer</span></span></span><br><span class="line"><span class="language-javascript">        util = layui.<span class="property">util</span></span></span><br><span class="line"><span class="language-javascript">        laypage = layui.<span class="property">laypage</span> <span class="comment">//分页</span></span></span><br><span class="line"><span class="language-javascript">        table = layui.<span class="property">table</span> <span class="comment">//表格</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//页面第一次请求 默认 1页 10条</span></span></span><br><span class="line"><span class="language-javascript">        getTableData = <span class="keyword">function</span> <span class="title function_">getTableDatas</span>(<span class="params">params,response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">url</span>: requestUrl+<span class="string">&#x27;?pageNum=&#x27;</span>+params.<span class="property">pageNum</span>+<span class="string">&#x27;&amp;pageSize=&#x27;</span>+params.<span class="property">pageSize</span></span></span><br><span class="line"><span class="language-javascript">                    +<span class="string">&#x27;&amp;roleCode=&#x27;</span>+params.<span class="property">roleSortCode</span>+<span class="string">&#x27;&amp;roleName=&#x27;</span>+params.<span class="property">roleSortName</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">type</span>:<span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">async</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">dataType</span>:<span class="string">&#x27;json&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params">res</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    response = res.<span class="property">data</span>;</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">rendTable</span>(response);</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">page</span>(response);</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">// 表格监听</span></span></span><br><span class="line"><span class="language-javascript">                    table.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(test)&#x27;</span>, <span class="keyword">function</span>(<span class="params">obj</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="keyword">if</span>(obj.<span class="property">checked</span> &amp;&amp; obj.<span class="property">type</span>==<span class="string">&#x27;all&#x27;</span>)&#123;<span class="comment">// 全选</span></span></span><br><span class="line"><span class="language-javascript">                            <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> response.<span class="property">records</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">var</span> rowData = response.<span class="property">records</span>[i];</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">if</span>(selectUserId.<span class="title function_">indexOf</span>(<span class="built_in">parseInt</span>(rowData.<span class="property">id</span>)) == -<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                                    selectUser.<span class="title function_">push</span>(rowData);</span></span><br><span class="line"><span class="language-javascript">                                &#125;</span></span><br><span class="line"><span class="language-javascript">                            &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!obj.<span class="property">checked</span> &amp;&amp; obj.<span class="property">type</span>==<span class="string">&#x27;all&#x27;</span>)&#123;<span class="comment">// 全不选</span></span></span><br><span class="line"><span class="language-javascript">                            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt; selectUser.<span class="property">length</span>;i++)&#123;</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt; response.<span class="property">records</span>.<span class="property">length</span>;j++)&#123;</span></span><br><span class="line"><span class="language-javascript">                                    <span class="keyword">var</span> rowData = response.<span class="property">records</span>[j];</span></span><br><span class="line"><span class="language-javascript">                                    <span class="keyword">if</span>(<span class="built_in">parseInt</span>(selectUser[i].<span class="property">id</span>) == <span class="built_in">parseInt</span>(rowData.<span class="property">id</span>))&#123;</span></span><br><span class="line"><span class="language-javascript">                                       selectUser.<span class="title function_">splice</span>(i,<span class="number">1</span>);</span></span><br><span class="line"><span class="language-javascript">                                    &#125;</span></span><br><span class="line"><span class="language-javascript">                                &#125;</span></span><br><span class="line"><span class="language-javascript">                            &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (obj.<span class="property">checked</span>)&#123;<span class="comment">//单个选</span></span></span><br><span class="line"><span class="language-javascript">                             selectUser.<span class="title function_">push</span>(obj.<span class="property">data</span>);</span></span><br><span class="line"><span class="language-javascript">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (!obj.<span class="property">checked</span>)&#123;<span class="comment">//单个取消选择</span></span></span><br><span class="line"><span class="language-javascript">                            <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> selectUser)&#123;</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">if</span>(selectUser[i].<span class="property">id</span> == obj.<span class="property">data</span>.<span class="property">id</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                                    selectUser.<span class="title function_">splice</span>(i,<span class="number">1</span>);</span></span><br><span class="line"><span class="language-javascript">                                &#125;</span></span><br><span class="line"><span class="language-javascript">                            &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;</span></span><br><span class="line"><span class="language-javascript">                        selectUserId = [];</span></span><br><span class="line"><span class="language-javascript">                        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> selectUser)&#123;</span></span><br><span class="line"><span class="language-javascript">                            selectUserId.<span class="title function_">push</span>(selectUser[i].<span class="property">id</span>);</span></span><br><span class="line"><span class="language-javascript">                        &#125;</span></span><br><span class="line"><span class="language-javascript">                    &#125;);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">error</span>:<span class="keyword">function</span>(<span class="params">status</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    response = &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 重构数据 增加选中属性</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">rebuildTableData</span>(<span class="params">response</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> role_ids= <span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;roles_id&quot;</span>).<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span>(role_ids)&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">var</span> select_list = role_ids.<span class="title function_">split</span>(<span class="string">&quot;;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">// 数据回显选中  这部分逻辑可以放到后台实现</span></span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">for</span>(<span class="keyword">var</span> r <span class="keyword">in</span> select_list)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> id = select_list[r].<span class="title function_">substring</span>(<span class="number">0</span>,select_list[r].<span class="title function_">indexOf</span>(<span class="string">&quot;,&quot;</span>));</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> roleSortName = select_list[r].<span class="title function_">substring</span>(select_list[r].<span class="title function_">indexOf</span>(<span class="string">&quot;,&quot;</span>)+<span class="number">1</span>,select_list[r].<span class="title function_">lastIndexOf</span>(<span class="string">&quot;,&quot;</span>));</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> roleSortCode = select_list[r].<span class="title function_">substring</span>(select_list[r].<span class="title function_">lastIndexOf</span>(<span class="string">&quot;,&quot;</span>)+<span class="number">1</span>,select_list[r].<span class="property">length</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> map = &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">                    map.<span class="property">id</span> = id;</span></span><br><span class="line"><span class="language-javascript">                    map.<span class="property">roleSortName</span> = roleSortName;</span></span><br><span class="line"><span class="language-javascript">                    map.<span class="property">roleSortCode</span> = roleSortCode;</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">if</span>(id)&#123;</span></span><br><span class="line"><span class="language-javascript">                        selectUser.<span class="title function_">push</span>(map);</span></span><br><span class="line"><span class="language-javascript">                        selectUserId.<span class="title function_">push</span>(<span class="built_in">parseInt</span>(id));</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> response.<span class="property">records</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> rowData = response.<span class="property">records</span>[i];</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">if</span>(selectUserId.<span class="title function_">indexOf</span>(rowData.<span class="property">id</span>)!=-<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        rowData.<span class="property">LAY_CHECKED</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">                    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                        rowData.<span class="property">LAY_CHECKED</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">records</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 表格渲染</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">rendTable</span>(<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">rebuildTableData</span>(response);</span></span><br><span class="line"><span class="language-javascript">            table.<span class="title function_">render</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">elem</span>: <span class="string">&#x27;#user_table&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">cols</span>:  [[ <span class="comment">//表头</span></span></span><br><span class="line"><span class="language-javascript">                    &#123;<span class="attr">type</span>: <span class="string">&#x27;checkbox&#x27;</span>, <span class="attr">fixed</span>: <span class="string">&#x27;left&#x27;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;id&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;id&#x27;</span>, <span class="attr">hide</span>:<span class="literal">true</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;roleSortCode&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;角色分类编码&#x27;</span>, <span class="attr">width</span>:<span class="string">&#x27;30%&#x27;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;roleSortName&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;角色分类名称&#x27;</span>, <span class="attr">width</span>: <span class="string">&#x27;30%&#x27;</span>, <span class="attr">sort</span>: <span class="literal">true</span>, <span class="attr">totalRow</span>: <span class="literal">true</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;remark&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;备注&#x27;</span>, <span class="attr">width</span>:<span class="string">&#x27;40%&#x27;</span>, <span class="attr">sort</span>: <span class="literal">true</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                ]],</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>: response.<span class="property">records</span>, <span class="comment">// 数据</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">limit</span>: response.<span class="property">total</span>, <span class="comment">// 显示的条数</span></span></span><br><span class="line"><span class="language-javascript">                <span class="comment">//page: true, // 开启分页</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">done</span>: <span class="keyword">function</span>(<span class="params">res, curr, count</span>)&#123;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 分页</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">page</span>(<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            laypage.<span class="title function_">render</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">elem</span>: <span class="string">&#x27;page&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">count</span>: response.<span class="property">total</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">curr</span>: response.<span class="property">current</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">limit</span>: requestParams.<span class="property">pageSize</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">limits</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>],</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">layout</span>: [<span class="string">&#x27;count&#x27;</span>, <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;page&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;limit&#x27;</span>, <span class="string">&#x27;skip&#x27;</span>],</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">jump</span>: <span class="keyword">function</span> (<span class="params">obj, first</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">//首次不执行</span></span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">if</span> (!first) &#123;</span></span><br><span class="line"><span class="language-javascript">                        requestParams.<span class="property">pageNum</span> = obj.<span class="property">curr</span>;</span></span><br><span class="line"><span class="language-javascript">                        requestParams.<span class="property">pageSize</span> = obj.<span class="property">limit</span>;</span></span><br><span class="line"><span class="language-javascript">                        <span class="title function_">getTableData</span>(requestParams,response)</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">yes</span>:<span class="keyword">function</span>(<span class="params">index, layero</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    layer.<span class="title function_">close</span>(index);<span class="comment">//需手动关闭 弹出层</span></span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//getTableData(requestParams, response);</span></span></span><br><span class="line"><span class="language-javascript">	<span class="title function_">queryTable</span>();</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 查询</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">queryTable</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        requestParams.<span class="property">roleSortName</span> = $(<span class="string">&quot;#roleSortName&quot;</span>).<span class="title function_">val</span>()==<span class="string">&quot;&quot;</span>?<span class="string">&#x27;&#x27;</span>:$(<span class="string">&quot;#roleSortName&quot;</span>).<span class="title function_">val</span>().<span class="title function_">trim</span>();</span></span><br><span class="line"><span class="language-javascript">        requestParams.<span class="property">roleSortCode</span> = $(<span class="string">&quot;#roleSortCode&quot;</span>).<span class="title function_">val</span>()==<span class="string">&quot;&quot;</span>?<span class="string">&#x27;&#x27;</span>:$(<span class="string">&quot;#roleSortCode&quot;</span>).<span class="title function_">val</span>().<span class="title function_">trim</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getTableData</span>(requestParams, response);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 重置</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">resetQuery</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#roleSortCode&quot;</span>).<span class="title function_">val</span>(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#roleSortName&quot;</span>).<span class="title function_">val</span>(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        requestParams = &#123;<span class="attr">pageNum</span>:<span class="number">1</span>,<span class="attr">pageSize</span>:<span class="number">10</span>,<span class="attr">roleSortCode</span>:<span class="string">&quot;&quot;</span>,<span class="attr">roleSortName</span>:<span class="string">&quot;&quot;</span>&#125;;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getTableData</span>(requestParams, response);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 确定</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">canSave</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        userStr = <span class="string">&#x27;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> selectUser)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span>(i == selectUser.<span class="property">length</span>-<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                userStr += selectUser[i].<span class="property">id</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortName</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortCode</span>;</span></span><br><span class="line"><span class="language-javascript">            &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="language-javascript">                userStr += selectUser[i].<span class="property">id</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortName</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortCode</span>+<span class="string">&quot;;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(userStr);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> userStr;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//function closeDialog()&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//    parent.layer.close(index);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//&#125;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// --树形结构</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// tree.render(&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     elem: &#x27;#tree_id&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     ,data: data1</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     ,showLine: true,</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     click: function(obj)&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         layer.msg(JSON.stringify(obj.data));</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         var currTreeId = obj.data.id;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         //上一次点击的树节点id</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         var beforeTreeId =  $(&#x27;#tree_id&#x27;).val();</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         if (currTreeId !== beforeTreeId)&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//             $(&#x27;div [data-id=&quot;&#x27;+beforeTreeId+&#x27;&quot;] div .layui-tree-txt&#x27;).first().css(&#x27;color&#x27;,&#x27;&#x27;);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//             $(&#x27;div [data-id=&quot;&#x27;+currTreeId+&#x27;&quot;] div .layui-tree-txt&#x27;).first().css(&#x27;color&#x27;,&#x27;#009688&#x27;);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//             $(&#x27;#tree_id&#x27;).val(obj.data.id);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         &#125;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     &#125;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// &#125;);</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>至此layui关于表格的查询展示及勾选数据的回显都已全部处理完毕；目前做这个功能是activity工作流的二次开发，本页面实现的功能是工作流节点增加一个角色，点击弹出此页面选择角色。然后下次点击上次选中的数据需要被回显即被勾选上了！坑点：layui的表格复选框不支持jquery模拟点击事件，且如果用样式控制选中下次点击时复选框会异常！关于选中与否，使用表格字段属性LAY_CHECKED控制！</p>
+<p>关于工作流绘制的二次开发”com-activity-demo”详见本人<a class="link"   href="https://gitee.com/viEcho/com-activity-demo"  target="_blank">gitee地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.下载项目后需要在对应的库生成对应的25张表。</p>
+<p>注意：此项目工作流前端用的是angular.js，需要遵循其模板语法；此处layui这个表格弹窗，我采用的是iframe标签引入到对应的模板页面中的，所以涉及到iframe 标签及其父子页面传值调用的方法，参考博客<a class="link"   href="https://www.cnblogs.com/llljpf/p/7435526.html"  target="_blank">iframe父子页面通信 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>此外，接口若有跨域需要在服务端添加允许跨域配置，且改写了前端代码后浏览器会有本地缓存，crtl+f5刷新后浏览或直接采用无痕浏览模式查看！</p>
+<blockquote>
+<p>小结:后面继续写写activity之类的实践篇，及补上springboot的学习总结篇！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>activity</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>工作流二次开发之新增表单实践2</title>
     <url>/2021/0423/activity-practice-2.html</url>
     <content><![CDATA[<blockquote>
@@ -1044,35 +1073,6 @@
 <p>注：补充一点，多个角色或人员采用<code>#</code>分割，因为后面发现<code>&amp;</code>符号，流程发布后在标签中会被转义成<code>&amp;amp;</code>而在其他标签值中不受影响，为了统一解析采用<code>#</code>分割更好！</p>
 <blockquote>
 <p>小结：关于工作流的二次开发，其实主要工作量还是前端页面的改造部分，因为后端对应的api已经有了，最多就是扩展重写一下。至于工作流结合业务场景怎么使用，这个还需看官方文档和api和具体需求了，奥力给!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>activity</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>layui表格及工作流二次开发实践1</title>
-    <url>/2021/0423/activity-practice-1.html</url>
-    <content><![CDATA[<blockquote>
-<p>学而时习之不亦说乎</p>
-</blockquote>
-<h3 id="layui官网"><a href="#layui官网" class="headerlink" title="layui官网"></a>layui官网</h3><p><a class="link"   href="https://www.layui.com"  target="_blank">layui官网 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="安装包下载"><a href="#安装包下载" class="headerlink" title="安装包下载"></a>安装包下载</h3><p>进入官网点击立即下载  下载后的文件如下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/01/NTZlB4.png"
-                      alt="NTZlB4.png"
-                ></p>
-<p>注：mock.js 是我自己加的，模拟后台接口数据用的</p>
-<h3 id="chooseRoleDialog-html列表弹窗页面"><a href="#chooseRoleDialog-html列表弹窗页面" class="headerlink" title="chooseRoleDialog.html列表弹窗页面"></a>chooseRoleDialog.html列表弹窗页面</h3><div class="highlight-container" data-rel="Html"><figure class="iseeu highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;layui/css/layui.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;layui/layui.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;editor-app/libs/jquery_1.11.0/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;layui/mock.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css"><span class="selector-class">.user-dialog</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">900px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin</span>: auto;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.user-dialog</span> <span class="selector-class">.tree-area</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: left</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.user-dialog</span> <span class="selector-class">.table-area</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: left</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.defined-area</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-left</span>: <span class="number">80%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding-top</span>: <span class="number">3%</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"><span class="selector-class">.layui-form-label</span>&#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">95px</span>;</span></span><br><span class="line"><span class="language-css">&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;user-dialog&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    &lt;div class=&quot;tree-area&quot;&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;div id=&quot;tree_id&quot; class=&quot;demo-tree-more&quot;&gt;&lt;/div&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    &lt;/div&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;table-area&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-item&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-inline&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>角色分类编码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-inline&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;tel&quot;</span> <span class="attr">id</span>=<span class="string">&quot;roleSortCode&quot;</span> <span class="attr">name</span>=<span class="string">&quot;roleSortCode&quot;</span>  <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-inline&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">&quot;layui-form-label&quot;</span>&gt;</span>角色分类名称<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-input-inline&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;roleSortName&quot;</span> <span class="attr">name</span>=<span class="string">&quot;roleSortName&quot;</span> <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-input&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;queryTable()&quot;</span>&gt;</span>查询<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;layui-btn&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;resetQuery()&quot;</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">&quot;layui-hide&quot;</span> <span class="attr">id</span>=<span class="string">&quot;user_table&quot;</span> <span class="attr">lay-filter</span>=<span class="string">&quot;test&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;page&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;div class=&quot;layui-btn-container defined-area&quot;&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;button type=&quot;button&quot; class=&quot;layui-btn&quot; onclick=&quot;canSave()&quot;&gt;确定&lt;/button&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;button type=&quot;button&quot; class=&quot;layui-btn&quot; onclick=&quot;closeDialog()&quot;&gt;取消&lt;/button&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;/div&gt;--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    layui.<span class="title function_">config</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="attr">version</span>: <span class="string">&#x27;1591161919724&#x27;</span> <span class="comment">//为了更新 js 缓存,可忽略</span></span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> userStr = <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> selectUser = [];</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> selectUserId = [];</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> requestUrl = <span class="string">&quot;http://xx.xx.xx.xx:8890/upms/roleSort/pageRoleSort&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> getTableData;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> requestParams = &#123;<span class="attr">pageNum</span>:<span class="number">1</span>,<span class="attr">pageSize</span>:<span class="number">10</span>,<span class="attr">roleSortCode</span>:<span class="string">&quot;&quot;</span>,<span class="attr">roleSortName</span>:<span class="string">&quot;&quot;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> response = &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> tree,layer,util,laypage,table;</span></span><br><span class="line"><span class="language-javascript">    layui.<span class="title function_">use</span>([<span class="string">&#x27;tree&#x27;</span>, <span class="string">&#x27;util&#x27;</span>,<span class="string">&#x27;laypage&#x27;</span>, <span class="string">&#x27;layer&#x27;</span>, <span class="string">&#x27;table&#x27;</span>,<span class="string">&#x27;element&#x27;</span>, <span class="string">&#x27;slider&#x27;</span>], <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        tree = layui.<span class="property">tree</span></span></span><br><span class="line"><span class="language-javascript">        layer = layui.<span class="property">layer</span></span></span><br><span class="line"><span class="language-javascript">        util = layui.<span class="property">util</span></span></span><br><span class="line"><span class="language-javascript">        laypage = layui.<span class="property">laypage</span> <span class="comment">//分页</span></span></span><br><span class="line"><span class="language-javascript">        table = layui.<span class="property">table</span> <span class="comment">//表格</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//页面第一次请求 默认 1页 10条</span></span></span><br><span class="line"><span class="language-javascript">        getTableData = <span class="keyword">function</span> <span class="title function_">getTableDatas</span>(<span class="params">params,response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            $.<span class="title function_">ajax</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">url</span>: requestUrl+<span class="string">&#x27;?pageNum=&#x27;</span>+params.<span class="property">pageNum</span>+<span class="string">&#x27;&amp;pageSize=&#x27;</span>+params.<span class="property">pageSize</span></span></span><br><span class="line"><span class="language-javascript">                    +<span class="string">&#x27;&amp;roleCode=&#x27;</span>+params.<span class="property">roleSortCode</span>+<span class="string">&#x27;&amp;roleName=&#x27;</span>+params.<span class="property">roleSortName</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">type</span>:<span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">async</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">dataType</span>:<span class="string">&#x27;json&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">success</span>:<span class="keyword">function</span>(<span class="params">res</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    response = res.<span class="property">data</span>;</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">rendTable</span>(response);</span></span><br><span class="line"><span class="language-javascript">                    <span class="title function_">page</span>(response);</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">// 表格监听</span></span></span><br><span class="line"><span class="language-javascript">                    table.<span class="title function_">on</span>(<span class="string">&#x27;checkbox(test)&#x27;</span>, <span class="keyword">function</span>(<span class="params">obj</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        <span class="keyword">if</span>(obj.<span class="property">checked</span> &amp;&amp; obj.<span class="property">type</span>==<span class="string">&#x27;all&#x27;</span>)&#123;<span class="comment">// 全选</span></span></span><br><span class="line"><span class="language-javascript">                            <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> response.<span class="property">records</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">var</span> rowData = response.<span class="property">records</span>[i];</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">if</span>(selectUserId.<span class="title function_">indexOf</span>(<span class="built_in">parseInt</span>(rowData.<span class="property">id</span>)) == -<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                                    selectUser.<span class="title function_">push</span>(rowData);</span></span><br><span class="line"><span class="language-javascript">                                &#125;</span></span><br><span class="line"><span class="language-javascript">                            &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!obj.<span class="property">checked</span> &amp;&amp; obj.<span class="property">type</span>==<span class="string">&#x27;all&#x27;</span>)&#123;<span class="comment">// 全不选</span></span></span><br><span class="line"><span class="language-javascript">                            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt; selectUser.<span class="property">length</span>;i++)&#123;</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span>;j&lt; response.<span class="property">records</span>.<span class="property">length</span>;j++)&#123;</span></span><br><span class="line"><span class="language-javascript">                                    <span class="keyword">var</span> rowData = response.<span class="property">records</span>[j];</span></span><br><span class="line"><span class="language-javascript">                                    <span class="keyword">if</span>(<span class="built_in">parseInt</span>(selectUser[i].<span class="property">id</span>) == <span class="built_in">parseInt</span>(rowData.<span class="property">id</span>))&#123;</span></span><br><span class="line"><span class="language-javascript">                                       selectUser.<span class="title function_">splice</span>(i,<span class="number">1</span>);</span></span><br><span class="line"><span class="language-javascript">                                    &#125;</span></span><br><span class="line"><span class="language-javascript">                                &#125;</span></span><br><span class="line"><span class="language-javascript">                            &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (obj.<span class="property">checked</span>)&#123;<span class="comment">//单个选</span></span></span><br><span class="line"><span class="language-javascript">                             selectUser.<span class="title function_">push</span>(obj.<span class="property">data</span>);</span></span><br><span class="line"><span class="language-javascript">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (!obj.<span class="property">checked</span>)&#123;<span class="comment">//单个取消选择</span></span></span><br><span class="line"><span class="language-javascript">                            <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> selectUser)&#123;</span></span><br><span class="line"><span class="language-javascript">                                <span class="keyword">if</span>(selectUser[i].<span class="property">id</span> == obj.<span class="property">data</span>.<span class="property">id</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                                    selectUser.<span class="title function_">splice</span>(i,<span class="number">1</span>);</span></span><br><span class="line"><span class="language-javascript">                                &#125;</span></span><br><span class="line"><span class="language-javascript">                            &#125;</span></span><br><span class="line"><span class="language-javascript">                        &#125;</span></span><br><span class="line"><span class="language-javascript">                        selectUserId = [];</span></span><br><span class="line"><span class="language-javascript">                        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> selectUser)&#123;</span></span><br><span class="line"><span class="language-javascript">                            selectUserId.<span class="title function_">push</span>(selectUser[i].<span class="property">id</span>);</span></span><br><span class="line"><span class="language-javascript">                        &#125;</span></span><br><span class="line"><span class="language-javascript">                    &#125;);</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">error</span>:<span class="keyword">function</span>(<span class="params">status</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    response = &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 重构数据 增加选中属性</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">rebuildTableData</span>(<span class="params">response</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">var</span> role_ids= <span class="variable language_">window</span>.<span class="property">parent</span>.<span class="property">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;roles_id&quot;</span>).<span class="property">value</span>;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span>(role_ids)&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">var</span> select_list = role_ids.<span class="title function_">split</span>(<span class="string">&quot;;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">                <span class="comment">// 数据回显选中  这部分逻辑可以放到后台实现</span></span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">for</span>(<span class="keyword">var</span> r <span class="keyword">in</span> select_list)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> id = select_list[r].<span class="title function_">substring</span>(<span class="number">0</span>,select_list[r].<span class="title function_">indexOf</span>(<span class="string">&quot;,&quot;</span>));</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> roleSortName = select_list[r].<span class="title function_">substring</span>(select_list[r].<span class="title function_">indexOf</span>(<span class="string">&quot;,&quot;</span>)+<span class="number">1</span>,select_list[r].<span class="title function_">lastIndexOf</span>(<span class="string">&quot;,&quot;</span>));</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> roleSortCode = select_list[r].<span class="title function_">substring</span>(select_list[r].<span class="title function_">lastIndexOf</span>(<span class="string">&quot;,&quot;</span>)+<span class="number">1</span>,select_list[r].<span class="property">length</span>);</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> map = &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">                    map.<span class="property">id</span> = id;</span></span><br><span class="line"><span class="language-javascript">                    map.<span class="property">roleSortName</span> = roleSortName;</span></span><br><span class="line"><span class="language-javascript">                    map.<span class="property">roleSortCode</span> = roleSortCode;</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">if</span>(id)&#123;</span></span><br><span class="line"><span class="language-javascript">                        selectUser.<span class="title function_">push</span>(map);</span></span><br><span class="line"><span class="language-javascript">                        selectUserId.<span class="title function_">push</span>(<span class="built_in">parseInt</span>(id));</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> response.<span class="property">records</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">var</span> rowData = response.<span class="property">records</span>[i];</span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">if</span>(selectUserId.<span class="title function_">indexOf</span>(rowData.<span class="property">id</span>)!=-<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                        rowData.<span class="property">LAY_CHECKED</span> = <span class="literal">true</span>;</span></span><br><span class="line"><span class="language-javascript">                    &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">                        rowData.<span class="property">LAY_CHECKED</span> = <span class="literal">false</span>;</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">            <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">records</span>);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 表格渲染</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">rendTable</span>(<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="title function_">rebuildTableData</span>(response);</span></span><br><span class="line"><span class="language-javascript">            table.<span class="title function_">render</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">elem</span>: <span class="string">&#x27;#user_table&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">cols</span>:  [[ <span class="comment">//表头</span></span></span><br><span class="line"><span class="language-javascript">                    &#123;<span class="attr">type</span>: <span class="string">&#x27;checkbox&#x27;</span>, <span class="attr">fixed</span>: <span class="string">&#x27;left&#x27;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;id&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;id&#x27;</span>, <span class="attr">hide</span>:<span class="literal">true</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;roleSortCode&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;角色分类编码&#x27;</span>, <span class="attr">width</span>:<span class="string">&#x27;30%&#x27;</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;roleSortName&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;角色分类名称&#x27;</span>, <span class="attr">width</span>: <span class="string">&#x27;30%&#x27;</span>, <span class="attr">sort</span>: <span class="literal">true</span>, <span class="attr">totalRow</span>: <span class="literal">true</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                    ,&#123;<span class="attr">field</span>: <span class="string">&#x27;remark&#x27;</span>, <span class="attr">title</span>: <span class="string">&#x27;备注&#x27;</span>, <span class="attr">width</span>:<span class="string">&#x27;40%&#x27;</span>, <span class="attr">sort</span>: <span class="literal">true</span>&#125;</span></span><br><span class="line"><span class="language-javascript">                ]],</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">data</span>: response.<span class="property">records</span>, <span class="comment">// 数据</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">limit</span>: response.<span class="property">total</span>, <span class="comment">// 显示的条数</span></span></span><br><span class="line"><span class="language-javascript">                <span class="comment">//page: true, // 开启分页</span></span></span><br><span class="line"><span class="language-javascript">                <span class="attr">done</span>: <span class="keyword">function</span>(<span class="params">res, curr, count</span>)&#123;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">// 分页</span></span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">function</span> <span class="title function_">page</span>(<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">            laypage.<span class="title function_">render</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">elem</span>: <span class="string">&#x27;page&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">count</span>: response.<span class="property">total</span>,</span></span><br><span class="line"><span class="language-javascript">		<span class="attr">curr</span>: response.<span class="property">current</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">limit</span>: requestParams.<span class="property">pageSize</span>,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">limits</span>: [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>],</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">layout</span>: [<span class="string">&#x27;count&#x27;</span>, <span class="string">&#x27;prev&#x27;</span>, <span class="string">&#x27;page&#x27;</span>, <span class="string">&#x27;next&#x27;</span>, <span class="string">&#x27;limit&#x27;</span>, <span class="string">&#x27;skip&#x27;</span>],</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">jump</span>: <span class="keyword">function</span> (<span class="params">obj, first</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">//首次不执行</span></span></span><br><span class="line"><span class="language-javascript">                    <span class="keyword">if</span> (!first) &#123;</span></span><br><span class="line"><span class="language-javascript">                        requestParams.<span class="property">pageNum</span> = obj.<span class="property">curr</span>;</span></span><br><span class="line"><span class="language-javascript">                        requestParams.<span class="property">pageSize</span> = obj.<span class="property">limit</span>;</span></span><br><span class="line"><span class="language-javascript">                        <span class="title function_">getTableData</span>(requestParams,response)</span></span><br><span class="line"><span class="language-javascript">                    &#125;</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                <span class="attr">yes</span>:<span class="keyword">function</span>(<span class="params">index, layero</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    layer.<span class="title function_">close</span>(index);<span class="comment">//需手动关闭 弹出层</span></span></span><br><span class="line"><span class="language-javascript">                &#125;</span></span><br><span class="line"><span class="language-javascript">            &#125;);</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="comment">//getTableData(requestParams, response);</span></span></span><br><span class="line"><span class="language-javascript">	<span class="title function_">queryTable</span>();</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 查询</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">queryTable</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        requestParams.<span class="property">roleSortName</span> = $(<span class="string">&quot;#roleSortName&quot;</span>).<span class="title function_">val</span>()==<span class="string">&quot;&quot;</span>?<span class="string">&#x27;&#x27;</span>:$(<span class="string">&quot;#roleSortName&quot;</span>).<span class="title function_">val</span>().<span class="title function_">trim</span>();</span></span><br><span class="line"><span class="language-javascript">        requestParams.<span class="property">roleSortCode</span> = $(<span class="string">&quot;#roleSortCode&quot;</span>).<span class="title function_">val</span>()==<span class="string">&quot;&quot;</span>?<span class="string">&#x27;&#x27;</span>:$(<span class="string">&quot;#roleSortCode&quot;</span>).<span class="title function_">val</span>().<span class="title function_">trim</span>();</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getTableData</span>(requestParams, response);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 重置</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">resetQuery</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#roleSortCode&quot;</span>).<span class="title function_">val</span>(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        $(<span class="string">&quot;#roleSortName&quot;</span>).<span class="title function_">val</span>(<span class="string">&quot;&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">        requestParams = &#123;<span class="attr">pageNum</span>:<span class="number">1</span>,<span class="attr">pageSize</span>:<span class="number">10</span>,<span class="attr">roleSortCode</span>:<span class="string">&quot;&quot;</span>,<span class="attr">roleSortName</span>:<span class="string">&quot;&quot;</span>&#125;;</span></span><br><span class="line"><span class="language-javascript">        <span class="title function_">getTableData</span>(requestParams, response);</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// 确定</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">function</span> <span class="title function_">canSave</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        userStr = <span class="string">&#x27;&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> selectUser)&#123;</span></span><br><span class="line"><span class="language-javascript">            <span class="keyword">if</span>(i == selectUser.<span class="property">length</span>-<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                userStr += selectUser[i].<span class="property">id</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortName</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortCode</span>;</span></span><br><span class="line"><span class="language-javascript">            &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="language-javascript">                userStr += selectUser[i].<span class="property">id</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortName</span>+<span class="string">&quot;,&quot;</span>+selectUser[i].<span class="property">roleSortCode</span>+<span class="string">&quot;;&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">        <span class="variable language_">console</span>.<span class="title function_">log</span>(userStr);</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span> userStr;</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//function closeDialog()&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//    parent.layer.close(index);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//&#125;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// --树形结构</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// tree.render(&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     elem: &#x27;#tree_id&#x27;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     ,data: data1</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     ,showLine: true,</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     click: function(obj)&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         layer.msg(JSON.stringify(obj.data));</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         var currTreeId = obj.data.id;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         //上一次点击的树节点id</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         var beforeTreeId =  $(&#x27;#tree_id&#x27;).val();</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         if (currTreeId !== beforeTreeId)&#123;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//             $(&#x27;div [data-id=&quot;&#x27;+beforeTreeId+&#x27;&quot;] div .layui-tree-txt&#x27;).first().css(&#x27;color&#x27;,&#x27;&#x27;);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//             $(&#x27;div [data-id=&quot;&#x27;+currTreeId+&#x27;&quot;] div .layui-tree-txt&#x27;).first().css(&#x27;color&#x27;,&#x27;#009688&#x27;);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//             $(&#x27;#tree_id&#x27;).val(obj.data.id);</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//         &#125;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//     &#125;</span></span></span><br><span class="line"><span class="language-javascript">    <span class="comment">// &#125;);</span></span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></div>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>至此layui关于表格的查询展示及勾选数据的回显都已全部处理完毕；目前做这个功能是activity工作流的二次开发，本页面实现的功能是工作流节点增加一个角色，点击弹出此页面选择角色。然后下次点击上次选中的数据需要被回显即被勾选上了！坑点：layui的表格复选框不支持jquery模拟点击事件，且如果用样式控制选中下次点击时复选框会异常！关于选中与否，使用表格字段属性LAY_CHECKED控制！</p>
-<p>关于工作流绘制的二次开发”com-activity-demo”详见本人<a class="link"   href="https://gitee.com/viEcho/com-activity-demo"  target="_blank">gitee地址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.下载项目后需要在对应的库生成对应的25张表。</p>
-<p>注意：此项目工作流前端用的是angular.js，需要遵循其模板语法；此处layui这个表格弹窗，我采用的是iframe标签引入到对应的模板页面中的，所以涉及到iframe 标签及其父子页面传值调用的方法，参考博客<a class="link"   href="https://www.cnblogs.com/llljpf/p/7435526.html"  target="_blank">iframe父子页面通信 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>此外，接口若有跨域需要在服务端添加允许跨域配置，且改写了前端代码后浏览器会有本地缓存，crtl+f5刷新后浏览或直接采用无痕浏览模式查看！</p>
-<blockquote>
-<p>小结:后面继续写写activity之类的实践篇，及补上springboot的学习总结篇！</p>
 </blockquote>
 ]]></content>
       <categories>
@@ -1528,6 +1528,45 @@
       </tags>
   </entry>
   <entry>
+    <title>jdk1.8新特性之stream流</title>
+    <url>/2021/0423/java8-stream.html</url>
+    <content><![CDATA[<blockquote>
+<p>在jdk1.5的时候，我们需要掌握枚举：反射、注解、泛型。现在java14都出来了<br>jdk1.8的新特性：函数式接口、链式编程、stream流、lambda表达式 都掌握的怎么样了？</p>
+</blockquote>
+<p><strong>本篇将着重说明 Stream 流的用法</strong></p>
+<h3 id="面试题："><a href="#面试题：" class="headerlink" title="面试题："></a>面试题：</h3><p>按条件筛选用户，请你只用一行代码完成！</p>
+<ul>
+<li>1、id 为偶数</li>
+<li>2、年龄大于24</li>
+<li>3、用户名大写</li>
+<li>4、用户名倒排序</li>
+<li>5、输出一个用户</li>
+</ul>
+<p>代码(User 实体类省略)：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">1</span>,<span class="string">&quot;jim&quot;</span>,<span class="number">23</span>,<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">2</span>,<span class="string">&quot;tom&quot;</span>,<span class="number">24</span>,<span class="string">&quot;武汉&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">3</span>,<span class="string">&quot;echo&quot;</span>,<span class="number">25</span>,<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">4</span>,<span class="string">&quot;jerry&quot;</span>,<span class="number">26</span>,<span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">5</span>,<span class="string">&quot;bob&quot;</span>,<span class="number">27</span>,<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        <span class="comment">//数据库、集合 ： 存数据的</span></span><br><span class="line">        <span class="comment">// Stream：计算和处理数据交给 Stream</span></span><br><span class="line">        List&lt;User&gt; users = Arrays.asList(user1, user2, user3, user4, user5);</span><br><span class="line">        users.stream()</span><br><span class="line">                .filter(u-&gt;&#123;<span class="keyword">return</span> u.getId()%<span class="number">2</span> == <span class="number">0</span>;&#125;)</span><br><span class="line">                .filter(u-&gt;&#123;<span class="keyword">return</span> u.getAge() &gt; <span class="number">24</span>;&#125;)</span><br><span class="line">                .map(u-&gt;&#123;<span class="keyword">return</span> u.getName().toUpperCase();&#125;)</span><br><span class="line">                .sorted((u1,u2)-&gt;&#123;<span class="keyword">return</span> u2.compareTo(u1);&#125;)</span><br><span class="line">                .limit(<span class="number">1</span>)</span><br><span class="line">                .forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>接下来我们深入看看stream流中都有些什么？</p>
+</blockquote>
+<h3 id="创建流："><a href="#创建流：" class="headerlink" title="创建流："></a>创建流：</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.创建一个具体字符串流</span></span><br><span class="line">Stream&lt;String&gt; stream1 = Stream.of(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>);</span><br><span class="line"><span class="comment">//2.创建一个Stream流Builder&lt;Object&gt;对象</span></span><br><span class="line">Stream.Builder&lt;Object&gt; builder = Stream.builder();</span><br><span class="line"><span class="comment">//3.创建一个空的String 流</span></span><br><span class="line">Stream&lt;String&gt; empty = Stream.empty();</span><br><span class="line"><span class="comment">//4.合并两个流</span></span><br><span class="line">Stream&lt;String&gt; concat = Stream.concat(stream1, empty);</span><br><span class="line"><span class="comment">//5.用迭代器创建无限流</span></span><br><span class="line">Stream&lt;Integer&gt; iterate = Stream.iterate(<span class="number">1</span>, x -&gt; x + <span class="number">1</span>);</span><br><span class="line"><span class="comment">//6.生成 无限流</span></span><br><span class="line">Stream&lt;Double&gt; generate = Stream.generate(() -&gt; Math.random());</span><br><span class="line"><span class="comment">//7.collection的串行流  和并行流</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;4&quot;</span>);</span><br><span class="line">Stream&lt;String&gt; stream2 = list.stream();</span><br><span class="line">Stream&lt;String&gt; stream3 = list.parallelStream();</span><br><span class="line"><span class="comment">//8.Arrays.stream创建一个数组流</span></span><br><span class="line"><span class="type">IntStream</span> <span class="variable">stream</span> <span class="operator">=</span> Arrays.stream(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;);</span><br><span class="line"><span class="comment">//9.通过文件生成字符串流</span></span><br><span class="line">Stream&lt;String&gt; stream = Files.lines(Paths.get(<span class="string">&quot;text.txt&quot;</span>), Charset.defaultCharset());</span><br></pre></td></tr></table></figure></div>
+<h3 id="流的使用："><a href="#流的使用：" class="headerlink" title="流的使用："></a>流的使用：</h3><p>看的流的使用 也就是看users.stream()能点出来哪些东西,因为太多，这里就举例说明常用的几种：</p>
+<h4 id="1-filter过滤："><a href="#1-filter过滤：" class="headerlink" title="1.filter过滤："></a>1.filter过滤：</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 筛选出&gt;3的数据</span></span><br><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">list.stream().filter((i)-&gt;&#123;<span class="keyword">return</span> i &gt; <span class="number">3</span>;&#125;).forEach(System.out::println);</span><br><span class="line"><span class="comment">// 输出4</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="2-limit限流"><a href="#2-limit限流" class="headerlink" title="2.limit限流"></a>2.limit限流</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取未来7天的日期(顺便看看iterate 和 generate的用法)</span></span><br><span class="line">        Stream.iterate(LocalDate.now(), date -&gt; date.plusDays(<span class="number">1</span>)).limit(<span class="number">7</span>).forEach(date-&gt; &#123;</span><br><span class="line">            System.out.print(date+<span class="string">&quot;,&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 输出 2020-03-12,2020-03-13,2020-03-14,2020-03-15,2020-03-16,2020-03-17,2020-03-18,</span></span><br><span class="line">        <span class="type">AtomicInteger</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 截取前三个随机数 并打印</span></span><br><span class="line">        <span class="comment">// 写在这里的 时候就想换行输出下 加个计数器判断下</span></span><br><span class="line">        <span class="comment">// 至于为什么用AtomicInteger计数而不是int,我猜是因为设计者考虑到并发情况下线程安全的问题</span></span><br><span class="line">        <span class="comment">// 因为“ Variable used in lambda expression should be final or effectively final”</span></span><br><span class="line">        <span class="comment">// AtomicInteger 在另一篇博客【并发编程之美-JUC]中有提到过</span></span><br><span class="line">        Stream.generate(()-&gt;Math.random()).limit(<span class="number">3</span>).forEach(d-&gt;&#123;</span><br><span class="line">            a.getAndIncrement();</span><br><span class="line">            <span class="keyword">if</span>(a.get() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">                System.out.print(d+<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.print(<span class="string">&quot;\n&quot;</span>+d+<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//输出0.8662508892898771,0.26661993344781665,0.2584450405261183,</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="3-skip-跳出"><a href="#3-skip-跳出" class="headerlink" title="3.skip 跳出"></a>3.skip 跳出</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//skip（n）去掉前n个元素的流</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;4&quot;</span>);</span><br><span class="line"><span class="comment">//若流中元素不足n个，则返回一个空，与limit（n）互补。</span></span><br><span class="line">list.stream().skip(<span class="number">3</span>).forEach(System.out::print);</span><br><span class="line"><span class="comment">//输出4</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="4-sorted排序"><a href="#4-sorted排序" class="headerlink" title="4.sorted排序"></a>4.sorted排序</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//倒序排列</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;5&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;4&quot;</span>);</span><br><span class="line">list.stream().sorted((o1, o2)-&gt;&#123;<span class="keyword">return</span> o2.compareTo(o1);&#125;).forEach(System.out::print);</span><br><span class="line"><span class="comment">//输出54321</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="5-distinct筛选"><a href="#5-distinct筛选" class="headerlink" title="5.distinct筛选"></a>5.distinct筛选</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//去除重复数据</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>);</span><br><span class="line">list.stream().distinct().forEach(System.out::print);</span><br><span class="line"><span class="comment">//输出123</span></span><br></pre></td></tr></table></figure></div>
+<h4 id="6-映射"><a href="#6-映射" class="headerlink" title="6.映射"></a>6.映射</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 流式计算将实体中某两个属性对应组装成key value的格式返回</span></span><br><span class="line"><span class="comment">// 项目中一般读取数据字典 根据code 返回前台数据使用</span></span><br><span class="line">Map&lt;Integer, String&gt; collect = users.stream()</span><br><span class="line">.collect(Collectors.toMap(User::getId, User::getName));</span><br><span class="line">System.out.println(collect.toString());</span><br><span class="line"><span class="comment">// 输出&#123;1=jim, 2=tom, 3=echo, 4=jerry, 5=bob&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将user按adress 分组</span></span><br><span class="line">Map&lt;String, List&lt;User&gt;&gt; addressMap = users.stream()</span><br><span class="line">.collect(Collectors.groupingBy(User::getAddress));</span><br><span class="line">System.out.println(addressMap.toString());</span><br><span class="line"><span class="comment">//输出：&#123;上海=[stream.User@52cc8049], 武汉=[stream.User@5b6f7412],</span></span><br><span class="line"><span class="comment">//深圳=[stream.User@27973e9b], 北京=[stream.User@312b1dae, stream.User@7530d0a]&#125;</span></span><br></pre></td></tr></table></figure></div>
+<blockquote>
+<p>小结：以上就是stream 流的常见用法 至于规约 查找 匹配都用的都很少，暂且不再深入 ，关于lambda表达式和函数式接口后面会写,还有一个很好玩的类Optional，后面也来写写看，奥利给！！!</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>stream</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从mybatis看设计模式的应用</title>
     <url>/2021/0423/mybatis-she-ji-mo-shi.html</url>
     <content><![CDATA[<blockquote>
@@ -1614,45 +1653,6 @@
       </categories>
       <tags>
         <tag>mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdk1.8新特性之stream流</title>
-    <url>/2021/0423/java8-stream.html</url>
-    <content><![CDATA[<blockquote>
-<p>在jdk1.5的时候，我们需要掌握枚举：反射、注解、泛型。现在java14都出来了<br>jdk1.8的新特性：函数式接口、链式编程、stream流、lambda表达式 都掌握的怎么样了？</p>
-</blockquote>
-<p><strong>本篇将着重说明 Stream 流的用法</strong></p>
-<h3 id="面试题："><a href="#面试题：" class="headerlink" title="面试题："></a>面试题：</h3><p>按条件筛选用户，请你只用一行代码完成！</p>
-<ul>
-<li>1、id 为偶数</li>
-<li>2、年龄大于24</li>
-<li>3、用户名大写</li>
-<li>4、用户名倒排序</li>
-<li>5、输出一个用户</li>
-</ul>
-<p>代码(User 实体类省略)：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> stream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StreamDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">1</span>,<span class="string">&quot;jim&quot;</span>,<span class="number">23</span>,<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">2</span>,<span class="string">&quot;tom&quot;</span>,<span class="number">24</span>,<span class="string">&quot;武汉&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">3</span>,<span class="string">&quot;echo&quot;</span>,<span class="number">25</span>,<span class="string">&quot;深圳&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">4</span>,<span class="string">&quot;jerry&quot;</span>,<span class="number">26</span>,<span class="string">&quot;上海&quot;</span>);</span><br><span class="line">        <span class="type">User</span> <span class="variable">user5</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="number">5</span>,<span class="string">&quot;bob&quot;</span>,<span class="number">27</span>,<span class="string">&quot;北京&quot;</span>);</span><br><span class="line">        <span class="comment">//数据库、集合 ： 存数据的</span></span><br><span class="line">        <span class="comment">// Stream：计算和处理数据交给 Stream</span></span><br><span class="line">        List&lt;User&gt; users = Arrays.asList(user1, user2, user3, user4, user5);</span><br><span class="line">        users.stream()</span><br><span class="line">                .filter(u-&gt;&#123;<span class="keyword">return</span> u.getId()%<span class="number">2</span> == <span class="number">0</span>;&#125;)</span><br><span class="line">                .filter(u-&gt;&#123;<span class="keyword">return</span> u.getAge() &gt; <span class="number">24</span>;&#125;)</span><br><span class="line">                .map(u-&gt;&#123;<span class="keyword">return</span> u.getName().toUpperCase();&#125;)</span><br><span class="line">                .sorted((u1,u2)-&gt;&#123;<span class="keyword">return</span> u2.compareTo(u1);&#125;)</span><br><span class="line">                .limit(<span class="number">1</span>)</span><br><span class="line">                .forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-<blockquote>
-<p>接下来我们深入看看stream流中都有些什么？</p>
-</blockquote>
-<h3 id="创建流："><a href="#创建流：" class="headerlink" title="创建流："></a>创建流：</h3><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1.创建一个具体字符串流</span></span><br><span class="line">Stream&lt;String&gt; stream1 = Stream.of(<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>, <span class="string">&quot;D&quot;</span>);</span><br><span class="line"><span class="comment">//2.创建一个Stream流Builder&lt;Object&gt;对象</span></span><br><span class="line">Stream.Builder&lt;Object&gt; builder = Stream.builder();</span><br><span class="line"><span class="comment">//3.创建一个空的String 流</span></span><br><span class="line">Stream&lt;String&gt; empty = Stream.empty();</span><br><span class="line"><span class="comment">//4.合并两个流</span></span><br><span class="line">Stream&lt;String&gt; concat = Stream.concat(stream1, empty);</span><br><span class="line"><span class="comment">//5.用迭代器创建无限流</span></span><br><span class="line">Stream&lt;Integer&gt; iterate = Stream.iterate(<span class="number">1</span>, x -&gt; x + <span class="number">1</span>);</span><br><span class="line"><span class="comment">//6.生成 无限流</span></span><br><span class="line">Stream&lt;Double&gt; generate = Stream.generate(() -&gt; Math.random());</span><br><span class="line"><span class="comment">//7.collection的串行流  和并行流</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;4&quot;</span>);</span><br><span class="line">Stream&lt;String&gt; stream2 = list.stream();</span><br><span class="line">Stream&lt;String&gt; stream3 = list.parallelStream();</span><br><span class="line"><span class="comment">//8.Arrays.stream创建一个数组流</span></span><br><span class="line"><span class="type">IntStream</span> <span class="variable">stream</span> <span class="operator">=</span> Arrays.stream(<span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;);</span><br><span class="line"><span class="comment">//9.通过文件生成字符串流</span></span><br><span class="line">Stream&lt;String&gt; stream = Files.lines(Paths.get(<span class="string">&quot;text.txt&quot;</span>), Charset.defaultCharset());</span><br></pre></td></tr></table></figure></div>
-<h3 id="流的使用："><a href="#流的使用：" class="headerlink" title="流的使用："></a>流的使用：</h3><p>看的流的使用 也就是看users.stream()能点出来哪些东西,因为太多，这里就举例说明常用的几种：</p>
-<h4 id="1-filter过滤："><a href="#1-filter过滤：" class="headerlink" title="1.filter过滤："></a>1.filter过滤：</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 筛选出&gt;3的数据</span></span><br><span class="line">List&lt;Integer&gt; list = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">list.stream().filter((i)-&gt;&#123;<span class="keyword">return</span> i &gt; <span class="number">3</span>;&#125;).forEach(System.out::println);</span><br><span class="line"><span class="comment">// 输出4</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="2-limit限流"><a href="#2-limit限流" class="headerlink" title="2.limit限流"></a>2.limit限流</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取未来7天的日期(顺便看看iterate 和 generate的用法)</span></span><br><span class="line">        Stream.iterate(LocalDate.now(), date -&gt; date.plusDays(<span class="number">1</span>)).limit(<span class="number">7</span>).forEach(date-&gt; &#123;</span><br><span class="line">            System.out.print(date+<span class="string">&quot;,&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">// 输出 2020-03-12,2020-03-13,2020-03-14,2020-03-15,2020-03-16,2020-03-17,2020-03-18,</span></span><br><span class="line">        <span class="type">AtomicInteger</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="comment">// 截取前三个随机数 并打印</span></span><br><span class="line">        <span class="comment">// 写在这里的 时候就想换行输出下 加个计数器判断下</span></span><br><span class="line">        <span class="comment">// 至于为什么用AtomicInteger计数而不是int,我猜是因为设计者考虑到并发情况下线程安全的问题</span></span><br><span class="line">        <span class="comment">// 因为“ Variable used in lambda expression should be final or effectively final”</span></span><br><span class="line">        <span class="comment">// AtomicInteger 在另一篇博客【并发编程之美-JUC]中有提到过</span></span><br><span class="line">        Stream.generate(()-&gt;Math.random()).limit(<span class="number">3</span>).forEach(d-&gt;&#123;</span><br><span class="line">            a.getAndIncrement();</span><br><span class="line">            <span class="keyword">if</span>(a.get() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">                System.out.print(d+<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.print(<span class="string">&quot;\n&quot;</span>+d+<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//输出0.8662508892898771,0.26661993344781665,0.2584450405261183,</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="3-skip-跳出"><a href="#3-skip-跳出" class="headerlink" title="3.skip 跳出"></a>3.skip 跳出</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//skip（n）去掉前n个元素的流</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;4&quot;</span>);</span><br><span class="line"><span class="comment">//若流中元素不足n个，则返回一个空，与limit（n）互补。</span></span><br><span class="line">list.stream().skip(<span class="number">3</span>).forEach(System.out::print);</span><br><span class="line"><span class="comment">//输出4</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="4-sorted排序"><a href="#4-sorted排序" class="headerlink" title="4.sorted排序"></a>4.sorted排序</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//倒序排列</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;5&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;4&quot;</span>);</span><br><span class="line">list.stream().sorted((o1, o2)-&gt;&#123;<span class="keyword">return</span> o2.compareTo(o1);&#125;).forEach(System.out::print);</span><br><span class="line"><span class="comment">//输出54321</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="5-distinct筛选"><a href="#5-distinct筛选" class="headerlink" title="5.distinct筛选"></a>5.distinct筛选</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//去除重复数据</span></span><br><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>);</span><br><span class="line">list.stream().distinct().forEach(System.out::print);</span><br><span class="line"><span class="comment">//输出123</span></span><br></pre></td></tr></table></figure></div>
-<h4 id="6-映射"><a href="#6-映射" class="headerlink" title="6.映射"></a>6.映射</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 流式计算将实体中某两个属性对应组装成key value的格式返回</span></span><br><span class="line"><span class="comment">// 项目中一般读取数据字典 根据code 返回前台数据使用</span></span><br><span class="line">Map&lt;Integer, String&gt; collect = users.stream()</span><br><span class="line">.collect(Collectors.toMap(User::getId, User::getName));</span><br><span class="line">System.out.println(collect.toString());</span><br><span class="line"><span class="comment">// 输出&#123;1=jim, 2=tom, 3=echo, 4=jerry, 5=bob&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将user按adress 分组</span></span><br><span class="line">Map&lt;String, List&lt;User&gt;&gt; addressMap = users.stream()</span><br><span class="line">.collect(Collectors.groupingBy(User::getAddress));</span><br><span class="line">System.out.println(addressMap.toString());</span><br><span class="line"><span class="comment">//输出：&#123;上海=[stream.User@52cc8049], 武汉=[stream.User@5b6f7412],</span></span><br><span class="line"><span class="comment">//深圳=[stream.User@27973e9b], 北京=[stream.User@312b1dae, stream.User@7530d0a]&#125;</span></span><br></pre></td></tr></table></figure></div>
-<blockquote>
-<p>小结：以上就是stream 流的常见用法 至于规约 查找 匹配都用的都很少，暂且不再深入 ，关于lambda表达式和函数式接口后面会写,还有一个很好玩的类Optional，后面也来写写看，奥利给！！!</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>stream</tag>
       </tags>
   </entry>
   <entry>
@@ -2034,419 +2034,6 @@
       </categories>
       <tags>
         <tag>aspect</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>链表&amp;二叉树&amp;平衡二叉树&amp;红黑树</title>
-    <url>/2021/0423/balance-tree.html</url>
-    <content><![CDATA[<blockquote>
-<p>当你还不能对自我说这天学到了什么东西时，你最好就不要去睡觉</p>
-</blockquote>
-<p>最近也在看HashMap相关的东西，你知道的这基本是面试必问的东西；据说很多兄弟都是败在了HashMap的夺命连环问上的，然后铭心自问发现自己也说不清楚；那怎么办呢？当然是硬着头皮上呗，在研究HashMap的原理前，我们是需要了解了解下链表、二叉树、平衡二叉树、红黑树这些数据结构的；特别说明下，本文只是为了说清楚各种数据结构的概念及特点，对于更深层次的算法探究这里不作扩展！</p>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是一种物理存储结构上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的；</p>
-<p>它的数据结构如下图所示（注意：这里的指针实际上指的是存储的pre节点对next节点数据的引用地址！）</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHsQsS.png"
-                      alt="链表"
-                ></p>
-<p>从图中，我们可以了解到：</p>
-<ul>
-<li>链表在物理结构上是不连续的</li>
-<li>它是大小是不确定的，链表的大小可以动态的按需分配的</li>
-<li>对于尾节点来说，它的指针为null</li>
-<li>在数据结构上来说，它是连续的，通过指针连续，故没有内存空间的浪费</li>
-</ul>
-<p>链表的优点：</p>
-<ul>
-<li>增，删节点效率高；因为只需要改变前面节点和当前节点的指针就可以了</li>
-<li>链表在物理结构上是不连续的，所以对内存的利用率是极高的（内存就像一个杯子，链表这种结构每个节点就相当于一粒粒沙子，只要有点空间都可以利用，即它不要求连续的大空间）</li>
-<li>链表的大小可以动态增减，可以做到灵活扩展</li>
-</ul>
-<p>链表的缺点：</p>
-<ul>
-<li>查询效率低；当查询某个节点，因为它是散乱分布的；并不知道每个节点的具体位置，所以不得不遍历获取！</li>
-</ul>
-<p>上图所示的只是一个单链表，其实链表还有很多种，例如双向链表，循环单链表，循环双链表等；对于链表的更多知识，请参考博客：<a class="link"   href="https://www.cnblogs.com/baixianlong/p/10759599.html"  target="_blank">数据结构–基于java的链表实现 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树是一种每个节点最多只有两个分支节点的树形的数据结构，它的数据结构如下图所示：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHTvIx.png"
-                      alt="二叉树"
-                ></p>
-<p>从图中，我们可以了解到：</p>
-<ul>
-<li>二叉树每个节点最多两个子节点</li>
-<li>处于顶层的是根节点；处于同一层的，同一个父节点的是兄弟节点</li>
-<li>没有子节点的是叶节点（叶子就是末梢了，不会再长出新的东西来）</li>
-</ul>
-<p>二叉树的子节点，又可以称为左子节点和右子节点；二叉树的优点是增删查都快，缺点是算法复杂；</p>
-<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>了解平衡二叉树之前，我们需要知道 <strong>二叉查找树</strong>，二叉查找树是一种有特殊规范的二叉树，二叉查找树又被称为二叉搜索树、有序二叉树、排序二叉树；</p>
-<p>那什么样的树才叫二叉查找树呢？看下图：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHLuAs.png"
-                      alt="二叉查找树"
-                ></p>
-<p>上图就是一个标准的二叉查找树，它符合以下的规范：</p>
-<ul>
-<li>若任意节点的左子树不为空，则左子树的值均小于它根节点的值；</li>
-<li>若任意节点的右子树不为空，则右子树的值均大于它根节点的值；</li>
-<li>任意节点的左子树，右子树都为二叉查找树（开始套娃了，哈哈）；</li>
-</ul>
-<p>那么什么叫平衡二叉树呢？为啥非得要说清楚二叉查找树再说平衡二叉树呢？</p>
-<p>其实所谓的平衡二叉树是指改进的二叉查找树，为了减少二叉查找树的深度，平衡二叉树将二叉查找树的节点平均的分布；一般而言，随着树的深度提高查询的平均复杂度就会提高，因此为了实现更好的查询效率就提出了平衡二叉树的这一数据结构！</p>
-<p>如下图，我们看下非平衡二叉树和平衡二叉树的区别：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UHXw6K.png"
-                      alt="非平衡二叉树&amp;平衡二叉树"
-                ></p>
-<p>其实平衡二叉树比二叉查找树多了个平衡的特点，它体现在：平衡二叉树的任意节点的左子树高度和右子树高度差值都不能大于1；</p>
-<p>这里需要说明一个平衡因子的概念：我们将二叉树上节点的左子树深度减去右子树深度的值称为<strong>平衡因子BF（Balance Factor）</strong>,那么平衡二叉树上所有节点的平衡因子只可能是-1，0，1；只要二叉树上有一个节点的平衡因子的绝对值大于1，则该二叉树就是不平衡的；</p>
-<p>那么当扩展到N个节点来看，平衡二叉树优势明显；它显著的减少了查询的深度，从而提高了查询的效率；</p>
-<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>了解了平衡二叉树后，我们再来看下什么样的树叫红黑树；如下图所示：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/22/UbPb4S.png"
-                      alt="红黑树"
-                ></p>
-<p>红黑树除了具有二叉查找树的基本特点外，还具有以下几个特点：</p>
-<ul>
-<li>各节点是红色或黑色，根节点是黑色</li>
-<li>所有的叶子节点都是空节点（NIL节点）且是黑色</li>
-<li>每个红色的节点都必须有两个黑色的子节点（每个叶子节点到根节点的路径上不能有连续的两个红色节点）</li>
-<li>每个节点到该节点下的子孙节点的所有路径上，包含同等数目的黑色节点</li>
-</ul>
-<p>红黑树的优点：相对于普通的二叉树来说，普通的二叉树可能退化为链表的形式，那么时间复杂度会退化到O(n);而红黑树是一种在平衡二叉树上又添加了新特点的树形结构，它的高度趋近于log2n，它的添加删除查询的时间复杂为O(log n)。</p>
-<p>红黑树是一种自平衡的平衡二叉树，它保持自平衡和红黑树特点的方式是：变色，左旋和右旋；</p>
-<blockquote>
-<p>对比AVL树</p>
-</blockquote>
-<p>AVL树也是一种自平衡树（本质也是一种二叉排序树，二叉搜索树，只是在此之上增加了平衡的特点），它和红黑树的不同在于，它增加了节点高度的属性，保存了各个节点的高度信息（以确保各节点的平衡因子绝对值不大于1）；而红黑树也包含了ACV的特性，只是实现不同，它增加了红黑属性的定义，更加简单的确保了树的再平衡计算，并且相比较每个节点记录高度信息来说，节省了内存；</p>
-<blockquote>
-<p>小结：关于链表，二叉树，平衡二叉树，红黑树的概念及其理解就先总结到这里；后面我们将继续了解，HashMap的底层实现，接下来就是巴源码啦，看看头发好像还能肝下去，奥利给！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>位运算</title>
-    <url>/2021/0423/wei-operation.html</url>
-    <content><![CDATA[<blockquote>
-<p>再肝HashMap之前，还是需要了解位运算滴</p>
-</blockquote>
-<p>接上篇，我们总结了链表乃至红黑树的概念及其理解；准备去扒源码的，发现里面一堆位运算；这写的都是啥啥啥？脑海中不自觉的浮现了这个表情包，可以说再形象不过了。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/07/23/Uq2euq.jpg"
-                     
-                ><br>哈哈哈，想想这东西搞清楚了可以更好的阅读源码乃至装逼,心情不无激动了哈。废话不多说，咱们开干！</p>
-<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>我们知道，所有的数字及字符在计算机中都是以二进制存储的，而位运算就是直接对二进制数据进行操作。</p>
-<p>不同于我们普通的加减乘除操作，位运算符如下：</p>
-<ul>
-<li>位与运算：&amp;</li>
-<li>位或运算：|</li>
-<li>位异或运算：^</li>
-<li>位左移运算：&lt;&lt;</li>
-<li>位右移运算：&gt;&gt;</li>
-<li>无符号右移：&gt;&gt;&gt;</li>
-<li>位取反运算：~</li>
-</ul>
-<p>当然，和加减乘除一样，运算时有个先后顺序（先乘除后加减），位运算也有它的先后顺序；按优先级排序如下：</p>
-<table>
-<thead>
-<tr>
-<th align="center">1 取反</th>
-<th align="center">2 左右位移</th>
-<th align="center">3 位与</th>
-<th align="center">4 位异或</th>
-<th align="center">5 位或</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">~</td>
-<td align="center">&lt;&lt;<br>&gt;&gt;</td>
-<td align="center">&amp;</td>
-<td align="center">^</td>
-<td align="center">|</td>
-</tr>
-</tbody></table>
-<p>我们知道二进制中只有0和1的概念（1 理解为在对应的位数上有值，为真！0理解为在对应的位数上没有值，为假），我们举例说明如下：</p>
-<h3 id="用法栗子"><a href="#用法栗子" class="headerlink" title="用法栗子"></a>用法栗子</h3><blockquote>
-<p>位与 &amp;（同真则真，同假则假，不同则假）</p>
-</blockquote>
-<ul>
-<li>1 &amp; 1 &#x3D; 1；</li>
-<li>0 &amp; 0 &#x3D; 0；</li>
-<li>1 &amp; 0 &#x3D; 0；</li>
-</ul>
-<p>关于10进制转二进制这里就不在赘述了（除二取余），例如：5 &amp; 6 &#x3D; 4；我们看下怎么来的：</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>5</td>
-<td>0000 0101</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>取&amp;</td>
-<td>0000 0100   &#x3D; 1* 2的平方 &#x3D; 4</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>位或 |（同真则真，同假则假，不同则真）</p>
-</blockquote>
-<ul>
-<li>1 | 1 &#x3D; 1；</li>
-<li>0 | 0 &#x3D; 0；</li>
-<li>0 | 1 &#x3D; 1；</li>
-</ul>
-<p>例如：5 | 6 &#x3D; 7；我们看下怎么来的：</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>5</td>
-<td>0000 0101</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>取&amp;</td>
-<td>0000 0111   &#x3D; 1* 2的平方 + 1*  2+1* 2的0次方 &#x3D; 7</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>位异或 ^（同真同假则假，不同则真）</p>
-</blockquote>
-<ul>
-<li>1 ^ 1 &#x3D; 0;</li>
-<li>0 ^ 0 &#x3D; 0;</li>
-<li>0 ^ 1 &#x3D; 1;</li>
-</ul>
-<p>例如： 5 ^ 6 &#x3D; 3;我们看下怎么来的：</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>5</td>
-<td>0000 0101</td>
-</tr>
-<tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>取^</td>
-<td>0000 0011   &#x3D; 1*  2+1* 2的0次方 &#x3D; 3</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>左移（&lt;&lt;)</p>
-</blockquote>
-<p>左移就是将一个二进制的数据整体向左移动，正数后面虚位补0（负数后面虚位补1,例子略）；例如：2 &lt;&lt; 2 &#x3D; 8;</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2</td>
-<td>0000 0010</td>
-</tr>
-<tr>
-<td>&lt;&lt; 2(左移2位)</td>
-<td>0000 1000</td>
-</tr>
-<tr>
-<td></td>
-<td>1* 2的三次方 &#x3D; 8</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>右移（&gt;&gt;）</p>
-</blockquote>
-<p>右移就是将一个二进制的数据整体向右移动，前面虚位补0（负数前面虚位补1，,例子略）；例如： 6 &gt;&gt; 2 &#x3D; 1;</p>
-<table>
-<thead>
-<tr>
-<th>数字</th>
-<th>二进制（8位）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>6</td>
-<td>0000 0110</td>
-</tr>
-<tr>
-<td>&gt;&gt; 2(右移2位)</td>
-<td>0000  0001</td>
-</tr>
-<tr>
-<td></td>
-<td>1* 2的0次方 &#x3D; 1</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>无符号右移&gt;&gt;&gt;</p>
-</blockquote>
-<p>无符号右移，不论正数负数都补0；因为无符号右移只在32位或64位下才有意义，这里不再讨论；</p>
-<blockquote>
-<p>取反~</p>
-</blockquote>
-<p>取反就是在原有的数字上加1然后取反就是了，公式如下：~ x &#x3D; - (x + 1);例如：~ 5 &#x3D; - (5+1) &#x3D; -6;</p>
-<p>好，至此位运算的方法已经总结完了；我们来看下结合几个简单的算法题来看下位运算具体可以怎么用，又是如何给我们的计算带来便捷的。</p>
-<h3 id="算法栗子"><a href="#算法栗子" class="headerlink" title="算法栗子"></a>算法栗子</h3><blockquote>
-<p>一. 交换变量</p>
-</blockquote>
-<p>我们还记得冒泡算法，有个交换变量的过程；</p>
-<p>大体过程如下：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">// 定义的临时变量</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">temp = a; a = b; b = temp;</span><br><span class="line"><span class="comment">// temp = 1; a = 2; b = 0;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>这里临时变量的做法其实是用空间换时间，这样做是需要额外的存储空间的；那么我们采用位异或^运算就可以解决这个问题：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line">a = a ^ b;</span><br></pre></td></tr></table></figure></div>
-
-<p>这样就可以了？这样就可以达到交换的目的？哈哈，是不是还有点懵；别急，读懂下面这三行代码还需要知道异或运算的一些性质：</p>
-<ul>
-<li>位异或满足交换定律：<code>a ^ b = b ^ a</code>;</li>
-<li>位异或满足结合定律：<code>（a ^ b）^ c = a ^（b ^ c)</code>;</li>
-<li>任何数和0异或都是它自己：<code>x ^ 0 = x</code>;</li>
-</ul>
-<p>了解了这些后，我们再看看上面三个式子：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">a = a ^ b; <span class="comment">// 第一步</span></span><br><span class="line">b = a ^ b; <span class="comment">// 第二步</span></span><br><span class="line">a = a ^ b; <span class="comment">// 第三步</span></span><br><span class="line"></span><br><span class="line">将 a = a^b 代入 第二步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">b = a^b^b = a^<span class="number">0</span> = a;</span><br><span class="line"></span><br><span class="line">将 b=a^b 代入 第三步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">a = a^a^b = <span class="number">0</span>^b = b;</span><br><span class="line"></span><br><span class="line">这样就完成了数值的交换，是不是有点意思了；那咱们继续！</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>二. 2的幂运算</p>
-</blockquote>
-<p>假设给定一个数，我们需要判断一个数是否是2的多少次幂，如果是则返回true,不是则返回false;</p>
-<p>通常我们怎么做呢？写一个循环，然后一直除以2当能除净且除到最后值为1时，我们判断这个值为2的幂返回true;</p>
-<p>通常我们怎么写呢？示例如下：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">f</span> <span class="operator">=</span> checkMi(<span class="number">8</span>);</span><br><span class="line">    System.out.println(f);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">checkMi</span><span class="params">(<span class="type">float</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        x = x/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">1</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>那么这种写法算是很普通的写法了，逼格不够高哈！我们来看看位运算一般怎么解决的：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">z</span> <span class="operator">=</span> x&amp;(x-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> x&gt;<span class="number">1</span> &amp; z == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>是不是少了很多代码，也显得逼格满满！哈哈，要读懂这行代码，我们需要明白什么样的数才是2的幂。来看下列数据找下规律：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">1： 0000 0001</span><br><span class="line">2： 0000 0010</span><br><span class="line">3： 0000 0011</span><br><span class="line">4： 0000 0100</span><br><span class="line">7： 0000 0111</span><br><span class="line">8： 0000 1000</span><br><span class="line">15：0000 1111</span><br><span class="line">16：0001 0000</span><br><span class="line">...以此类推，我们知道类似于这样的的高位数都是1，低位数都是0的数才能是2的幂</span><br></pre></td></tr></table></figure></div>
-
-<p>对于1，3，7，15这样的数都是高位是0低位都是1的数；所以此时<code>x&amp;(x-1)==0</code></p>
-<blockquote>
-<p>三. 找不同</p>
-</blockquote>
-<p>假如给出一个字符串s1,然后将s1字符串中字符顺序打乱，再加入一个新的字符生成一个s2,让你比较这两个字符串找出新插入的字符；</p>
-<p>例如：String s1 &#x3D; “abca”;加入一个新字符”x”,String s2 &#x3D; “bacxa”,请你设计一个算法找出新插入的字符”x”;我想我们大多数人的想法就是用获取每个字符的HashCode，并记录每个字符出现的次数；然后比较两个字符串中，每个字符的出现次数；直到在s2中找到出现一次的”x”为止；算法我就不写了，感兴趣的同学可以自己尝试写下；我们这里重点说下利用位运算怎么实现：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;abca&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;bacxa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    System.out.println(findChar(s1,s2));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">char</span> <span class="title function_">findChar</span><span class="params">(String s1, String s2)</span>&#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> s1 + s2;</span><br><span class="line">    <span class="type">int</span> <span class="variable">first</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">        first ^= Integer.valueOf(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">char</span>)first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>有没有被惊艳到？哈哈，我们还是来看下这个算法：我们这里用了异或这个位运算（同真同假则假，不同则真）；其次<code>Integer.valueOf(s.charAt(i))</code>是获取每个字符的Ascii码。这里就不计算每个字符的Ascii码了，就拿的值“53135”举例：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">0^5^3^1^3^5 = 0^(5^5)^(3^3)^1 = 0^0^0^1 = 1;//就酱紫找到了多出来的那个数了</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>四. “1”个数的奇偶</p>
-</blockquote>
-<p>假设给定一个8位的二进制，我们要统计下这个8个数字中1的个数的奇偶；若为奇数个则返回1，若为偶数个则返回0；例如：0011 0111共有5个1，则返回1；这里我们就不讨论平常的做法了哈，我们直接来位运算的实现：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">number</span> <span class="operator">=</span> <span class="string">&quot;00010110&quot;</span>;</span><br><span class="line">    System.out.println(findOddEven(number));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">findOddEven</span><span class="params">(String number)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        count += Integer.parseInt(String.valueOf(number.charAt(i))) &amp; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count &amp; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>我们来解释下：这段代码就是运用了位与运算，<code>Integer.parseInt(String.valueOf(number.charAt(i))) &amp; 1</code>取出每一个数字和1与运算；为1则count自增1；这点和我们自己写代码完全一致哈，关键是后面这句<code>count &amp; 1</code>；count 是偶数返回0，是奇数返回1；我们知道用位与运算，同真则真，同假则假，不同则假；1的8位二进制是<code>0000 0001</code>那么任何数和它位与运算，高位都会被抵消掉变成0，那么最关键的就是看最后一位了是不是1了；很明显，最后一位为1的就是奇数，否则为偶数；这个算法正是运用了这一点；</p>
-<p>同理，更牛掰的写法如下（但是可读性不好）：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">n = n^(n&gt;&gt;1)</span><br><span class="line">n = n^(n&gt;&gt;2)</span><br><span class="line">n = n^(n&gt;&gt;4)</span><br><span class="line">return n &amp; 1</span><br><span class="line">//这里的n代表循环中每一个元素 这个可以自行推导下</span><br></pre></td></tr></table></figure></div>
-
-<blockquote>
-<p>小结：关于位运算就先总结到这儿；算法的例子皆来源于LeetCode（还是要多去上面多摩擦摩擦智商）；搞懂这些后我们再来掰扯下那些源码，相信肯定不会再那么痛苦！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>位运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>时间复杂度&amp;空间复杂度</title>
-    <url>/2021/0423/time-space-complexity.html</url>
-    <content><![CDATA[<blockquote>
-<p>老说时间复杂度，空间复杂度，能不能简单描述一下？说人话！</p>
-</blockquote>
-<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>Space Complexity,对一个算法在运行过程中临时占用存储度空间的度量，记做<code>S(n)=O(f(n))</code>;</p>
-<p>其实白话就是，一段程序运行需要分配的空间，我们用一个线性函数来描述它的变化趋势，我们把这个变化趋势整体就叫做这个算法的空间复杂度！</p>
-<p>来看以下代码示例：</p>
-<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">b+=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> a + b;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> [] arr = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">mi</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (<span class="type">int</span>)Math.pow(n,mi);</span><br><span class="line"><span class="type">int</span> [] arr1 = <span class="keyword">new</span> <span class="title class_">int</span>[m];</span><br></pre></td></tr></table></figure></div>
-
-<p>那么上面一段代码的空间复杂度分别怎么表示呢？</p>
-<p>可以看到因为a,b,c 三个变量都是加减操作，存储空间根据字节长度有关，它们的字节都是线性增长的，所以它的空间复杂度我们记做：<br>$$<br>S(n)&#x3D;O(1)<br>$$<br>arr 数组分配的空间和它的初始长度n 相关，所以它的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n);<br>$$<br>arr1 数组分配的空间和它的初始长度m 相关，而m 是n的mi次方即: <code>m = n^mi</code></p>
-<p>这里是mi为2, 则arr1的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n^2)<br>$$</p>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>Time Complexity, 对一个算法运行时所需要消耗的时间的度量，记做：<code>T(n) = O(n)</code>;</p>
-<p>白话理解就是一个程序运行所需要的时间，我们并不是直接描述它占用时间的长短，而是从宏观上评估它的所消耗时间的一个趋势，而它的变化趋势我们也可以用各种线性函数来表示（即所写代码的执行次数和什么相关的函数），那这种线性函数的描述方式我们叫做时间复杂度；</p>
-<p>来看以下代码示例：</p>
-<h4 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> count;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">count = i + j + k;</span><br></pre></td></tr></table></figure></div>
-
-<p>从上面代码我们可以看到，这段代码程序是自上向下执行一次的，那么对于这种只执行一次的代码时间复杂度我们记做：<br>$$<br>T(n)&#x3D;O(1)<br>$$</p>
-<h4 id="O-log3n"><a href="#O-log3n" class="headerlink" title="O(log3n)"></a>O(log3n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;=n)&#123;</span><br><span class="line">    i=<span class="number">3</span>*i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>在上面代码中，while循环每次i都自增3倍，如果自增x次后i&gt;n就退出循环了，也就是3的x次方时退出了循环，可以确定的是x次循环后i一定是一个大于n的某个值，在时间复杂度的考量中我们将此值忽略直接记做n,那么3的x次方等于n,成对数即是<code>x = log(3)(n)</code>。说明这段代码的执行次数x 是个对数函数，对应的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(log_3n)<br>$$</p>
-<h4 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>上面代码是一个简单的for循环，那么很明显它的执行次数和n的大小有关，我们将这种for循环的时间复杂度记做：<br>$$<br>T(n)&#x3D;O(n)<br>$$</p>
-<h4 id="O-nlogN"><a href="#O-nlogN" class="headerlink" title="O(nlogN)"></a>O(nlogN)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="type">int</span> j;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(j&lt;n)&#123;</span><br><span class="line">        j = <span class="number">2</span>*j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>在上面一段代码中，我们可以看到for循环中每次都对i 重新做了赋值操作;</p>
-<p>保证 while 循环每次都能执行<code>log(2)(n)</code>次，那么它总的执行次数就是<code>n*log(2)(n)</code>, 那么这个时候决定执行的次数的关键就在于n的大小了，至于是2倍还是几倍的增长变得不再那么重要，我们可以忽略（极限思维）统一记做N。那么它的时间复杂度我们就记做：<br>$$<br>T(n)&#x3D; O(nlogN)<br>$$</p>
-<h4 id="O-n-k"><a href="#O-n-k" class="headerlink" title="O(n^k)"></a>O(n^k)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>上面代码三个for循环，明显执行了n* n * n即n^3,它的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(n^3)<br>$$</p>
-<h4 id="O-2-n-，O-n"><a href="#O-2-n-，O-n" class="headerlink" title="O(2^n)，O(n!)"></a>O(2^n)，<strong>O(n!)</strong></h4><p>实际上幂指数增长和穷举，基本没有见过这样的程序，你想什么样的算法会是指数性的和穷举型的？（网络攻击？这两个不常见，了解即可）</p>
-<h4 id="常见时间复杂度函数图"><a href="#常见时间复杂度函数图" class="headerlink" title="常见时间复杂度函数图"></a>常见时间复杂度函数图</h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s1.ax1x.com/2020/04/28/J5Fsn1.png"
-                     
-                ></p>
-<p>从图中我们可以看到趋势越陡的函数时间复杂度肯定大，那么以上的时间复杂度从大到小依次是：<br><code>2^n &gt; (n^3)/3 &gt; 5n^2 &gt; 500log(2)(n) &gt; 100n</code></p>
-<p>那么我们可以推断出常见的时间时间复杂度从大到小依次是：<br>$$<br>O(2^n) &gt; O(n^3)&gt;O(n^2)&gt;O(nlog_2n)&gt;O(n)&gt;O(log_2n)&gt;O(1)<br>$$</p>
-<p><strong>时间复杂度越大，算法的执行效率越低！</strong></p>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>最后关于时间复杂度的更形象的总结，推荐篇博客 :<a class="link"   href="https://blog.csdn.net/qq_41523096/article/details/82142747"  target="_blank">一套图 搞懂“时间复杂度” <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<p>关于8大排序算法时间复杂度稳定性的总结，推荐博客：<a class="link"   href="https://blog.csdn.net/Elsa15/article/details/90138249"  target="_blank">八大排序算法、稳定性及时间复杂度 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<blockquote>
-<p>小结：我们学习了解任何知识，一定不能死啃概念，要试着把自己不能理解的东西抽象成自己可以理解的东西!很多东西我们不能理解，是很多时候是有些技术类文章不说人话。有些也是自己眼界不够，而有些则是说的人能力不够还无法做到通俗易懂的讲解出来！如果你能做到通俗易懂的讲解出来，那说明你已经掌握了！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>math</category>
-      </categories>
-      <tags>
-        <tag>复杂度</tag>
       </tags>
   </entry>
   <entry>
@@ -2981,6 +2568,419 @@
       </categories>
       <tags>
         <tag>jar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>链表&amp;二叉树&amp;平衡二叉树&amp;红黑树</title>
+    <url>/2021/0423/balance-tree.html</url>
+    <content><![CDATA[<blockquote>
+<p>当你还不能对自我说这天学到了什么东西时，你最好就不要去睡觉</p>
+</blockquote>
+<p>最近也在看HashMap相关的东西，你知道的这基本是面试必问的东西；据说很多兄弟都是败在了HashMap的夺命连环问上的，然后铭心自问发现自己也说不清楚；那怎么办呢？当然是硬着头皮上呗，在研究HashMap的原理前，我们是需要了解了解下链表、二叉树、平衡二叉树、红黑树这些数据结构的；特别说明下，本文只是为了说清楚各种数据结构的概念及特点，对于更深层次的算法探究这里不作扩展！</p>
+<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><p>链表是一种物理存储结构上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的；</p>
+<p>它的数据结构如下图所示（注意：这里的指针实际上指的是存储的pre节点对next节点数据的引用地址！）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHsQsS.png"
+                      alt="链表"
+                ></p>
+<p>从图中，我们可以了解到：</p>
+<ul>
+<li>链表在物理结构上是不连续的</li>
+<li>它是大小是不确定的，链表的大小可以动态的按需分配的</li>
+<li>对于尾节点来说，它的指针为null</li>
+<li>在数据结构上来说，它是连续的，通过指针连续，故没有内存空间的浪费</li>
+</ul>
+<p>链表的优点：</p>
+<ul>
+<li>增，删节点效率高；因为只需要改变前面节点和当前节点的指针就可以了</li>
+<li>链表在物理结构上是不连续的，所以对内存的利用率是极高的（内存就像一个杯子，链表这种结构每个节点就相当于一粒粒沙子，只要有点空间都可以利用，即它不要求连续的大空间）</li>
+<li>链表的大小可以动态增减，可以做到灵活扩展</li>
+</ul>
+<p>链表的缺点：</p>
+<ul>
+<li>查询效率低；当查询某个节点，因为它是散乱分布的；并不知道每个节点的具体位置，所以不得不遍历获取！</li>
+</ul>
+<p>上图所示的只是一个单链表，其实链表还有很多种，例如双向链表，循环单链表，循环双链表等；对于链表的更多知识，请参考博客：<a class="link"   href="https://www.cnblogs.com/baixianlong/p/10759599.html"  target="_blank">数据结构–基于java的链表实现 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树是一种每个节点最多只有两个分支节点的树形的数据结构，它的数据结构如下图所示：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHTvIx.png"
+                      alt="二叉树"
+                ></p>
+<p>从图中，我们可以了解到：</p>
+<ul>
+<li>二叉树每个节点最多两个子节点</li>
+<li>处于顶层的是根节点；处于同一层的，同一个父节点的是兄弟节点</li>
+<li>没有子节点的是叶节点（叶子就是末梢了，不会再长出新的东西来）</li>
+</ul>
+<p>二叉树的子节点，又可以称为左子节点和右子节点；二叉树的优点是增删查都快，缺点是算法复杂；</p>
+<h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>了解平衡二叉树之前，我们需要知道 <strong>二叉查找树</strong>，二叉查找树是一种有特殊规范的二叉树，二叉查找树又被称为二叉搜索树、有序二叉树、排序二叉树；</p>
+<p>那什么样的树才叫二叉查找树呢？看下图：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHLuAs.png"
+                      alt="二叉查找树"
+                ></p>
+<p>上图就是一个标准的二叉查找树，它符合以下的规范：</p>
+<ul>
+<li>若任意节点的左子树不为空，则左子树的值均小于它根节点的值；</li>
+<li>若任意节点的右子树不为空，则右子树的值均大于它根节点的值；</li>
+<li>任意节点的左子树，右子树都为二叉查找树（开始套娃了，哈哈）；</li>
+</ul>
+<p>那么什么叫平衡二叉树呢？为啥非得要说清楚二叉查找树再说平衡二叉树呢？</p>
+<p>其实所谓的平衡二叉树是指改进的二叉查找树，为了减少二叉查找树的深度，平衡二叉树将二叉查找树的节点平均的分布；一般而言，随着树的深度提高查询的平均复杂度就会提高，因此为了实现更好的查询效率就提出了平衡二叉树的这一数据结构！</p>
+<p>如下图，我们看下非平衡二叉树和平衡二叉树的区别：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UHXw6K.png"
+                      alt="非平衡二叉树&amp;平衡二叉树"
+                ></p>
+<p>其实平衡二叉树比二叉查找树多了个平衡的特点，它体现在：平衡二叉树的任意节点的左子树高度和右子树高度差值都不能大于1；</p>
+<p>这里需要说明一个平衡因子的概念：我们将二叉树上节点的左子树深度减去右子树深度的值称为<strong>平衡因子BF（Balance Factor）</strong>,那么平衡二叉树上所有节点的平衡因子只可能是-1，0，1；只要二叉树上有一个节点的平衡因子的绝对值大于1，则该二叉树就是不平衡的；</p>
+<p>那么当扩展到N个节点来看，平衡二叉树优势明显；它显著的减少了查询的深度，从而提高了查询的效率；</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>了解了平衡二叉树后，我们再来看下什么样的树叫红黑树；如下图所示：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/22/UbPb4S.png"
+                      alt="红黑树"
+                ></p>
+<p>红黑树除了具有二叉查找树的基本特点外，还具有以下几个特点：</p>
+<ul>
+<li>各节点是红色或黑色，根节点是黑色</li>
+<li>所有的叶子节点都是空节点（NIL节点）且是黑色</li>
+<li>每个红色的节点都必须有两个黑色的子节点（每个叶子节点到根节点的路径上不能有连续的两个红色节点）</li>
+<li>每个节点到该节点下的子孙节点的所有路径上，包含同等数目的黑色节点</li>
+</ul>
+<p>红黑树的优点：相对于普通的二叉树来说，普通的二叉树可能退化为链表的形式，那么时间复杂度会退化到O(n);而红黑树是一种在平衡二叉树上又添加了新特点的树形结构，它的高度趋近于log2n，它的添加删除查询的时间复杂为O(log n)。</p>
+<p>红黑树是一种自平衡的平衡二叉树，它保持自平衡和红黑树特点的方式是：变色，左旋和右旋；</p>
+<blockquote>
+<p>对比AVL树</p>
+</blockquote>
+<p>AVL树也是一种自平衡树（本质也是一种二叉排序树，二叉搜索树，只是在此之上增加了平衡的特点），它和红黑树的不同在于，它增加了节点高度的属性，保存了各个节点的高度信息（以确保各节点的平衡因子绝对值不大于1）；而红黑树也包含了ACV的特性，只是实现不同，它增加了红黑属性的定义，更加简单的确保了树的再平衡计算，并且相比较每个节点记录高度信息来说，节省了内存；</p>
+<blockquote>
+<p>小结：关于链表，二叉树，平衡二叉树，红黑树的概念及其理解就先总结到这里；后面我们将继续了解，HashMap的底层实现，接下来就是巴源码啦，看看头发好像还能肝下去，奥利给！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>位运算</title>
+    <url>/2021/0423/wei-operation.html</url>
+    <content><![CDATA[<blockquote>
+<p>再肝HashMap之前，还是需要了解位运算滴</p>
+</blockquote>
+<p>接上篇，我们总结了链表乃至红黑树的概念及其理解；准备去扒源码的，发现里面一堆位运算；这写的都是啥啥啥？脑海中不自觉的浮现了这个表情包，可以说再形象不过了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/07/23/Uq2euq.jpg"
+                     
+                ><br>哈哈哈，想想这东西搞清楚了可以更好的阅读源码乃至装逼,心情不无激动了哈。废话不多说，咱们开干！</p>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>我们知道，所有的数字及字符在计算机中都是以二进制存储的，而位运算就是直接对二进制数据进行操作。</p>
+<p>不同于我们普通的加减乘除操作，位运算符如下：</p>
+<ul>
+<li>位与运算：&amp;</li>
+<li>位或运算：|</li>
+<li>位异或运算：^</li>
+<li>位左移运算：&lt;&lt;</li>
+<li>位右移运算：&gt;&gt;</li>
+<li>无符号右移：&gt;&gt;&gt;</li>
+<li>位取反运算：~</li>
+</ul>
+<p>当然，和加减乘除一样，运算时有个先后顺序（先乘除后加减），位运算也有它的先后顺序；按优先级排序如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">1 取反</th>
+<th align="center">2 左右位移</th>
+<th align="center">3 位与</th>
+<th align="center">4 位异或</th>
+<th align="center">5 位或</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">~</td>
+<td align="center">&lt;&lt;<br>&gt;&gt;</td>
+<td align="center">&amp;</td>
+<td align="center">^</td>
+<td align="center">|</td>
+</tr>
+</tbody></table>
+<p>我们知道二进制中只有0和1的概念（1 理解为在对应的位数上有值，为真！0理解为在对应的位数上没有值，为假），我们举例说明如下：</p>
+<h3 id="用法栗子"><a href="#用法栗子" class="headerlink" title="用法栗子"></a>用法栗子</h3><blockquote>
+<p>位与 &amp;（同真则真，同假则假，不同则假）</p>
+</blockquote>
+<ul>
+<li>1 &amp; 1 &#x3D; 1；</li>
+<li>0 &amp; 0 &#x3D; 0；</li>
+<li>1 &amp; 0 &#x3D; 0；</li>
+</ul>
+<p>关于10进制转二进制这里就不在赘述了（除二取余），例如：5 &amp; 6 &#x3D; 4；我们看下怎么来的：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>取&amp;</td>
+<td>0000 0100   &#x3D; 1* 2的平方 &#x3D; 4</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>位或 |（同真则真，同假则假，不同则真）</p>
+</blockquote>
+<ul>
+<li>1 | 1 &#x3D; 1；</li>
+<li>0 | 0 &#x3D; 0；</li>
+<li>0 | 1 &#x3D; 1；</li>
+</ul>
+<p>例如：5 | 6 &#x3D; 7；我们看下怎么来的：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>取&amp;</td>
+<td>0000 0111   &#x3D; 1* 2的平方 + 1*  2+1* 2的0次方 &#x3D; 7</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>位异或 ^（同真同假则假，不同则真）</p>
+</blockquote>
+<ul>
+<li>1 ^ 1 &#x3D; 0;</li>
+<li>0 ^ 0 &#x3D; 0;</li>
+<li>0 ^ 1 &#x3D; 1;</li>
+</ul>
+<p>例如： 5 ^ 6 &#x3D; 3;我们看下怎么来的：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5</td>
+<td>0000 0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>取^</td>
+<td>0000 0011   &#x3D; 1*  2+1* 2的0次方 &#x3D; 3</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>左移（&lt;&lt;)</p>
+</blockquote>
+<p>左移就是将一个二进制的数据整体向左移动，正数后面虚位补0（负数后面虚位补1,例子略）；例如：2 &lt;&lt; 2 &#x3D; 8;</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>0000 0010</td>
+</tr>
+<tr>
+<td>&lt;&lt; 2(左移2位)</td>
+<td>0000 1000</td>
+</tr>
+<tr>
+<td></td>
+<td>1* 2的三次方 &#x3D; 8</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>右移（&gt;&gt;）</p>
+</blockquote>
+<p>右移就是将一个二进制的数据整体向右移动，前面虚位补0（负数前面虚位补1，,例子略）；例如： 6 &gt;&gt; 2 &#x3D; 1;</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>二进制（8位）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>6</td>
+<td>0000 0110</td>
+</tr>
+<tr>
+<td>&gt;&gt; 2(右移2位)</td>
+<td>0000  0001</td>
+</tr>
+<tr>
+<td></td>
+<td>1* 2的0次方 &#x3D; 1</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>无符号右移&gt;&gt;&gt;</p>
+</blockquote>
+<p>无符号右移，不论正数负数都补0；因为无符号右移只在32位或64位下才有意义，这里不再讨论；</p>
+<blockquote>
+<p>取反~</p>
+</blockquote>
+<p>取反就是在原有的数字上加1然后取反就是了，公式如下：~ x &#x3D; - (x + 1);例如：~ 5 &#x3D; - (5+1) &#x3D; -6;</p>
+<p>好，至此位运算的方法已经总结完了；我们来看下结合几个简单的算法题来看下位运算具体可以怎么用，又是如何给我们的计算带来便捷的。</p>
+<h3 id="算法栗子"><a href="#算法栗子" class="headerlink" title="算法栗子"></a>算法栗子</h3><blockquote>
+<p>一. 交换变量</p>
+</blockquote>
+<p>我们还记得冒泡算法，有个交换变量的过程；</p>
+<p>大体过程如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">// 定义的临时变量</span></span><br><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">temp = a; a = b; b = temp;</span><br><span class="line"><span class="comment">// temp = 1; a = 2; b = 0;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>这里临时变量的做法其实是用空间换时间，这样做是需要额外的存储空间的；那么我们采用位异或^运算就可以解决这个问题：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;</span><br><span class="line">a = a ^ b;</span><br></pre></td></tr></table></figure></div>
+
+<p>这样就可以了？这样就可以达到交换的目的？哈哈，是不是还有点懵；别急，读懂下面这三行代码还需要知道异或运算的一些性质：</p>
+<ul>
+<li>位异或满足交换定律：<code>a ^ b = b ^ a</code>;</li>
+<li>位异或满足结合定律：<code>（a ^ b）^ c = a ^（b ^ c)</code>;</li>
+<li>任何数和0异或都是它自己：<code>x ^ 0 = x</code>;</li>
+</ul>
+<p>了解了这些后，我们再看看上面三个式子：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line">a = a ^ b; <span class="comment">// 第一步</span></span><br><span class="line">b = a ^ b; <span class="comment">// 第二步</span></span><br><span class="line">a = a ^ b; <span class="comment">// 第三步</span></span><br><span class="line"></span><br><span class="line">将 a = a^b 代入 第二步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">b = a^b^b = a^<span class="number">0</span> = a;</span><br><span class="line"></span><br><span class="line">将 b=a^b 代入 第三步中根据异或法则（同真同假则假，不同则真）：</span><br><span class="line">a = a^a^b = <span class="number">0</span>^b = b;</span><br><span class="line"></span><br><span class="line">这样就完成了数值的交换，是不是有点意思了；那咱们继续！</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>二. 2的幂运算</p>
+</blockquote>
+<p>假设给定一个数，我们需要判断一个数是否是2的多少次幂，如果是则返回true,不是则返回false;</p>
+<p>通常我们怎么做呢？写一个循环，然后一直除以2当能除净且除到最后值为1时，我们判断这个值为2的幂返回true;</p>
+<p>通常我们怎么写呢？示例如下：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">f</span> <span class="operator">=</span> checkMi(<span class="number">8</span>);</span><br><span class="line">    System.out.println(f);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">checkMi</span><span class="params">(<span class="type">float</span> x)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        x = x/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">1</span>?<span class="literal">true</span>:<span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>那么这种写法算是很普通的写法了，逼格不够高哈！我们来看看位运算一般怎么解决的：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">z</span> <span class="operator">=</span> x&amp;(x-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> x&gt;<span class="number">1</span> &amp; z == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>是不是少了很多代码，也显得逼格满满！哈哈，要读懂这行代码，我们需要明白什么样的数才是2的幂。来看下列数据找下规律：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">1： 0000 0001</span><br><span class="line">2： 0000 0010</span><br><span class="line">3： 0000 0011</span><br><span class="line">4： 0000 0100</span><br><span class="line">7： 0000 0111</span><br><span class="line">8： 0000 1000</span><br><span class="line">15：0000 1111</span><br><span class="line">16：0001 0000</span><br><span class="line">...以此类推，我们知道类似于这样的的高位数都是1，低位数都是0的数才能是2的幂</span><br></pre></td></tr></table></figure></div>
+
+<p>对于1，3，7，15这样的数都是高位是0低位都是1的数；所以此时<code>x&amp;(x-1)==0</code></p>
+<blockquote>
+<p>三. 找不同</p>
+</blockquote>
+<p>假如给出一个字符串s1,然后将s1字符串中字符顺序打乱，再加入一个新的字符生成一个s2,让你比较这两个字符串找出新插入的字符；</p>
+<p>例如：String s1 &#x3D; “abca”;加入一个新字符”x”,String s2 &#x3D; “bacxa”,请你设计一个算法找出新插入的字符”x”;我想我们大多数人的想法就是用获取每个字符的HashCode，并记录每个字符出现的次数；然后比较两个字符串中，每个字符的出现次数；直到在s2中找到出现一次的”x”为止；算法我就不写了，感兴趣的同学可以自己尝试写下；我们这里重点说下利用位运算怎么实现：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;abca&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;bacxa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    System.out.println(findChar(s1,s2));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">char</span> <span class="title function_">findChar</span><span class="params">(String s1, String s2)</span>&#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> s1 + s2;</span><br><span class="line">    <span class="type">int</span> <span class="variable">first</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span><span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">        first ^= Integer.valueOf(s.charAt(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="type">char</span>)first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>有没有被惊艳到？哈哈，我们还是来看下这个算法：我们这里用了异或这个位运算（同真同假则假，不同则真）；其次<code>Integer.valueOf(s.charAt(i))</code>是获取每个字符的Ascii码。这里就不计算每个字符的Ascii码了，就拿的值“53135”举例：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">0^5^3^1^3^5 = 0^(5^5)^(3^3)^1 = 0^0^0^1 = 1;//就酱紫找到了多出来的那个数了</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>四. “1”个数的奇偶</p>
+</blockquote>
+<p>假设给定一个8位的二进制，我们要统计下这个8个数字中1的个数的奇偶；若为奇数个则返回1，若为偶数个则返回0；例如：0011 0111共有5个1，则返回1；这里我们就不讨论平常的做法了哈，我们直接来位运算的实现：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">number</span> <span class="operator">=</span> <span class="string">&quot;00010110&quot;</span>;</span><br><span class="line">    System.out.println(findOddEven(number));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">findOddEven</span><span class="params">(String number)</span>&#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        count += Integer.parseInt(String.valueOf(number.charAt(i))) &amp; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count &amp; <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们来解释下：这段代码就是运用了位与运算，<code>Integer.parseInt(String.valueOf(number.charAt(i))) &amp; 1</code>取出每一个数字和1与运算；为1则count自增1；这点和我们自己写代码完全一致哈，关键是后面这句<code>count &amp; 1</code>；count 是偶数返回0，是奇数返回1；我们知道用位与运算，同真则真，同假则假，不同则假；1的8位二进制是<code>0000 0001</code>那么任何数和它位与运算，高位都会被抵消掉变成0，那么最关键的就是看最后一位了是不是1了；很明显，最后一位为1的就是奇数，否则为偶数；这个算法正是运用了这一点；</p>
+<p>同理，更牛掰的写法如下（但是可读性不好）：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">n = n^(n&gt;&gt;1)</span><br><span class="line">n = n^(n&gt;&gt;2)</span><br><span class="line">n = n^(n&gt;&gt;4)</span><br><span class="line">return n &amp; 1</span><br><span class="line">//这里的n代表循环中每一个元素 这个可以自行推导下</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>小结：关于位运算就先总结到这儿；算法的例子皆来源于LeetCode（还是要多去上面多摩擦摩擦智商）；搞懂这些后我们再来掰扯下那些源码，相信肯定不会再那么痛苦！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>时间复杂度&amp;空间复杂度</title>
+    <url>/2021/0423/time-space-complexity.html</url>
+    <content><![CDATA[<blockquote>
+<p>老说时间复杂度，空间复杂度，能不能简单描述一下？说人话！</p>
+</blockquote>
+<h3 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>Space Complexity,对一个算法在运行过程中临时占用存储度空间的度量，记做<code>S(n)=O(f(n))</code>;</p>
+<p>其实白话就是，一段程序运行需要分配的空间，我们用一个线性函数来描述它的变化趋势，我们把这个变化趋势整体就叫做这个算法的空间复杂度！</p>
+<p>来看以下代码示例：</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">b+=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> a + b;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> [] arr = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">mi</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> (<span class="type">int</span>)Math.pow(n,mi);</span><br><span class="line"><span class="type">int</span> [] arr1 = <span class="keyword">new</span> <span class="title class_">int</span>[m];</span><br></pre></td></tr></table></figure></div>
+
+<p>那么上面一段代码的空间复杂度分别怎么表示呢？</p>
+<p>可以看到因为a,b,c 三个变量都是加减操作，存储空间根据字节长度有关，它们的字节都是线性增长的，所以它的空间复杂度我们记做：<br>$$<br>S(n)&#x3D;O(1)<br>$$<br>arr 数组分配的空间和它的初始长度n 相关，所以它的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n);<br>$$<br>arr1 数组分配的空间和它的初始长度m 相关，而m 是n的mi次方即: <code>m = n^mi</code></p>
+<p>这里是mi为2, 则arr1的空间复杂度我们记做：<br>$$<br>S(n) &#x3D; O(n^2)<br>$$</p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>Time Complexity, 对一个算法运行时所需要消耗的时间的度量，记做：<code>T(n) = O(n)</code>;</p>
+<p>白话理解就是一个程序运行所需要的时间，我们并不是直接描述它占用时间的长短，而是从宏观上评估它的所消耗时间的一个趋势，而它的变化趋势我们也可以用各种线性函数来表示（即所写代码的执行次数和什么相关的函数），那这种线性函数的描述方式我们叫做时间复杂度；</p>
+<p>来看以下代码示例：</p>
+<h4 id="O-1"><a href="#O-1" class="headerlink" title="O(1)"></a>O(1)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> count;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">count = i + j + k;</span><br></pre></td></tr></table></figure></div>
+
+<p>从上面代码我们可以看到，这段代码程序是自上向下执行一次的，那么对于这种只执行一次的代码时间复杂度我们记做：<br>$$<br>T(n)&#x3D;O(1)<br>$$</p>
+<h4 id="O-log3n"><a href="#O-log3n" class="headerlink" title="O(log3n)"></a>O(log3n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;=n)&#123;</span><br><span class="line">    i=<span class="number">3</span>*i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在上面代码中，while循环每次i都自增3倍，如果自增x次后i&gt;n就退出循环了，也就是3的x次方时退出了循环，可以确定的是x次循环后i一定是一个大于n的某个值，在时间复杂度的考量中我们将此值忽略直接记做n,那么3的x次方等于n,成对数即是<code>x = log(3)(n)</code>。说明这段代码的执行次数x 是个对数函数，对应的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(log_3n)<br>$$</p>
+<h4 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    System.out.println(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上面代码是一个简单的for循环，那么很明显它的执行次数和n的大小有关，我们将这种for循环的时间复杂度记做：<br>$$<br>T(n)&#x3D;O(n)<br>$$</p>
+<h4 id="O-nlogN"><a href="#O-nlogN" class="headerlink" title="O(nlogN)"></a>O(nlogN)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">1000</span>;</span><br><span class="line"><span class="type">int</span> j;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(j&lt;n)&#123;</span><br><span class="line">        j = <span class="number">2</span>*j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在上面一段代码中，我们可以看到for循环中每次都对i 重新做了赋值操作;</p>
+<p>保证 while 循环每次都能执行<code>log(2)(n)</code>次，那么它总的执行次数就是<code>n*log(2)(n)</code>, 那么这个时候决定执行的次数的关键就在于n的大小了，至于是2倍还是几倍的增长变得不再那么重要，我们可以忽略（极限思维）统一记做N。那么它的时间复杂度我们就记做：<br>$$<br>T(n)&#x3D; O(nlogN)<br>$$</p>
+<h4 id="O-n-k"><a href="#O-n-k" class="headerlink" title="O(n^k)"></a>O(n^k)</h4><div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>;k&lt;n;k++)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>上面代码三个for循环，明显执行了n* n * n即n^3,它的时间复杂度我们记做：<br>$$<br>T(n) &#x3D; O(n^3)<br>$$</p>
+<h4 id="O-2-n-，O-n"><a href="#O-2-n-，O-n" class="headerlink" title="O(2^n)，O(n!)"></a>O(2^n)，<strong>O(n!)</strong></h4><p>实际上幂指数增长和穷举，基本没有见过这样的程序，你想什么样的算法会是指数性的和穷举型的？（网络攻击？这两个不常见，了解即可）</p>
+<h4 id="常见时间复杂度函数图"><a href="#常见时间复杂度函数图" class="headerlink" title="常见时间复杂度函数图"></a>常见时间复杂度函数图</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s1.ax1x.com/2020/04/28/J5Fsn1.png"
+                     
+                ></p>
+<p>从图中我们可以看到趋势越陡的函数时间复杂度肯定大，那么以上的时间复杂度从大到小依次是：<br><code>2^n &gt; (n^3)/3 &gt; 5n^2 &gt; 500log(2)(n) &gt; 100n</code></p>
+<p>那么我们可以推断出常见的时间时间复杂度从大到小依次是：<br>$$<br>O(2^n) &gt; O(n^3)&gt;O(n^2)&gt;O(nlog_2n)&gt;O(n)&gt;O(log_2n)&gt;O(1)<br>$$</p>
+<p><strong>时间复杂度越大，算法的执行效率越低！</strong></p>
+<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p>最后关于时间复杂度的更形象的总结，推荐篇博客 :<a class="link"   href="https://blog.csdn.net/qq_41523096/article/details/82142747"  target="_blank">一套图 搞懂“时间复杂度” <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>关于8大排序算法时间复杂度稳定性的总结，推荐博客：<a class="link"   href="https://blog.csdn.net/Elsa15/article/details/90138249"  target="_blank">八大排序算法、稳定性及时间复杂度 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<blockquote>
+<p>小结：我们学习了解任何知识，一定不能死啃概念，要试着把自己不能理解的东西抽象成自己可以理解的东西!很多东西我们不能理解，是很多时候是有些技术类文章不说人话。有些也是自己眼界不够，而有些则是说的人能力不够还无法做到通俗易懂的讲解出来！如果你能做到通俗易懂的讲解出来，那说明你已经掌握了！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>math</category>
+      </categories>
+      <tags>
+        <tag>复杂度</tag>
       </tags>
   </entry>
   <entry>
@@ -4714,7 +4714,7 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
 <p>之前自己用halo搭建了个人博客，想着自己把源码拉下来学习研究下的，包下到本地后发现在终端中执行 <code>java -jar halo.jar --spring.profiles.active=dev</code>时,报<code>Application has been compiled by a more recent version of the Java Runtime (class file version 55.0), this versions up to 52.0</code>;what? 应用被最新的java版本执行过了，当前版本是52.0；一番搜索说jdk版本太低了，那就装个jdk11吧；</p>
 </blockquote>
 <h3 id="安装前的疑问"><a href="#安装前的疑问" class="headerlink" title="安装前的疑问"></a>安装前的疑问</h3><p>安装jdk11?那我之前安装的jdk8要删了吗？肯定不用吧，然后带着疑问去找了下解决办法，果然可以动态指定运行版本</p>
-<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#50;&#54;&#x39;&#54;&#x36;&#55;&#49;&#50;&#x38;&#53;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;" >&#50;&#54;&#x39;&#54;&#x36;&#55;&#49;&#50;&#x38;&#53;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="下载jdk11"><a href="#下载jdk11" class="headerlink" title="下载jdk11"></a>下载jdk11</h3><p><a class="link"   href="https://www.oracle.com/index.html" >oracle网址 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>oracle下载东西，需要注册；懒得注册了，网上找一个注册好的账号用一下吧；<br><em><strong><a class="link"   href="mailto:&#50;&#54;&#57;&#54;&#54;&#55;&#49;&#x32;&#56;&#53;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109;" >&#50;&#54;&#57;&#54;&#54;&#55;&#49;&#x32;&#56;&#53;&#x40;&#113;&#x71;&#x2e;&#99;&#x6f;&#109; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>  密码：Oracle123</strong></em><br>[jdk11下载地址]（<a class="link"   href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html%EF%BC%89" >https://www.oracle.com/java/technologies/javase-jdk11-downloads.html） <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <p>下载如下所示macos对应的jdk11:<br><a href="https://imgtu.com/i/6ahdXt"><img  
                      lazyload
                      src="/images/loading.svg"
@@ -5268,6 +5268,34 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </categories>
   </entry>
   <entry>
+    <title>vue项目搭建</title>
+    <url>/2021/0423/vue-project-build.html</url>
+    <content><![CDATA[<h4 id="1：安装node"><a href="#1：安装node" class="headerlink" title="1：安装node"></a>1：安装node</h4><p>端开发框架和环境都是需要 Node.js ，先安装node.js开发环境，vue的运行是要依赖于node的npm的管理工具来实现，下载<a class="link"   href="https://nodejs.org/en/%EF%BC%8C%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%89%93%E5%BC%80cmd%E5%BC%80%E5%A7%8B%E8%BE%93%E5%85%A5%E5%91%BD%E4%BB%A4%E3%80%82%EF%BC%88%E6%88%91%E7%94%A8%E7%9A%84%E6%98%AFwin10%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%89%80%E4%BB%A5%E9%9C%80%E8%A6%81%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%EF%BC%8C%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%E4%BB%A5%E7%AE%A1%E7%90%86%E5%91%98%E8%BA%AB%E4%BB%BD%E8%BF%90%E8%A1%8Ccmd%EF%BC%89%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%BE%88%E5%A4%9A%E6%8A%A5%E9%94%99%E3%80%82" >https://nodejs.org/en/，安装完成之后，打开cmd开始输入命令。（我用的是win10系统，所以需要管理员权限，右键点击以管理员身份运行cmd），不然会出现很多报错。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="2：查看node的版本号"><a href="#2：查看node的版本号" class="headerlink" title="2：查看node的版本号"></a>2：查看node的版本号</h4><p>下载好node之后，以管理员身份打开cmd管理工具，，输入 node -v ，回车，查看node版本号，出现版本号则说明安装成功。</p>
+<p>输入命令： node -v</p>
+<h4 id="3：安装淘宝npm镜像"><a href="#3：安装淘宝npm镜像" class="headerlink" title="3：安装淘宝npm镜像"></a>3：安装淘宝npm镜像</h4><p>由于npm是国外的，使用起来比较慢，我们这里使用淘宝的cnpm镜像来安装vue.<br>淘宝的cnpm命令管理工具可以代替默认的npm管理工具。<br>输入命令：<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
+<h4 id="4：安装全局vue-cli脚手架"><a href="#4：安装全局vue-cli脚手架" class="headerlink" title="4：安装全局vue-cli脚手架"></a>4：安装全局vue-cli脚手架</h4><p>淘宝镜像安装成功之后，我们就可以全局vue-cli脚手架，输入命令：cnpm install –global vue-cli 回车；验证是否安装成功，在命令输入vue，出来vue的信息，及说明安装成功；<br>输入命令：<code>cnpm install --global vue-cli</code></p>
+<h4 id="5：建一个新项目"><a href="#5：建一个新项目" class="headerlink" title="5：建一个新项目"></a>5：建一个新项目</h4><p>搭建完手脚架之后，我们要开始建一个新项目，这个时候我建议，尽量不要装在C盘，因为vue下载下来的文件比较大，如果要改盘的话，直接输入D：回车就可以直接改盘<br>输入命令：<code>vue init webpack my-project-first</code><br>回车，my-project-first是我自己的文件夹的名字，是基于webpack的项目，输入之后就一直回车，直到出现是否要安装vue-route，<br>这个我们在项目要用到，所以就输入y 回车</p>
+<h4 id="6：注意"><a href="#6：注意" class="headerlink" title="6：注意"></a>6：注意</h4><p>下面会出现是否需要js语法检测，这个我们暂时用不到，就可以直接输入no，后面的都可以直接输入no，都是我们暂时用不到的<br>打开D盘查看一下，会发现多了一个刚刚创建的文件夹</p>
+<h4 id="7：进入项目文件夹"><a href="#7：进入项目文件夹" class="headerlink" title="7：进入项目文件夹"></a>7：进入项目文件夹</h4><p>文件夹已经下载好了，现在就可以进入文件夹，输入： <code>cd my-project-first</code> 回车进入新建的项目。</p>
+<h4 id="8：在项目里安装依赖"><a href="#8：在项目里安装依赖" class="headerlink" title="8：在项目里安装依赖"></a>8：在项目里安装依赖</h4><p>因为各个模板之间都是相互依赖的，所以现在我们要安装依赖，在项目里输入以下命令。<br>输入命令： <code>cnpm install</code></p>
+<h4 id="9：运行"><a href="#9：运行" class="headerlink" title="9：运行"></a>9：运行</h4><p>一切环境依赖安装准备就绪，我们来测试一下自己新建的vue项目的运行情况，输入命令：cnpm run dev直接回车。会弹出一个浏览器访问地址默认为localhost:8080。（我将地址修改为8081进行访问）<br>输入命令：<code>cnpm run dev</code></p>
+<h4 id="10：在浏览器输入localhost-8081"><a href="#10：在浏览器输入localhost-8081" class="headerlink" title="10：在浏览器输入localhost:8081"></a>10：在浏览器输入localhost:8081</h4><p>8080是默认的端口，要访问的话，直接在浏览器输入localhost:8080就可以打开默认的模板了；（我的电脑上8080端口有需要，被另外一个项目占用，故而使用8081的端口）<br>在浏览器输入localhost:8081，显示如下，到此为止，vue开发环境搭建完毕。<br>但是在最后一步的时候，有些人会遇到这样的报错：</p>
+<p>不要着急，我也遇到过这样的情况，总结了一个非常完美的解决方案。<br>解决方案：</p>
+<h5 id="1：在项目里执行这样的命令"><a href="#1：在项目里执行这样的命令" class="headerlink" title="1：在项目里执行这样的命令"></a>1：在项目里执行这样的命令</h5><p><code>npm i prettier@~1.12.0</code></p>
+<h5 id="2：重新开启运行即可成功："><a href="#2：重新开启运行即可成功：" class="headerlink" title="2：重新开启运行即可成功："></a>2：重新开启运行即可成功：</h5><p><code>npm run dev</code></p>
+<blockquote>
+<p>小结：最后如何修改默认的端口？<br>既然提到自己修改了默认的端口，那就说明一下:<br>根目录下有一个config文件夹，看名字就知道与配置有关，打开config目录下的index.js，这里不仅可以改变端口，还可以根据需要改变其他配置信息。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>前端架构演进及主流UI</title>
     <url>/2021/0423/web-ui-evolution.html</url>
     <content><![CDATA[<blockquote>
@@ -5562,34 +5590,6 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </categories>
       <tags>
         <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue项目搭建</title>
-    <url>/2021/0423/vue-project-build.html</url>
-    <content><![CDATA[<h4 id="1：安装node"><a href="#1：安装node" class="headerlink" title="1：安装node"></a>1：安装node</h4><p>端开发框架和环境都是需要 Node.js ，先安装node.js开发环境，vue的运行是要依赖于node的npm的管理工具来实现，下载<a class="link"   href="https://nodejs.org/en/%EF%BC%8C%E5%AE%89%E8%A3%85%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%89%93%E5%BC%80cmd%E5%BC%80%E5%A7%8B%E8%BE%93%E5%85%A5%E5%91%BD%E4%BB%A4%E3%80%82%EF%BC%88%E6%88%91%E7%94%A8%E7%9A%84%E6%98%AFwin10%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%89%80%E4%BB%A5%E9%9C%80%E8%A6%81%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90%EF%BC%8C%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%E4%BB%A5%E7%AE%A1%E7%90%86%E5%91%98%E8%BA%AB%E4%BB%BD%E8%BF%90%E8%A1%8Ccmd%EF%BC%89%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E5%87%BA%E7%8E%B0%E5%BE%88%E5%A4%9A%E6%8A%A5%E9%94%99%E3%80%82" >https://nodejs.org/en/，安装完成之后，打开cmd开始输入命令。（我用的是win10系统，所以需要管理员权限，右键点击以管理员身份运行cmd），不然会出现很多报错。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h4 id="2：查看node的版本号"><a href="#2：查看node的版本号" class="headerlink" title="2：查看node的版本号"></a>2：查看node的版本号</h4><p>下载好node之后，以管理员身份打开cmd管理工具，，输入 node -v ，回车，查看node版本号，出现版本号则说明安装成功。</p>
-<p>输入命令： node -v</p>
-<h4 id="3：安装淘宝npm镜像"><a href="#3：安装淘宝npm镜像" class="headerlink" title="3：安装淘宝npm镜像"></a>3：安装淘宝npm镜像</h4><p>由于npm是国外的，使用起来比较慢，我们这里使用淘宝的cnpm镜像来安装vue.<br>淘宝的cnpm命令管理工具可以代替默认的npm管理工具。<br>输入命令：<code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code></p>
-<h4 id="4：安装全局vue-cli脚手架"><a href="#4：安装全局vue-cli脚手架" class="headerlink" title="4：安装全局vue-cli脚手架"></a>4：安装全局vue-cli脚手架</h4><p>淘宝镜像安装成功之后，我们就可以全局vue-cli脚手架，输入命令：cnpm install –global vue-cli 回车；验证是否安装成功，在命令输入vue，出来vue的信息，及说明安装成功；<br>输入命令：<code>cnpm install --global vue-cli</code></p>
-<h4 id="5：建一个新项目"><a href="#5：建一个新项目" class="headerlink" title="5：建一个新项目"></a>5：建一个新项目</h4><p>搭建完手脚架之后，我们要开始建一个新项目，这个时候我建议，尽量不要装在C盘，因为vue下载下来的文件比较大，如果要改盘的话，直接输入D：回车就可以直接改盘<br>输入命令：<code>vue init webpack my-project-first</code><br>回车，my-project-first是我自己的文件夹的名字，是基于webpack的项目，输入之后就一直回车，直到出现是否要安装vue-route，<br>这个我们在项目要用到，所以就输入y 回车</p>
-<h4 id="6：注意"><a href="#6：注意" class="headerlink" title="6：注意"></a>6：注意</h4><p>下面会出现是否需要js语法检测，这个我们暂时用不到，就可以直接输入no，后面的都可以直接输入no，都是我们暂时用不到的<br>打开D盘查看一下，会发现多了一个刚刚创建的文件夹</p>
-<h4 id="7：进入项目文件夹"><a href="#7：进入项目文件夹" class="headerlink" title="7：进入项目文件夹"></a>7：进入项目文件夹</h4><p>文件夹已经下载好了，现在就可以进入文件夹，输入： <code>cd my-project-first</code> 回车进入新建的项目。</p>
-<h4 id="8：在项目里安装依赖"><a href="#8：在项目里安装依赖" class="headerlink" title="8：在项目里安装依赖"></a>8：在项目里安装依赖</h4><p>因为各个模板之间都是相互依赖的，所以现在我们要安装依赖，在项目里输入以下命令。<br>输入命令： <code>cnpm install</code></p>
-<h4 id="9：运行"><a href="#9：运行" class="headerlink" title="9：运行"></a>9：运行</h4><p>一切环境依赖安装准备就绪，我们来测试一下自己新建的vue项目的运行情况，输入命令：cnpm run dev直接回车。会弹出一个浏览器访问地址默认为localhost:8080。（我将地址修改为8081进行访问）<br>输入命令：<code>cnpm run dev</code></p>
-<h4 id="10：在浏览器输入localhost-8081"><a href="#10：在浏览器输入localhost-8081" class="headerlink" title="10：在浏览器输入localhost:8081"></a>10：在浏览器输入localhost:8081</h4><p>8080是默认的端口，要访问的话，直接在浏览器输入localhost:8080就可以打开默认的模板了；（我的电脑上8080端口有需要，被另外一个项目占用，故而使用8081的端口）<br>在浏览器输入localhost:8081，显示如下，到此为止，vue开发环境搭建完毕。<br>但是在最后一步的时候，有些人会遇到这样的报错：</p>
-<p>不要着急，我也遇到过这样的情况，总结了一个非常完美的解决方案。<br>解决方案：</p>
-<h5 id="1：在项目里执行这样的命令"><a href="#1：在项目里执行这样的命令" class="headerlink" title="1：在项目里执行这样的命令"></a>1：在项目里执行这样的命令</h5><p><code>npm i prettier@~1.12.0</code></p>
-<h5 id="2：重新开启运行即可成功："><a href="#2：重新开启运行即可成功：" class="headerlink" title="2：重新开启运行即可成功："></a>2：重新开启运行即可成功：</h5><p><code>npm run dev</code></p>
-<blockquote>
-<p>小结：最后如何修改默认的端口？<br>既然提到自己修改了默认的端口，那就说明一下:<br>根目录下有一个config文件夹，看名字就知道与配置有关，打开config目录下的index.js，这里不仅可以改变端口，还可以根据需要改变其他配置信息。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>web</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -7156,51 +7156,6 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </tags>
   </entry>
   <entry>
-    <title>图床的使用</title>
-    <url>/2021/0423/picture-bad.html</url>
-    <content><![CDATA[<blockquote>
-<p>博客搭建好了，写博客就是图形加文字的解释，使人一目了然，那么这么多图片都放在本地吗？<br>你看网上那么多图片，前端加载时就是一个url地址，那也很快是不，静态资源少还好，比如一些简单的用户头像，菜单，按钮图标啥的放在本地就放在本地占不了太多的资源，但是博客那么多图片。。。都放在本地，不好管理不说，路径怎么写，以后md文件换了位置，你路径要不要换？再说放到本地你怎么管理呢？<br>所以最好有那种可以存放图片的地方—图床就是这样一个地方，可以生成url地址，我们只需要在特定的地方引入就好了。</p>
-</blockquote>
-<h4 id="1-图床靠谱不，如果图片被墙了，怎么办？"><a href="#1-图床靠谱不，如果图片被墙了，怎么办？" class="headerlink" title="1.图床靠谱不，如果图片被墙了，怎么办？"></a>1.图床靠谱不，如果图片被墙了，怎么办？</h4><p>   所以本地你需要备份一下，按你的菜单目录存一份。这样目录和对应的文章对应，一目了然。</p>
-<h4 id="2-那图片命名有什么要求吗？"><a href="#2-那图片命名有什么要求吗？" class="headerlink" title="2.那图片命名有什么要求吗？"></a>2.那图片命名有什么要求吗？</h4><p>   当然，最好不要中文命名，英文加数字组合，例如本篇博客示例图片“tuchuang_091216_1,tuchuang_091216_2…” 因为生成的url地址可能包含你的文件名，那么编译器解码时可能转换异常，另外很多博客说中文名的url地址，markdown语法不支持。下面我会尝试验证一下！</p>
-<p>– 本次我使用的时imgchr，为啥用他，因为百度出来他排第一还免费。。。主要是免费（留下来没有钱的眼泪！）</p>
-<p>注册完咱就开干吧，先看下博客结构和本地文件结构—&gt;&gt;<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/16/Q5gIjP.jpg"
-                      alt="本地文件结构"
-                ></p>
-<p>本地图片文件结构—&gt;&gt;<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/16/Q5gqAg.jpg"
-                      alt="本地图片文件结构"
-                ></p>
-<p>对应的imgchr上咱也按对应的博客结构建立相册—&gt;&gt;<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/16/Q5gHHS.jpg"
-                      alt="图床上图片相册"
-                ></p>
-<p>– 因为每篇博客，都会显示创建时间和月份，而生成的地址中都是带有时间的地址，所以这样即使被墙，后面补也可以快速定位到具体位置！</p>
-<p>接下来测试下，中文命名“图床20191216_4”后的图片：哈哈 ，生成的没有地址中没有中文，但是哈尽量不要用中文<br><code>![测试中文](https://s2.ax1x.com/2019/12/16/Q5214H.jpg)</code></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://s2.ax1x.com/2019/12/16/Q5214H.jpg"
-                      alt="测试中文"
-                ></p>
-<p>ok,有了图床写博客还难吗？so, just do it!</p>
-]]></content>
-      <categories>
-        <category>other</category>
-        <category>mess</category>
-      </categories>
-      <tags>
-        <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>halo 配置域名</title>
     <url>/2021/0423/halo-domain.html</url>
     <content><![CDATA[<blockquote>
@@ -7250,6 +7205,51 @@ application.propertise中需要加上jpa的配置<div class="highlight-container
       </categories>
       <tags>
         <tag>halo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图床的使用</title>
+    <url>/2021/0423/picture-bad.html</url>
+    <content><![CDATA[<blockquote>
+<p>博客搭建好了，写博客就是图形加文字的解释，使人一目了然，那么这么多图片都放在本地吗？<br>你看网上那么多图片，前端加载时就是一个url地址，那也很快是不，静态资源少还好，比如一些简单的用户头像，菜单，按钮图标啥的放在本地就放在本地占不了太多的资源，但是博客那么多图片。。。都放在本地，不好管理不说，路径怎么写，以后md文件换了位置，你路径要不要换？再说放到本地你怎么管理呢？<br>所以最好有那种可以存放图片的地方—图床就是这样一个地方，可以生成url地址，我们只需要在特定的地方引入就好了。</p>
+</blockquote>
+<h4 id="1-图床靠谱不，如果图片被墙了，怎么办？"><a href="#1-图床靠谱不，如果图片被墙了，怎么办？" class="headerlink" title="1.图床靠谱不，如果图片被墙了，怎么办？"></a>1.图床靠谱不，如果图片被墙了，怎么办？</h4><p>   所以本地你需要备份一下，按你的菜单目录存一份。这样目录和对应的文章对应，一目了然。</p>
+<h4 id="2-那图片命名有什么要求吗？"><a href="#2-那图片命名有什么要求吗？" class="headerlink" title="2.那图片命名有什么要求吗？"></a>2.那图片命名有什么要求吗？</h4><p>   当然，最好不要中文命名，英文加数字组合，例如本篇博客示例图片“tuchuang_091216_1,tuchuang_091216_2…” 因为生成的url地址可能包含你的文件名，那么编译器解码时可能转换异常，另外很多博客说中文名的url地址，markdown语法不支持。下面我会尝试验证一下！</p>
+<p>– 本次我使用的时imgchr，为啥用他，因为百度出来他排第一还免费。。。主要是免费（留下来没有钱的眼泪！）</p>
+<p>注册完咱就开干吧，先看下博客结构和本地文件结构—&gt;&gt;<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2019/12/16/Q5gIjP.jpg"
+                      alt="本地文件结构"
+                ></p>
+<p>本地图片文件结构—&gt;&gt;<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2019/12/16/Q5gqAg.jpg"
+                      alt="本地图片文件结构"
+                ></p>
+<p>对应的imgchr上咱也按对应的博客结构建立相册—&gt;&gt;<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2019/12/16/Q5gHHS.jpg"
+                      alt="图床上图片相册"
+                ></p>
+<p>– 因为每篇博客，都会显示创建时间和月份，而生成的地址中都是带有时间的地址，所以这样即使被墙，后面补也可以快速定位到具体位置！</p>
+<p>接下来测试下，中文命名“图床20191216_4”后的图片：哈哈 ，生成的没有地址中没有中文，但是哈尽量不要用中文<br><code>![测试中文](https://s2.ax1x.com/2019/12/16/Q5214H.jpg)</code></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://s2.ax1x.com/2019/12/16/Q5214H.jpg"
+                      alt="测试中文"
+                ></p>
+<p>ok,有了图床写博客还难吗？so, just do it!</p>
+]]></content>
+      <categories>
+        <category>other</category>
+        <category>mess</category>
+      </categories>
+      <tags>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
