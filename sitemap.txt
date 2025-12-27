@@ -1,3 +1,4 @@
+https://viecho.github.io/2025/1227/wifi-chose.html
 https://viecho.github.io/2025/1223/web3-interview4.html
 https://viecho.github.io/2025/1223/web3-macth-making.html
 https://viecho.github.io/2025/1203/web3-interview2.html
@@ -189,8 +190,8 @@ https://viecho.github.io/tags/solidity/
 https://viecho.github.io/tags/%E6%B5%8B%E8%AF%95/
 https://viecho.github.io/tags/md%E8%AF%AD%E6%B3%95/
 https://viecho.github.io/tags/%E9%AD%94%E6%96%B9/
-https://viecho.github.io/tags/halo/
 https://viecho.github.io/tags/%E5%9B%BE%E5%BA%8A/
+https://viecho.github.io/tags/halo/
 https://viecho.github.io/tags/wordpress/
 https://viecho.github.io/tags/hexo/
 https://viecho.github.io/tags/study/
