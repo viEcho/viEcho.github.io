@@ -904,15 +904,15 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">74</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">72</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">17</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">118</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">106</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -944,15 +944,15 @@
 </div>
                 <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">74</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">72</div>
         <div class="label text-third-text-color text-sm">Tags</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">17</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">16</div>
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">118</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">106</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -1027,31 +1027,33 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0727/mocha-chai.html">
-                            <img src="/../images/web3/25/5/1/solidity_base.png" alt="(六)Mocha+Chai测试框架" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/strategy-pattern.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="基于注解实现策略模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2025/0727/mocha-chai.html">
-                            (六)Mocha+Chai测试框架
+                        <a href="/2024/0110/strategy-pattern.html">
+                            基于注解实现策略模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            概念作为 Web3 开发者，掌握 Mocha 和 Chai 是进行智能合约测试的基础；Mocha 是一个功能丰富的 JavaScript 测试框架，用于异步测试。Chai 提供了多种断言风格，最常用的是 expect 和 should。
-测试的基本结...
+                            
+背景: 在佣金项目时，查询佣金总额接口根据dbType的不同走的不同的if else逻辑；然后让改为策略模式的实现，这里将整个改造的过程记录在此；
+
+123456789101112// 原始代码如下if(dbType == 1)&#123;    ...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Jul 27 2025 16:11:39 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 18:23:33 GMT+0800">
                 
-                    2025-07-27
+                    2024-01-10
                 
             </span>
         </span>
@@ -1064,7 +1066,7 @@
                     
                         
                         <li>
-                            <a href="/categories/web3/">web3</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1079,7 +1081,12 @@
                     
                         <li>
                             
-                            <a href="/tags/%E6%B5%8B%E8%AF%95/">测试</a>&nbsp;
+                            <a href="/tags/%E6%B3%A8%E8%A7%A3/">注解</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1087,7 +1094,7 @@
         
     </div>
 
-    <a href="/2025/0727/mocha-chai.html">Read more<span class="seo-reader-text">(六)Mocha+Chai测试框架</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/strategy-pattern.html">Read more<span class="seo-reader-text">基于注解实现策略模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1103,33 +1110,31 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0525/hexo-custom-nav.html">
-                            <img src="/../../../images/other/25/5/25/daohang.png" alt="hexo自定义导航栏" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/chain-responsibility-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="责任链模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2025/0525/hexo-custom-nav.html">
-                            hexo自定义导航栏
+                        <a href="/2024/0110/chain-responsibility-mode.html">
+                            责任链模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-图书馆呆坐4个小时，在Ai的帮助下，终于把hexo自定义导航栏搞定。
-
-想法之前一直想搞个聚合的导航栏，总结一些日常的资源链接啥的；但是发现好像没有好看的导航栏，不够简洁且不好看；最开始想着用友链的方式来做，发现友链是主题自带的模板；在我的一通修改...
+                            具体代码见LocalDemo之shejimoshi模块
+在源码中典型应用：Netty 中的 Pipeline和ChannelHandler通过责任链设计模式来组织代码逻辑。Spring Security 使用责任链模式，可以动态地添加或删除责任（处理...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun May 25 2025 16:25:23 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
                 
-                    2025-05-25
+                    2024-01-10
                 
             </span>
         </span>
@@ -1142,145 +1147,7 @@
                     
                         
                         <li>
-                            <a href="/categories/other/">other</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/other/self/">self</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/0525/hexo-custom-nav.html">Read more<span class="seo-reader-text">hexo自定义导航栏</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0511/solidity-wei-math.html">
-                            <img src="/../images/web3/25/5/1/solidity_base.png" alt="(五) solidity的位运算实践" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2025/0511/solidity-wei-math.html">
-                            (五) solidity的位运算实践
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>位运算</p>
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun May 11 2025 15:46:04 GMT+0800">
-                
-                    2025-05-11
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/web3/">web3</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/0511/solidity-wei-math.html">Read more<span class="seo-reader-text">(五) solidity的位运算实践</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0502/erc20-vs-erc721.html">
-                            <img src="/../images/web3/25/5/1/solidity_base.png" alt="(四) ERC20 &amp;&amp; ERC721 简介" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2025/0502/erc20-vs-erc721.html">
-                            (四) ERC20 &amp;&amp; ERC721 简介
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            <p>ERC20 &amp;&amp; ERC721</p>
-
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri May 02 2025 19:37:19 GMT+0800">
-                
-                    2025-05-02
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/web3/">web3</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1295,7 +1162,7 @@
                     
                         <li>
                             
-                            <a href="/tags/solidity/">solidity</a>&nbsp;
+                            <a href="/tags/responsibility/">responsibility</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1303,7 +1170,7 @@
         
     </div>
 
-    <a href="/2025/0502/erc20-vs-erc721.html">Read more<span class="seo-reader-text">(四) ERC20 &amp;&amp; ERC721 简介</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/chain-responsibility-mode.html">Read more<span class="seo-reader-text">责任链模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1319,31 +1186,35 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0502/solidity-proxy-call.html">
-                            <img src="/../images/web3/25/5/1/solidity_base.png" alt="(三)solidity代理调用" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/proxy-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="代理模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2025/0502/solidity-proxy-call.html">
-                            (三)solidity代理调用
+                        <a href="/2024/0110/proxy-mode.html">
+                            代理模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            <p>代理调用</p>
+                            具体代码见LocalDemo之shejimoshi模块
+代理模式很简单，只要记住以下关键点，简单易实现：
 
+代理类与委托类实现同一接口
+在委托类中实现功能，在代理类的方法中中引用委托类的同名方法
+外部类调用委托类某个方法时，直接以接口指向代理类的实例...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri May 02 2025 16:53:05 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
                 
-                    2025-05-02
+                    2024-01-10
                 
             </span>
         </span>
@@ -1356,7 +1227,7 @@
                     
                         
                         <li>
-                            <a href="/categories/web3/">web3</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1371,7 +1242,7 @@
                     
                         <li>
                             
-                            <a href="/tags/solidity/">solidity</a>&nbsp;
+                            <a href="/tags/proxy/">proxy</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1379,7 +1250,7 @@
         
     </div>
 
-    <a href="/2025/0502/solidity-proxy-call.html">Read more<span class="seo-reader-text">(三)solidity代理调用</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/proxy-mode.html">Read more<span class="seo-reader-text">代理模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1395,31 +1266,31 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0501/solidity-inner-object-and-function.html">
-                            <img src="/../images/web3/25/5/1/solidity_base.png" alt="(二)solidity内置对象及函数" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/factory-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="工厂模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2025/0501/solidity-inner-object-and-function.html">
-                            (二)solidity内置对象及函数
+                        <a href="/2024/0110/factory-mode.html">
+                            工厂模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            <p>内置对象及函数</p>
-
+                            具体代码见LocalDemo之shejimoshi模块
+举个例子，比如我们要做文件解析，那么我们可能用xml,json,text,html等；那么我就建四个对应的工厂，封装对应的解析方法就好；调用时只用根据文件类型获取对应的工厂，调用对应的解析方法即...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu May 01 2025 13:59:26 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
                 
-                    2025-05-01
+                    2024-01-10
                 
             </span>
         </span>
@@ -1432,7 +1303,7 @@
                     
                         
                         <li>
-                            <a href="/categories/web3/">web3</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1447,7 +1318,7 @@
                     
                         <li>
                             
-                            <a href="/tags/solidity/">solidity</a>&nbsp;
+                            <a href="/tags/factory/">factory</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1455,7 +1326,7 @@
         
     </div>
 
-    <a href="/2025/0501/solidity-inner-object-and-function.html">Read more<span class="seo-reader-text">(二)solidity内置对象及函数</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/factory-mode.html">Read more<span class="seo-reader-text">工厂模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1471,31 +1342,31 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0413/solidity-base-programming-rules.html">
-                            <img src="/../images/web3/25/5/1/solidity_base.png" alt="(一)solidity基本语法规则" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/builder-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="建造者模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2025/0413/solidity-base-programming-rules.html">
-                            (一)solidity基本语法规则
+                        <a href="/2024/0110/builder-mode.html">
+                            建造者模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            <p>基本语法</p>
-
+                            具体代码见LocalDemo之shejimoshi模块
+就是我们链式编程的各种builder的实现；它将产品和构建过程做了个拆分，例如我们创建一个电脑，那么需要组装显示屏，需要组装主机；主要做法是抽象构建过程，再由一个实现类来实现抽象类，通过各种bu...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Apr 13 2025 18:21:20 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
                 
-                    2025-04-13
+                    2024-01-10
                 
             </span>
         </span>
@@ -1508,7 +1379,7 @@
                     
                         
                         <li>
-                            <a href="/categories/web3/">web3</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1523,7 +1394,7 @@
                     
                         <li>
                             
-                            <a href="/tags/solidity/">solidity</a>&nbsp;
+                            <a href="/tags/builder/">builder</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1531,7 +1402,7 @@
         
     </div>
 
-    <a href="/2025/0413/solidity-base-programming-rules.html">Read more<span class="seo-reader-text">(一)solidity基本语法规则</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/builder-mode.html">Read more<span class="seo-reader-text">建造者模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1547,33 +1418,30 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2025/0316/gitee-upload-remote-abruptly-disconnected.html">
-                            <img src="/../images/other/25/3/16/gitee_upload_error.png" alt="gitee上传远端意外挂断" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/observer-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="观察者模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2025/0316/gitee-upload-remote-abruptly-disconnected.html">
-                            gitee上传远端意外挂断
+                        <a href="/2024/0110/observer-mode.html">
+                            观察者模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-最近更新另一个面试题的博客，发现本地提交推送到github后，再自动推送到gitee做备份时，直接远程显示挂断了；WTF什么鬼，折腾了一会搞定了，水篇博客记录下吧
-
-故事背景我折腾了两个hexo博客，一个是这个站，另一个是导航栏上的面试题对应的站，...
+                            观察者模式适用于发布订阅的场景，具体代码见LocalDemo之shejimoshi模块；关键点：1、针对观察者与被观察者分别定义接口，有利于分别进行扩展。2、重点就在被观察者的实现中：　　（1）定义观察者集合，并定义针对集合的添加、删除操作，用于增加...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sun Mar 16 2025 14:32:00 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
                 
-                    2025-03-16
+                    2024-01-10
                 
             </span>
         </span>
@@ -1586,81 +1454,7 @@
                     
                         
                         <li>
-                            <a href="/categories/other/">other</a>&nbsp;
-                        </li>
-                    
-                    
-                
-                    
-                        
-                            <li>></li>
-                        
-                        <li>
-                            <a href="/categories/other/mess/">mess</a>&nbsp;
-                        </li>
-                    
-                    
-                
-            </ul>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2025/0316/gitee-upload-remote-abruptly-disconnected.html">Read more<span class="seo-reader-text">gitee上传远端意外挂断</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                
-                    
-                
-
-                
-                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2024/0621/mysql-join-left-join.html">
-                            <img src="/../images/db/24/6/21/sql_join.png" alt="mysql之join left join踩坑记" class="w-full h-full object-cover dark:brightness-75 transition-all" />
-                        </a>
-                    </div>
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
-                    <h3 class="home-article-title">
-                        <a href="/2024/0621/mysql-join-left-join.html">
-                            mysql之join left join踩坑记
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-背景：最近优化个线上导出的功能，本来测试环境没啥问题；一上线不行了，下载超时；然后一顿改，把代码实现的逻辑全扔sql里了，发现反而更快，啥查询字段里不要加函数，分批查询啥的；没有，就是简单粗暴能查出来就行；别的事又催的紧，那就先上去看看再说吧；这不...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Fri Jun 21 2024 22:28:37 GMT+0800">
-                
-                    2024-06-21
-                
-            </span>
-        </span>
-        
-            <span class="home-article-category">
-                <i class="fa-solid fa-folders"></i>&nbsp;
-            <ul>
-                
-                
-                    
-                        
-                        <li>
-                            <a href="/categories/db/">db</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1675,7 +1469,7 @@
                     
                         <li>
                             
-                            <a href="/tags/mysql/">mysql</a>&nbsp;
+                            <a href="/tags/observer/">observer</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1683,7 +1477,7 @@
         
     </div>
 
-    <a href="/2024/0621/mysql-join-left-join.html">Read more<span class="seo-reader-text">mysql之join left join踩坑记</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/observer-mode.html">Read more<span class="seo-reader-text">观察者模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1699,31 +1493,32 @@
 
                 
                     <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
-                        <a href="/2024/0618/py-shell-for-generate-db-data.html">
-                            <img src="/../images/java/24/6/17/mock_data.png" alt="手撸一个造数脚本工具类" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        <a href="/2024/0110/template-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="模板模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
                         </a>
                     </div>
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
                     <h3 class="home-article-title">
-                        <a href="/2024/0618/py-shell-for-generate-db-data.html">
-                            手撸一个造数脚本工具类
+                        <a href="/2024/0110/template-mode.html">
+                            模板模式
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
-                            
-上篇博客讲到新建项目后我们需要根据表生成基础的代码，那基础代码写好后，我们要造点数据到表里怎么弄呢？有没有办法，我能生成对应的造数脚本呢？答案是有的，我们借助python强大的faker库即可生成；那总不能每次都要手写新的脚本吧，那必须不能啊；我们...
+                            具体代码见LocalDemo之shejimoshi模块
+模板模式是在抽象父类中公开定义方法，可以将一些通用的方法封装在这个方法中，子类可以根据需要来覆盖重写父类中的方法；如果想限定哪些方法子类不可重新，则将其方法声明为final修饰；
+
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Tue Jun 18 2024 22:55:48 GMT+0800">
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
                 
-                    2024-06-18
+                    2024-01-10
                 
             </span>
         </span>
@@ -1736,7 +1531,7 @@
                     
                         
                         <li>
-                            <a href="/categories/java/">java</a>&nbsp;
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
                         </li>
                     
                     
@@ -1751,7 +1546,7 @@
                     
                         <li>
                             
-                            <a href="/tags/python/">python</a>&nbsp;
+                            <a href="/tags/template/">template</a>&nbsp;
                         </li>
                     
                 </ul>
@@ -1759,7 +1554,224 @@
         
     </div>
 
-    <a href="/2024/0618/py-shell-for-generate-db-data.html">Read more<span class="seo-reader-text">手撸一个造数脚本工具类</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/0110/template-mode.html">Read more<span class="seo-reader-text">模板模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2024/0110/facade-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="门面模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2024/0110/facade-mode.html">
+                            门面模式
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            具体代码见LocalDemo之shejimoshi模块
+门面模式（Facade Pattern） 又叫外观模式，提供了一个统一的接口，用来访问子系统中的一群接口 。其主要特征是定义了一个高层接口，让子系统更容易使用，属于结构型模式。在我们日常编码中也...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
+                
+                    2024-01-10
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/facade/">facade</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/0110/facade-mode.html">Read more<span class="seo-reader-text">门面模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2024/0110/decorator-mode.html">
+                            <img src="/../images/sheji/24/1/14/sjms.png" alt="装饰器模式" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2024/0110/decorator-mode.html">
+                            装饰器模式
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            具体代码见LocalDemo之shejimoshi模块
+装饰器模式（Decorator Pattern） 也称为包装模式(Wrapper Pattern) 是指在不改变原有对象的基础之上，将功能附加到对象上，提供了比继承更有弹性的替代方案(扩展原有对...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Jan 10 2024 00:00:00 GMT+0800">
+                
+                    2024-01-10
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/sheji/">sheji</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/decorator/">decorator</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2024/0110/decorator-mode.html">Read more<span class="seo-reader-text">装饰器模式</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2022/0418/mac-virtual-machine-static-ip.html">
+                            <img src="/../images/toolsSetting/22/4/18/mac_virtual.jpeg" alt="mac虚拟机搭建&amp;设置静态ip" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2022/0418/mac-virtual-machine-static-ip.html">
+                            mac虚拟机搭建&amp;设置静态ip
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            搭建步骤mac下载VMwareFunction下载地址vMware针对个人开发者是免费的，用邮箱填写一个账号，填写个人信息即可获取激活码，这个自己摸索即可
+下载虚拟机镜像ali镜像 
+镜像安装启动vMware，将下载的镜像拖到vMware中即可，为了...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Mon Apr 18 2022 21:12:45 GMT+0800">
+                
+                    2022-04-18
+                
+            </span>
+        </span>
+        
+            <span class="home-article-category">
+                <i class="fa-solid fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/toolsSetting/">toolsSetting</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2022/0418/mac-virtual-machine-static-ip.html">Read more<span class="seo-reader-text">mac虚拟机搭建&amp;设置静态ip</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -1769,7 +1781,7 @@
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-    <a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa-regular fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
 
     </div>
