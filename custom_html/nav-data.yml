@@ -88,6 +88,24 @@ categories:
           - { name: "Perplexity", url: "https://www.perplexity.ai/", title: "AI问答搜索工具" }
           - { name: "Poe", url: "https://poe.com/", title: "多AI模型平台" }
           - { name: "ChatPDF", url: "https://www.chatpdf.com/", title: "PDF文档AI分析" }
+      - name: "辅助工具"
+        links:
+          - { name: "Canva", url: "https://www.canva.com/", title: "在线设计工具" }
+          - { name: "Trello", url: "https://trello.com/", title: "项目管理工具" }
+          - { name: "Slack", url: "https://slack.com/", title: "团队协作工具" }
+          - { name: "Todoist", url: "https://todoist.com/", title: "任务管理工具" }
+          - { name: "Grammarly", url: "https://www.grammarly.com/", title: "写作辅助工具" }
+          - { name: "PaywallBuster", url: "https://paywallbuster.com/", title: "去除付费内容" }
+          - { name: "FMHY", url: "https://fmhy.net/", title: "连接应用和设备互联网上最大的免费物品收藏" }
+          - { name: "软仓", url: "https://www.ruancang.net/", title: "收录了常用软件设计类软件" }
+          - { name: "懒人excel", url: "https://www.lanrenexcel.com/", title: "Excel 函数公式、操作技巧、数据分析、图表模板、VBA、数据透视表教程" }
+          - { name: "IFIX", url: "https://zh.ifixit.com/", title: "教你修电子设备的网站" }
+          - { name: "MindLuster", url: "https://www.mindluster.com/", title: "30多万个行业免费的在线课程" }
+          - { name: "NapKin", url: "https://www.napkin.ai/", title: "能将你的文字转换为各种图表" }
+          - { name: "KmsCx", url: "https://kms.cx/", title: "一键激活window/office" }
+          - { name: "DataTool", url: "https://www.datatool.vip/", title: "下载全平台的视频" }
+          - { name: "Iatentbox", url: "https://latentbox.com/zh/awesome-resource-sites", title: "Latent Box 是一个重新构想的聚合站,收录优质资源的聚合站" }
+
 
   - name: "💾 生产力工具"
     groups:
